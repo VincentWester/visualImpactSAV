@@ -1,6 +1,8 @@
-# -*- coding: utf-8 -*-
-from __future__ import unicode_literals
-
 from django.contrib import admin
 
-# Register your models here.
+from .models import Address, Client, Product, SAV_file_status
+
+admin.site.register(Address)
+admin.site.register(Client)
+admin.site.register(Product)
+admin.site.register(SAV_file_status)

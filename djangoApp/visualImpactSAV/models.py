@@ -12,7 +12,7 @@ class Client(models.Model):
     name = models.CharField(max_length=200)
     surname = models.CharField(max_length=200)
     email = models.CharField(max_length=400)
-    address = models.ForeignKey(Address)
+    address = models.OneToOneField(Address)
 
 class Product(models.Model):
     serial_number = models.CharField(max_length=50)
