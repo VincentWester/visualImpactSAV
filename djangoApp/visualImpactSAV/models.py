@@ -8,19 +8,31 @@ class Address(models.Model):
     zipcode = models.CharField(max_length=10)
     city = models.CharField(max_length=10)
 
+    def __str__(self):
+        return "{} - {} - {}".format(self.street, self.zipcode, self.city) 	
+
 class Client(models.Model):
     name = models.CharField(max_length=200)
     surname = models.CharField(max_length=200)
     email = models.CharField(max_length=400)
     address = models.OneToOneField(Address)
 
+    def __str__(self):
+        return "{} {}".format(self.surname, self.name) 	
+
 class Product(models.Model):
     serial_number = models.CharField(max_length=50)
     mark = models.CharField(max_length=50)
     model = models.CharField(max_length=100)
 
+    def __str__(self):
+        return "{} - {} {}".format(self.serial_number, self.mark, self.model)
+
 class SAV_file_status(models.Model):
     libelle = models.CharField(max_length=50)
+
+    def __str__(self):
+        return self.libelle 	
 
 class SAV_file(models.Model):
     status = models.ForeignKey(SAV_file_status)
