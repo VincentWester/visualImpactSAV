@@ -4,7 +4,7 @@ from . import models
 class SAV_fileForm(ModelForm):
     class Meta:
         model = models.SAV_file
-        fields = ('file_reference',)  
+        fields = "__all__"  
         
 
 class EventForm(ModelForm):

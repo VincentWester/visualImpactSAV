@@ -7,20 +7,13 @@
     </head>
 
     <body>
-        <!--form action="/your-name/" method="post">
-            <label for="reference_number">Reference Number : </label>
-            <input id="reference_number" type="text" name="reference_number" maxlength="100" required>
-
-            <label for="tracking_number">Tracking Number : </label>
-            <input id="tracking_number" type="text" name="tracking_number" maxlength="100" required>
-
-            <label for="SAV_file_status">Status : </label>
-            <select id="SAV_file_status" name="SAV_file_status">
-                <option >
-            </select>
-            <input type="submit" value="OK">
-        </form -->
         <p>{{ sav_file.file_reference }}</p>
+        <p>{{ sav_file.status }}</p>
+        <p>{{ sav_file.client }}</p>
+        <p>{{ sav_file.product_referenced }}</p>
+        <p>{{ sav_file.out_of_order_reason }}</p>
+        <p>{{ sav_file.file_reference }}</p>
+        <p>{{ sav_file.tracking_number }}</p>
     </body>
 
 </html>
