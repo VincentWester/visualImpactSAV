@@ -17,6 +17,6 @@ from django.conf.urls import include, url
 from django.contrib import admin
 
 urlpatterns = [
-    #url(r'^visualImpactSAV/', include('visualImpactSAV.urls')),
+    url(r'^visualImpactSAV/', include('visualImpactSAV.urls', namespace='visualImpactSAV')),
     url(r'^admin/', admin.site.urls),
 ]
