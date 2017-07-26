@@ -1,0 +1,30 @@
+    <form method=GET action="{% url 'visualImpactSAV:searchSAVFile' %}" accept-charset="utf-8">
+        <label for="file_reference">File reference :</label>
+        <input id="file_reference" type="text" name="file_reference">
+
+        <label for="client_name">Nom du client :</label>
+        <input id="client_name" type="text" name="client_name">
+
+        <label for="client_surname">Prénom du client :</label>
+        <input id="client_surname" type="text" name="client_surname">
+
+        <label for="product_model">Modèle du produit :</label>
+        <input id="product_model" type="text" name="product_model">
+
+        <label for="product_mark">Marque du produit :</label>
+        <input id="product_mark" type="text" name="product_mark">
+
+        <label for="product_serial_number">Numéro du produit :</label>
+        <input id="product_serial_number" type="text" name="product_serial_number">
+
+        <label for="tracking_number">Numéro de suivi :</label>
+        <input id="tracking_number" type="text" name="tracking_number">
+       
+        <input type="submit" value="Valider">
+    </form>
+
+    <ul>
+    {% for file in results %}
+        <li>{{ file.file_reference }}</li>
+    {% endfor %}
+    </ul>

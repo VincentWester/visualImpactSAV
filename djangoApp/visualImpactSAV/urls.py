@@ -4,6 +4,7 @@ from django.contrib import admin
 from . import views
 
 urlpatterns = [
-    url(r'^services/$', views.services, name="services"),
-    url(r'^addSAVFile/$', views.add_SAV_file, name="addSAVfile"),
+    url(r'^addSAVFile/$', views.addSAVFile, name="addSAVFile"),
+    url(r'^saveSAVFile/$', views.saveSAVFile, name="saveSAVFile"),
+    url(r'^searchSAVFile/$', views.SAVFileSearchListView.as_view(), name="searchSAVFile"),
 ]

@@ -2,13 +2,15 @@
 from __future__ import unicode_literals
 from django.http import HttpResponseRedirect, HttpResponse
 from django.urls import reverse
-
+from django.views import generic
 from django.shortcuts import render, render_to_response
 
 from .models import SAV_file, Client, Product, SAV_file_status
 from .forms import SAV_fileForm
 
-def add_SAV_file(request):
+import operator
+
+def saveSAVFile(request):
     # create a form instance and populate it with data from the request:
 
     form = SAV_fileForm(request.POST)
@@ -28,15 +30,55 @@ def add_SAV_file(request):
         sav_file.tracking_number = form.cleaned_data['tracking_number']
         sav_file.save()
 
-        return render(request, 'djangoApp/addSAVFile.html', {'sav_file': sav_file})
+        return render(request, 'djangoApp/view.html', {'sav_file': sav_file})
 
     else:
         return HttpResponse('Le formulaire est mal rempli.')
 
-def services(request):
+def addSAVFile(request):
 
     sav_file_form = SAV_fileForm()
     clients = Client.objects.all()
     status = SAV_file_status.objects.all()
     products = Product.objects.all()
-    return render(request, 'djangoApp/services.html', { 'sav_file_form': sav_file_form, 'clients': clients, 'status': status, 'products': products })
+    return render(request, 'djangoApp/addSAVFile.html', { 'sav_file_form': sav_file_form, 'clients': clients, 'status': status, 'products': products })
+
+class SAVFileSearchListView(generic.ListView):
+    template_name = 'djangoApp/searchSAVFile.html'
+    context_object_name = 'results'
+
+    """
+    Display a SAV_file List page filtered by the search query.
+    """
+    def get_queryset(self):
+        file_reference = self.request.GET.get('file_reference')
+        client_name = self.request.GET.get('client_name')
+        client_surname = self.request.GET.get('client_surname')
+        product_model = self.request.GET.get('product_model')
+        product_mark = self.request.GET.get('product_mark')
+        product_serial_number = self.request.GET.get('product_serial_number')
+        tracking_number = self.request.GET.get('tracking_number')
+        results = SAV_file.objects.all()
+        
+        if file_reference:
+            results = results.filter(file_reference__contains = file_reference)
+
+        if client_name:
+            results = results.filter(client__name__contains = client_name) 
+
+        if client_surname:
+            results = results.filter(client__surname__contains = client_surname)
+        
+        if product_model:
+            results = results.filter(product_referenced__model__contains = product_model)
+
+        if product_mark:
+            results = results.filter(product_referenced__mark__contains = product_mark) 
+
+        if product_serial_number:
+            results = results.filter(product_referenced__serial_number__contains = product_serial_number)
+
+        if tracking_number:
+            results = results.filter(tracking_number__contains = tracking_number)
+
+        return results
