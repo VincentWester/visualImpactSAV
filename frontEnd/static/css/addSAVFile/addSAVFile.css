@@ -1,0 +1,65 @@
+#form-search label {
+    color: black;
+}
+
+.block-file-reference {
+	margin-bottom: 1%;
+}
+
+.panel-client-or-product {
+	border-style: solid;
+    border-color: black;
+    border-width: 1px;
+    border-radius: 25px;
+}
+
+.panel-client-or-product label{
+    display: inline-block; 
+    margin-left: 10%;  
+    margin-top: 5%;   
+    margin-bottom: 5%; 
+}
+
+.block-out-of-order-reason {
+	margin-top: 1%;
+	margin-bottom: 1%;
+}
+
+.block-out-of-order-reason label {
+	display: block;
+	text-align: center;
+}
+
+.block-out-of-order-reason textarea{
+	display: block;  
+	margin-left: auto;
+  	margin-right: auto;
+  	width: 80%;
+}
+
+.block-sav-status {
+	margin-top: 3%;
+	margin-bottom: 1%;
+	padding-left: 5%;	
+}
+
+.block-sav-status div {
+	margin-top: 5%;	
+}
+
+.block-files {
+	margin-top: 1%;
+	padding-top: 1%;
+}
+
+.block-button {
+	margin-top: 1%;
+	padding-top: 1%;	
+}
+
+.block-button input{ 
+	display: block;  
+	margin-left: auto;
+  	margin-right: auto;
+  	width: 10%;
+}
