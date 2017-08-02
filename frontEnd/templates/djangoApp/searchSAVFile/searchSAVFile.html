@@ -1,6 +1,14 @@
-    <form method=GET action="{% url 'visualImpactSAV:searchSAVFile' %}" accept-charset="utf-8">
-        <label for="file_reference">File reference :</label>
-        <input id="file_reference" type="text" name="file_reference">
+{% extends "base.html" %}
+{% load static %}
+{% block style %}
+    <link href="{% static 'css/searchSAVFile/searchSAVFile.css' %}" rel="stylesheet" media="screen">
+{% endblock %}
+{% block content %}    
+    <form method=GET action="{% url 'visualImpactSAV:searchSAVFile' %}" class="row" accept-charset="utf-8">
+        <div class="col-md-12">
+            <label for="file_reference">File reference :</label>
+            <input id="file_reference" type="text" name="file_reference">
+        </div>
 
         <label for="client_name">Nom du client :</label>
         <input id="client_name" type="text" name="client_name">
@@ -28,3 +36,4 @@
         <li>{{ file.file_reference }}</li>
     {% endfor %}
     </ul>
+{% endblock %}

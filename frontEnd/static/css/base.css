@@ -1,8 +1,30 @@
-#general {
-    background-color : white;
+html, body {
+  height: 100%;
+}
+
+body {
+    background-color : #ffdf00;
+    display: block;
+    position:relative; 
+    padding-bottom:  10%;
+}
+
+.menu {
+    background-color : black;
+    padding-top: 1%;
+    padding-bottom: 1%;
+    padding-left: 2%;
 }
 
 .base-content {
-	background-color : #eeff11;
+	background-color : #eeeeee;
 	padding: 2%;
+    height: 100%;
+}
+
+.footer {
+	background-color : black;
+    position: absolute; 
+    left: 0 ; right: 0; bottom: 0; 
+    height : 10%;
 }

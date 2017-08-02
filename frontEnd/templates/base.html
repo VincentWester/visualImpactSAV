@@ -16,9 +16,14 @@
     </head>
 
     <body id="general" class="row">
+        <header class="menu">
+            <img src="{% static 'images/logoVisual.png' %}" alt="logoVisual.png">
+        </header>
         <div class="col-md-8 col-md-offset-2 base-content">
             {% block content %}
             {% endblock %}
         </div>
+        <footer class="footer">
+        </footer>
     </body>
 </html>

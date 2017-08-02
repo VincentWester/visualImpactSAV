@@ -41,10 +41,10 @@ def addSAVFile(request):
     clients = Client.objects.all()
     status = SAV_file_status.objects.all()
     products = Product.objects.all()
-    return render(request, 'djangoApp/addSAVFile.html', { 'sav_file_form': sav_file_form, 'clients': clients, 'status': status, 'products': products })
+    return render(request, 'djangoApp/addSAVFile/addSAVFile.html', { 'sav_file_form': sav_file_form, 'clients': clients, 'status': status, 'products': products })
 
 class SAVFileSearchListView(generic.ListView):
-    template_name = 'djangoApp/searchSAVFile.html'
+    template_name = 'djangoApp/searchSAVFile/searchSAVFile.html'
     context_object_name = 'results'
 
     """
@@ -61,24 +61,24 @@ class SAVFileSearchListView(generic.ListView):
         results = SAV_file.objects.all()
         
         if file_reference:
-            results = results.filter(file_reference__contains = file_reference)
+            results = results.filter(file_reference__icontains = file_reference)
 
         if client_name:
-            results = results.filter(client__name__contains = client_name) 
+            results = results.filter(client__name__icontains = client_name) 
 
         if client_surname:
-            results = results.filter(client__surname__contains = client_surname)
+            results = results.filter(client__surname__icontains = client_surname)
         
         if product_model:
-            results = results.filter(product_referenced__model__contains = product_model)
+            results = results.filter(product_referenced__model__icontains = product_model)
 
         if product_mark:
-            results = results.filter(product_referenced__mark__contains = product_mark) 
+            results = results.filter(product_referenced__mark__icontains = product_mark) 
 
         if product_serial_number:
-            results = results.filter(product_referenced__serial_number__contains = product_serial_number)
+            results = results.filter(product_referenced__serial_number__icontains = product_serial_number)
 
         if tracking_number:
-            results = results.filter(tracking_number__contains = tracking_number)
+            results = results.filter(tracking_number__icontains = tracking_number)
 
         return results
