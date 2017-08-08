@@ -12,10 +12,30 @@
                 <input id="file_reference" type="text" name="file_reference">
             </div>
 
+            <div class="col-md-6">           
+                <label for="id_sav_file_status">Status de la fiche SAV :</label>
+                <select id="id_sav_file_status" name="sav_file_status">
+                    <option value="">  ----  </option>
+                    {% for st in sav_file_status %}
+                        <option value="{{ st.id }}">{{ st }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+
             <div class="col-md-6">
                 <label for="tracking_number">Numéro de suivi :</label>
                 <input id="tracking_number" type="text" name="tracking_number">
             </div>
+
+            <div class="col-md-6"> 
+            <label for="id_reparation_status">Statut de la réparation : </label>
+            <select id="id_reparation_status" name="reparation_status">
+                <option value="">  ----  </option>
+                {% for st in reparation_status %}
+                    <option value="{{ st.id }}">{{ st }}</option>
+                {% endfor %}
+            </select>
+        </div> 
         </div>
 
         <div class="col-md-6 block-client-or-product">
