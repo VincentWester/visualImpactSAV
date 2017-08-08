@@ -16,7 +16,10 @@ Including another URLconf
 from django.conf.urls import include, url
 from django.contrib import admin
 
+from visualImpactSAV import views
+
 urlpatterns = [
+    url(r'^$', views.home, name="home"),
     url(r'^visualImpactSAV/', include('visualImpactSAV.urls', namespace='visualImpactSAV')),
     url(r'^admin/', admin.site.urls),
 ]

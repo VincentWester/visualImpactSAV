@@ -3,64 +3,105 @@
 {% block style %}
     <link href="{% static 'css/addSAVFile/addSAVFile.css' %}" rel="stylesheet" media="screen">
 {% endblock %}
+{% block menu_add %}<li class="list-SAV-file active row"><a href="#" class="col-md-12">Ajouter</a></li>{% endblock %}
 {% block content %}
-    <form id="form-search" class="row" method=POST action="{% url 'visualImpactSAV:saveSAVFile' %}" accept-charset="utf-8">
+    <form class="row" method=POST action="{% url 'visualImpactSAV:saveSAVFile' %}" accept-charset="utf-8">
         {% csrf_token %}
-        <div class="col-md-12 block-file-reference">
-            <label for="id_file_reference">File reference :</label>
+        <div class="col-md-6 first-block">
+            <label for="id_file_reference">Reference du fichier SAV :</label>
             <input id="id_file_reference" type="text" name="file_reference" maxlength="33" required/>
         </div>
+
+        <div class="col-md-6 first-block">           
+            <label for="id_sav_file_status">Status de la fiche SAV :</label>
+            <select id="id_sav_file_status" name="sav_file_status" required>
+                <option value="">-- Selectionnez un statut --</option>
+                {% for st in sav_file_status %}
+                    <option value="{{ st.id }}">{{ st }}</option>
+                {% endfor %}
+            </select>
+        </div>
+
+        <div class="col-md-6 second-block">            
+            <label for="id_tracking_number">Numéro de suivi UPS :</label>
+            <input id="id_tracking_number" type="text" name="tracking_number" maxlength="100" required/>
+        </div>
+
+        <div class="col-md-6 second-block"> 
+            <label for="id_reparation_status">Statut de la réparation : </label>
+            <select id="id_reparation_status" name="reparation_status" required>
+                <option value="">-- Selectionnez un statut --</option>
+                {% for st in reparation_status %}
+                    <option value="{{ st.id }}">{{ st }}</option>
+                {% endfor %}
+            </select>
+        </div> 
         
-        <div class="col-md-6">
-            <div class="panel-client-or-product">
-                <label for="id_client">Client :</label>
-                <select  id="id_client" name="client">
-                    <option value="">-- Selectionnez un client --</option>
-                    {% for client in clients %}
-                        <option value="{{ client.id }}">{{ client }}</option>
-                    {% endfor %}
-                </select>
+        <div class="col-md-6 block-client">
+            <div class="row panel-client">
+                <div class="col-md-12 title-block-client">
+                    <h4>Informations sur le client</h4>
+                </div>
+                <div class="col-md-12 block-name-client">
+                    <label for="id_name_client">Nom :</label>
+                    <input id="id_name_client" type="text" name="name_client" maxlength="300" required/>
+                </div>
+                <div class="col-md-7 row">
+                    <div class="col-md-12 address-client">
+                        <span class="glyphicon glyphicon-envelope"/><span>   Adresse</span>
+                    </div>                     
+                    <div class="col-md-12 block-characteristic-client">
+                        <label for="id_street_client">Rue :</label>
+                        <input id="id_street_client" type="text" name="street_client" maxlength="300" required/>
+                    </div>  
+                    <div class="col-md-12 block-characteristic-client">
+                        <label for="id_city_client">Ville  :</label>
+                        <input id="id_city_client" type="text" name="city_client" maxlength="300" required/>
+                    </div>   
+                    <div class="col-md-12 block-characteristic-client">
+                        <label for="id_zipcode_client">Code postal :</label>
+                        <input id="id_zipcode_client" type="text" name="zipcode_client" maxlength="300" required/>
+                    </div>  
+                </div> 
+                <div class="col-md-5 row">                    
+                    <div class="col-md-12 address-client">
+                        <p>   Téléphone et e-mail</p>
+                    </div>  
+                    <div class="col-md-12 block-characteristic-client">
+                        <label for="id_phone_client" class="glyphicon glyphicon-earphone"></label>
+                        <input id="id_phone_client" type="text" name="phone_client" maxlength="30" required/>
+                    </div>    
+                    <div class="col-md-12 block-characteristic-client">
+                        <label for="id_email_client">@ :</label>
+                        <input id="id_email_client" type="email" name="email_client" required/>
+                    </div> 
+                </div> 
+            </div> 
+        </div>
+
+        <div class="col-md-6 block-product">
+            <div class="row panel-product">
+                <div class="col-md-12 title-panel-product">
+                    <h4>Informations sur le produit</h4>
+                </div>
+                <div class="col-md-offset-2 col-md-10 block-characteristic-product">
+                    <label for="id_name_product">Marque :</label>
+                    <input id="id_name_product" type="text" name="name_product" maxlength="300" required/>
+                </div> 
+                <div class="col-md-offset-2 col-md-10  block-characteristic-product">
+                    <label for="id_mark_product">Nom :</label>
+                    <input id="id_mark_product" type="text" name="mark_product" maxlength="300" required/>
+                </div>   
+                <div class="col-md-offset-2 col-md-10  block-characteristic-product">
+                    <label for="id_serial_number_product">Numéro de série :</label>
+                    <input id="id_serial_number_product" type="text" name="serial_number_product" maxlength="300" required/>
+                </div>  
             </div>
         </div>
 
-        <div class="col-md-6">            
-            <div class="panel-client-or-product">
-                <label for="id_product_referenced">Produit :</label>
-                <select id="id_product_referenced" name="product_referenced">
-                    <option value="">-- Selectionnez un produit --</option>
-                    {% for product in products %}
-                        <option value="{{ product.id }}">{{ product }}</option>
-                    {% endfor %}
-                </select>
-            </div>
-        </div>
-
-        <div class="col-md-6 block-out-of-order-reason">            
+        <div class="col-md-12 block-out-of-order-reason">            
             <label for="id_out_of_order_reason">Raison du défaut de produit :</label>
             <textarea id="id_out_of_order_reason" name="out_of_order_reason" rows="10" cols="40" required></textarea>
-        </div>
-
-        <div class="col-md-6 row block-sav-status"> 
-            <div class="col-md-12">           
-                <label for="id_status">Status :</label>
-                <select id="id_status" name="status" required>
-                    <option value="">-- Selectionnez un statut --</option>
-                    {% for st in status %}
-                        <option value="{{ st.id }}">{{ st }}</option>
-                    {% endfor %}
-                </select>
-            </div> 
-            <div class="col-md-12"> 
-                <label for="id_reparation_validated">Réparation validé :</label>
-                <select id="id_reparation_validated" name="product">
-                    <option value="false">Non</option>
-                    <option value="true">Oui</option>
-                </select>
-            </div> 
-            <div class="col-md-12">            
-                <label for="id_tracking_number">Numéro de suivi :</label>
-                <input id="id_tracking_number" type="text" name="tracking_number" required maxlength="100" />
-            </div>
         </div>
 
         <div class="col-md-12 row block-files">  

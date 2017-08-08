@@ -3,32 +3,56 @@
 {% block style %}
     <link href="{% static 'css/searchSAVFile/searchSAVFile.css' %}" rel="stylesheet" media="screen">
 {% endblock %}
+{% block menu_search %}<li class="list-SAV-file active row"><a href="#" class="col-md-12">Chercher</a></li>{% endblock %}
 {% block content %}    
-    <form method=GET action="{% url 'visualImpactSAV:searchSAVFile' %}" class="row" accept-charset="utf-8">
-        <div class="col-md-12">
-            <label for="file_reference">File reference :</label>
-            <input id="file_reference" type="text" name="file_reference">
+    <form class="row" method=GET action="{% url 'visualImpactSAV:searchSAVFile' %}" accept-charset="utf-8">
+        <div class="col-md-12 row block-file-reference-tracking-number"> 
+            <div class="col-md-6">
+                <label for="file_reference">File reference :</label>
+                <input id="file_reference" type="text" name="file_reference">
+            </div>
+
+            <div class="col-md-6">
+                <label for="tracking_number">Numéro de suivi :</label>
+                <input id="tracking_number" type="text" name="tracking_number">
+            </div>
         </div>
 
-        <label for="client_name">Nom du client :</label>
-        <input id="client_name" type="text" name="client_name">
+        <div class="col-md-6 block-client-or-product">
+            <div class="row panel-client-or-product">
+                <div class="col-md-12">   
+                    <h4>Filtrage par client</h4>
+                </div>
+                <div class="col-md-12">            
+                    <label for="client_name">Nom du client :</label>
+                    <input id="client_name" type="text" name="client_name">
+                </div>
+            </div>
+        </div>
 
-        <label for="client_surname">Prénom du client :</label>
-        <input id="client_surname" type="text" name="client_surname">
+        <div class="col-md-6 block-client-or-product">
+            <div class="row panel-client-or-product">
+                <div class="col-md-12">   
+                    <h4>Filtrage par produit</h4>
+                </div>
+                <div class="col-md-12">
+                    <label for="product_serial_number">Numéro du produit :</label>
+                    <input id="product_serial_number" type="text" name="product_serial_number">
+                </div>
+                <div class="col-md-12">            
+                    <label for="product_model">Modèle du produit :</label>
+                    <input id="product_model" type="text" name="product_model">
+                </div>
+                <div class="col-md-12">
+                    <label for="product_mark">Marque du produit :</label>
+                    <input id="product_mark" type="text" name="product_mark">
+                </div>
+            </div>
+        </div>
 
-        <label for="product_model">Modèle du produit :</label>
-        <input id="product_model" type="text" name="product_model">
-
-        <label for="product_mark">Marque du produit :</label>
-        <input id="product_mark" type="text" name="product_mark">
-
-        <label for="product_serial_number">Numéro du produit :</label>
-        <input id="product_serial_number" type="text" name="product_serial_number">
-
-        <label for="tracking_number">Numéro de suivi :</label>
-        <input id="tracking_number" type="text" name="tracking_number">
-       
-        <input type="submit" value="Valider">
+        <div class="col-md-12 block-button">        
+            <input type="submit" value="Filtrer">
+        </div>
     </form>
 
     <ul>

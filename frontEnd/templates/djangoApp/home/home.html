@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+{% load static %}
+{% block style %}
+    <link href="{% static 'css/home/home.css' %}" rel="stylesheet" media="screen">
+{% endblock %}
+{% block menu_home %}<li class="list-SAV-file active row"><a href="#" class="col-md-12">Accueil</a></li>{% endblock %}
+{% block content %}
+	<div class="row">
+		<h1 class="title-home">Accueil</h1>
+	</div>
+{% endblock %}

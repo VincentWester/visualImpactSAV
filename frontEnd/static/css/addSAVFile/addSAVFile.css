@@ -1,24 +1,59 @@
-#form-search label {
+form label {
     color: black;
 }
 
-.block-file-reference {
+form {
+	padding-right: 5%
+}
+
+.first-block {
 	margin-bottom: 1%;
 }
 
-.panel-client-or-product {
+.second-block {
+	margin-bottom: 1.5%;
+}
+
+.block-client, .block-product {
+	margin-bottom: 2%;
+	padding-left: 3%;
+	padding-right: 3%;
+}
+
+.panel-client, .panel-product {
 	border-style: solid;
     border-color: black;
     border-width: 1px;
     border-radius: 25px;
 }
 
-.panel-client-or-product label{
-    display: inline-block; 
-    margin-left: 10%;  
-    margin-top: 5%;   
-    margin-bottom: 5%; 
+.title-block-client, .title-panel-product {
+	text-align: center;
+	color: black;
+	border-bottom-style: solid;
+    border-bottom-color: black;
+    border-bottom-width: 1px;
+	margin-bottom: 1%;
 }
+
+.block-name-client {
+	margin-bottom: 2%;
+}
+
+.address-client {
+    text-align: center;
+    color: black;
+    margin-bottom: 0.5%;
+}
+
+.block-characteristic-client {
+	margin-bottom: 1%;	
+}
+
+.block-characteristic-product {
+	margin-bottom: 2%;	
+}
+
 
 .block-out-of-order-reason {
 	margin-top: 1%;

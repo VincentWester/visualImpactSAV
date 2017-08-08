@@ -4,7 +4,7 @@ from . import models
 class SAV_fileForm(ModelForm):
     class Meta:
         model = models.SAV_file
-        fields = "__all__"  
+        fields = [field.name for field in model._meta.fields if not field.name == "creation_date"] 
         
 
 class EventForm(ModelForm):
