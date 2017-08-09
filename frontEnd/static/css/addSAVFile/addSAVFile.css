@@ -27,7 +27,7 @@ form {
     border-radius: 25px;
 }
 
-.title-block-client, .title-panel-product {
+.title-panel-client, .title-panel-product {
 	text-align: center;
 	color: black;
 	border-bottom-style: solid;

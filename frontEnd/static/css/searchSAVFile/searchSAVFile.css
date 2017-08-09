@@ -2,34 +2,48 @@ form label {
     color: black;
 }
 
-.block-file-reference-tracking-number {
-	margin-bottom: 1%;
+.first-block {
+    margin-bottom: 1%;
 }
 
-.block-client-or-product {
-    height: 15%;
+.second-block {
+    margin-bottom: 1.5%;
 }
 
-.panel-client-or-product {
-    position: relative;
-	border-style: solid;
+.block-client, .block-product {
+    margin-bottom: 2%;
+    padding-left: 3%;
+    padding-right: 3%;
+}
+
+.panel-client, .panel-product {
+    border-style: solid;
     border-color: black;
     border-width: 1px;
     border-radius: 25px;
-    height: 100%;
-    margin: 1%;
-    padding: 2%;
 }
 
-.panel-client-or-product label{
-    margin-left: 10%;  
-    margin-top: 2%;   
-    margin-bottom: 2%; 
+.title-panel-client, .title-panel-product {
+    text-align: center;
+    color: black;
+    border-bottom-style: solid;
+    border-bottom-color: black;
+    border-bottom-width: 1px;
+    margin-bottom: 1%;
+}
+
+.block-name-client {
+    margin-bottom: 1%;
+}
+
+.block-characteristic-product {
+    margin-bottom: 1%;  
 }
 
 .block-button {
 	margin-top: 5%;
-	padding-top: 1%;	
+	padding-top: 1%;
+    margin-bottom: 5%;	
 }
 
 .block-button input{ 
@@ -38,3 +52,4 @@ form label {
   	margin-right: auto;
   	width: 10%;
 }
+

@@ -2,17 +2,18 @@
 {% load static %}
 {% block style %}
     <link href="{% static 'css/searchSAVFile/searchSAVFile.css' %}" rel="stylesheet" media="screen">
+    <link href="{% static 'css/searchSAVFile/classSAVFileStatus.css' %}" rel="stylesheet" media="screen">
 {% endblock %}
-{% block menu_search %}<li class="list-SAV-file active row"><a href="#" class="col-md-12">Chercher</a></li>{% endblock %}
+{% block menu_search %}<li class="list-SAV-file active row"><a href="#" class="col-md-12">Rechercher</a></li>{% endblock %}
 {% block content %}    
     <form class="row" method=GET action="{% url 'visualImpactSAV:searchSAVFile' %}" accept-charset="utf-8">
         <div class="col-md-12 row block-file-reference-tracking-number"> 
-            <div class="col-md-6">
-                <label for="file_reference">File reference :</label>
+            <div class="col-md-6 first-block">
+                <label for="file_reference">Référence du fichier SAV :</label>
                 <input id="file_reference" type="text" name="file_reference">
             </div>
 
-            <div class="col-md-6">           
+            <div class="col-md-6 first-block">           
                 <label for="id_sav_file_status">Status de la fiche SAV :</label>
                 <select id="id_sav_file_status" name="sav_file_status">
                     <option value="">  ----  </option>
@@ -22,12 +23,12 @@
                 </select>
             </div>
 
-            <div class="col-md-6">
-                <label for="tracking_number">Numéro de suivi :</label>
+            <div class="col-md-6 second-block">
+                <label for="tracking_number">Numéro de suivi UPS :</label>
                 <input id="tracking_number" type="text" name="tracking_number">
             </div>
 
-            <div class="col-md-6"> 
+            <div class="col-md-6 second-block"> 
             <label for="id_reparation_status">Statut de la réparation : </label>
             <select id="id_reparation_status" name="reparation_status">
                 <option value="">  ----  </option>
@@ -38,46 +39,60 @@
         </div> 
         </div>
 
-        <div class="col-md-6 block-client-or-product">
-            <div class="row panel-client-or-product">
-                <div class="col-md-12">   
+        <div class="col-md-6 block-client">
+            <div class="row panel-client">
+                <div class="col-md-12 title-panel-client">   
                     <h4>Filtrage par client</h4>
                 </div>
-                <div class="col-md-12">            
-                    <label for="client_name">Nom du client :</label>
+                <div class="col-md-offset-2 col-md-10 block-name-client">            
+                    <label for="client_name">Nom :</label>
                     <input id="client_name" type="text" name="client_name">
                 </div>
             </div>
         </div>
 
-        <div class="col-md-6 block-client-or-product">
-            <div class="row panel-client-or-product">
-                <div class="col-md-12">   
+        <div class="col-md-6 block-product">
+            <div class="row panel-product">
+                <div class="col-md-12 title-panel-product">   
                     <h4>Filtrage par produit</h4>
                 </div>
-                <div class="col-md-12">
-                    <label for="product_serial_number">Numéro du produit :</label>
+                <div class="col-md-offset-2 col-md-10 block-characteristic-product">
+                    <label for="product_serial_number">Numéro :</label>
                     <input id="product_serial_number" type="text" name="product_serial_number">
                 </div>
-                <div class="col-md-12">            
-                    <label for="product_model">Modèle du produit :</label>
+                <div class="col-md-offset-2 col-md-10 block-characteristic-product">            
+                    <label for="product_model">Modèle :</label>
                     <input id="product_model" type="text" name="product_model">
                 </div>
-                <div class="col-md-12">
-                    <label for="product_mark">Marque du produit :</label>
+                <div class="col-md-offset-2 col-md-10 block-characteristic-product">
+                    <label for="product_mark">Marque :</label>
                     <input id="product_mark" type="text" name="product_mark">
                 </div>
             </div>
         </div>
 
         <div class="col-md-12 block-button">        
-            <input type="submit" value="Filtrer">
+            <input type="submit" value="Rechercher">
         </div>
     </form>
 
-    <ul>
-    {% for file in results %}
-        <li>{{ file.file_reference }}</li>
-    {% endfor %}
-    </ul>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Référence du fichier SAV</td>
+            </tr>
+        </thead>
+        <tbody>
+            {% for file in results %}
+                {% if file.sav_file_status.class_css != "" and file.sav_file_status.class_css is not None %}
+                    <tr class="{{ file.sav_file_status.class_css }} ">
+                {% else %}
+                    <tr>
+                {% endif %}
+
+                <td>{{ file.file_reference }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
 {% endblock %}

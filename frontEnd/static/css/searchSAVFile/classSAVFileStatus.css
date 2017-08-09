@@ -1,0 +1,16 @@
+.opened {
+    background-color: orange;
+}
+
+.closed {
+    background-color: #32CD32;
+}
+
+.waiting {
+    background-color: #98FB98;
+}
+
+.problem {
+    background-color: #FF6347;
+}
+
