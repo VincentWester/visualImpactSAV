@@ -29,7 +29,7 @@
             </div>
 
             <div class="col-md-6 second-block"> 
-            <label for="id_reparation_status">Statut de la réparation : </label>
+            <label for="id_reparation_status">Statut de réparation : </label>
             <select id="id_reparation_status" name="reparation_status">
                 <option value="">  ----  </option>
                 {% for st in reparation_status %}
@@ -57,16 +57,16 @@
                     <h4>Filtrage par produit</h4>
                 </div>
                 <div class="col-md-offset-2 col-md-10 block-characteristic-product">
-                    <label for="product_serial_number">Numéro :</label>
-                    <input id="product_serial_number" type="text" name="product_serial_number">
+                    <label for="product_mark">Marque :</label>
+                    <input id="product_mark" type="text" name="product_mark">
                 </div>
                 <div class="col-md-offset-2 col-md-10 block-characteristic-product">            
                     <label for="product_model">Modèle :</label>
                     <input id="product_model" type="text" name="product_model">
                 </div>
                 <div class="col-md-offset-2 col-md-10 block-characteristic-product">
-                    <label for="product_mark">Marque :</label>
-                    <input id="product_mark" type="text" name="product_mark">
+                    <label for="product_serial_number">Numéro de série :</label>
+                    <input id="product_serial_number" type="text" name="product_serial_number">
                 </div>
             </div>
         </div>
@@ -80,6 +80,12 @@
         <thead>
             <tr>
                 <th>Référence du fichier SAV</td>
+                <th>Numéro de suivi</td>
+                <th>Statut de réparation</td>
+                <th>Nom du client</td>
+                <th>Marque du produit</td>
+                <th>Modèle du produit</td>
+                <th>Numéro de série du produit</td>
             </tr>
         </thead>
         <tbody>
@@ -89,8 +95,13 @@
                 {% else %}
                     <tr>
                 {% endif %}
-
                 <td>{{ file.file_reference }}</td>
+                <td>{{ file.tracking_number }}</td>
+                <td>{{ file.reparation_status }}</td>
+                <td>{{ file.name_client }}</td>
+                <td>{{ file.mark_product }}</td>
+                <td>{{ file.name_product }}</td>
+                <td>{{ file.serial_number_product }}</td>
             </tr>
             {% endfor %}
         </tbody>
