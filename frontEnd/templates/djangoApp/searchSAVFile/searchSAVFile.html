@@ -1,5 +1,6 @@
 {% extends "base.html" %}
 {% load static %}
+{% load tags %}
 {% block style %}
     <link href="{% static 'css/searchSAVFile/searchSAVFile.css' %}" rel="stylesheet" media="screen">
     <link href="{% static 'css/searchSAVFile/classSAVFileStatus.css' %}" rel="stylesheet" media="screen">
@@ -75,6 +76,12 @@
             <input type="submit" value="Rechercher">
         </div>
     </form>
+
+    <div class="row">
+    {% for st in sav_file_status %}
+        <p class="col-md-3">{{ st.libelle }} <span class="badge {{ st.class_css }}" style="color: black;">{{ results|count_by_libelle:st.libelle }}</span></p>
+    {% endfor %}      
+    </div>
 
     <table class="table">
         <thead>
