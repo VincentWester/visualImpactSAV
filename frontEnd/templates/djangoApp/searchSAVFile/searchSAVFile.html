@@ -5,6 +5,9 @@
     <link href="{% static 'css/searchSAVFile/searchSAVFile.css' %}" rel="stylesheet" media="screen">
     <link href="{% static 'css/searchSAVFile/classSAVFileStatus.css' %}" rel="stylesheet" media="screen">
 {% endblock %}
+{% block js %}
+    
+{% endblock %}
 {% block menu_search %}<li class="list-SAV-file active row"><a href="#" class="col-md-12">Rechercher</a></li>{% endblock %}
 {% block content %}    
     <form class="row" method=GET action="{% url 'visualImpactSAV:searchSAVFile' %}" accept-charset="utf-8">
@@ -79,7 +82,7 @@
 
     <div class="row">
     {% for st in sav_file_status %}
-        <p class="col-md-3">{{ st.libelle }} <span class="badge {{ st.class_css }}" style="color: black;">{{ results|count_by_libelle:st.libelle }}</span></p>
+        <p class="col-md-3">{{ st.libelle }} <span class="badge {{ st.class_css }}" style="color: black;">{{ libelle_stats|nb_libelle:st.libelle }}</span></p>
     {% endfor %}      
     </div>
 
@@ -98,9 +101,9 @@
         <tbody>
             {% for file in results %}
                 {% if file.sav_file_status.class_css != "" and file.sav_file_status.class_css is not None %}
-                    <tr class="{{ file.sav_file_status.class_css }} ">
+                    <tr class="{{ file.sav_file_status.class_css }}">
                 {% else %}
-                    <tr>
+                    <tr class="">
                 {% endif %}
                 <td>{{ file.file_reference }}</td>
                 <td>{{ file.tracking_number }}</td>
@@ -113,4 +116,19 @@
             {% endfor %}
         </tbody>
     </table>
+    {% if is_paginated %}
+        <div class="pagination">
+            <span class="page-links">
+                {% if page_obj.has_previous %}
+                    <a href="{{ request.get_full_path }}&page={{ page_obj.previous_page_number }}">previous</a>
+                {% endif %}
+                <span class="page-current">
+                    Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.
+                </span>
+                {% if page_obj.has_next %}
+                    <a href="{{ request.get_full_path }}&page={{ page_obj.next_page_number }}">next</a>
+                {% endif %}
+            </span>
+        </div>
+    {% endif %}
 {% endblock %}

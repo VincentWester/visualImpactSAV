@@ -35,6 +35,7 @@ class SAVFileCreateView(CreateView):
         # et on rajoute la date du jour dans le context
         context['sav_file_status'] = SAV_file_status.objects.all()
         context['reparation_status'] = Reparation_status.objects.all()
+
         # le context retourné sera automatiquement injecté dans le template
         # dans la méthode render(), que vous ne voyez pas...
         return context 
@@ -47,10 +48,13 @@ class SAVFileCreateView(CreateView):
         #form.instance.created_by = self.request.user
         return super(SAVFileCreateView, self).form_valid(form)
 
+DEFAULT_PAGINATION_BY = 3
+
 class SAVFileListView(ListView):
     template_name = 'djangoApp/searchSAVFile/searchSAVFile.html'
     context_object_name = 'results'
     queryset = SAV_file.objects.all()
+    paginate_by = DEFAULT_PAGINATION_BY
 
     def get_context_data(self, **kwargs):
         # qui dit overriding, dit appel de la méthode parent...
@@ -58,6 +62,15 @@ class SAVFileListView(ListView):
         # et on rajoute la date du jour dans le context
         context['sav_file_status'] = SAV_file_status.objects.all()
         context['reparation_status'] = Reparation_status.objects.all()
+
+        results = self.get_queryset()
+
+        libelle_stats = {}
+        for sav_file_status in SAV_file_status.objects.all():
+            libelle_stats[sav_file_status.libelle] = results.filter(sav_file_status__libelle = sav_file_status.libelle).count()
+
+        context['libelle_stats'] = libelle_stats
+        context['nb_sav_file_status'] = SAV_file_status.objects.count()
         # le context retourné sera automatiquement injecté dans le template
         # dans la méthode render(), que vous ne voyez pas...
         return context
