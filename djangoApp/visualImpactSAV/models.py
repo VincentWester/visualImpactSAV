@@ -5,7 +5,7 @@ from datetime import datetime
 
 from django.db import models
 from django.utils import timezone
-from django import forms
+from django.urls import reverse
 
 class SAV_file_status(models.Model):
     libelle = models.CharField(max_length=50)
@@ -49,6 +49,9 @@ class SAV_file(models.Model):
 
     def __unicode__(self):
         return self.file_reference 
+
+    def get_absolute_url(self):
+        return reverse('visualImpactSAV:detailSAVFile', kwargs = {'pk' : self.pk})
 
 class Event(models.Model):
     refered_SAV_file = models.ForeignKey(SAV_file)

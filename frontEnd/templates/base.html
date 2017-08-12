@@ -5,9 +5,7 @@
         <!-- En-tête de la page -->
         <meta charset="utf-8" />
         <title>Visual Impact SAV</title>    
-        <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
         <script src="{% static 'bootstrap/js/jquery-1.12.0.min.js' %}"></script>
-        <!-- Include all compiled plugins (below), or include individual files as needed -->
         <script src="{% static 'bootstrap/js/bootstrap.min.js' %}"></script>
         <link href="{% static 'bootstrap/css/bootstrap.min.css' %}" rel="stylesheet" media="screen">
         <link href="{% static 'css/base.css' %}" rel="stylesheet" media="screen">
@@ -22,7 +20,7 @@
         <div class="col-md-1 menu-content">
             <ul class="menu-SAV-file">
                 {% block menu_home %}<li class="list-SAV-file row"><a href="{% url 'home' %}" class="col-md-12">Accueil</a></li>{% endblock %}
-                {% block menu_add %}<li class="list-SAV-file row"><a href="{% url 'visualImpactSAV:addSAVFile' %}" class="col-md-12">Ajouter</a></li>{% endblock %}
+                {% block menu_add %}<li class="list-SAV-file row"><a href="{% url 'visualImpactSAV:createSAVFile' %}" class="col-md-12">Ajouter</a></li>{% endblock %}
                 {% block menu_search %}<li class="list-SAV-file row"><a href="{% url 'visualImpactSAV:searchSAVFile' %}" class="col-md-12">Rechercher</a></li>{% endblock %}
             </ul>
         </div>

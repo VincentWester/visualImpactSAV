@@ -1,11 +1,11 @@
 {% extends "base.html" %}
 {% load static %}
 {% block style %}
-    <link href="{% static 'css/addSAVFile/addSAVFile.css' %}" rel="stylesheet" media="screen">
+    <link href="{% static 'css/createSAVFile/createSAVFile.css' %}" rel="stylesheet" media="screen">
 {% endblock %}
 {% block menu_add %}<li class="list-SAV-file active row"><a href="#" class="col-md-12">Ajouter</a></li>{% endblock %}
 {% block content %}
-    <form class="row" method=POST action="{% url 'visualImpactSAV:saveSAVFile' %}" accept-charset="utf-8">
+    <form class="row" method=POST action="{% url 'visualImpactSAV:createSAVFile' %}" accept-charset="utf-8">
         {% csrf_token %}
         <div class="col-md-6 first-block">
             <label for="id_file_reference">Reference du fichier SAV :</label>
@@ -120,7 +120,7 @@
         </div>
 
         <div class="col-md-12 block-button"> 
-            <input type="submit" value="Valider">
+            <input class="btn btn-primary btn-lg" type="submit" value="Valider">
         </div>
     </form>
 {% endblock %}

@@ -2,8 +2,10 @@
 from __future__ import unicode_literals
 from django.http import HttpResponseRedirect, HttpResponse
 from django.urls import reverse
-from django.views import generic
 from django.shortcuts import render, render_to_response
+
+from django.views.generic import DetailView, ListView
+from django.views.generic.edit import CreateView
 
 from .models import SAV_file, SAV_file_status, Reparation_status
 from .forms import SAV_fileForm
@@ -13,61 +15,46 @@ import operator
 def home(request):
     return render(request, 'djangoApp/home/home.html')
 
-def saveSAVFile(request):
-    # create a form instance and populate it with data from the request:
+class SAVFileDetailView(DetailView):
+    queryset = SAV_file.objects.all()
+    template_name = 'djangoApp/detailSAVFile/sav_file_detail.html'
 
-    form = SAV_fileForm(request.POST)
-    # check whether it's valid:
-    if form.is_valid():
-    # process the data in form.cleaned_data as required    
-        sav_file = SAV_file()
-        sav_file.file_reference = 'VisualImpact-SAV-' + form.cleaned_data['file_reference']
+    def get_object(self):
+        # Call the superclass
+        object = super(SAVFileDetailView, self).get_object()
+        return object
 
-        sav_file.sav_file_status = form.cleaned_data['sav_file_status']
-        sav_file.reparation_status = form.cleaned_data['reparation_status']
+class SAVFileCreateView(CreateView):
+    model = SAV_file
+    form_class = SAV_fileForm
+    template_name = 'djangoApp/createSAVFile/sav_file_form.html'
 
-        sav_file.name_client = form.cleaned_data['name_client']
-        sav_file.street_client = form.cleaned_data['street_client']
-        sav_file.city_client = form.cleaned_data['city_client']
-        sav_file.zipcode_client = form.cleaned_data['zipcode_client']
-        sav_file.email_client = form.cleaned_data['email_client']
-        sav_file.phone_client = form.cleaned_data['phone_client']
+    def get_context_data(self, **kwargs):
+        # qui dit overriding, dit appel de la méthode parent...
+        context = super(SAVFileCreateView, self).get_context_data(**kwargs)
+        # et on rajoute la date du jour dans le context
+        context['sav_file_status'] = SAV_file_status.objects.all()
+        context['reparation_status'] = Reparation_status.objects.all()
+        # le context retourné sera automatiquement injecté dans le template
+        # dans la méthode render(), que vous ne voyez pas...
+        return context 
 
-        sav_file.mark_product = form.cleaned_data['mark_product']
-        sav_file.name_product = form.cleaned_data['name_product']
-        sav_file.serial_number_product = form.cleaned_data['serial_number_product']
+    """
+    Check if the form is valid and save the object.
+    """
+    def form_valid(self, form):
+        form.instance.file_reference = 'VisualImpact-SAV-' + form.instance.file_reference
+        #form.instance.created_by = self.request.user
+        return super(SAVFileCreateView, self).form_valid(form)
 
-        sav_file.tracking_number = form.cleaned_data['tracking_number']
-        sav_file.out_of_order_reason = form.cleaned_data['out_of_order_reason']
-
-        sav_file.file_import_export_note = form.cleaned_data['file_import_export_note']
-        sav_file.file_import_export_reparation_client_side = form.cleaned_data['file_import_export_reparation_client_side']
-        sav_file.file_import_export_reparation_furnisher_side = form.cleaned_data['file_import_export_reparation_furnisher_side']
-        sav_file.save()
-
-        return render(request, 'djangoApp/view.html', {'sav_file': sav_file})
-
-    else:
-        errors = ""
-        for error in form.errors:
-             errors += error + "   - "
-
-        return HttpResponse('Le formulaire est mal rempli.\n   ' + errors)
-
-def addSAVFile(request):
-    sav_file_form = SAV_fileForm()
-    sav_file_status = SAV_file_status.objects.all()
-    reparation_status = Reparation_status.objects.all()
-    return render(request, 'djangoApp/addSAVFile/addSAVFile.html', { 'sav_file_form': sav_file_form, 'sav_file_status': sav_file_status, 'reparation_status': reparation_status})
-
-class SAVFileSearchListView(generic.ListView):
+class SAVFileListView(ListView):
     template_name = 'djangoApp/searchSAVFile/searchSAVFile.html'
     context_object_name = 'results'
     queryset = SAV_file.objects.all()
 
     def get_context_data(self, **kwargs):
         # qui dit overriding, dit appel de la méthode parent...
-        context = super(SAVFileSearchListView, self).get_context_data(**kwargs)
+        context = super(SAVFileListView, self).get_context_data(**kwargs)
         # et on rajoute la date du jour dans le context
         context['sav_file_status'] = SAV_file_status.objects.all()
         context['reparation_status'] = Reparation_status.objects.all()
