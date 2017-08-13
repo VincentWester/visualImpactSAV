@@ -5,10 +5,10 @@ from django.urls import reverse
 from django.shortcuts import render, render_to_response
 
 from django.views.generic import DetailView, ListView
-from django.views.generic.edit import CreateView
+from django.views.generic.edit import CreateView, UpdateView
 
 from .models import SAV_file, SAV_file_status, Reparation_status
-from .forms import SAV_fileForm
+from .forms import SAV_fileForm, SAV_fileUpdateForm
 
 import operator
 
@@ -27,7 +27,7 @@ class SAVFileDetailView(DetailView):
 class SAVFileCreateView(CreateView):
     model = SAV_file
     form_class = SAV_fileForm
-    template_name = 'djangoApp/createSAVFile/sav_file_form.html'
+    template_name = 'djangoApp/createSAVFile/createSAVFile.html'
 
     def get_context_data(self, **kwargs):
         # qui dit overriding, dit appel de la méthode parent...
@@ -48,7 +48,36 @@ class SAVFileCreateView(CreateView):
         #form.instance.created_by = self.request.user
         return super(SAVFileCreateView, self).form_valid(form)
 
-DEFAULT_PAGINATION_BY = 3
+class SAVFileUpdateView(UpdateView):
+    model = SAV_file
+    form_class = SAV_fileUpdateForm
+    template_name = 'djangoApp/updateSAVFile/updateSAVFile.html'
+
+    def get_context_data(self, **kwargs):
+        # qui dit overriding, dit appel de la méthode parent...
+        context = super(SAVFileUpdateView, self).get_context_data(**kwargs)
+        # et on rajoute la date du jour dans le context
+        context['current_sav_file'] = self.object
+        context['sav_file_status'] = SAV_file_status.objects.all()
+        context['reparation_status'] = Reparation_status.objects.all()
+
+        # le context retourné sera automatiquement injecté dans le template
+        # dans la méthode render(), que vous ne voyez pas...
+        return context 
+
+    def form_invalid(self, form):
+        print form
+        return HttpResponse("touché coulé")
+        
+    """
+    Check if the form is valid and save the object.
+    """
+    def form_valid(self, form):
+        #form.instance.created_by = self.request.user
+        return super(SAVFileUpdateView, self).form_valid(form)
+
+
+DEFAULT_PAGINATION_BY = 10
 
 class SAVFileListView(ListView):
     template_name = 'djangoApp/searchSAVFile/searchSAVFile.html'
@@ -70,7 +99,7 @@ class SAVFileListView(ListView):
             libelle_stats[sav_file_status.libelle] = results.filter(sav_file_status__libelle = sav_file_status.libelle).count()
 
         context['libelle_stats'] = libelle_stats
-        context['nb_sav_file_status'] = SAV_file_status.objects.count()
+        context['nb_sav_file_status'] = results.count()
         # le context retourné sera automatiquement injecté dans le template
         # dans la méthode render(), que vous ne voyez pas...
         return context
@@ -82,7 +111,7 @@ class SAVFileListView(ListView):
         file_reference = self.request.GET.get('file_reference')
         tracking_number = self.request.GET.get('status')
         client_name = self.request.GET.get('client_name')
-        product_model = self.request.GET.get('product_model')
+        product_name = self.request.GET.get('product_name')
         product_mark = self.request.GET.get('product_mark')
         product_serial_number = self.request.GET.get('product_serial_number')
         tracking_number = self.request.GET.get('tracking_number')
@@ -96,8 +125,8 @@ class SAVFileListView(ListView):
         if client_name:
             results = results.filter(name_client__icontains = client_name) 
         
-        if product_model:
-            results = results.filter(name_product__icontains = product_model)
+        if product_name:
+            results = results.filter(name_product__icontains = product_name)
 
         if product_mark:
             results = results.filter(mark_product__icontains = product_mark) 
@@ -114,4 +143,4 @@ class SAVFileListView(ListView):
         if reparation_status:
             results = results.filter(reparation_status = reparation_status)
 
-        return results
+        return results.order_by('file_reference')
