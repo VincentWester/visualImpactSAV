@@ -1,0 +1,108 @@
+{% extends "base.html" %}
+{% load static %}
+{% block style %}
+    <link href="{% static 'css/createSAVFile/createSAVFile.css' %}" rel="stylesheet" media="screen">
+{% endblock %}
+{% block content %}
+    <div class="col-md-6 first-block">
+        <label>Reference du fichier SAV :</label>
+        <span>{{ sav_file.file_reference }}</span>
+    </div>
+
+    <div class="col-md-6 first-block">           
+        <label>Status de la fiche SAV :</label>
+        <span>{{ sav_file.sav_file_status }}</span>
+    </div>
+
+    <div class="col-md-6 second-block">            
+        <label>Numéro de suivi UPS :</label>
+        <span>{{ sav_file.tracking_number }}</span>
+    </div>
+
+    <div class="col-md-6 second-block"> 
+        <label>Statut de la réparation : </label>
+        <span>{{ sav_file.reparation_status }}</span>
+    </div> 
+    
+    <div class="col-md-6 block-client">
+        <div class="row panel-client">
+            <div class="col-md-12 title-panel-client">
+                <h4>Informations sur le client</h4>
+            </div>
+            <div class="col-md-12 block-name-client">
+                <label>Nom :</label>
+                <span>{{ sav_file.name_client }}</span>
+            </div>
+            <div class="col-md-7 row">
+                <div class="col-md-12 address-client">
+                    <span class="glyphicon glyphicon-envelope"/><span>   Adresse</span>
+                </div>                     
+                <div class="col-md-12 block-characteristic-client">
+                    <label>Rue :</label>
+                    <span>{{ sav_file.street_client }}</span>
+                </div>  
+                <div class="col-md-12 block-characteristic-client">
+                    <label>Ville  :</label>
+                    <span>{{ sav_file.city_client }}</span>
+                </div>   
+                <div class="col-md-12 block-characteristic-client">
+                    <label>Code postal :</label>
+                    <span>{{ sav_file.zipcode_client }}</span>
+                </div>  
+            </div> 
+            <div class="col-md-5 row">                    
+                <div class="col-md-12 address-client">
+                    <p>   Téléphone et e-mail</p>
+                </div>  
+                <div class="col-md-12 block-characteristic-client">
+                    <label class="glyphicon glyphicon-earphone"> </label>
+                    <span>{{ sav_file.phone_client }}</span>
+                </div>    
+                <div class="col-md-12 block-characteristic-client">
+                    <label>@</label>
+                    <span>{{ sav_file.email_client }}</span>
+                </div> 
+            </div> 
+        </div> 
+    </div>
+
+    <div class="col-md-6 block-product">
+        <div class="row panel-product">
+            <div class="col-md-12 title-panel-product">
+                <h4>Informations sur le produit</h4>
+            </div>
+            <div class="col-md-offset-2 col-md-10  block-characteristic-product">
+                <label>Marque :</label>
+                <span>{{ sav_file.mark_product }}</span>
+            </div>
+            <div class="col-md-offset-2 col-md-10 block-characteristic-product">
+                <label>Nom :</label>
+                <span>{{ sav_file.name_product }}</span>
+            </div>    
+            <div class="col-md-offset-2 col-md-10  block-characteristic-product">
+                <label>Numéro de série :</label>
+                <span>{{ sav_file.serial_number_product }}</span>
+            </div>  
+        </div>
+    </div>
+
+    <div class="col-md-12 block-out-of-order-reason">            
+        <label>Raison du défaut de produit :</label>
+        <p>{{ sav_file.out_of_order_reason }}</p>
+    </div>
+
+    <!--div class="col-md-12 row block-files">  
+        <div class="col-md-4">  
+            <label for="id_file_import_export_note">File import export note :</label>
+            <input id="id_file_import_export_note" type="file" name="file_import_export_note"/>
+        </div>
+        <div class="col-md-4"> 
+            <label for="id_file_import_export_reparation_client_side">Fichier d'import/export de réparation client :</label>
+            <input id="id_file_import_export_reparation_client_side" type="file" name="file_import_export_reparation_client_side"/>
+        </div>
+        <div class="col-md-4"> 
+            <label for="id_file_import_export_reparation_furnisher_side">Fichier d'import/export de réparation fournisseur :</label>
+            <input id="id_file_import_export_reparation_furnisher_side" type="file" name="file_import_export_reparation_furnisher_side"/>
+        </div>
+    </div-->
+{% endblock %}

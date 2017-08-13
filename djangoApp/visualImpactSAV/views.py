@@ -17,7 +17,7 @@ def home(request):
 
 class SAVFileDetailView(DetailView):
     queryset = SAV_file.objects.all()
-    template_name = 'djangoApp/detailSAVFile/sav_file_detail.html'
+    template_name = 'djangoApp/detailSAVFile/detailSAVFile.html'
 
     def get_object(self):
         # Call the superclass
