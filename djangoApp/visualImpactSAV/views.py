@@ -7,8 +7,8 @@ from django.shortcuts import render, render_to_response
 from django.views.generic import DetailView, ListView
 from django.views.generic.edit import CreateView, UpdateView
 
-from .models import SAV_file, SAV_file_status, Reparation_status
-from .forms import SAV_fileForm, SAV_fileUpdateForm
+from .models import SAV_file, SAV_file_status, Reparation_status, Event
+from .forms import SAV_fileForm, SAV_fileUpdateForm, EventForm
 
 import operator
 
@@ -23,6 +23,17 @@ class SAVFileDetailView(DetailView):
         # Call the superclass
         object = super(SAVFileDetailView, self).get_object()
         return object
+
+    def get_context_data(self, **kwargs):
+        # qui dit overriding, dit appel de la méthode parent...
+        context = super(SAVFileDetailView, self).get_context_data(**kwargs)
+        # et on rajoute la date du jour dans le context
+        context['events'] = Event.objects.all().filter(refered_SAV_file = self.object).order_by('date')
+        print context['events']
+
+        # le context retourné sera automatiquement injecté dans le template
+        # dans la méthode render(), que vous ne voyez pas...
+        return context
 
 class SAVFileCreateView(CreateView):
     model = SAV_file
@@ -40,12 +51,15 @@ class SAVFileCreateView(CreateView):
         # dans la méthode render(), que vous ne voyez pas...
         return context 
 
+    def form_invalid(self, form):
+        print form
+        return HttpResponse("touché coulé")
+
     """
     Check if the form is valid and save the object.
     """
     def form_valid(self, form):
         form.instance.file_reference = 'VisualImpact-SAV-' + form.instance.file_reference
-        #form.instance.created_by = self.request.user
         return super(SAVFileCreateView, self).form_valid(form)
 
 class SAVFileUpdateView(UpdateView):
@@ -60,6 +74,8 @@ class SAVFileUpdateView(UpdateView):
         context['current_sav_file'] = self.object
         context['sav_file_status'] = SAV_file_status.objects.all()
         context['reparation_status'] = Reparation_status.objects.all()
+        context['events'] = Event.objects.all().filter(refered_SAV_file = self.object).order_by('date')
+        print context['events']
 
         # le context retourné sera automatiquement injecté dans le template
         # dans la méthode render(), que vous ne voyez pas...
@@ -73,7 +89,6 @@ class SAVFileUpdateView(UpdateView):
     Check if the form is valid and save the object.
     """
     def form_valid(self, form):
-        #form.instance.created_by = self.request.user
         return super(SAVFileUpdateView, self).form_valid(form)
 
 
@@ -144,3 +159,34 @@ class SAVFileListView(ListView):
             results = results.filter(reparation_status = reparation_status)
 
         return results.order_by('file_reference')
+
+class EventCreateView(CreateView):
+    model = Event
+    form_class = EventForm 
+    template_name = 'djangoApp/detailSAVFile/createEvent.html'
+
+    def dispatch(self, *args, **kwargs):
+        self.pkSAVFile = kwargs['pkSAVFile']
+
+        # le context retourné sera automatiquement injecté dans le template
+        # dans la méthode render(), que vous ne voyez pas...
+        return super(EventCreateView, self).dispatch( *args, **kwargs)
+
+    def get_context_data(self, **kwargs):
+        # qui dit overriding, dit appel de la méthode parent...
+        context = super(EventCreateView, self).get_context_data(**kwargs)
+
+        context['pkSAVFile'] = self.pkSAVFile
+        return context 
+
+    """
+    Check if the form is valid and save the object.
+    """
+    def form_valid(self, form):
+        sav_file = SAV_file.objects.get(file_reference = self.kwargs['pkSAVFile'])
+        form.instance.refered_SAV_file = sav_file
+        self.object = form.save()
+
+        url = "{0}".format(self.request.META.get('HTTP_REFERER', '/'))
+
+        return HttpResponseRedirect(url)

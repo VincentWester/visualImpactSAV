@@ -15,7 +15,7 @@ class SAV_fileUpdateForm(ModelForm):
 class EventForm(ModelForm):
     class Meta:
         model = models.Event
-        fields = "__all__" 
+        fields = [field.name for field in model._meta.fields if not (field.name == "date" or field.name == "refered_SAV_file")]  
 
 
 

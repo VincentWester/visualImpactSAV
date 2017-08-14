@@ -57,5 +57,5 @@ class Event(models.Model):
     refered_SAV_file = models.ForeignKey(SAV_file)
     title = models.CharField(max_length=100)
     action = models.TextField()
-    date = models.DateTimeField('date published')
+    date = models.DateTimeField(default=timezone.now)
 

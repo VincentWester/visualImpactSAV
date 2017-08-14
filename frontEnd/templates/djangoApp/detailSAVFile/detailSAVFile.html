@@ -1,5 +1,9 @@
 {% extends "base.html" %}
 {% load static %}
+{% block js %}
+    <script src="{% static 'bootstrap/js/jquery.form.min.js' %}"></script>
+    
+{% endblock %}
 {% block style %}
     <link href="{% static 'css/createSAVFile/createSAVFile.css' %}" rel="stylesheet" media="screen">
 {% endblock %}
@@ -52,7 +56,7 @@
             </div> 
             <div class="col-md-5 row">                    
                 <div class="col-md-12 address-client">
-                    <p>   Téléphone et e-mail</p>
+                    <p>Téléphone et e-mail</p>
                 </div>  
                 <div class="col-md-12 block-characteristic-client">
                     <label class="glyphicon glyphicon-earphone"> </label>
@@ -90,19 +94,31 @@
         <label>Raison du défaut de produit :</label>
         <p>{{ sav_file.out_of_order_reason }}</p>
     </div>
+    
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Date</th>
+                <th>Titre</th>
+                <th>Action</th>
+                <th> </th>
+                <th> </th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for event in events %}
+                <tr>
+                    <td>{{ event.date }}</td>
+                    <td>{{ event.title }}</td>
+                    <td>{{ event.action }}</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <div class="col-md-12">
+        <a data-toggle="modal" data-target="#modal" href="{% url 'visualImpactSAV:createEvent' pkSAVFile=sav_file.file_reference %}">Ajouter un évenement</a>
+    </div>
 
-    <!--div class="col-md-12 row block-files">  
-        <div class="col-md-4">  
-            <label for="id_file_import_export_note">File import export note :</label>
-            <input id="id_file_import_export_note" type="file" name="file_import_export_note"/>
-        </div>
-        <div class="col-md-4"> 
-            <label for="id_file_import_export_reparation_client_side">Fichier d'import/export de réparation client :</label>
-            <input id="id_file_import_export_reparation_client_side" type="file" name="file_import_export_reparation_client_side"/>
-        </div>
-        <div class="col-md-4"> 
-            <label for="id_file_import_export_reparation_furnisher_side">Fichier d'import/export de réparation fournisseur :</label>
-            <input id="id_file_import_export_reparation_furnisher_side" type="file" name="file_import_export_reparation_furnisher_side"/>
-        </div>
-    </div-->
+    <div class="modal" id="modal"></div>
+
 {% endblock %}
