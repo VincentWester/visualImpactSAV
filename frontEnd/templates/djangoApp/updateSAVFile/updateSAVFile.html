@@ -125,7 +125,33 @@
         </div>
 
         <div class="col-md-12 block-button"> 
-            <input class="btn btn-primary btn-lg" type="submit" value="Mettre à jour">
+            <input type="submit" value="Mettre à jour">
         </div>
     </form>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Date</th>
+                <th>Titre</th>
+                <th>Action</th>
+                <th> </th>
+                <th> </th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for event in events %}
+                <tr>
+                    <td>{{ event.date }}</td>
+                    <td>{{ event.title }}</td>
+                    <td>{{ event.action }}</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <div class="col-md-12">
+        <a data-toggle="modal" data-target="#modal" href="{% url 'visualImpactSAV:createEvent' pkSAVFile=sav_file.file_reference %}">Ajouter un évenement</a>
+    </div>
+
+    <div class="modal" id="modal"></div>
 {% endblock %}
