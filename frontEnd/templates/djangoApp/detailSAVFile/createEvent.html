@@ -6,16 +6,16 @@
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">×</span>
-                    <span class="sr-only">Fermé</span>
+                    <span class="sr-only">Fermer</span>
                 </button>
                 <h4 class="modal-title">Créer</h4>
             </div>
             <div class="modal-body">
-                {{ form.as_table }}
+                {{ form.as_p }}
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Fermer</button>
-                <input type="submit" class="btn btn-primary" value="Save changes" />
+                <button type="button" data-dismiss="modal">Fermer</button>
+                <input type="submit" value="Ajouter Evenement" />
             </div>
         </div><!-- /.modal-content -->
     </form>

@@ -2,7 +2,8 @@
 from __future__ import unicode_literals
 from django.http import HttpResponseRedirect, HttpResponse
 from django.urls import reverse
-from django.shortcuts import render, render_to_response
+from django.shortcuts import render
+from django.template.loader import render_to_string
 
 from django.views.generic import DetailView, ListView
 from django.views.generic.edit import CreateView, UpdateView
@@ -20,19 +21,13 @@ class SAVFileDetailView(DetailView):
     template_name = 'djangoApp/detailSAVFile/detailSAVFile.html'
 
     def get_object(self):
-        # Call the superclass
         object = super(SAVFileDetailView, self).get_object()
         return object
 
     def get_context_data(self, **kwargs):
-        # qui dit overriding, dit appel de la méthode parent...
         context = super(SAVFileDetailView, self).get_context_data(**kwargs)
-        # et on rajoute la date du jour dans le context
         context['events'] = Event.objects.all().filter(refered_SAV_file = self.object).order_by('date')
-        print context['events']
 
-        # le context retourné sera automatiquement injecté dans le template
-        # dans la méthode render(), que vous ne voyez pas...
         return context
 
 class SAVFileCreateView(CreateView):
@@ -41,19 +36,17 @@ class SAVFileCreateView(CreateView):
     template_name = 'djangoApp/createSAVFile/createSAVFile.html'
 
     def get_context_data(self, **kwargs):
-        # qui dit overriding, dit appel de la méthode parent...
         context = super(SAVFileCreateView, self).get_context_data(**kwargs)
-        # et on rajoute la date du jour dans le context
         context['sav_file_status'] = SAV_file_status.objects.all()
         context['reparation_status'] = Reparation_status.objects.all()
 
-        # le context retourné sera automatiquement injecté dans le template
-        # dans la méthode render(), que vous ne voyez pas...
         return context 
 
     def form_invalid(self, form):
-        print form
-        return HttpResponse("touché coulé")
+        url = "{0}".format(self.request.META.get('HTTP_REFERER', '/'))
+        print url
+        print form.errors
+        return HttpResponse(render_to_string('djangoApp/errors/nonValideSAVFile.html', {'errors': form.errors, 'url': url}))
 
     """
     Check if the form is valid and save the object.
@@ -68,22 +61,17 @@ class SAVFileUpdateView(UpdateView):
     template_name = 'djangoApp/updateSAVFile/updateSAVFile.html'
 
     def get_context_data(self, **kwargs):
-        # qui dit overriding, dit appel de la méthode parent...
         context = super(SAVFileUpdateView, self).get_context_data(**kwargs)
-        # et on rajoute la date du jour dans le context
         context['current_sav_file'] = self.object
         context['sav_file_status'] = SAV_file_status.objects.all()
         context['reparation_status'] = Reparation_status.objects.all()
         context['events'] = Event.objects.all().filter(refered_SAV_file = self.object).order_by('date')
-        print context['events']
 
-        # le context retourné sera automatiquement injecté dans le template
-        # dans la méthode render(), que vous ne voyez pas...
         return context 
 
     def form_invalid(self, form):
-        print form
-        return HttpResponse("touché coulé")
+        url = "{0}".format(self.request.META.get('HTTP_REFERER', '/'))
+        return HttpResponse(render_to_string('djangoApp/errors/nonValideSAVFile.html', {'errors': form.errors, 'url': url}))
         
     """
     Check if the form is valid and save the object.
@@ -101,9 +89,7 @@ class SAVFileListView(ListView):
     paginate_by = DEFAULT_PAGINATION_BY
 
     def get_context_data(self, **kwargs):
-        # qui dit overriding, dit appel de la méthode parent...
         context = super(SAVFileListView, self).get_context_data(**kwargs)
-        # et on rajoute la date du jour dans le context
         context['sav_file_status'] = SAV_file_status.objects.all()
         context['reparation_status'] = Reparation_status.objects.all()
 
@@ -115,8 +101,6 @@ class SAVFileListView(ListView):
 
         context['libelle_stats'] = libelle_stats
         context['nb_sav_file_status'] = results.count()
-        # le context retourné sera automatiquement injecté dans le template
-        # dans la méthode render(), que vous ne voyez pas...
         return context
 
     """
@@ -168,16 +152,17 @@ class EventCreateView(CreateView):
     def dispatch(self, *args, **kwargs):
         self.pkSAVFile = kwargs['pkSAVFile']
 
-        # le context retourné sera automatiquement injecté dans le template
-        # dans la méthode render(), que vous ne voyez pas...
         return super(EventCreateView, self).dispatch( *args, **kwargs)
 
     def get_context_data(self, **kwargs):
-        # qui dit overriding, dit appel de la méthode parent...
         context = super(EventCreateView, self).get_context_data(**kwargs)
 
         context['pkSAVFile'] = self.pkSAVFile
         return context 
+
+    def form_invalid(self, form):
+        url = "{0}".format(self.request.META.get('HTTP_REFERER', '/'))
+        return HttpResponse(render_to_string('djangoApp/errors/nonValideSAVFile.html', {'errors': form.errors, 'url': url}))
 
     """
     Check if the form is valid and save the object.
