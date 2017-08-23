@@ -12,4 +12,6 @@ urlpatterns = [
     url(r'^createEvent/(?P<pkSAVFile>[\w\-]+)$$', views.EventCreateView.as_view(), name="createEvent"),
     url(r'^updateEvent/(?P<pk>[\w\-]+)$$', views.EventUpdateView.as_view(), name="updateEvent"),
     url(r'^deleteEvent/(?P<pk>[\w\-]+)$$', views.EventDeleteView.as_view(), name="deleteEvent"),
+
+    url(r'^generatePDF/$', views.some_view, name="generatePDF"),
 ]

@@ -1,17 +1,23 @@
 # -*- coding: utf-8 -*-
 from __future__ import unicode_literals
+
 from django.http import HttpResponseRedirect, HttpResponse
 from django.urls import reverse, reverse_lazy
 from django.shortcuts import render
 from django.template.loader import render_to_string
-
 from django.views.generic import DetailView, ListView
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 
+from django.conf import settings
+from PIL import Image
+from io import BytesIO
+import urllib, cStringIO
+from reportlab.pdfgen import canvas
+from reportlab.lib.units import inch
+import os
+
 from .models import SAV_file, SAV_file_status, Reparation_status, Event
 from .forms import SAV_fileForm, SAV_fileUpdateForm, EventForm
-
-import operator
 
 def home(request):
     return render(request, 'djangoApp/home/home.html')
@@ -207,3 +213,34 @@ class EventDeleteView(DeleteView):
 
     def get_success_url(self, *args, **kwargs): 
         return reverse_lazy('visualImpactSAV:detailSAVFile',  kwargs={ 'pk' : self.object.refered_SAV_file.file_reference }) 
+
+def some_view(request):
+    # Create the HttpResponse object with the appropriate PDF headers.
+    response = HttpResponse(content_type='application/pdf')
+    response['Content-Disposition'] = 'attachment; filename="somefilename.pdf"'
+
+    buffer = BytesIO()
+
+    # Create the PDF object, using the BytesIO object as its "file."
+    p = canvas.Canvas(buffer)
+    p.translate(inch,inch)
+
+    url = os.path.join(settings.STATICFILES_DIRS[0], 'images/logoVisual.jpg')
+
+    file = cStringIO.StringIO(urllib.urlopen(url).read())
+    img = Image.open(file)
+
+    p.drawInlineImage(img, -0.7*inch, 10*inch, 122, 39)
+    # Draw things on the PDF. Here's where the PDF generation happens.
+    # See the ReportLab documentation for the full list of functionality.
+    p.drawString(0.3*inch, 0.3*inch, "Hello world.")
+
+    # Close the PDF object cleanly.
+    p.showPage()
+    p.save()
+
+    # Get the value of the BytesIO buffer and write it to the response.
+    pdf = buffer.getvalue()
+    buffer.close()
+    response.write(pdf)
+    return response

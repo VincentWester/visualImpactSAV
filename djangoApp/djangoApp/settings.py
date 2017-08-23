@@ -131,3 +131,5 @@ STATICFILES_DIRS = [
     os.path.dirname(BASE_DIR) + '/frontEnd/static/',
     '/var/www/static/',
 ]
+
+STATIC_ROOT = os.path.dirname(BASE_DIR) + '/frontEnd/static/'
