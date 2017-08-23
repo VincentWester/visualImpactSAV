@@ -1,12 +1,12 @@
 # -*- coding: utf-8 -*-
 from __future__ import unicode_literals
 from django.http import HttpResponseRedirect, HttpResponse
-from django.urls import reverse
+from django.urls import reverse, reverse_lazy
 from django.shortcuts import render
 from django.template.loader import render_to_string
 
 from django.views.generic import DetailView, ListView
-from django.views.generic.edit import CreateView, UpdateView
+from django.views.generic.edit import CreateView, UpdateView, DeleteView
 
 from .models import SAV_file, SAV_file_status, Reparation_status, Event
 from .forms import SAV_fileForm, SAV_fileUpdateForm, EventForm
@@ -200,3 +200,10 @@ class EventUpdateView(UpdateView):
         url = "{0}".format(self.request.META.get('HTTP_REFERER', '/'))
 
         return HttpResponseRedirect(url)
+
+class EventDeleteView(DeleteView):
+    model = Event
+    template_name = 'djangoApp/detailSAVFile/confirmDeleteEvent.html'
+
+    def get_success_url(self, *args, **kwargs): 
+        return reverse_lazy('visualImpactSAV:detailSAVFile',  kwargs={ 'pk' : self.object.refered_SAV_file.file_reference }) 
