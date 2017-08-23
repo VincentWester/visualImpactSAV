@@ -1,8 +1,5 @@
 {% extends "base.html" %}
 {% load static %}
-{% block js %}
-    <script src="{% static 'bootstrap/js/jquery.form.min.js' %}"></script>    
-{% endblock %}
 {% block style %}
     <link href="{% static 'css/createSAVFile/createSAVFile.css' %}" rel="stylesheet" media="screen">
 {% endblock %}
@@ -110,14 +107,17 @@
                     <td>{{ event.date }}</td>
                     <td>{{ event.title }}</td>
                     <td>{{ event.action }}</td>
+                    <td><a class="glyphicon glyphicon-pencil" data-toggle="modal" data-target="#modalUpdateEvent"  href="{% url 'visualImpactSAV:updateEvent' event.id%}" style="color: black;"></a> </td>
+                    <td><a class="glyphicon glyphicon-remove" href="#" style="color: black;"></a> </td>
                 </tr>
             {% endfor %}
         </tbody>
     </table>
     <div class="col-md-12">
-        <a data-toggle="modal" data-target="#modal" href="{% url 'visualImpactSAV:createEvent' pkSAVFile=sav_file.file_reference %}">Ajouter un évenement</a>
+        <a data-toggle="modal" data-target="#modalCreateEvent" href="{% url 'visualImpactSAV:createEvent' pkSAVFile=sav_file.file_reference %}">Ajouter un évenement</a>
     </div>
 
-    <div class="modal" id="modal"></div>
+    <div class="modal" id="modalCreateEvent"></div>
+    <div class="modal" id="modalUpdateEvent"></div>
 
 {% endblock %}

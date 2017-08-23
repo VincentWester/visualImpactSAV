@@ -10,4 +10,5 @@ urlpatterns = [
     url(r'^searchSAVFile/$', views.SAVFileListView.as_view(), name="searchSAVFile"),
 
     url(r'^createEvent/(?P<pkSAVFile>[\w\-]+)$$', views.EventCreateView.as_view(), name="createEvent"),
+    url(r'^updateEvent/(?P<pk>[\w\-]+)$$', views.EventUpdateView.as_view(), name="updateEvent"),
 ]
