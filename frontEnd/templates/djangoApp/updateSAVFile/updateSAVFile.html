@@ -136,6 +136,7 @@
                 <th>Titre</th>
                 <th>Action</th>
                 <th> </th>
+                <th> </th>
             </tr>
         </thead>
         <tbody>
@@ -145,6 +146,7 @@
                     <td>{{ event.title }}</td>
                     <td>{{ event.action }}</td>
                     <td><a class="glyphicon glyphicon-pencil" data-toggle="modal" data-target="#modalUpdateEvent"  href="{% url 'visualImpactSAV:updateEvent' event.id%}" style="color: black;"></a> </td>
+                    <td><a class="glyphicon glyphicon-remove" href="{% url 'visualImpactSAV:deleteEvent' pk=event.id%}" style="color: black;"></a> </td>
                 </tr>
             {% endfor %}
         </tbody>
@@ -154,4 +156,5 @@
     </div>
 
     <div class="modal" id="modalUpdateEvent"></div>
+    <div class="modal" id="modalCreateEvent"></div>
 {% endblock %}
