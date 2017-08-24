@@ -132,4 +132,4 @@ STATICFILES_DIRS = [
     '/var/www/static/',
 ]
 
-STATIC_ROOT = os.path.dirname(BASE_DIR) + '/frontEnd/static/'
+STATIC_ROOT = '/var/www/visualImpactSAV.fr/static/'

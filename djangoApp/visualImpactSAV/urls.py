@@ -1,17 +1,19 @@
 from django.conf.urls import include, url
 from django.contrib import admin
 
-from . import views
+from .views.views_sav_files import SAVFileCreateView, SAVFileUpdateView, SAVFileDetailView, SAVFileListView
+from .views.views_events import EventCreateView, EventUpdateView, EventDeleteView
+from .views import views_pdf_generator
 
 urlpatterns = [
-    url(r'^createSAVFile/$', views.SAVFileCreateView.as_view(), name="createSAVFile"),
-    url(r'^updateSAVFile/(?P<pk>[\w\-]+)$', views.SAVFileUpdateView.as_view() , name='updateSAVFile'),
-    url(r'^detailSAVFile/(?P<pk>[\w\-]+)$', views.SAVFileDetailView.as_view() , name='detailSAVFile'),
-    url(r'^searchSAVFile/$', views.SAVFileListView.as_view(), name="searchSAVFile"),
+    url(r'^createSAVFile/$', SAVFileCreateView.as_view(), name="createSAVFile"),
+    url(r'^updateSAVFile/(?P<pk>[\w\-]+)$', SAVFileUpdateView.as_view() , name='updateSAVFile'),
+    url(r'^detailSAVFile/(?P<pk>[\w\-]+)$', SAVFileDetailView.as_view() , name='detailSAVFile'),
+    url(r'^searchSAVFile/$', SAVFileListView.as_view(), name="searchSAVFile"),
 
-    url(r'^createEvent/(?P<pkSAVFile>[\w\-]+)$$', views.EventCreateView.as_view(), name="createEvent"),
-    url(r'^updateEvent/(?P<pk>[\w\-]+)$$', views.EventUpdateView.as_view(), name="updateEvent"),
-    url(r'^deleteEvent/(?P<pk>[\w\-]+)$$', views.EventDeleteView.as_view(), name="deleteEvent"),
+    url(r'^createEvent/(?P<pkSAVFile>[\w\-]+)$$', EventCreateView.as_view(), name="createEvent"),
+    url(r'^updateEvent/(?P<pk>[\w\-]+)$$', EventUpdateView.as_view(), name="updateEvent"),
+    url(r'^deleteEvent/(?P<pk>[\w\-]+)$$', EventDeleteView.as_view(), name="deleteEvent"),
 
-    url(r'^generatePDF/$', views.some_view, name="generatePDF"),
+    url(r'^generatePDF/$', views_pdf_generator.some_view, name="generatePDF"),
 ]
