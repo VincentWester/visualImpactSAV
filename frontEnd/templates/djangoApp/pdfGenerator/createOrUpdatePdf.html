@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+{% load static %}
+{% block style %}
+    <link href="{% static 'css/createSAVFile/createSAVFile.css' %}" rel="stylesheet" media="screen">
+{% endblock %}
+{% block content %}
+    <form action="{% url 'visualImpactSAV:generatePDF' pkSAVFile %}" method="post" id="generatorPDF" class="form">
+        {% csrf_token %}
+        <div class="row">
+            <div class="col-md-12">
+                {{ form.as_p }}
+            </div>
+            <input class="col-md-12" type="submit" value="Générer le pdf" />
+        </div>
+    </form>
+{% endblock %}

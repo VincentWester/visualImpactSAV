@@ -40,12 +40,14 @@ class SAV_file(models.Model):
     name_product = models.CharField(max_length=200, default="")
     mark_product = models.CharField(max_length=200, default="")
     serial_number_product = models.CharField(max_length=200, default="")
+    
+    tracking_number = models.CharField(max_length=100)
 
     out_of_order_reason = models.TextField()
+
     file_import_export_note = models.FileField(blank=True)
     file_import_export_reparation_client_side = models.FileField(blank=True)
     file_import_export_reparation_furnisher_side = models.FileField(blank=True)
-    tracking_number = models.CharField(max_length=100)
 
     def __unicode__(self):
         return self.file_reference 
@@ -60,7 +62,8 @@ class Event(models.Model):
     date = models.DateTimeField(default=timezone.now)
 
 class Pdf_client_invoice_file(models.Model):
-    refered_SAV_file = models.ForeignKey(SAV_file)
+    filename = models.CharField(max_length=30, default="invoice_client.pdf") 
+    refered_sav_file = models.OneToOneField(SAV_file, primary_key=True, related_name="refered_sav_file")
 
 class Designation(models.Model):
     refered_pdf_client_invoice_file = models.ForeignKey(Pdf_client_invoice_file)

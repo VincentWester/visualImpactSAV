@@ -18,7 +18,7 @@ from visualImpactSAV.forms import EventForm
 class EventCreateView(CreateView):
     model = Event
     form_class = EventForm 
-    template_name = 'djangoApp/detailSAVFile/createEvent.html'
+    template_name = 'djangoApp/updateSAVFile/createEvent.html'
 
     def dispatch(self, *args, **kwargs):
         self.pkSAVFile = kwargs['pkSAVFile']
@@ -33,7 +33,7 @@ class EventCreateView(CreateView):
 
     def form_invalid(self, form):
         url = "{0}".format(self.request.META.get('HTTP_REFERER', '/'))
-        return HttpResponse(render_to_string('djangoApp/errors/nonValideSAVFile.html', {'errors': form.errors, 'url': url}))
+        return HttpResponse(render_to_string('djangoApp/errors/nonValideSAVFile.html', {'errors': form.errors, 'url': url }))
 
     """
     Check if the form is valid and save the object.
@@ -50,7 +50,7 @@ class EventCreateView(CreateView):
 class EventUpdateView(UpdateView):
     model = Event
     form_class = EventForm
-    template_name = 'djangoApp/detailSAVFile/updateEvent.html'
+    template_name = 'djangoApp/updateSAVFile/updateEvent.html'
 
     def get_context_data(self, **kwargs):
         context = super(EventUpdateView, self).get_context_data(**kwargs)
@@ -60,7 +60,7 @@ class EventUpdateView(UpdateView):
 
     def form_invalid(self, form):
         url = "{0}".format(self.request.META.get('HTTP_REFERER', '/'))
-        return HttpResponse(render_to_string('djangoApp/errors/nonValideSAVFile.html', {'errors': form.errors, 'url': url}))
+        return HttpResponse(render_to_string('djangoApp/errors/nonValideSAVFile.html', {'errors': form.errors, 'url': url }))
         
     """
     Check if the form is valid and save the object.
@@ -74,7 +74,7 @@ class EventUpdateView(UpdateView):
 
 class EventDeleteView(DeleteView):
     model = Event
-    template_name = 'djangoApp/detailSAVFile/confirmDeleteEvent.html'
+    template_name = 'djangoApp/updateSAVFile/confirmDeleteEvent.html'
 
     def get_success_url(self, *args, **kwargs): 
-        return reverse_lazy('visualImpactSAV:detailSAVFile',  kwargs={ 'pk' : self.object.refered_SAV_file.file_reference }) 
+        return reverse_lazy('visualImpactSAV:updateSAVFile',  kwargs={ 'pk' : self.object.refered_SAV_file.file_reference }) 
