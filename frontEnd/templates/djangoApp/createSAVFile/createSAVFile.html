@@ -7,12 +7,6 @@
 {% block content %}
     <form class="row" method=POST action="{% url 'visualImpactSAV:createSAVFile' %}" accept-charset="utf-8">
         {% csrf_token %}
-        <div class="col-md-6 first-block">
-            <label for="id_file_reference">Reference du fichier SAV :</label>
-            <input id="id_file_reference" type="text" name="file_reference" maxlength="33" required/>
-            <span class="error" aria-live="polite"></span>
-        </div>
-
         <div class="col-md-6 first-block">           
             <label for="id_sav_file_status">Status de la fiche SAV :</label>
             <select id="id_sav_file_status" name="sav_file_status" required>
@@ -23,12 +17,7 @@
             </select>
         </div>
 
-        <div class="col-md-6 second-block">            
-            <label for="id_tracking_number">Numéro de suivi UPS :</label>
-            <input id="id_tracking_number" type="text" name="tracking_number" maxlength="100" required/>
-        </div>
-
-        <div class="col-md-6 second-block"> 
+        <div class="col-md-6 first-block"> 
             <label for="id_reparation_status">Statut de la réparation : </label>
             <select id="id_reparation_status" name="reparation_status" required>
                 <option value="">-- Selectionnez un statut --</option>
@@ -96,7 +85,11 @@
                 <div class="col-md-offset-2 col-md-10  block-characteristic-product">
                     <label for="id_serial_number_product">Numéro de série :</label>
                     <input id="id_serial_number_product" type="text" name="serial_number_product" maxlength="300" required/>
-                </div>  
+                </div> 
+                <div class="col-md-offset-2 col-md-10  block-characteristic-product">            
+                    <label for="id_tracking_number">Numéro de suivi UPS :</label>
+                    <input id="id_tracking_number" type="text" name="tracking_number" maxlength="100"/>
+                </div> 
             </div>
         </div>
 

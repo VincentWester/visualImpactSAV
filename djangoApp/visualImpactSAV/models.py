@@ -1,6 +1,8 @@
 # -*- coding: utf-8 -*-
 from __future__ import unicode_literals
 
+import uuid
+
 from datetime import datetime
 
 from django.db import models
@@ -25,7 +27,7 @@ DEFAULT_REPARATION_STATUS_ID = 1
 
 class SAV_file(models.Model):
     creation_date = models.DateTimeField(default=timezone.now)
-    file_reference = models.CharField(primary_key=True, max_length=50, default="0")
+    file_reference = models.CharField(primary_key=True, max_length=50, default=uuid.uuid4)
     
     sav_file_status = models.ForeignKey(SAV_file_status, default = DEFAULT_SAV_FILE_STATUS_ID)
     reparation_status = models.ForeignKey(Reparation_status, default = DEFAULT_REPARATION_STATUS_ID)

@@ -4,19 +4,14 @@
     <link href="{% static 'css/createSAVFile/createSAVFile.css' %}" rel="stylesheet" media="screen">
 {% endblock %}
 {% block content %}
-    <div class="col-md-6 first-block">
+    <div class="col-md-offset-3 col-md-6 first-block">
         <label>Reference du fichier SAV :</label>
         <span>{{ sav_file.file_reference }}</span>
     </div>
 
-    <div class="col-md-6 first-block">           
+    <div class="col-md-6 second-block">           
         <label>Status de la fiche SAV :</label>
         <span>{{ sav_file.sav_file_status }}</span>
-    </div>
-
-    <div class="col-md-6 second-block">            
-        <label>Numéro de suivi UPS :</label>
-        <span>{{ sav_file.tracking_number }}</span>
     </div>
 
     <div class="col-md-6 second-block"> 
@@ -82,7 +77,11 @@
             <div class="col-md-offset-2 col-md-10  block-characteristic-product">
                 <label>Numéro de série :</label>
                 <span>{{ sav_file.serial_number_product }}</span>
-            </div>  
+            </div> 
+            <div class="col-md-offset-2 col-md-10  block-characteristic-product">            
+                <label>Numéro de suivi UPS :</label>
+                <span>{{ sav_file.tracking_number }}</span>
+            </div> 
         </div>
     </div>
 

@@ -9,7 +9,10 @@ from django.views.generic.edit import CreateView, UpdateView, DeleteView
 # models part
 from visualImpactSAV.models import SAV_file, SAV_file_status, Reparation_status, Event
 # forms part
-from visualImpactSAV.forms import SAV_fileForm, SAV_fileUpdateForm
+from visualImpactSAV.forms import SAV_fileForm
+
+
+NUMERO_SAV_FILE = 1
 
 class SAVFileDetailView(DetailView):
     queryset = SAV_file.objects.all()
@@ -47,12 +50,11 @@ class SAVFileCreateView(CreateView):
     Check if the form is valid and save the object.
     """
     def form_valid(self, form):
-        form.instance.file_reference = 'VisualImpact-SAV-' + form.instance.file_reference
         return super(SAVFileCreateView, self).form_valid(form)
 
 class SAVFileUpdateView(UpdateView):
     model = SAV_file
-    form_class = SAV_fileUpdateForm
+    form_class = SAV_fileForm
     template_name = 'djangoApp/updateSAVFile/updateSAVFile.html'
 
     def get_context_data(self, **kwargs):
