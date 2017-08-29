@@ -22,12 +22,10 @@ class EventCreateView(CreateView):
 
     def dispatch(self, *args, **kwargs):
         self.pkSAVFile = kwargs['pkSAVFile']
-
         return super(EventCreateView, self).dispatch( *args, **kwargs)
 
     def get_context_data(self, **kwargs):
         context = super(EventCreateView, self).get_context_data(**kwargs)
-
         context['pkSAVFile'] = self.pkSAVFile
         return context 
 
@@ -42,7 +40,6 @@ class EventCreateView(CreateView):
         sav_file = SAV_file.objects.get(file_reference = self.kwargs['pkSAVFile'])
         form.instance.refered_SAV_file = sav_file
         self.object = form.save()
-
         url = "{0}".format(self.request.META.get('HTTP_REFERER', '/'))
 
         return HttpResponseRedirect(url)

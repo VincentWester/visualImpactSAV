@@ -32,6 +32,7 @@ class SAV_file(models.Model):
     sav_file_status = models.ForeignKey(SAV_file_status, default = DEFAULT_SAV_FILE_STATUS_ID)
     reparation_status = models.ForeignKey(Reparation_status, default = DEFAULT_REPARATION_STATUS_ID)
 
+    society_client = models.CharField(max_length=300, default="")
     name_client = models.CharField(max_length=300, default="")
     street_client = models.CharField(max_length=300, default="")
     zipcode_client = models.CharField(max_length=10, default="")
@@ -43,13 +44,12 @@ class SAV_file(models.Model):
     mark_product = models.CharField(max_length=200, default="")
     serial_number_product = models.CharField(max_length=200, default="")
     
-    tracking_number = models.CharField(max_length=100)
+    tracking_number = models.CharField(max_length=100, blank=True)
 
     out_of_order_reason = models.TextField()
 
-    file_import_export_note = models.FileField(blank=True)
-    file_import_export_reparation_client_side = models.FileField(blank=True)
-    file_import_export_reparation_furnisher_side = models.FileField(blank=True)
+    client_bill = models.FileField(blank=True)
+    furnisher_invoice = models.FileField(blank=True)
 
     def __unicode__(self):
         return self.file_reference 
@@ -63,12 +63,11 @@ class Event(models.Model):
     action = models.TextField()
     date = models.DateTimeField(default=timezone.now)
 
-class Pdf_client_invoice_file(models.Model):
+class Pdf_generation_file(models.Model):
     filename = models.CharField(max_length=30, default="invoice_client.pdf") 
-    refered_sav_file = models.OneToOneField(SAV_file, primary_key=True, related_name="refered_sav_file")
 
 class Designation(models.Model):
-    refered_pdf_client_invoice_file = models.ForeignKey(Pdf_client_invoice_file)
+    refered_pdf_client_invoice_file = models.ForeignKey(SAV_file)
     designation = models.CharField(max_length=100, default="")
     quantity = models.IntegerField(default=1)
     price = models.DecimalField(default=0.0, max_digits=5, decimal_places=2)

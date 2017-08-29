@@ -42,14 +42,13 @@ class SAVFileCreateView(CreateView):
 
     def form_invalid(self, form):
         url = "{0}".format(self.request.META.get('HTTP_REFERER', '/'))
-        print url
-        print form.errors
         return HttpResponse(render_to_string('djangoApp/errors/nonValideSAVFile.html', {'errors': form.errors, 'url': url}))
 
     """
     Check if the form is valid and save the object.
     """
     def form_valid(self, form):
+        print form
         return super(SAVFileCreateView, self).form_valid(form)
 
 class SAVFileUpdateView(UpdateView):

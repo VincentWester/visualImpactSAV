@@ -15,13 +15,13 @@ from reportlab.pdfgen import canvas
 from reportlab.lib.units import inch
 
 # models part
-from visualImpactSAV.models import Pdf_client_invoice_file, Designation, SAV_file
+from visualImpactSAV.models import Pdf_generation_file, Designation, SAV_file
 # forms part
-from visualImpactSAV.forms import Pdf_client_invoice_file_form
+from visualImpactSAV.forms import Pdf_generation_file_form
 
 class PDFGeneratorCreateView(CreateView):
-    model = Pdf_client_invoice_file
-    form_class = Pdf_client_invoice_file_form
+    model = Pdf_generation_file
+    form_class = Pdf_generation_file_form
     template_name = 'djangoApp/pdfGenerator/createOrUpdatePdf.html'
 
     def dispatch(self, *args, **kwargs):
