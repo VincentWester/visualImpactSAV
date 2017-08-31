@@ -1,22 +1,23 @@
 # -*- coding: utf-8 -*-
 from __future__ import unicode_literals
 
+from decimal import Decimal
+
 from django.http import HttpResponse
 from django.template.loader import render_to_string
 from django.views.generic import DetailView, ListView
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 
 # models part
-from visualImpactSAV.models import SAV_file, SAV_file_status, Reparation_status, Event
+from visualImpactSAV.models import SAV_file, SAV_file_status, Reparation_status, Event, Designation
 # forms part
 from visualImpactSAV.forms import SAV_fileForm
 
-
-NUMERO_SAV_FILE = 1
+TAX_RATE = Decimal(1.2)
 
 class SAVFileDetailView(DetailView):
     queryset = SAV_file.objects.all()
-    template_name = 'djangoApp/detailSAVFile/detailSAVFile.html'
+    template_name = 'djangoApp/SAVFile/detailSAVFile.html'
 
     def get_object(self):
         object = super(SAVFileDetailView, self).get_object()
@@ -24,14 +25,24 @@ class SAVFileDetailView(DetailView):
 
     def get_context_data(self, **kwargs):
         context = super(SAVFileDetailView, self).get_context_data(**kwargs)
+        context['pkSAVFile'] = self.object.file_reference
         context['events'] = Event.objects.all().filter(refered_SAV_file = self.object).order_by('date')
+        designations = Designation.objects.filter(refered_SAV_file = self.object)
+        context['designations'] = designations
+
+        total = Decimal(0.0)
+        for designation in designations:
+            total += Decimal(designation.quantity) * Decimal(designation.price)
+
+        context['totalHT'] = round(total, 2)
+        context['totalTC'] = round(total * TAX_RATE, 2)
 
         return context
 
 class SAVFileCreateView(CreateView):
     model = SAV_file
     form_class = SAV_fileForm
-    template_name = 'djangoApp/createSAVFile/createSAVFile.html'
+    template_name = 'djangoApp/SAVFile/createSAVFile.html'
 
     def get_context_data(self, **kwargs):
         context = super(SAVFileCreateView, self).get_context_data(**kwargs)
@@ -54,7 +65,7 @@ class SAVFileCreateView(CreateView):
 class SAVFileUpdateView(UpdateView):
     model = SAV_file
     form_class = SAV_fileForm
-    template_name = 'djangoApp/updateSAVFile/updateSAVFile.html'
+    template_name = 'djangoApp/SAVFile/updateSAVFile.html'
 
     def get_context_data(self, **kwargs):
         context = super(SAVFileUpdateView, self).get_context_data(**kwargs)
@@ -75,11 +86,10 @@ class SAVFileUpdateView(UpdateView):
     def form_valid(self, form):
         return super(SAVFileUpdateView, self).form_valid(form)
 
-
 DEFAULT_PAGINATION_BY = 10
 
 class SAVFileListView(ListView):
-    template_name = 'djangoApp/searchSAVFile/searchSAVFile.html'
+    template_name = 'djangoApp/SAVFile/searchSAVFile.html'
     context_object_name = 'results'
     queryset = SAV_file.objects.all()
     paginate_by = DEFAULT_PAGINATION_BY

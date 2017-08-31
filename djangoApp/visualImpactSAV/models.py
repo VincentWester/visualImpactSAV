@@ -63,11 +63,8 @@ class Event(models.Model):
     action = models.TextField()
     date = models.DateTimeField(default=timezone.now)
 
-class Pdf_generation_file(models.Model):
-    filename = models.CharField(max_length=30, default="invoice_client.pdf") 
-
 class Designation(models.Model):
-    refered_pdf_client_invoice_file = models.ForeignKey(SAV_file)
+    refered_SAV_file = models.ForeignKey(SAV_file)
     designation = models.CharField(max_length=100, default="")
     quantity = models.IntegerField(default=1)
     price = models.DecimalField(default=0.0, max_digits=5, decimal_places=2)

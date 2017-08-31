@@ -1,17 +1,17 @@
 {% extends "base.html" %}
 {% load static %}
 {% block style %}
-    <link href="{% static 'css/createSAVFile/createSAVFile.css' %}" rel="stylesheet" media="screen">
+    <link href="{% static 'css/SAVFile/createSAVFile.css' %}" rel="stylesheet" media="screen">
 {% endblock %}
 {% block content %}
     <form class="row" enctype="multipart/form-data" method=POST action="{% url 'visualImpactSAV:updateSAVFile' current_sav_file.file_reference %}" accept-charset="utf-8">
         {% csrf_token %}
-        <div class="col-md-6 first-block">
+        <div class="col-md-offset-3 col-md-6 first-block">
             <label for="id_file_reference">Reference du fichier SAV :</label>
             <input id="id_file_reference" type="text" name="file_reference" value="{{ current_sav_file.file_reference }}" maxlength="33" disabled/>
         </div>
 
-        <div class="col-md-offset-3 col-md-6 first-block">           
+        <div class="col-md-6 first-block">           
             <label for="id_sav_file_status">Status de la fiche SAV :</label>
             <select id="id_sav_file_status" name="sav_file_status" required>
                 {% for st in sav_file_status %}
@@ -151,7 +151,7 @@
         </tbody>
     </table>
     <div class="col-md-12">
-        <a data-toggle="modal" data-target="#modalCreateEvent" href="{% url 'visualImpactSAV:createEvent' pkSAVFile=sav_file.file_reference %}">Ajouter un évenement</a>
+        <a data-toggle="modal" data-target="#modalCreateEvent" href="{% url 'visualImpactSAV:createEvent' pkSAVFile=current_sav_file.file_reference %}">Ajouter un évenement</a>
     </div>
 
     <div class="modal" id="modalUpdateEvent"></div>

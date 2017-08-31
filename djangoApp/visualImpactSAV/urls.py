@@ -3,7 +3,8 @@ from django.contrib import admin
 
 from .views.views_sav_files import SAVFileCreateView, SAVFileUpdateView, SAVFileDetailView, SAVFileListView
 from .views.views_events import EventCreateView, EventUpdateView, EventDeleteView
-from .views.views_pdf_generator import PDFGeneratorCreateView
+from .views.views_designations import DesignationCreateView, DesignationUpdateView, DesignationDeleteView
+#from .views.views_pdf_generator import PDFGeneratorCreateView
 
 urlpatterns = [
     url(r'^createSAVFile/$', SAVFileCreateView.as_view(), name="createSAVFile"),
@@ -15,5 +16,7 @@ urlpatterns = [
     url(r'^updateEvent/(?P<pk>[\w\-]+)$$', EventUpdateView.as_view(), name="updateEvent"),
     url(r'^deleteEvent/(?P<pk>[\w\-]+)$$', EventDeleteView.as_view(), name="deleteEvent"),
 
-    url(r'^generatePDF/(?P<pkSAVFile>[\w\-]+)$$', PDFGeneratorCreateView.as_view(), name="generatePDF"),
+    url(r'^createDesignation/(?P<pkSAVFile>[\w\-]+)$$', DesignationCreateView.as_view(), name="createDesignation"),
+    url(r'^updateDesignation/(?P<pk>[\w\-]+)$$', DesignationUpdateView.as_view(), name="updateDesignation"),
+    url(r'^deleteDesignation/(?P<pk>[\w\-]+)$$', DesignationDeleteView.as_view(), name="deleteDesignation"), 
 ]

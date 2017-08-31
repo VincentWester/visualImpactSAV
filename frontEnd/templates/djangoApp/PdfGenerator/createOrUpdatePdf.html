@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+{% load static %}
+{% block style %}
+    <link href="{% static 'css/createSAVFile/createSAVFile.css' %}" rel="stylesheet" media="screen">
+{% endblock %}
+{% block content %}
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Designation</th>
+                <th>Quantité</th>
+                <th>Prix</th>
+                <th> </th>
+                <th> </th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for designation in designations %}
+                <tr>
+                    <td>{{ designation.designation }}</td>
+                    <td>{{ designation.quantity }}</td>
+                    <td>{{ designation.price }}</td>
+                    <td><a class="glyphicon glyphicon-pencil" data-toggle="modal" data-target="#modalUpdateDesignation"  href="{% url 'visualImpactSAV:updateDesignation' designation.id%}" style="color: black;"></a> </td>
+                    <td><a class="glyphicon glyphicon-remove" href="{% url 'visualImpactSAV:deleteDesignation' pk=designation.id%}" style="color: black;"></a> </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <div class="col-md-12">
+        <a data-toggle="modal" data-target="#modalCreateDesignation" href="{% url 'visualImpactSAV:createDesignation' pkSAVFile %}">Ajouter une désignation</a>
+    </div>
+
+    <div class="modal" id="modalCreateDesignation"></div>
+    <div class="modal" id="modalUpdateDesignation"></div>
+{% endblock %}
