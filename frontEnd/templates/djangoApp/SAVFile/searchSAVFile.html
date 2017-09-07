@@ -5,9 +5,6 @@
     <link href="{% static 'css/SAVFile/searchSAVFile.css' %}" rel="stylesheet" media="screen">
     <link href="{% static 'css/SAVFile/classSAVFileStatus.css' %}" rel="stylesheet" media="screen">
 {% endblock %}
-{% block js %}
-    
-{% endblock %}
 {% block menu_search %}<li class="list-SAV-file active row"><a href="#" class="col-md-12">Rechercher</a></li>{% endblock %}
 {% block content %}    
     <form class="row" method=GET action="{% url 'visualImpactSAV:searchSAVFile' %}" accept-charset="utf-8">
@@ -33,14 +30,14 @@
             </div>
 
             <div class="col-md-6 second-block"> 
-            <label for="id_reparation_status">Statut de réparation : </label>
-            <select id="id_reparation_status" name="reparation_status">
-                <option value="">  ----  </option>
-                {% for st in reparation_status %}
-                    <option value="{{ st.id }}">{{ st }}</option>
-                {% endfor %}
-            </select>
-        </div> 
+                <label for="reparation_status">Statut de réparation : </label>
+                <select id="reparation_status" name="reparation_status">
+                    <option value="">  ----  </option>
+                    {% for st in reparation_status %}
+                        <option value="{{ st.id }}">{{ st }}</option>
+                    {% endfor %}
+                </select>
+            </div> 
         </div>
 
         <div class="col-md-6 block-client">
@@ -51,6 +48,10 @@
                 <div class="col-md-offset-2 col-md-10 block-name-client">            
                     <label for="client_name">Nom :</label>
                     <input id="client_name" type="text" name="client_name">
+                </div>
+                <div class="col-md-offset-2 col-md-10 block-name-client">            
+                    <label for="client_society">Société :</label>
+                    <input id="client_society" type="text" name="client_society">
                 </div>
             </div>
         </div>
@@ -75,6 +76,16 @@
             </div>
         </div>
 
+        <div class="col-md-6 second-block">
+            <label for="begin_date">De cette date :</label>
+            <input id="begin_date" type="date" name="begin_date">
+        </div>
+
+        <div class="col-md-6 second-block input-append date form_datetime">
+            <label for="end_date">A cette date :</label>
+            <input id="end_date" type="date" name="end_date">
+        </div>
+
         <div class="col-md-12 block-button">        
             <input type="submit" value="Rechercher">
         </div>
@@ -93,10 +104,12 @@
                 <th>Référence du fichier SAV</th>
                 <th>Numéro de suivi</th>
                 <th>Statut de réparation</th>
+                <th>Societé du client</th>
                 <th>Nom du client</th>
                 <th>Marque du produit</th>
                 <th>Modèle du produit</th>
                 <th>Numéro de série du produit</th>
+                <th> </th>
                 <th> </th>
                 <th> </th>
             </tr>
@@ -111,12 +124,14 @@
                 <td>{{ file.file_reference }}</td>
                 <td>{{ file.tracking_number }}</td>
                 <td>{{ file.reparation_status }}</td>
+                <td>{{ file.society_client }}</td>
                 <td>{{ file.name_client }}</td>
                 <td>{{ file.mark_product }}</td>
                 <td>{{ file.name_product }}</td>
                 <td>{{ file.serial_number_product }}</td>
                 <td><a class="glyphicon glyphicon-zoom-in" href="{% url 'visualImpactSAV:detailSAVFile' file.file_reference %}" style="color: black;"></a> </td>
                 <td><a class="glyphicon glyphicon-pencil" href="{% url 'visualImpactSAV:updateSAVFile' file.file_reference %}" style="color: black;"></a> </td>
+                <td><a class="glyphicon glyphicon-pencil" href="{% url 'visualImpactSAV:listDesignation' file.file_reference %}" style="color: black;"></a> </td>
             </tr>
             {% endfor %}
         </tbody>

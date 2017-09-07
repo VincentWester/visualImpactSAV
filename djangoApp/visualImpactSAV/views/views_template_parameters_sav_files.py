@@ -60,4 +60,7 @@ class ParameterUpdateView(UpdateView):
 
 class ParameterDeleteView(DeleteView):
     def get_success_url(self, *args, **kwargs): 
-        return reverse_lazy(self.url,  kwargs={ 'pk' : self.object.refered_SAV_file.file_reference }) 
+        if self.url == 'visualImpactSAV:listDesignation':
+            return reverse_lazy(self.url,  kwargs={ 'pkSAVFile' : self.object.refered_SAV_file.file_reference }) 
+        else:
+            return reverse_lazy(self.url,  kwargs={ 'pk' : self.object.refered_SAV_file.file_reference }) 

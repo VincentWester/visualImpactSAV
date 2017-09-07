@@ -13,8 +13,6 @@ from visualImpactSAV.models import SAV_file, SAV_file_status, Reparation_status,
 # forms part
 from visualImpactSAV.forms import SAV_fileForm
 
-TAX_RATE = Decimal(1.2)
-
 class SAVFileDetailView(DetailView):
     queryset = SAV_file.objects.all()
     template_name = 'djangoApp/SAVFile/detailSAVFile.html'
@@ -27,15 +25,6 @@ class SAVFileDetailView(DetailView):
         context = super(SAVFileDetailView, self).get_context_data(**kwargs)
         context['pkSAVFile'] = self.object.file_reference
         context['events'] = Event.objects.all().filter(refered_SAV_file = self.object).order_by('date')
-        designations = Designation.objects.filter(refered_SAV_file = self.object)
-        context['designations'] = designations
-
-        total = Decimal(0.0)
-        for designation in designations:
-            total += Decimal(designation.quantity) * Decimal(designation.price)
-
-        context['totalHT'] = round(total, 2)
-        context['totalTC'] = round(total * TAX_RATE, 2)
 
         return context
 
@@ -116,6 +105,7 @@ class SAVFileListView(ListView):
         file_reference = self.request.GET.get('file_reference')
         tracking_number = self.request.GET.get('status')
         client_name = self.request.GET.get('client_name')
+        client_society = self.request.GET.get('client_society')
         product_name = self.request.GET.get('product_name')
         product_mark = self.request.GET.get('product_mark')
         product_serial_number = self.request.GET.get('product_serial_number')
@@ -129,6 +119,9 @@ class SAVFileListView(ListView):
 
         if client_name:
             results = results.filter(name_client__icontains = client_name) 
+
+        if client_society:
+            results = results.filter(society_client__icontains = client_society) 
         
         if product_name:
             results = results.filter(name_product__icontains = product_name)
