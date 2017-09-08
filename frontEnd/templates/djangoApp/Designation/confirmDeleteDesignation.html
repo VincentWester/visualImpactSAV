@@ -1,5 +1,23 @@
-<form action="" method="post">
-	{% csrf_token %}
-    <p>Êtes vous sur de vouloir supprimer "{{ object.title }}"?</p>
-    <input type="submit" value="Confirm" />
-</form>
+{% load i18n widget_tweaks %}
+<div class="modal-dialog modal-lg" role="document">
+    <form action="{% url 'visualImpactSAV:deleteDesignation' id_to_delete %}" method="post" id="deleteDesignation" class="form">
+        {% csrf_token %}
+	    <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">×</span>
+                    <span class="sr-only">Fermer</span>
+                </button>
+                <h4 class="modal-title">Créer</h4>
+            </div>
+            <div class="modal-body">
+                <p>Êtes vous sur de vouloir supprimer l'élément {{ name_class }} : "{{ name_object }}"?</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" data-dismiss="modal">Fermer</button>
+                <input type="submit" value="Supprimer {{ name_class }}" />
+            </div>
+        </div><!-- /.modal-content -->
+    </form>
+    </form>
+</div><!-- /.modal-dialog -->

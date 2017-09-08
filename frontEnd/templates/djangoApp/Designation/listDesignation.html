@@ -20,8 +20,8 @@
                     <td>{{ designation.designation }}</td>
                     <td>{{ designation.quantity }}</td>
                     <td>{{ designation.price }}</td>
-                    <td><a class="glyphicon glyphicon-pencil" data-toggle="modal" data-target="#modalUpdateDesignation"  href="{% url 'visualImpactSAV:updateDesignation' pk=designation.id%}" style="color: black;"></a> </td>
-                    <td><a class="glyphicon glyphicon-remove" href="{% url 'visualImpactSAV:deleteDesignation' pk=designation.id%}" style="color: black;"></a> </td>
+                    <td><a class="glyphicon glyphicon-pencil" data-toggle="modal" data-target="#modalUpdateDesignation" href="{% url 'visualImpactSAV:updateDesignation' pk=designation.id%}" style="color: black;"></a> </td>
+                    <td><a class="glyphicon glyphicon-remove" data-toggle="modal" data-target="#modalDeleteDesignation" href="{% url 'visualImpactSAV:deleteDesignation' pk=designation.id%}" style="color: black;"></a> </td>
                 </tr>
             {% endfor %}
             <tr>
@@ -49,4 +49,5 @@
 
     <div class="modal" id="modalUpdateDesignation"></div>
     <div class="modal" id="modalCreateDesignation"></div>
+    <div class="modal" id="modalDeleteDesignation"></div>
 {% endblock %}

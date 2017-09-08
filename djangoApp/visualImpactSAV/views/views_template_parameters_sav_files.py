@@ -58,9 +58,25 @@ class ParameterUpdateView(UpdateView):
 
         return HttpResponseRedirect(url)
 
-class ParameterDeleteView(DeleteView):
+class ParameterDeleteView(DeleteView):      
+    #template_name = 'djangoApp/common/confirmDelete.html'
+
+    #def dispatch(self, *args, **kwargs):
+    #    self.pk = kwargs['pk']
+    #    self.url = 'visualImpactSAV:listDesignation'
+    #    return super(ParameterDeleteView, self).dispatch( *args, **kwargs)
+
+    #def get_context_data(self, **kwargs):
+    #    context = super(ParameterDeleteView, self).get_context_data(**kwargs)
+    #    print self.pk
+    #    context['id_to_delete'] = self.pk
+    #    context['name_class'] = self.object.__class__.__name__
+    #    context['name_object'] = self.object.designation
+
+    #    return context
+
     def get_success_url(self, *args, **kwargs): 
-        if self.url == 'visualImpactSAV:listDesignation':
-            return reverse_lazy(self.url,  kwargs={ 'pkSAVFile' : self.object.refered_SAV_file.file_reference }) 
+        if self.url_to_redirect == 'visualImpactSAV:listDesignation':
+            return reverse_lazy(self.url_to_redirect,  kwargs={ 'pkSAVFile' : self.object.refered_SAV_file.file_reference }) 
         else:
-            return reverse_lazy(self.url,  kwargs={ 'pk' : self.object.refered_SAV_file.file_reference }) 
+            return reverse_lazy(self.url_to_redirect,  kwargs={ 'pk' : self.object.refered_SAV_file.file_reference }) 
