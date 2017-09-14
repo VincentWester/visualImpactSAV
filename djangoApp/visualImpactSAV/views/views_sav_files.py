@@ -23,7 +23,7 @@ class SAVFileDetailView(DetailView):
 
     def get_context_data(self, **kwargs):
         context = super(SAVFileDetailView, self).get_context_data(**kwargs)
-        context['pkSAVFile'] = self.object.file_reference
+        context['pkSAVFile'] = self.object.id
         context['events'] = Event.objects.all().filter(refered_SAV_file = self.object).order_by('date')
 
         return context
@@ -48,7 +48,6 @@ class SAVFileCreateView(CreateView):
     Check if the form is valid and save the object.
     """
     def form_valid(self, form):
-        print form
         return super(SAVFileCreateView, self).form_valid(form)
 
 class SAVFileUpdateView(UpdateView):
@@ -115,7 +114,7 @@ class SAVFileListView(ListView):
         results = SAV_file.objects.all()
         
         if file_reference:
-            results = results.filter(file_reference__icontains = file_reference)
+            results = results.filter(id__icontains = file_reference)
 
         if client_name:
             results = results.filter(name_client__icontains = client_name) 
@@ -141,4 +140,4 @@ class SAVFileListView(ListView):
         if reparation_status:
             results = results.filter(reparation_status = reparation_status)
 
-        return results.order_by('file_reference')
+        return results.order_by('id')

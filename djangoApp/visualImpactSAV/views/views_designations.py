@@ -67,5 +67,5 @@ class DesignationListView(ListView):
         return context
 
     def get_queryset(self):
-        return Designation.objects.filter(refered_SAV_file__file_reference = self.pkSAVFile)
+        return Designation.objects.filter(refered_SAV_file__id = self.pkSAVFile)
 

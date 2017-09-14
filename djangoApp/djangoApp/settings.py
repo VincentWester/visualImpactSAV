@@ -79,7 +79,7 @@ WSGI_APPLICATION = 'djangoApp.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'visualImpactSAV',
+        'NAME': 'visualimpactsavdev',
         'USER': 'admin',
         'PASSWORD': 'admin',
         'HOST': 'localhost',

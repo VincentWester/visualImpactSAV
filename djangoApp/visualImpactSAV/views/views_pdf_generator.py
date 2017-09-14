@@ -23,7 +23,7 @@ from visualImpactSAV.models import Designation, SAV_file
 
 def generate_pdf(request, pkSAVFile):
         # Create the HttpResponse object with the appropriate PDF headers.
-        sav_file = get_object_or_404(SAV_file, file_reference = pkSAVFile)
+        sav_file = get_object_or_404(SAV_file, id = pkSAVFile)
         designations = Designation.objects.all().filter(refered_SAV_file = sav_file).order_by('quantity')
         
         filename = "devis-client-"
@@ -47,7 +47,7 @@ def generate_pdf(request, pkSAVFile):
 
         if not os.path.isfile(url):
             buffer.close()
-            url_redirect = u"{% url 'visualImpactSAV:detailSAVFile' sav_file.file_reference %}"
+            url_redirect = u"{% url 'visualImpactSAV:detailSAVFile' sav_file.id %}"
             return HttpResponse(render_to_string('djangoApp/errors/missingLogo.html', {'errors': "le logo de votre entreprise n'existe plus. Veuillez contacter le service technique. ", 'url': url_redirect }))
 
         file = cStringIO.StringIO(urllib.urlopen(url).read())
@@ -62,7 +62,7 @@ def generate_pdf(request, pkSAVFile):
         p.rect(-0.5*inch, 8*inch, 2.4*inch, 1.3*inch, fill=0)
 
         p.setFont("Helvetica", 12)
-        p.drawString(-0.5*inch, 9.6*inch, "Réference du fichier SAV : " + sav_file.file_reference)
+        p.drawString(-0.5*inch, 9.6*inch, "Réference du fichier SAV : " + str(sav_file.id))
 
         p.setFont("Helvetica-Bold", 12)
         p.drawString(-0.3*inch, 9.1*inch, "Adresse de facturation")

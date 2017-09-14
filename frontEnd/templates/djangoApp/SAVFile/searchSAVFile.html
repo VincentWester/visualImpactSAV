@@ -121,7 +121,7 @@
                 {% else %}
                     <tr class="">
                 {% endif %}
-                <td>{{ file.file_reference }}</td>
+                <td>{{ file.id }}</td>
                 <td>{{ file.tracking_number }}</td>
                 <td>{{ file.reparation_status }}</td>
                 <td>{{ file.society_client }}</td>
@@ -129,9 +129,9 @@
                 <td>{{ file.mark_product }}</td>
                 <td>{{ file.name_product }}</td>
                 <td>{{ file.serial_number_product }}</td>
-                <td><a class="glyphicon glyphicon-zoom-in" href="{% url 'visualImpactSAV:detailSAVFile' file.file_reference %}" style="color: black;"></a> </td>
-                <td><a class="glyphicon glyphicon-pencil" href="{% url 'visualImpactSAV:updateSAVFile' file.file_reference %}" style="color: black;"></a> </td>
-                <td><a class="glyphicon glyphicon-pencil" href="{% url 'visualImpactSAV:listDesignation' file.file_reference %}" style="color: black;"></a> </td>
+                <td><a class="glyphicon glyphicon-zoom-in" href="{% url 'visualImpactSAV:detailSAVFile' file.id %}" style="color: black;"></a> </td>
+                <td><a class="glyphicon glyphicon-pencil" href="{% url 'visualImpactSAV:updateSAVFile' file.id %}" style="color: black;"></a> </td>
+                <td><a class="glyphicon glyphicon-pencil" href="{% url 'visualImpactSAV:listDesignation' file.id %}" style="color: black;"></a> </td>
             </tr>
             {% endfor %}
         </tbody>

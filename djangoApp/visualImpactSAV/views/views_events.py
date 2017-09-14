@@ -18,6 +18,12 @@ class EventUpdateView(ParameterUpdateView):
     form_class = EventForm
     template_name = 'djangoApp/Event/updateEvent.html'
 
+    def get_context_data(self, **kwargs):
+        context = super(EventUpdateView, self).get_context_data(**kwargs)
+        context['current_event'] = self.object
+
+        return context
+
 class EventDeleteView(ParameterDeleteView):
     model = Event
     template_name = 'djangoApp/Event/confirmDeleteEvent.html'
@@ -29,7 +35,6 @@ class EventDeleteView(ParameterDeleteView):
 
     def get_context_data(self, **kwargs):
         context = super(EventDeleteView, self).get_context_data(**kwargs)
-        print self.pk
         context['id_to_delete'] = self.pk
         context['name_class'] = self.object.__class__.__name__
         context['name_object'] = self.object.title

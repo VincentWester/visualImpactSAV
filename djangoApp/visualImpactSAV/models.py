@@ -27,12 +27,13 @@ DEFAULT_REPARATION_STATUS_ID = 1
 
 class SAV_file(models.Model):
     creation_date = models.DateTimeField(default=timezone.now)
-    file_reference = models.CharField(primary_key=True, max_length=50, default=uuid.uuid4)
+    #file_reference = models.CharField(primary_key=True, max_length=50, default=uuid.uuid4)
     
+    #file_reference = models.AutoField(primary_key=True)
     sav_file_status = models.ForeignKey(SAV_file_status, default = DEFAULT_SAV_FILE_STATUS_ID)
     reparation_status = models.ForeignKey(Reparation_status, default = DEFAULT_REPARATION_STATUS_ID)
 
-    society_client = models.CharField(max_length=300, default="")
+    society_client = models.CharField(max_length=300, default="", blank=True)
     name_client = models.CharField(max_length=300, default="")
     street_client = models.CharField(max_length=300, default="")
     zipcode_client = models.CharField(max_length=10, default="")
