@@ -5,7 +5,7 @@
 {% endblock %}
 {% block menu_add %}<li class="list-SAV-file active row"><a href="#" class="col-md-12">Ajouter</a></li>{% endblock %}
 {% block content %}
-    <form class="row" method=POST action="{% url 'visualImpactSAV:createSAVFile' %}" accept-charset="utf-8">
+    <form class="row" enctype="multipart/form-data" method=POST action="{% url 'visualImpactSAV:createSAVFile' %}" accept-charset="utf-8">
         {% csrf_token %}
         <div class="col-md-6 first-block">           
             <label for="id_sav_file_status">Status de la fiche SAV :</label>
@@ -102,7 +102,7 @@
             <textarea id="id_out_of_order_reason" name="out_of_order_reason" rows="10" cols="40" required></textarea>
         </div>
 
-        <!--div class="col-md-12 row block-files">  
+        <div class="col-md-12 row block-files">
             <div class="col-md-6">  
                 <label for="id_furnisher_invoice">Devis fournisseur :</label>
                 <input id="id_furnisher_invoice" type="file" name="furnisher_invoice" />
@@ -111,7 +111,7 @@
                 <label for="id_client_bill">Facture client :</label>
                 <input id="id_client_bill" type="file" name="client_bill" />
             </div>
-        </div-->
+        </div>
 
         <div class="col-md-12 block-button"> 
             <input type="submit" value="Valider">

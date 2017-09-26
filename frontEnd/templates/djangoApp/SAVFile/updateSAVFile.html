@@ -116,43 +116,49 @@
             <div class="col-md-6">  
                 <label for="id_furnisher_invoice">Devis fournisseur :</label>
                 <input id="id_furnisher_invoice" type="file" name="furnisher_invoice" />
+                {% if current_sav_file.furnisher_invoice %}
+                    Actuellement : <a class="glyphicon glyphicon-file" target="_blank" href="{{ current_sav_file.furnisher_invoice.url }}">{{ current_sav_file.furnisher_invoice.url }}</a>
+                {% endif %}
             </div>
             <div class="col-md-6"> 
                 <label for="id_client_bill">Facture client :</label>
                 <input id="id_client_bill" type="file" name="client_bill" />
+                {% if current_sav_file.client_bill %}
+                   Actuellement : <a class="glyphicon glyphicon-file" target="_blank" href="{{ current_sav_file.client_bill.url }}">{{ current_sav_file.client_bill.url }}</a>
+                {% endif %}
             </div>
+        </div>
+
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Date</th>
+                    <th>Titre</th>
+                    <th>Action</th>
+                    <th> </th>
+                    <th> </th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for event in events %}
+                    <tr>
+                        <td>{{ event.date }}</td>
+                        <td>{{ event.title }}</td>
+                        <td>{{ event.action }}</td>
+                        <td><a class="glyphicon glyphicon-pencil" data-toggle="modal" data-target="#modalUpdateEvent" href="{% url 'visualImpactSAV:updateEvent' event.id%}" style="color: black;"></a> </td>
+                        <td><a class="glyphicon glyphicon-remove" data-toggle="modal" data-target="#modalDeleteEvent" href="{% url 'visualImpactSAV:deleteEvent' pk=event.id%}" style="color: black;"></a> </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        <div class="col-md-12">
+            <a data-toggle="modal" data-target="#modalCreateEvent" href="{% url 'visualImpactSAV:createEvent' pkSAVFile=current_sav_file.id %}">Ajouter un évenement</a>
         </div>
 
         <div class="col-md-12 block-button"> 
             <input type="submit" value="Mettre à jour">
         </div>
     </form>
-
-    <table class="table">
-        <thead>
-            <tr>
-                <th>Date</th>
-                <th>Titre</th>
-                <th>Action</th>
-                <th> </th>
-                <th> </th>
-            </tr>
-        </thead>
-        <tbody>
-            {% for event in events %}
-                <tr>
-                    <td>{{ event.date }}</td>
-                    <td>{{ event.title }}</td>
-                    <td>{{ event.action }}</td>
-                    <td><a class="glyphicon glyphicon-pencil" data-toggle="modal" data-target="#modalUpdateEvent" href="{% url 'visualImpactSAV:updateEvent' event.id%}" style="color: black;"></a> </td>
-                    <td><a class="glyphicon glyphicon-remove" data-toggle="modal" data-target="#modalDeleteEvent" href="{% url 'visualImpactSAV:deleteEvent' pk=event.id%}" style="color: black;"></a> </td>
-                </tr>
-            {% endfor %}
-        </tbody>
-    </table>
-    <div class="col-md-12">
-        <a data-toggle="modal" data-target="#modalCreateEvent" href="{% url 'visualImpactSAV:createEvent' pkSAVFile=current_sav_file.id %}">Ajouter un évenement</a>
-    </div>
 
     <div class="modal" id="modalUpdateEvent"></div>
     <div class="modal" id="modalCreateEvent"></div>

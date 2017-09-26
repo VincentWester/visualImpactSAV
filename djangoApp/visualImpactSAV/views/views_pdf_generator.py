@@ -144,7 +144,7 @@ def generate_pdf(request, pkSAVFile):
         p.setFont("Helvetica-Bold", 10)
         p.drawString(4.5*inch, height*inch, "Taxe : ")
         p.drawString(5.8*inch, height*inch, "20%")
-        height = height - 0.085   
+        height = height - 0.125   
         p.setFont("Helvetica", 5)
         p.drawString(-0.3*inch, height*inch, "Nous nous réservons la propriété des marchandises jusqu'au complet paiement du prix par l'acheteur.")
         height = height - 0.075
@@ -153,19 +153,24 @@ def generate_pdf(request, pkSAVFile):
         p.drawString(-0.3*inch, height*inch, "En cas de retard de paiement aux termes fixés, les sommesdues porteront intérêt de plein droit et sans qu'il soit besoin d'une mise en demeure. ")
         height = height - 0.075
         p.drawString(-0.3*inch, height*inch, "La pénalité sera d'un montant égal à trois fois le taux d'intérêt légal (loi du 31/12/1992), sans que cette clause nuise à l'exigibilité de la dette.")
-        height = height - 0.075
-        p.setFont("Helvetica-Bold", 5)
-        p.drawString(-0.3*inch, height*inch, "TOUT DEVIS REFUSE FERA L'OBJET D'UNE FACTURATION D'UNE SOMME FORFAITAIRE DE 95.00€ HT.")
+        height = height - 0.025
         p.setFont("Helvetica-Bold", 10)
         p.drawString(4.5*inch, height*inch, "Prix total TC : ")
         p.setFillColorRGB(1,0,0)
         p.drawString(5.8*inch, height*inch, str(round(total * Decimal(1.2), 2)) + " €")
-
-
         p.setFillColorRGB(0,0,0)
         height = height - 0.05
         p.rect(-0.5*inch, height*inch, 4.7*inch, 0.835*inch, fill=0)
+        
+        p.setFillColorRGB(1,0,0)
+        height = height - 0.25
+        p.setFont("Helvetica-Bold", 9)
+        p.drawString(-0.3*inch, height*inch, "TOUT DEVIS REFUSE FERA L'OBJET D'UNE FACTURATION D'UNE SOMME FORFAITAIRE DE 95.00€ HT")
+        height = height - 0.1
+        p.rect(-0.5*inch, height*inch, 7.2*inch, 0.3*inch, fill=0)
         height = height - 0.225
+
+        p.setFillColorRGB(0,0,0)
         p.setFont("Helvetica-Bold", 7)
         p.drawString(-0.3*inch, height*inch, "Delai de livraison : ")
         p.drawString(3.3*inch, height*inch, "Moyen de paiement : ")
@@ -176,7 +181,7 @@ def generate_pdf(request, pkSAVFile):
         p.rect(-0.5*inch, height*inch, 3.6*inch, 0.3*inch, fill=0)
         p.rect(3.1*inch, height*inch, 3.6*inch, 0.3*inch, fill=0)
 
-
+        p.setFillColorRGB(0,0,0)
         height = height - 1.35
         p.rect(-0.5*inch, height*inch, 3.6*inch, 1.3*inch, fill=0)
         p.line(-0.5*inch,(height + 1)*inch,3.1*inch,(height + 1)*inch)        

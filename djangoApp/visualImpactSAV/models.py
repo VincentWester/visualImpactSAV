@@ -26,13 +26,9 @@ DEFAULT_SAV_FILE_STATUS_ID = 1
 DEFAULT_REPARATION_STATUS_ID = 1
 
 class SAV_file(models.Model):
-    creation_date = models.DateTimeField(default=timezone.now)
-    #file_reference = models.CharField(primary_key=True, max_length=50, default=uuid.uuid4)
-    
-    #file_reference = models.AutoField(primary_key=True)
+    creation_date = models.DateTimeField(default=timezone.now)    
     sav_file_status = models.ForeignKey(SAV_file_status, default = DEFAULT_SAV_FILE_STATUS_ID)
     reparation_status = models.ForeignKey(Reparation_status, default = DEFAULT_REPARATION_STATUS_ID)
-
     society_client = models.CharField(max_length=300, default="", blank=True)
     name_client = models.CharField(max_length=300, default="")
     street_client = models.CharField(max_length=300, default="")
@@ -40,20 +36,16 @@ class SAV_file(models.Model):
     city_client = models.CharField(max_length=10, default="")
     phone_client = models.CharField(max_length=30, default="")
     email_client = models.CharField(max_length=100, default="")
-
     name_product = models.CharField(max_length=200, default="")
     mark_product = models.CharField(max_length=200, default="")
-    serial_number_product = models.CharField(max_length=200, default="")
-    
+    serial_number_product = models.CharField(max_length=200, default="")    
     tracking_number = models.CharField(max_length=100, blank=True)
-
     out_of_order_reason = models.TextField()
-
     client_bill = models.FileField(blank=True)
     furnisher_invoice = models.FileField(blank=True)
 
     def __unicode__(self):
-        return self.file_reference 
+        return str(self.id) 
 
     def get_absolute_url(self):
         return reverse('visualImpactSAV:detailSAVFile', kwargs = {'pk' : self.pk})

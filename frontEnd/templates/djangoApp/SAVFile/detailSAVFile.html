@@ -92,6 +92,19 @@
     <div class="col-md-12 second-block">            
         <label>Raison du défaut de produit :</label>
         <span>{{ sav_file.out_of_order_reason }}</span>
+    </div>        
+
+    <div class="col-md-12 row block-files">
+        <div class="col-md-6">  
+            {% if sav_file.furnisher_invoice %}
+                <label>Devis fournisseur : </label><a class="glyphicon glyphicon-file" target="_blank" href="{{ sav_file.furnisher_invoice.url }}">{{ sav_file.furnisher_invoice.url }}</a>
+            {% endif %}
+        </div>
+        <div class="col-md-6"> 
+            {% if sav_file.client_bill %}
+                <label>Facture client : </label><a class="glyphicon glyphicon-file" target="_blank" href="{{ sav_file.client_bill.url }}">{{ sav_file.client_bill.url }}</a>
+            {% endif %}
+        </div>
     </div>
 
     <div class="col-md-12">
