@@ -9,7 +9,7 @@ from django.views.generic import DetailView, ListView
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 
 # models part
-from visualImpactSAV.models import SAV_file, SAV_file_status, Reparation_status, Event, Designation
+from visualImpactSAV.models import SAV_file, SAV_file_status, Event, Designation
 # forms part
 from visualImpactSAV.forms import SAV_fileForm
 
@@ -36,7 +36,6 @@ class SAVFileCreateView(CreateView):
     def get_context_data(self, **kwargs):
         context = super(SAVFileCreateView, self).get_context_data(**kwargs)
         context['sav_file_status'] = SAV_file_status.objects.all()
-        context['reparation_status'] = Reparation_status.objects.all()
 
         return context 
 
@@ -59,7 +58,6 @@ class SAVFileUpdateView(UpdateView):
         context = super(SAVFileUpdateView, self).get_context_data(**kwargs)
         context['current_sav_file'] = self.object
         context['sav_file_status'] = SAV_file_status.objects.all()
-        context['reparation_status'] = Reparation_status.objects.all()
         context['events'] = Event.objects.all().filter(refered_SAV_file = self.object).order_by('date')
 
         return context 
@@ -85,8 +83,6 @@ class SAVFileListView(ListView):
     def get_context_data(self, **kwargs):
         context = super(SAVFileListView, self).get_context_data(**kwargs)
         context['sav_file_status'] = SAV_file_status.objects.all()
-        context['reparation_status'] = Reparation_status.objects.all()
-
         results = self.get_queryset()
 
         libelle_stats = {}
@@ -110,7 +106,6 @@ class SAVFileListView(ListView):
         product_serial_number = self.request.GET.get('product_serial_number')
         tracking_number = self.request.GET.get('tracking_number')
         sav_file_status = self.request.GET.get('sav_file_status')
-        reparation_status = self.request.GET.get('reparation_status')
         results = SAV_file.objects.all()
         
         if file_reference:
@@ -136,8 +131,5 @@ class SAVFileListView(ListView):
 
         if sav_file_status:
             results = results.filter(sav_file_status = sav_file_status)
-
-        if reparation_status:
-            results = results.filter(reparation_status = reparation_status)
 
         return results.order_by('id')

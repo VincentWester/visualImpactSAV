@@ -16,19 +16,12 @@ class SAV_file_status(models.Model):
     def __unicode__(self):
         return self.libelle 
 
-class Reparation_status(models.Model):
-    libelle = models.CharField(max_length=50)
-
-    def __unicode__(self):
-        return self.libelle
-
 DEFAULT_SAV_FILE_STATUS_ID = 1
 DEFAULT_REPARATION_STATUS_ID = 1
 
 class SAV_file(models.Model):
     creation_date = models.DateTimeField(default=timezone.now)    
     sav_file_status = models.ForeignKey(SAV_file_status, default = DEFAULT_SAV_FILE_STATUS_ID)
-    reparation_status = models.ForeignKey(Reparation_status, default = DEFAULT_REPARATION_STATUS_ID)
     society_client = models.CharField(max_length=300, default="", blank=True)
     name_client = models.CharField(max_length=300, default="")
     street_client = models.CharField(max_length=300, default="")

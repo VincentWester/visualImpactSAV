@@ -7,7 +7,7 @@
 {% block content %}
     <form class="row" enctype="multipart/form-data" method=POST action="{% url 'visualImpactSAV:createSAVFile' %}" accept-charset="utf-8">
         {% csrf_token %}
-        <div class="col-md-6 first-block">           
+        <div class="col-md-6 col-md-offset-4 first-block">           
             <label for="id_sav_file_status">Status de la fiche SAV :</label>
             <select id="id_sav_file_status" name="sav_file_status" required>
                 <option value="">-- Selectionnez un statut --</option>
@@ -16,16 +16,6 @@
                 {% endfor %}
             </select>
         </div>
-
-        <div class="col-md-6 first-block"> 
-            <label for="id_reparation_status">Statut de la réparation : </label>
-            <select id="id_reparation_status" name="reparation_status" required>
-                <option value="">-- Selectionnez un statut --</option>
-                {% for st in reparation_status %}
-                    <option value="{{ st.id }}">{{ st }}</option>
-                {% endfor %}
-            </select>
-        </div> 
         
         <div class="col-md-6 block-client">
             <div class="row panel-client">

@@ -28,16 +28,6 @@
                 <label for="tracking_number">Numéro de suivi UPS :</label>
                 <input id="tracking_number" type="text" name="tracking_number">
             </div>
-
-            <div class="col-md-6 second-block"> 
-                <label for="reparation_status">Statut de réparation : </label>
-                <select id="reparation_status" name="reparation_status">
-                    <option value="">  ----  </option>
-                    {% for st in reparation_status %}
-                        <option value="{{ st.id }}">{{ st }}</option>
-                    {% endfor %}
-                </select>
-            </div> 
         </div>
 
         <div class="col-md-6 block-client">
@@ -102,13 +92,12 @@
         <thead>
             <tr>
                 <th>Référence du fichier SAV</th>
-                <th>Numéro de suivi</th>
-                <th>Statut de réparation</th>
                 <th>Societé du client</th>
                 <th>Nom du client</th>
                 <th>Marque du produit</th>
                 <th>Modèle du produit</th>
                 <th>Numéro de série du produit</th>
+                <th>Numéro de suivi</th>
                 <th> </th>
                 <th> </th>
                 <th> </th>
@@ -122,13 +111,12 @@
                     <tr class="">
                 {% endif %}
                 <td>{{ file.id }}</td>
-                <td>{{ file.tracking_number }}</td>
-                <td>{{ file.reparation_status }}</td>
                 <td>{{ file.society_client }}</td>
                 <td>{{ file.name_client }}</td>
                 <td>{{ file.mark_product }}</td>
                 <td>{{ file.name_product }}</td>
                 <td>{{ file.serial_number_product }}</td>
+                <td>{{ file.tracking_number }}</td>
                 <td><a class="glyphicon glyphicon-zoom-in" href="{% url 'visualImpactSAV:detailSAVFile' file.id %}" style="color: black;"></a> </td>
                 <td><a class="glyphicon glyphicon-pencil" href="{% url 'visualImpactSAV:updateSAVFile' file.id %}" style="color: black;"></a> </td>
                 <td><a class="glyphicon glyphicon-download-alt" href="{% url 'visualImpactSAV:listDesignation' file.id %}" style="color: black;"></a> </td>

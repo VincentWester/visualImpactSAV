@@ -23,19 +23,6 @@
                 {% endfor %}
             </select>
         </div>
-
-        <div class="col-md-6 second-block"> 
-            <label for="id_reparation_status">Statut de la réparation : </label>
-            <select id="id_reparation_status" name="reparation_status" required>
-                {% for st in reparation_status %}
-                    {% if st.id == current_sav_file.reparation_status.id %}
-                        <option selected="selected" value="{{ st.id }}">{{ st }}</option>
-                    {% else %}
-                        <option value="{{ st.id }}">{{ st }}</option>
-                    {% endif %}
-                {% endfor %}
-            </select>
-        </div> 
         
         <div class="col-md-6 block-client">
             <div class="row panel-client">
