@@ -6,14 +6,14 @@
 {% block content %}
     <form class="row" enctype="multipart/form-data" method=POST action="{% url 'visualImpactSAV:updateSAVFile' current_sav_file.id %}" accept-charset="utf-8">
         {% csrf_token %}
-        <div class="col-md-offset-3 col-md-6 first-block">
+        <div class="col-md-6 first-block">
             <label for="id_file_reference">Reference du fichier SAV :</label>
             <input id="id_file_reference" type="text" name="file_reference" value="{{ current_sav_file.id }}" maxlength="33" disabled/>
         </div>
 
         <div class="col-md-6 first-block">           
             <label for="id_sav_file_status">Status de la fiche SAV :</label>
-            <select id="id_sav_file_status" name="sav_file_status" required>
+            <select id="id_sav_file_status" name="sav_file_status" >
                 {% for st in sav_file_status %}
                     {% if st.id == current_sav_file.sav_file_status.id %}
                         <option selected="selected"  value="{{ st.id }}">{{ st }}</option>
@@ -22,6 +22,7 @@
                     {% endif %}
                 {% endfor %}
             </select>
+            {{ form.sav_file_status.errors }}
         </div>
         
         <div class="col-md-6 block-client">
@@ -31,11 +32,13 @@
                 </div>
                 <div class="col-md-12 block-name-client">
                     <label for="id_name_client">Nom :</label>
-                    <input id="id_name_client" type="text" name="name_client" value="{{ current_sav_file.name_client }}" maxlength="300" required/>
+                    <input id="id_name_client" type="text" name="name_client" value="{{ current_sav_file.name_client }}" maxlength="300" />
+                    {{ form.name_client.errors }}
                 </div>
                 <div class="col-md-6 block-name-client">
                     <label for="id_society_client">Societé :</label>
                     <input id="id_society_client" type="text" name="society_client" value="{{ current_sav_file.society_client }}" maxlength="300"/>
+                    {{ form.society_client.errors }}
                 </div>
                 <div class="col-md-7 row">
                     <div class="col-md-12 address-client">
@@ -43,15 +46,18 @@
                     </div>                     
                     <div class="col-md-12 block-characteristic-client">
                         <label for="id_street_client">Rue :</label>
-                        <input id="id_street_client" type="text" name="street_client" value="{{ current_sav_file.street_client }}" maxlength="300" required/>
+                        <input id="id_street_client" type="text" name="street_client" value="{{ current_sav_file.street_client }}" maxlength="300" />
+                        {{ form.street_client.errors }}
                     </div>  
                     <div class="col-md-12 block-characteristic-client">
                         <label for="id_city_client">Ville  :</label>
-                        <input id="id_city_client" type="text" name="city_client" value="{{ current_sav_file.city_client }}" maxlength="300" required/>
+                        <input id="id_city_client" type="text" name="city_client" value="{{ current_sav_file.city_client }}" maxlength="300" />
+                        {{ form.city_client.errors }}
                     </div>   
                     <div class="col-md-12 block-characteristic-client">
                         <label for="id_zipcode_client">Code postal :</label>
-                        <input id="id_zipcode_client" type="text" name="zipcode_client" value="{{ current_sav_file.zipcode_client }}" maxlength="300" required/>
+                        <input id="id_zipcode_client" type="text" name="zipcode_client" value="{{ current_sav_file.zipcode_client }}" maxlength="300" />                        
+                        {{ form.zipcode_client.errors }}
                     </div>  
                 </div> 
                 <div class="col-md-5 row">                    
@@ -60,11 +66,13 @@
                     </div>  
                     <div class="col-md-12 block-characteristic-client">
                         <label for="id_phone_client" class="glyphicon glyphicon-earphone"></label>
-                        <input id="id_phone_client" type="text" name="phone_client" value="{{ current_sav_file.phone_client }}" maxlength="30" required/>
+                        <input id="id_phone_client" type="text" name="phone_client" value="{{ current_sav_file.phone_client }}" maxlength="30" />
+                        {{ form.phone_client.errors }}
                     </div>    
                     <div class="col-md-12 block-characteristic-client">
                         <label for="id_email_client">@ :</label>
-                        <input id="id_email_client" type="email" name="email_client" value="{{ current_sav_file.email_client }}" required/>
+                        <input id="id_email_client" type="email" name="email_client" value="{{ current_sav_file.email_client }}" />
+                        {{ form.email_client.errors }}
                     </div> 
                 </div> 
             </div> 
@@ -77,26 +85,31 @@
                 </div>
                 <div class="col-md-offset-2 col-md-10  block-characteristic-product">
                     <label for="id_mark_product">Marque :</label>
-                    <input id="id_mark_product" type="text" name="mark_product" value="{{ current_sav_file.mark_product }}" maxlength="300" required/>
+                    <input id="id_mark_product" type="text" name="mark_product" value="{{ current_sav_file.mark_product }}" maxlength="300" />
+                    {{ form.mark_product.errors }}
                 </div>
                 <div class="col-md-offset-2 col-md-10 block-characteristic-product">
                     <label for="id_name_product">Nom :</label>
-                    <input id="id_name_product" type="text" name="name_product" value="{{ current_sav_file.name_product }}" maxlength="300" required/>
+                    <input id="id_name_product" type="text" name="name_product" value="{{ current_sav_file.name_product }}" maxlength="300" />
+                    {{ form.name_product.errors }}
                 </div>    
                 <div class="col-md-offset-2 col-md-10  block-characteristic-product">
                     <label for="id_serial_number_product">Numéro de série :</label>
-                    <input id="id_serial_number_product" type="text" name="serial_number_product" value="{{ current_sav_file.serial_number_product }}" maxlength="300" required/>
+                    <input id="id_serial_number_product" type="text" name="serial_number_product" value="{{ current_sav_file.serial_number_product }}" maxlength="300" />
+                    {{ form.serial_number_product.errors }}
                 </div>
                 <div class="col-md-offset-2 col-md-10  block-characteristic-product">            
                     <label for="id_tracking_number">Numéro de suivi UPS :</label>
                     <input id="id_tracking_number" type="text" name="tracking_number" value="{{ current_sav_file.tracking_number }}" maxlength="100"/>
+                    {{ form.tracking_number.errors }}
                 </div>  
             </div>
         </div>
 
         <div class="col-md-12 block-out-of-order-reason">            
             <label for="id_out_of_order_reason">Raison du défaut de produit :</label>
-            <textarea id="id_out_of_order_reason" name="out_of_order_reason" rows="10" cols="40" required>{{ current_sav_file.out_of_order_reason }}</textarea>
+            <textarea id="id_out_of_order_reason" name="out_of_order_reason" rows="10" cols="40">{{ current_sav_file.out_of_order_reason }}</textarea>
+            {{ form.out_of_order_reason.errors }}
         </div>
 
         <div class="col-md-12 row block-files">
@@ -106,6 +119,7 @@
                 {% if current_sav_file.furnisher_invoice %}
                     Actuellement : <a class="glyphicon glyphicon-file" target="_blank" href="{{ current_sav_file.furnisher_invoice.url }}">{{ current_sav_file.furnisher_invoice.url }}</a>
                 {% endif %}
+                {{ form.furnisher_invoice.errors }}
             </div>
             <div class="col-md-6"> 
                 <label for="id_client_bill">Facture client :</label>
@@ -113,6 +127,7 @@
                 {% if current_sav_file.client_bill %}
                    Actuellement : <a class="glyphicon glyphicon-file" target="_blank" href="{{ current_sav_file.client_bill.url }}">{{ current_sav_file.client_bill.url }}</a>
                 {% endif %}
+                {{ form.client_bill.errors }}
             </div>
         </div>
 

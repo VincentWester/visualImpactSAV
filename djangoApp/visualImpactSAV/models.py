@@ -8,6 +8,7 @@ from datetime import datetime
 from django.db import models
 from django.utils import timezone
 from django.urls import reverse
+from django.utils.translation import ugettext_lazy as _
 
 class SAV_file_status(models.Model):
     libelle = models.CharField(max_length=50)
@@ -17,7 +18,6 @@ class SAV_file_status(models.Model):
         return self.libelle 
 
 DEFAULT_SAV_FILE_STATUS_ID = 1
-DEFAULT_REPARATION_STATUS_ID = 1
 
 class SAV_file(models.Model):
     creation_date = models.DateTimeField(default=timezone.now)    
@@ -42,6 +42,7 @@ class SAV_file(models.Model):
 
     def get_absolute_url(self):
         return reverse('visualImpactSAV:detailSAVFile', kwargs = {'pk' : self.pk})
+
 
 class Event(models.Model):
     refered_SAV_file = models.ForeignKey(SAV_file)

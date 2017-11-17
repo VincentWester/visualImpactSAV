@@ -4,6 +4,7 @@ from __future__ import unicode_literals
 from decimal import Decimal
 
 from django.http import HttpResponse
+from django.shortcuts import render
 from django.template.loader import render_to_string
 from django.views.generic import DetailView, ListView
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
@@ -40,8 +41,7 @@ class SAVFileCreateView(CreateView):
         return context 
 
     def form_invalid(self, form):
-        url = "{0}".format(self.request.META.get('HTTP_REFERER', '/'))
-        return HttpResponse(render_to_string('djangoApp/errors/nonValideSAVFile.html', {'errors': form.errors, 'url': url}))
+        return render(self.request, 'djangoApp/SAVFile/createSAVFile.html', { 'form': form })
 
     """
     Check if the form is valid and save the object.
@@ -63,8 +63,7 @@ class SAVFileUpdateView(UpdateView):
         return context 
 
     def form_invalid(self, form):
-        url = "{0}".format(self.request.META.get('HTTP_REFERER', '/'))
-        return HttpResponse(render_to_string('djangoApp/errors/nonValideSAVFile.html', {'errors': form.errors, 'url': url}))
+        return render(self.request, 'djangoApp/SAVFile/updateSAVFile.html', { 'form': form })
         
     """
     Check if the form is valid and save the object.

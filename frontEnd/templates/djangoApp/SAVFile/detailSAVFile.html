@@ -4,7 +4,7 @@
     <link href="{% static 'css/SAVFile/createSAVFile.css' %}" rel="stylesheet" media="screen">
 {% endblock %}
 {% block content %}
-    <div class="col-md-offset-3 col-md-6 first-block">
+    <div class="col-md-6 second-block">
         <label>Reference du fichier SAV :</label>
         <span>{{ sav_file.id }}</span>
     </div>
@@ -13,11 +13,6 @@
         <label>Status de la fiche SAV :</label>
         <span>{{ sav_file.sav_file_status }}</span>
     </div>
-
-    <div class="col-md-6 second-block"> 
-        <label>Statut de la réparation : </label>
-        <span>{{ sav_file.reparation_status }}</span>
-    </div> 
     
     <div class="col-md-6 block-client">
         <div class="row panel-client">
