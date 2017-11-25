@@ -27,6 +27,7 @@ SECRET_KEY = '%zntn11kblu$u1gi$w9cd5$9(-2hsl(j-jevf)w!qg*b#)wy56'
 DEBUG = True
 
 ALLOWED_HOSTS = []
+LOGIN_REDIRECT_URL = 'visualImpactSAV:searchSAVFile'
 
 
 # Application definition
@@ -41,6 +42,14 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'visualImpactSAV.templatetags',
     'widget_tweaks',
+]
+
+PASSWORD_HASHERS = [
+    'django.contrib.auth.hashers.PBKDF2PasswordHasher',
+    'django.contrib.auth.hashers.PBKDF2SHA1PasswordHasher',
+    'django.contrib.auth.hashers.Argon2PasswordHasher',
+    'django.contrib.auth.hashers.BCryptSHA256PasswordHasher',
+    'django.contrib.auth.hashers.BCryptPasswordHasher',
 ]
 
 MIDDLEWARE = [

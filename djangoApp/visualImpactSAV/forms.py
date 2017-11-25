@@ -1,7 +1,18 @@
-from django.forms import ModelForm, CharField, ValidationError
+from django.contrib.auth.models import User
+from django.forms import ModelForm, CharField, EmailField, ValidationError
 from .models import SAV_file, Event, Designation
+from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth.models import User
+
 from django.utils.translation import ugettext_lazy as _
 #Essai avec exclude
+
+class SignUpForm(UserCreationForm):
+    email = EmailField(max_length=254, help_text='Obligatoire. Veuillez indiquer une adresse mail valide.')
+
+    class Meta:
+        model = User
+        fields = ('username', 'email', 'password1', 'password2', )
 
 class SAV_fileForm(ModelForm):
     class Meta:
@@ -50,6 +61,11 @@ class DesignationForm(ModelForm):
     class Meta:
         model = Designation
         fields = [field.name for field in model._meta.fields if not (field.name == "refered_SAV_file")]   
+
+class UserForm(ModelForm):
+    class Meta:
+        model = User
+        fields = []
 
 
 

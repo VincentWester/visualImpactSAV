@@ -15,8 +15,8 @@ from visualImpactSAV.models import SAV_file, SAV_file_status, Event, Designation
 from visualImpactSAV.forms import SAV_fileForm
 
 class SAVFileDetailView(DetailView):
-    queryset = SAV_file.objects.all()
     template_name = 'djangoApp/SAVFile/detailSAVFile.html'
+    queryset = SAV_file.objects.all()
 
     def get_object(self):
         object = super(SAVFileDetailView, self).get_object()
@@ -76,7 +76,6 @@ DEFAULT_PAGINATION_BY = 10
 class SAVFileListView(ListView):
     template_name = 'djangoApp/SAVFile/searchSAVFile.html'
     context_object_name = 'results'
-    queryset = SAV_file.objects.all()
     paginate_by = DEFAULT_PAGINATION_BY
 
     def get_context_data(self, **kwargs):
@@ -108,7 +107,7 @@ class SAVFileListView(ListView):
         results = SAV_file.objects.all()
         
         if file_reference:
-            results = results.filter(id__icontains = file_reference)
+            results = results.filter(id = file_reference)
 
         if client_name:
             results = results.filter(name_client__icontains = client_name) 

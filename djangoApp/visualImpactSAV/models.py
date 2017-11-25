@@ -5,6 +5,7 @@ import uuid
 
 from datetime import datetime
 
+from django.contrib.auth.models import User
 from django.db import models
 from django.utils import timezone
 from django.urls import reverse
@@ -36,6 +37,7 @@ class SAV_file(models.Model):
     out_of_order_reason = models.TextField()
     client_bill = models.FileField(blank=True)
     furnisher_invoice = models.FileField(blank=True)
+    #user = models.ForeignKey(User)
 
     def __unicode__(self):
         return str(self.id) 

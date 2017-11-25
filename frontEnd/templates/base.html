@@ -18,12 +18,24 @@
     </head>
 
     <body class="row">
-        <header class="col-md-12">
-            <img src="{% static 'images/logoVisual.png' %}" alt="logoVisual.png">
+        <header class="row">
+            <div class="col-md-4">
+                <img src="{% static 'images/logoVisual.png' %}" alt="logoVisual.png">
+            </div>
+            <div class="col-md-6">
+                <h2 style="color:white;margin-left:15%;margin-top:2%;">Logiciel de gestion de dossier SAV</h4>
+            </div>
+            <div class="col-md-2">
+                {% block user_connected %}
+                {% endblock %}
+                {% if user.is_authenticated %}
+                    <p style="color:white;margin-top:3%;">Bonjour {{ user.username }}</p>
+                    <p style="color:white;"><a href="{% url 'logout' %}" >Se déconnecter</a></p>
+                {% endif %}
+            </div>
         </header>
         <div class="col-md-1 menu-content">
             <ul class="menu-SAV-file">
-                {% block menu_home %}<li class="list-SAV-file row"><a href="{% url 'home' %}" class="col-md-12">Accueil</a></li>{% endblock %}
                 {% block menu_add %}<li class="list-SAV-file row"><a href="{% url 'visualImpactSAV:createSAVFile' %}" class="col-md-12">Ajouter</a></li>{% endblock %}
                 {% block menu_search %}<li class="list-SAV-file row"><a href="{% url 'visualImpactSAV:searchSAVFile' %}" class="col-md-12">Rechercher</a></li>{% endblock %}
             </ul>
