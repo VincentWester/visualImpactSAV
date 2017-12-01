@@ -14,7 +14,9 @@ from visualImpactSAV.models import SAV_file, SAV_file_status, Event, Designation
 # forms part
 from visualImpactSAV.forms import SAV_fileForm
 
-class SAVFileDetailView(DetailView):
+from django.contrib.auth.mixins import LoginRequiredMixin
+
+class SAVFileDetailView(LoginRequiredMixin, DetailView):
     template_name = 'djangoApp/SAVFile/detailSAVFile.html'
     queryset = SAV_file.objects.all()
 
@@ -29,7 +31,7 @@ class SAVFileDetailView(DetailView):
 
         return context
 
-class SAVFileCreateView(CreateView):
+class SAVFileCreateView(LoginRequiredMixin, CreateView):
     model = SAV_file
     form_class = SAV_fileForm
     template_name = 'djangoApp/SAVFile/createSAVFile.html'
@@ -49,7 +51,7 @@ class SAVFileCreateView(CreateView):
     def form_valid(self, form):
         return super(SAVFileCreateView, self).form_valid(form)
 
-class SAVFileUpdateView(UpdateView):
+class SAVFileUpdateView(LoginRequiredMixin, UpdateView):
     model = SAV_file
     form_class = SAV_fileForm
     template_name = 'djangoApp/SAVFile/updateSAVFile.html'
@@ -73,7 +75,7 @@ class SAVFileUpdateView(UpdateView):
 
 DEFAULT_PAGINATION_BY = 10
 
-class SAVFileListView(ListView):
+class SAVFileListView(LoginRequiredMixin, ListView):
     template_name = 'djangoApp/SAVFile/searchSAVFile.html'
     context_object_name = 'results'
     paginate_by = DEFAULT_PAGINATION_BY
