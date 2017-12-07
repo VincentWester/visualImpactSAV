@@ -17,7 +17,7 @@ class SignUpForm(UserCreationForm):
 class SAV_fileForm(ModelForm):
     class Meta:
         model = SAV_file
-        fields = [field.name for field in model._meta.fields if not (field.name == "creation_date")]    
+        fields = [field.name for field in model._meta.fields if not (field.name == "creation_date" or field.name == "registred_by")]    
 
         error_messages = {
             'sav_file_status': {

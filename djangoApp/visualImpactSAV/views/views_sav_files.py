@@ -43,12 +43,13 @@ class SAVFileCreateView(LoginRequiredMixin, CreateView):
         return context 
 
     def form_invalid(self, form):
-        return render(self.request, 'djangoApp/SAVFile/createSAVFile.html', { 'form': form })
+        return render(self.request, 'djangoApp/SAVFile/createSAVFile.html', { 'form': form, 'sav_file_status': SAV_file_status.objects.all()})
 
     """
     Check if the form is valid and save the object.
     """
     def form_valid(self, form):
+        form.instance.registred_by = self.request.user
         return super(SAVFileCreateView, self).form_valid(form)
 
 class SAVFileUpdateView(LoginRequiredMixin, UpdateView):

@@ -29,6 +29,7 @@ DEBUG = True
 ALLOWED_HOSTS = []
 LOGIN_REDIRECT_URL = 'visualImpactSAV:searchSAVFile'
 LOGIN_URL = 'login'
+AUTH_USER_MODEL = 'auth.User'
 
 
 # Application definition

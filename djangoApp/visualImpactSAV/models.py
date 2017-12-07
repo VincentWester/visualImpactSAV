@@ -5,11 +5,12 @@ import uuid
 
 from datetime import datetime
 
-from django.contrib.auth.models import User
 from django.db import models
 from django.utils import timezone
 from django.urls import reverse
+from django.conf import settings
 from django.utils.translation import ugettext_lazy as _
+from django.contrib.auth import get_user_model
 
 class SAV_file_status(models.Model):
     libelle = models.CharField(max_length=50)
@@ -37,14 +38,14 @@ class SAV_file(models.Model):
     out_of_order_reason = models.TextField()
     client_bill = models.FileField(blank=True)
     furnisher_invoice = models.FileField(blank=True)
-    #user = models.ForeignKey(User)
+
+    registred_by = models.ForeignKey(get_user_model(), default = 1)
 
     def __unicode__(self):
         return str(self.id) 
 
     def get_absolute_url(self):
         return reverse('visualImpactSAV:detailSAVFile', kwargs = {'pk' : self.pk})
-
 
 class Event(models.Model):
     refered_SAV_file = models.ForeignKey(SAV_file)
