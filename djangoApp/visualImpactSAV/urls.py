@@ -5,7 +5,7 @@ from .views.views_sav_files import SAVFileCreateView, SAVFileUpdateView, SAVFile
 from .views.views_events import EventCreateView, EventUpdateView, EventDeleteView
 from .views.views_designations import DesignationCreateView, DesignationUpdateView, DesignationDeleteView, DesignationListView
 
-from .views.views_pdf_generator import generate_pdf
+from .views.views_pdf_generator import generate_pdf, send_pdf
 
 urlpatterns = [
     url(r'^createSAVFile/$', SAVFileCreateView.as_view(), name="createSAVFile"),
@@ -23,4 +23,5 @@ urlpatterns = [
     url(r'^listDesignation/(?P<pkSAVFile>[\w\-]+)$$', DesignationListView.as_view(), name="listDesignation"),
 
     url(r'^generatePdf/(?P<pkSAVFile>[\w\-]+)$$', generate_pdf, name="generatePdf"), 
+    url(r'^sendPdf/(?P<pkSAVFile>[\w\-]+)$$', send_pdf, name="sendPdf"), 
 ]
