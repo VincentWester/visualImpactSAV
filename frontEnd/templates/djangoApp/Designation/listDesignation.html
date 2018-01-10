@@ -43,8 +43,9 @@
     <div class="col-md-12">
         <a data-toggle="modal" data-target="#modalCreateDesignation" href="{% url 'visualImpactSAV:createDesignation' pkSAVFile %}">Ajouter une désignation</a>
     </div>
-    <div class="col-md-offset-5 col-md-1">
+    <div class="col-md-offset-4 col-md-2">
         <a role="button" class="btn btn-primary" href="{% url 'visualImpactSAV:generatePdf' pkSAVFile %}">Générer PDF</a>
+        <a role="button" class="btn btn-primary" href="{% url 'visualImpactSAV:sendPdf' pkSAVFile %}">Envoyer PDF</a>
     </div>
 
     <div class="modal" id="modalUpdateDesignation"></div>

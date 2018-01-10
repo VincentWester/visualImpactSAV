@@ -49,12 +49,16 @@
                     <p>Téléphone et e-mail</p>
                 </div>  
                 <div class="col-md-12 block-characteristic-client">
-                    <label class="glyphicon glyphicon-earphone"> </label>
+                    <label class="glyphicon glyphicon-earphone"> :</label>
                     <span>{{ sav_file.phone_client }}</span>
                 </div>    
                 <div class="col-md-12 block-characteristic-client">
-                    <label>@</label>
+                    <label>@ :</label>
                     <span>{{ sav_file.email_client }}</span>
+                </div>    
+                <div class="col-md-12 block-characteristic-client">
+                    <label>Crée par :</label>
+                    <span>{{ sav_file.registred_by.username }}</span>
                 </div> 
             </div> 
         </div> 

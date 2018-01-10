@@ -92,8 +92,9 @@
         <thead>
             <tr>
                 <th>Référence du fichier SAV</th>
-                <th>Societé du client</th>
+                <th>Référent</th>
                 <th>Nom du client</th>
+                <th>Societé du client</th>
                 <th>Marque du produit</th>
                 <th>Modèle du produit</th>
                 <th>Numéro de série du produit</th>
@@ -111,8 +112,9 @@
                     <tr class="">
                 {% endif %}
                 <td>{{ file.id }}</td>
-                <td>{{ file.society_client }}</td>
+                <td>{{ file.registred_by }}</td>
                 <td>{{ file.name_client }}</td>
+                <td>{{ file.society_client }}</td>
                 <td>{{ file.mark_product }}</td>
                 <td>{{ file.name_product }}</td>
                 <td>{{ file.serial_number_product }}</td>
