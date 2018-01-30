@@ -1,18 +1,48 @@
 from django.contrib.auth.models import User
-from django.forms import ModelForm, CharField, EmailField, ValidationError
+from django.forms import ModelForm, CharField, EmailField, PasswordInput, ValidationError
 from .models import SAV_file, Event, Designation
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
 
 from django.utils.translation import ugettext_lazy as _
-#Essai avec exclude
 
 class SignUpForm(UserCreationForm):
-    email = EmailField(max_length=254, help_text='Obligatoire. Veuillez indiquer une adresse mail valide.')
+    email = EmailField(max_length=254, help_text='Obligatoire. Veuillez indiquer une adresse mail valide.')    
+    
+    def __init__(self, *args, **kwargs):
+        super(UserCreationForm, self).__init__(*args, **kwargs)
+        self.fields['username'].help_text = _('Obligatoire. Inscrivez votre nom d\'utilisateur.')
+        self.fields['username'].label = _('Nom d\'utilisateur.')
+        self.fields['password1'].help_text = _('Obligatoire. Veuillez indiquer votre mot de passe.')
+        self.fields['password1'].label = _('Mot de passe')
+        self.fields['password2'].help_text = _('Obligatoire. Verification du mot de passe : retapez votre mot de passe.')
+        self.fields['password2'].label = _('Confirmation')
 
     class Meta:
         model = User
-        fields = ('username', 'email', 'password1', 'password2', )
+        fields = ("username", "email", "password1", "password2")
+
+        error_messages = {
+            'username': {
+                'required': _("Un nom d'utilisateur doit etre renseigne."),
+            },
+            'email': {
+                'required': _("Un email doit etre renseigne."),
+            },
+            'password1': {
+                'required': _("Un mot de passe doit etre renseigne."),
+            },
+            'password2': {
+                'required': _("Le mot de passe n'a pas ete recopie"),
+            },
+        }
+
+    def save(self, commit=True):
+        user = super(SignUpForm, self).save(commit=False)
+        user.email = self.cleaned_data["email"]
+        if commit:
+            user.save()
+        return user
 
 class SAV_fileForm(ModelForm):
     class Meta:
