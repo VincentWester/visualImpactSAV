@@ -8,7 +8,7 @@
     
     <form class="row" enctype="multipart/form-data" method=POST action="{% url 'visualImpactSAV:createSAVFile' %}" accept-charset="utf-8">
         {% csrf_token %}
-        <div class="col-md-6 col-md-offset-4 first-block"> 
+        <div class="col-md-6 first-block"> 
             <label for="id_sav_file_status">Status de la fiche SAV :</label>
             <select id="id_sav_file_status" name="sav_file_status">
                 <option value="">-- Selectionnez un statut --</option>
@@ -18,8 +18,46 @@
             </select>
             {{ form.sav_file_status.errors }}
         </div>
+        <div class="col-md-6 first-block">            
+            <label for="id_tracking_number">Numéro de suivi UPS :</label>
+            <input id="id_tracking_number" type="text" name="tracking_number" maxlength="100"/>
+            {{ form.tracking_number.errors }}
+        </div> 
+
+
+        <div class="col-md-12 block-product">
+            <div class="row panel-product">
+                <div class="col-md-12 title-panel-product">
+                    <h4>Informations sur le produit</h4>
+                </div>
+                <div class="col-md-offset-3 block-characteristic-product">
+                    <label for="id_mark_product">Marque :</label>
+                    <input id="id_mark_product" type="text" name="mark_product" maxlength="300" />
+                    {{ form.mark_product.errors }}
+                </div>
+                <div class="col-md-offset-3 block-characteristic-product">
+                    <label for="id_name_product">Modèle :</label>
+                    <input id="id_name_product" type="text" name="name_product" maxlength="300" />
+                    {{ form.mark_product.errors }}
+                </div>    
+                <div class="col-md-offset-3  block-characteristic-product">
+                    <label for="id_serial_number_product">Numéro de série :</label>
+                    <input id="id_serial_number_product" type="text" name="serial_number_product" maxlength="300" />
+                    {{ form.serial_number_product.errors }}
+                </div>         
+                <div class="col-md-offset-3  block-characteristic-product">           
+                    <label for="id_guarantee">Garantie :</label>
+                    <select id="id_guarantee" name="guarantee" >
+                        <option value="Sur garantie">Sur garantie</option>
+                        <option value="Hors garantie">Hors garantie</option>
+                    </select>
+                    {{ form.guarantee.errors }}
+                </div>
+            </div>
+        </div>
+
         
-        <div class="col-md-6 block-client">
+        <div class="col-md-12 block-client">
             <div class="row panel-client">
                 <div class="col-md-12 title-panel-client">
                     <h4>Informations sur le client</h4>
@@ -72,34 +110,6 @@
             </div> 
         </div>
 
-        <div class="col-md-6 block-product">
-            <div class="row panel-product">
-                <div class="col-md-12 title-panel-product">
-                    <h4>Informations sur le produit</h4>
-                </div>
-                <div class="col-md-offset-2 col-md-10  block-characteristic-product">
-                    <label for="id_mark_product">Marque :</label>
-                    <input id="id_mark_product" type="text" name="mark_product" maxlength="300" />
-                    {{ form.mark_product.errors }}
-                </div>
-                <div class="col-md-offset-2 col-md-10 block-characteristic-product">
-                    <label for="id_name_product">Nom :</label>
-                    <input id="id_name_product" type="text" name="name_product" maxlength="300" />
-                    {{ form.mark_product.errors }}
-                </div>    
-                <div class="col-md-offset-2 col-md-10  block-characteristic-product">
-                    <label for="id_serial_number_product">Numéro de série :</label>
-                    <input id="id_serial_number_product" type="text" name="serial_number_product" maxlength="300" />
-                    {{ form.serial_number_product.errors }}
-                </div> 
-                <div class="col-md-offset-2 col-md-10  block-characteristic-product">            
-                    <label for="id_tracking_number">Numéro de suivi UPS :</label>
-                    <input id="id_tracking_number" type="text" name="tracking_number" maxlength="100"/>
-                    {{ form.tracking_number.errors }}
-                </div> 
-            </div>
-        </div>
-
         <div class="col-md-12 block-out-of-order-reason">            
             <label for="id_out_of_order_reason">Raison du défaut de produit :</label>
             <textarea id="id_out_of_order_reason" name="out_of_order_reason" rows="10" cols="40" ></textarea>
@@ -107,16 +117,9 @@
         </div>
 
         <div class="col-md-12 row block-files">
-            <div class="col-md-6">  
-                <label for="id_furnisher_invoice">Devis fournisseur :</label>
-                <input id="id_furnisher_invoice" type="file" name="furnisher_invoice" />
-                {{ form.furnisher_invoice.errors }}
-            </div>
-            <div class="col-md-6"> 
-                <label for="id_client_bill">Facture client :</label>
-                <input id="id_client_bill" type="file" name="client_bill" />
-                {{ form.client_bill.errors }}
-            </div>
+            <label for="id_client_bill">Facture client :</label>
+            <input id="id_client_bill" type="file" name="client_bill" />
+            {{ form.client_bill.errors }}
         </div>
 
         <div class="col-md-12 block-button"> 

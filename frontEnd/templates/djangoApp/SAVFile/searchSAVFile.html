@@ -9,12 +9,12 @@
 {% block content %}    
     <form class="row" method=GET action="{% url 'visualImpactSAV:searchSAVFile' %}" accept-charset="utf-8">
         <div class="col-md-12 row block-file-reference-tracking-number"> 
-            <div class="col-md-6 first-block">
+            <div class="col-md-4 first-block">
                 <label for="file_reference">Référence du fichier SAV :</label>
                 <input id="file_reference" type="text" name="file_reference">
             </div>
 
-            <div class="col-md-6 first-block">           
+            <div class="col-md-4 first-block">           
                 <label for="id_sav_file_status">Status de la fiche SAV :</label>
                 <select id="id_sav_file_status" name="sav_file_status">
                     <option value="">  ----  </option>
@@ -24,7 +24,7 @@
                 </select>
             </div>
 
-            <div class="col-md-6 second-block">
+            <div class="col-md-4 first-block">
                 <label for="tracking_number">Numéro de suivi UPS :</label>
                 <input id="tracking_number" type="text" name="tracking_number">
             </div>
@@ -77,7 +77,7 @@
         </div-->
 
         <div class="col-md-12 block-button">        
-            <input type="submit" value="Rechercher">
+            <input type="submit" value="Valider">
         </div>
     </form>
 
@@ -98,7 +98,6 @@
                 <th>Marque du produit</th>
                 <th>Modèle du produit</th>
                 <th>Numéro de série du produit</th>
-                <th>Numéro de suivi</th>
                 <th> </th>
                 <th> </th>
                 <th> </th>
@@ -118,7 +117,6 @@
                 <td>{{ file.mark_product }}</td>
                 <td>{{ file.name_product }}</td>
                 <td>{{ file.serial_number_product }}</td>
-                <td>{{ file.tracking_number }}</td>
                 <td><a class="glyphicon glyphicon-zoom-in" href="{% url 'visualImpactSAV:detailSAVFile' file.id %}" style="color: black;"></a> </td>
                 <td><a class="glyphicon glyphicon-pencil" href="{% url 'visualImpactSAV:updateSAVFile' file.id %}" style="color: black;"></a> </td>
                 <td><a class="glyphicon glyphicon-download-alt" href="{% url 'visualImpactSAV:listDesignation' file.id %}" style="color: black;"></a> </td>

@@ -34,10 +34,10 @@ class SAV_file(models.Model):
     name_product = models.CharField(max_length=200, default="")
     mark_product = models.CharField(max_length=200, default="")
     serial_number_product = models.CharField(max_length=200, default="")    
-    tracking_number = models.CharField(max_length=100, blank=True)
+    tracking_number = models.CharField(max_length=100, blank=True)       
+    guarantee = models.CharField(max_length=100, default="Sur garantie")
     out_of_order_reason = models.TextField()
     client_bill = models.FileField(blank=True)
-    furnisher_invoice = models.FileField(blank=True)
 
     registred_by = models.ForeignKey(get_user_model(), default = 1)
 

@@ -3,18 +3,52 @@
 {% block style %}
     <link href="{% static 'css/SAVFile/createSAVFile.css' %}" rel="stylesheet" media="screen">
 {% endblock %}
-{% block content %}
-    <div class="col-md-6 second-block">
+{% block content %}                
+    <div class="col-md-offset-4 col-md-6 block-characteristic-client">
+        <label>Crée par :</label>
+        <span>{{ sav_file.registred_by.username }}</span>
+    </div> 
+
+    <div class="col-md-4 second-block">
         <label>Reference du fichier SAV :</label>
         <span>{{ sav_file.id }}</span>
     </div>
 
-    <div class="col-md-6 second-block">           
-        <label>Status de la fiche SAV :</label>
+    <div class="col-md-4 second-block">           
+        <label>Statut de la fiche SAV :</label>
         <span>{{ sav_file.sav_file_status }}</span>
     </div>
+ 
+    <div class="col-md-4 second-block">            
+        <label>Numéro de suivi UPS :</label>
+        <span>{{ sav_file.tracking_number }}</span>
+    </div>   
+
+    <div class="col-md-12 block-product">
+        <div class="row panel-product">
+            <div class="col-md-12 title-panel-product">
+                <h4>Informations sur le produit</h4>
+            </div>
+            <div class="col-md-3 block-characteristic-product">
+                <label>Marque :</label>
+                <span>{{ sav_file.mark_product }}</span>
+            </div>
+            <div class="col-md-3 block-characteristic-product">
+                <label>Modèle :</label>
+                <span>{{ sav_file.name_product }}</span>
+            </div>    
+            <div class="col-md-3 block-characteristic-product">
+                <label>Numéro de série :</label>
+                <span>{{ sav_file.serial_number_product }}</span>
+            </div>     
+            <div class="col-md-3 block-characteristic-product">           
+                <label>Statut de la garantie :</label>
+                <span>{{ sav_file.guarantee }}</span>
+            </div>
+        </div>
+    </div>
     
-    <div class="col-md-6 block-client">
+    <div class="col-md-12 block-client">
         <div class="row panel-client">
             <div class="col-md-12 title-panel-client">
                 <h4>Informations sur le client</h4>
@@ -55,37 +89,9 @@
                 <div class="col-md-12 block-characteristic-client">
                     <label>@ :</label>
                     <span>{{ sav_file.email_client }}</span>
-                </div>    
-                <div class="col-md-12 block-characteristic-client">
-                    <label>Crée par :</label>
-                    <span>{{ sav_file.registred_by.username }}</span>
-                </div> 
+                </div>  
             </div> 
         </div> 
-    </div>
-
-    <div class="col-md-6 block-product">
-        <div class="row panel-product">
-            <div class="col-md-12 title-panel-product">
-                <h4>Informations sur le produit</h4>
-            </div>
-            <div class="col-md-offset-2 col-md-10  block-characteristic-product">
-                <label>Marque :</label>
-                <span>{{ sav_file.mark_product }}</span>
-            </div>
-            <div class="col-md-offset-2 col-md-10 block-characteristic-product">
-                <label>Nom :</label>
-                <span>{{ sav_file.name_product }}</span>
-            </div>    
-            <div class="col-md-offset-2 col-md-10  block-characteristic-product">
-                <label>Numéro de série :</label>
-                <span>{{ sav_file.serial_number_product }}</span>
-            </div> 
-            <div class="col-md-offset-2 col-md-10  block-characteristic-product">            
-                <label>Numéro de suivi UPS :</label>
-                <span>{{ sav_file.tracking_number }}</span>
-            </div> 
-        </div>
     </div>
 
     <div class="col-md-12 second-block">            
@@ -94,16 +100,9 @@
     </div>        
 
     <div class="col-md-12 row block-files">
-        <div class="col-md-6">  
-            {% if sav_file.furnisher_invoice %}
-                <label>Devis fournisseur : </label><a class="glyphicon glyphicon-file" target="_blank" href="{{ sav_file.furnisher_invoice.url }}">{{ sav_file.furnisher_invoice.url }}</a>
-            {% endif %}
-        </div>
-        <div class="col-md-6"> 
-            {% if sav_file.client_bill %}
-                <label>Facture client : </label><a class="glyphicon glyphicon-file" target="_blank" href="{{ sav_file.client_bill.url }}">{{ sav_file.client_bill.url }}</a>
-            {% endif %}
-        </div>
+        {% if sav_file.client_bill %}
+            <label>Facture client : </label><a class="glyphicon glyphicon-file" target="_blank" href="{{ sav_file.client_bill.url }}">{{ sav_file.client_bill.url }}</a>
+        {% endif %}
     </div>
 
     <div class="col-md-12">
