@@ -34,13 +34,15 @@
                 {% endif %}
             </div>
         </header>
-        <div class="col-md-1 menu-content">
+        <div class="col-md-2 menu-content">
             <ul class="menu-SAV-file">
                 {% block menu_search %}<li class="list-SAV-file row"><a href="{% url 'visualImpactSAV:searchSAVFile' %}" class="col-md-12">Rechercher</a></li>{% endblock %}
                 {% block menu_add %}<li class="list-SAV-file row"><a href="{% url 'visualImpactSAV:createSAVFile' %}" class="col-md-12">Ajouter</a></li>{% endblock %}
+                {% block menu_guarantee %}<li class="list-SAV-file row"><a href="{% url 'visualImpactSAV:listGuarantee' %}" class="col-md-12">Garantie</a></li>{% endblock %}
+                {% block menu_furnisher %}<li class="list-SAV-file row"><a href="{% url 'visualImpactSAV:createSAVFile' %}" class="col-md-12">Fournisseur</a></li>{% endblock %}
             </ul>
         </div>
-        <div class="col-md-11 base-content container">
+        <div class="col-md-10 base-content container">
             {% block content %}
             {% endblock %}
         </div>  

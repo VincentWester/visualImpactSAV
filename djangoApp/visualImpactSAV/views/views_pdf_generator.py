@@ -67,21 +67,21 @@ def generate_pdf(request, pkSAVFile):
     response = HttpResponse(content_type='application/pdf')
     response['Content-Disposition'] = 'attachment; filename="{0}"'.format(filename)
 
-    pdf_string = build_pdf(request, sav_file)
+    # Create the PDF object, using the BytesIO object as its "file."
+    buffer = BytesIO()
+    p = canvas.Canvas(buffer)
 
-    response.write(pdf_string)
+    build_header(request, p, "Offre commerciale")
+    build_pdf(request, sav_file, p)
+
+    pdf = buffer.getvalue()
+    buffer.close()
+
+    response.write(pdf)
     return response
 
-def build_pdf(request, sav_file):
-    designations = Designation.objects.all().filter(refered_SAV_file = sav_file).order_by('quantity')
-
-    buffer = BytesIO()
-
-    # Create the PDF object, using the BytesIO object as its "file."
-    p = canvas.Canvas(buffer)
-    # canvas.setTitle("Offre commercial")
+def build_header(request, p, title):
     p.translate(inch,inch)
-
     url = os.path.join(settings.STATICFILES_DIRS[0], 'images/logoVisual.jpg')
 
     if not os.path.isfile(url):
@@ -95,13 +95,15 @@ def build_pdf(request, sav_file):
 
     p.drawInlineImage(img, -0.7*inch, 10*inch, 122, 39)
     p.setFont("Helvetica-Bold", 20)
-    p.drawString(3*inch, 10.2*inch, "Offre commerciale")
+    p.drawString(3*inch, 10.2*inch, title)
     # Draw things on the PDF. Here's where the PDF generation happens.
     # See the ReportLab documentation for the full list of functionality.
     p.rect(-0.5*inch, 8*inch, 2.4*inch, 1.3*inch, fill=0)
 
+
+def build_pdf(request, sav_file, p):
     p.setFont("Helvetica", 12)
-    p.drawString(-0.5*inch, 9.6*inch, "Réference du fichier SAV : " + str(sav_file.id))
+    p.drawString(-0.5*inch, 9.6*inch, "Réference du fichier SAV : VIF-SAV-" + str(sav_file.id))
 
     p.setFont("Helvetica-Bold", 12)
     p.drawString(-0.3*inch, 9.1*inch, "Adresse de facturation")
@@ -158,6 +160,8 @@ def build_pdf(request, sav_file):
     total = Decimal(0.0)
     height = 6.8
     i = 1
+
+    designations = Designation.objects.all().filter(refered_SAV_file = sav_file).order_by('quantity')
     for designation in designations:
         height = height - 0.2
         p.drawString(-0.3*inch, height*inch, str(i) + "-")
@@ -246,8 +250,3 @@ def build_pdf(request, sav_file):
     # Close the PDF object cleanly.
     p.showPage()
     p.save()
-
-    # Get the value of the BytesIO buffer and write it to the response.
-    pdf = buffer.getvalue()
-    buffer.close()
-    return pdf

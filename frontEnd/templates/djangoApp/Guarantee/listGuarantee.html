@@ -1,0 +1,53 @@
+{% extends "base.html" %}
+{% load static %}
+{% load tags %}
+{% block style %}
+    <link href="{% static 'css/SAVFile/searchSAVFile.css' %}" rel="stylesheet" media="screen">
+    <link href="{% static 'css/SAVFile/classSAVFileStatus.css' %}" rel="stylesheet" media="screen">
+{% endblock %}
+{% block menu_guarantee %}<li class="list-SAV-file active row"><a href="#" class="col-md-12">Garantie</a></li>{% endblock %}
+{% block content %}    
+    <div class="col-md-12 block-button">        
+        <a data-toggle="modal" data-target="#modalCreateGuarantee" href="{% url 'visualImpactSAV:createGuarantee' %}">Ajouter garantie</a>
+    </div>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Marque</th>
+                <th>Compléments</th>
+                <th>Temps de garantie</th>
+                <th>Procedure</th>
+                <th> </th>
+                <th> </th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for guarantee in results %}
+                <td>{{ guarantee.mark }}</td>
+                <td>{{ guarantee.complements }}</td>
+                <td>{{ guarantee.guarantee_time }}</td>
+                <td>{{ guarantee.procedure }}</td>
+                <td><a class="glyphicon glyphicon-pencil" href="{% url 'visualImpactSAV:updateGuarantee' guarantee.id %}" style="color: black;"></a> </td>
+                <td><a class="glyphicon glyphicon-remove" href="{% url 'visualImpactSAV:deleteGuarantee' guarantee.id %}" style="color: black;"></a> </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    {% if is_paginated %}
+        <div class="pagination">
+            <span class="page-links">
+                {% if page_obj.has_previous %}
+                    <a href="{{ request.get_full_path }}?page=1&page={{ page_obj.previous_page_number }}">previous</a>
+                {% endif %}
+                <span class="page-current">
+                    Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.
+                </span>
+                {% if page_obj.has_next %}
+                    <a href="{{ request.get_full_path }}?page=1&page={{ page_obj.next_page_number }}">next</a>
+                {% endif %}
+            </span>
+        </div>
+    {% endif %}
+    <div class="modal" id="modalCreateGuarantee"></div>
+{% endblock %}

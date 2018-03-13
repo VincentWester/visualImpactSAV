@@ -1,6 +1,6 @@
 from django.contrib.auth.models import User
 from django.forms import ModelForm, CharField, EmailField, PasswordInput, ValidationError
-from .models import SAV_file, Event, Designation
+from .models import SAV_file, Event, Designation, Guarantee
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
 
@@ -80,6 +80,9 @@ class SAV_fileForm(ModelForm):
             'serial_number_product': {
                 'required': _("Le numero de serie du produit doit etre renseigne."),
             },
+            'guarantee': {
+                'required': _("Le statut de garantie du produit doit etre renseigne."),
+            },
         }
     
 class EventForm(ModelForm):
@@ -91,6 +94,11 @@ class DesignationForm(ModelForm):
     class Meta:
         model = Designation
         fields = [field.name for field in model._meta.fields if not (field.name == "refered_SAV_file")]   
+
+class GuaranteeForm(ModelForm):
+    class Meta:
+        model = Guarantee
+        fields = [field.name for field in model._meta.fields]   
 
 class UserForm(ModelForm):
     class Meta:

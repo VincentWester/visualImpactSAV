@@ -4,6 +4,7 @@ from django.contrib import admin
 from .views.views_sav_files import SAVFileCreateView, SAVFileUpdateView, SAVFileDetailView, SAVFileListView
 from .views.views_events import EventCreateView, EventUpdateView, EventDeleteView
 from .views.views_designations import DesignationCreateView, DesignationUpdateView, DesignationDeleteView, DesignationListView
+from .views.views_guarantee import GuaranteeCreateView, GuaranteeUpdateView, GuaranteeDeleteView, GuaranteeListView
 
 from .views.views_pdf_generator import generate_pdf, send_pdf
 
@@ -21,6 +22,11 @@ urlpatterns = [
     url(r'^updateDesignation/(?P<pk>[\w\-]+)$$', DesignationUpdateView.as_view(), name="updateDesignation"),
     url(r'^deleteDesignation/(?P<pk>[\w\-]+)$$', DesignationDeleteView.as_view(), name="deleteDesignation"), 
     url(r'^listDesignation/(?P<pkSAVFile>[\w\-]+)$$', DesignationListView.as_view(), name="listDesignation"),
+
+    url(r'^listGuarantee/$', GuaranteeListView.as_view(), name="listGuarantee"),
+    url(r'^createGuarantee/$', GuaranteeCreateView.as_view(), name="createGuarantee"),
+    url(r'^updateGuarantee/(?P<pk>[\w\-]+)$$', GuaranteeUpdateView.as_view(), name="updateGuarantee"),
+    url(r'^deleteGuarantee/(?P<pk>[\w\-]+)$$', GuaranteeDeleteView.as_view(), name="deleteGuarantee"),
 
     url(r'^generatePdf/(?P<pkSAVFile>[\w\-]+)$$', generate_pdf, name="generatePdf"), 
     url(r'^sendPdf/(?P<pkSAVFile>[\w\-]+)$$', send_pdf, name="sendPdf"), 

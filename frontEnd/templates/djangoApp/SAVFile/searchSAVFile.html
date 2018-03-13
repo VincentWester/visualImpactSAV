@@ -95,9 +95,9 @@
                 <th>Référent</th>
                 <th>Nom du client</th>
                 <th>Societé du client</th>
-                <th>Marque du produit</th>
-                <th>Modèle du produit</th>
-                <th>Numéro de série du produit</th>
+                <th>Marque</th>
+                <th>Modèle</th>
+                <th>Numéro de série</th>
                 <th> </th>
                 <th> </th>
                 <th> </th>
@@ -110,7 +110,7 @@
                 {% else %}
                     <tr class="">
                 {% endif %}
-                <td>{{ file.id }}</td>
+                <td>VIF-SAV-{{ file.id }}</td>
                 <td>{{ file.registred_by }}</td>
                 <td>{{ file.name_client }}</td>
                 <td>{{ file.society_client }}</td>

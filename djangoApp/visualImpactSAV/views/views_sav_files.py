@@ -74,7 +74,7 @@ class SAVFileUpdateView(LoginRequiredMixin, UpdateView):
     def form_valid(self, form):
         return super(SAVFileUpdateView, self).form_valid(form)
 
-DEFAULT_PAGINATION_BY = 10
+DEFAULT_PAGINATION_BY = 40
 
 class SAVFileListView(LoginRequiredMixin, ListView):
     template_name = 'djangoApp/SAVFile/searchSAVFile.html'
