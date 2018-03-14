@@ -28,8 +28,8 @@
                 <td>{{ guarantee.complements }}</td>
                 <td>{{ guarantee.guarantee_time }}</td>
                 <td>{{ guarantee.procedure }}</td>
-                <td><a class="glyphicon glyphicon-pencil" href="{% url 'visualImpactSAV:updateGuarantee' guarantee.id %}" style="color: black;"></a> </td>
-                <td><a class="glyphicon glyphicon-remove" href="{% url 'visualImpactSAV:deleteGuarantee' guarantee.id %}" style="color: black;"></a> </td>
+                <td><a class="glyphicon glyphicon-pencil" data-toggle="modal" data-target="#modalUpdateGuarantee" href="{% url 'visualImpactSAV:updateGuarantee' guarantee.id %}" style="color: black;"></a> </td>
+                <td><a class="glyphicon glyphicon-remove" data-toggle="modal" data-target="#modalDeleteGuarantee" href="{% url 'visualImpactSAV:deleteGuarantee' guarantee.id %}" style="color: black;"></a> </td>
             </tr>
             {% endfor %}
         </tbody>
@@ -50,4 +50,6 @@
         </div>
     {% endif %}
     <div class="modal" id="modalCreateGuarantee"></div>
+    <div class="modal" id="modalUpdateGuarantee"></div>
+    <div class="modal" id="modalDeleteGuarantee"></div>
 {% endblock %}

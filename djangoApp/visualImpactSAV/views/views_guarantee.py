@@ -7,8 +7,9 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.http import HttpResponseRedirect, HttpResponse
 from django.shortcuts import render
 from django.template.loader import render_to_string
+from django.urls import reverse_lazy
 from django.views.generic import DetailView, ListView
-from django.views.generic.edit import CreateView
+from django.views.generic.edit import CreateView, DeleteView
 
 # models part
 from visualImpactSAV.models import Guarantee
@@ -43,26 +44,29 @@ class GuaranteeUpdateView(ParameterUpdateView):
 
     def get_context_data(self, **kwargs):
         context = super(GuaranteeUpdateView, self).get_context_data(**kwargs)
-        context['current_event'] = self.object
+        context['current_guarantee'] = self.object
 
         return context
 
-class GuaranteeDeleteView(ParameterDeleteView):
+class GuaranteeDeleteView(DeleteView):
     model = Guarantee
     template_name = 'djangoApp/Guarantee/confirmDeleteGuarantee.html'
 
     def dispatch(self, *args, **kwargs):
         self.pk = kwargs['pk']
-        self.url_to_redirect = 'visualImpactSAV:listDesignation'
+        self.url_to_redirect = 'visualImpactSAV:listGuarantee'
         return super(GuaranteeDeleteView, self).dispatch( *args, **kwargs)
 
     def get_context_data(self, **kwargs):
         context = super(GuaranteeDeleteView, self).get_context_data(**kwargs)
         context['id_to_delete'] = self.pk
         context['name_class'] = self.object.__class__.__name__
-        context['name_object'] = self.object.designation
+        context['name_object'] = self.object.mark
 
         return context
+
+    def get_success_url(self, *args, **kwargs): 
+        return reverse_lazy(self.url_to_redirect, kwargs={}) 
 
 DEFAULT_PAGINATION_BY = 40
 
