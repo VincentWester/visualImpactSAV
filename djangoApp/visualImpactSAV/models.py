@@ -27,6 +27,15 @@ class Guarantee(models.Model):
     guarantee_time = models.CharField(max_length = 20, default = "")
     procedure = models.TextField()    
 
+class Furnisher(models.Model):
+    mark = models.CharField(max_length = 200, default = "")
+    phone = models.CharField(max_length = 200, default = "")
+    street = models.CharField(max_length = 300, default = "")
+    complements = models.CharField(max_length = 300, default = "", blank = True)
+    zipcode = models.CharField(max_length = 10, default = "")
+    city = models.CharField(max_length = 10, default = "")
+    commentary = models.TextField()   
+
 class SAV_file(models.Model):
     creation_date = models.DateTimeField(default = timezone.now)    
     sav_file_status = models.ForeignKey(SAV_file_status, default = DEFAULT_SAV_FILE_STATUS_ID)

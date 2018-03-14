@@ -5,6 +5,7 @@ from .views.views_sav_files import SAVFileCreateView, SAVFileUpdateView, SAVFile
 from .views.views_events import EventCreateView, EventUpdateView, EventDeleteView
 from .views.views_designations import DesignationCreateView, DesignationUpdateView, DesignationDeleteView, DesignationListView
 from .views.views_guarantee import GuaranteeCreateView, GuaranteeUpdateView, GuaranteeDeleteView, GuaranteeListView
+from .views.views_furnisher import FurnisherCreateView, FurnisherUpdateView, FurnisherDeleteView, FurnisherListView
 
 from .views.views_pdf_generator import generate_pdf, send_pdf
 
@@ -27,6 +28,11 @@ urlpatterns = [
     url(r'^createGuarantee/$', GuaranteeCreateView.as_view(), name="createGuarantee"),
     url(r'^updateGuarantee/(?P<pk>[\w\-]+)$$', GuaranteeUpdateView.as_view(), name="updateGuarantee"),
     url(r'^deleteGuarantee/(?P<pk>[\w\-]+)$$', GuaranteeDeleteView.as_view(), name="deleteGuarantee"),
+
+    url(r'^listFurnisher/$', FurnisherListView.as_view(), name="listFurnisher"),
+    url(r'^createFurnisher/$', FurnisherCreateView.as_view(), name="createFurnisher"),
+    url(r'^updateFurnisher/(?P<pk>[\w\-]+)$$', FurnisherUpdateView.as_view(), name="updateFurnisher"),
+    url(r'^deleteFurnisher/(?P<pk>[\w\-]+)$$', FurnisherDeleteView.as_view(), name="deleteFurnisher"),
 
     url(r'^generatePdf/(?P<pkSAVFile>[\w\-]+)$$', generate_pdf, name="generatePdf"), 
     url(r'^sendPdf/(?P<pkSAVFile>[\w\-]+)$$', send_pdf, name="sendPdf"), 

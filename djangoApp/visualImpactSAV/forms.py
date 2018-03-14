@@ -1,6 +1,6 @@
 from django.contrib.auth.models import User
 from django.forms import ModelForm, CharField, EmailField, PasswordInput, ValidationError
-from .models import SAV_file, Event, Designation, Guarantee
+from .models import SAV_file, Event, Designation, Guarantee, Furnisher
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
 
@@ -99,6 +99,11 @@ class GuaranteeForm(ModelForm):
     class Meta:
         model = Guarantee
         fields = [field.name for field in model._meta.fields]   
+
+class FurnisherForm(ModelForm):
+    class Meta:
+        model = Furnisher
+        fields = [field.name for field in model._meta.fields] 
 
 class UserForm(ModelForm):
     class Meta:

@@ -1,0 +1,61 @@
+{% extends "base.html" %}
+{% load static %}
+{% load tags %}
+{% block style %}
+    <link href="{% static 'css/SAVFile/searchSAVFile.css' %}" rel="stylesheet" media="screen">
+    <link href="{% static 'css/SAVFile/classSAVFileStatus.css' %}" rel="stylesheet" media="screen">
+{% endblock %}
+{% block menu_furnisher %}<li class="list-SAV-file active row"><a href="#" class="col-md-12">Fournisseur</a></li>{% endblock %}
+{% block content %}    
+    <div class="col-md-12 block-button">        
+        <a data-toggle="modal" data-target="#modalCreateFurnisher" href="{% url 'visualImpactSAV:createFurnisher' %}">Ajouter fournisseur</a>
+    </div>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Marque</th>
+                <th>Rue</th>
+                <th>Compléments</th>
+                <th>Code postal</th>
+                <th>Ville</th>
+                <th>Téléphone</th>
+                <th>Commentaire</th>
+                <th> </th>
+                <th> </th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for furnisher in results %}
+                <td>{{ furnisher.mark }}</td>
+                <td>{{ furnisher.street }}</td>
+                <td>{{ furnisher.complements }}</td>
+                <td>{{ furnisher.zipcode }}</td>
+                <td>{{ furnisher.city }}</td>
+                <td>{{ furnisher.phone }}</td>
+                <td>{{ furnisher.commentary }}</td>
+                <td><a class="glyphicon glyphicon-pencil" data-toggle="modal" data-target="#modalUpdateFurnisher" href="{% url 'visualImpactSAV:updateFurnisher' furnisher.id %}" style="color: black;"></a> </td>
+                <td><a class="glyphicon glyphicon-remove" data-toggle="modal" data-target="#modalDeleteFurnisher" href="{% url 'visualImpactSAV:deleteFurnisher' furnisher.id %}" style="color: black;"></a> </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    {% if is_paginated %}
+        <div class="pagination">
+            <span class="page-links">
+                {% if page_obj.has_previous %}
+                    <a href="{{ request.get_full_path }}?page=1&page={{ page_obj.previous_page_number }}">previous</a>
+                {% endif %}
+                <span class="page-current">
+                    Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.
+                </span>
+                {% if page_obj.has_next %}
+                    <a href="{{ request.get_full_path }}?page=1&page={{ page_obj.next_page_number }}">next</a>
+                {% endif %}
+            </span>
+        </div>
+    {% endif %}
+    <div class="modal" id="modalCreateFurnisher"></div>
+    <div class="modal" id="modalUpdateFurnisher"></div>
+    <div class="modal" id="modalDeleteFurnisher"></div>
+{% endblock %}
