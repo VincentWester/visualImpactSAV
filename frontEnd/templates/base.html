@@ -36,15 +36,29 @@
         </header>
         <div class="col-md-2 menu-content">
             <ul class="menu-SAV-file">
-                {% block menu_search %}<li class="list-SAV-file row"><a href="{% url 'visualImpactSAV:searchSAVFile' %}" class="col-md-12">Rechercher</a></li>{% endblock %}
-                {% block menu_add %}<li class="list-SAV-file row"><a href="{% url 'visualImpactSAV:createSAVFile' %}" class="col-md-12">Ajouter</a></li>{% endblock %}
-                {% block menu_guarantee %}<li class="list-SAV-file row"><a href="{% url 'visualImpactSAV:listGuarantee' %}" class="col-md-12">Garantie</a></li>{% endblock %}
-                {% block menu_furnisher %}<li class="list-SAV-file row"><a href="{% url 'visualImpactSAV:listFurnisher' %}" class="col-md-12">Fournisseur</a></li>{% endblock %}
+                {% if user.is_authenticated %}
+                    {% block menu_search %}<li class="list-SAV-file row"><a href="{% url 'visualImpactSAV:searchSAVFile' %}" class="col-md-12">Rechercher</a></li>{% endblock %}
+                    {% block menu_add %}<li class="list-SAV-file row"><a href="{% url 'visualImpactSAV:createSAVFile' %}" class="col-md-12">Ajouter</a></li>{% endblock %}
+                    {% block menu_guarantee %}<li class="list-SAV-file row"><a href="{% url 'visualImpactSAV:listGuarantee' %}" class="col-md-12">Garantie</a></li>{% endblock %}
+                    {% block menu_furnisher %}<li class="list-SAV-file row"><a href="{% url 'visualImpactSAV:listFurnisher' %}" class="col-md-12">Fournisseur</a></li>{% endblock %}
+                {% endif %}
             </ul>
         </div>
         <div class="col-md-10 base-content container">
-            {% block content %}
-            {% endblock %}
+            {% if user.is_authenticated %}
+                {% block content %}
+                {% endblock %}
+            {% else %}
+                <div class="row">
+                      <h2>Login</h2>
+                      <form method="post">
+                        {% csrf_token %}
+                        {{ form.as_p }}
+                        <button type="submit">Login</button>
+                      </form>
+                    <a href="{% url 'signup' %}" class="col-md-12">S'inscrire</a>
+                </div>
+            {% endif %}
         </div>  
     </body>
 </html>
