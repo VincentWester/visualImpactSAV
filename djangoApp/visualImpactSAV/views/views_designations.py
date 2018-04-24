@@ -28,12 +28,11 @@ class DesignationDeleteView(ParameterDeleteView):
 
     def dispatch(self, *args, **kwargs):
         self.pk = kwargs['pk']
-        self.url_to_redirect = 'visualImpactSAV:listDesignation'
+        self.url_to_redirect = 'visualImpactSAV:updateSAVFile'
         return super(DesignationDeleteView, self).dispatch( *args, **kwargs)
 
     def get_context_data(self, **kwargs):
         context = super(DesignationDeleteView, self).get_context_data(**kwargs)
-        print self.pk
         context['id_to_delete'] = self.pk
         context['name_class'] = self.object.__class__.__name__
         context['name_object'] = self.object.designation

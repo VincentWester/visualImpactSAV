@@ -8,7 +8,7 @@
         {% csrf_token %}
         <div class="col-md-4 first-block">
             <label for="id_file_reference">Reference du fichier SAV :</label>
-            <input id="id_file_reference" type="text" name="file_reference" value="{{ current_sav_file.id }}" maxlength="33" disabled/>
+            <input id="id_file_reference" type="text" name="file_reference" value="VIF-SAV-{{ current_sav_file.id }}" maxlength="33" disabled/>
         </div>
 
         <div class="col-md-4 first-block">           
@@ -161,12 +161,59 @@
             <a data-toggle="modal" data-target="#modalCreateEvent" href="{% url 'visualImpactSAV:createEvent' pkSAVFile=current_sav_file.id %}">Ajouter un évenement</a>
         </div>
 
-        <div class="col-md-12 block-button"> 
-            <input type="submit" value="Mettre à jour">
-        </div>
+        <table class="table">
+        <thead>
+            <tr>
+                <th>Designation</th>
+                <th>Quantité</th>
+                <th>Prix</th>
+                <th> </th>
+                <th> </th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for designation in designations %}
+                <tr>
+                    <td>{{ designation.designation }}</td>
+                    <td>{{ designation.quantity }}</td>
+                    <td>{{ designation.price }}</td>
+                    <td><a class="glyphicon glyphicon-pencil" data-toggle="modal" data-target="#modalUpdateDesignation" href="{% url 'visualImpactSAV:updateDesignation' pk=designation.id%}" style="color: black;"></a> </td>
+                    <td><a class="glyphicon glyphicon-remove" data-toggle="modal" data-target="#modalDeleteDesignation" href="{% url 'visualImpactSAV:deleteDesignation' pk=designation.id%}" style="color: black;"></a> </td>
+                </tr>
+            {% endfor %}
+            <tr>
+                <td></td>
+                <th>Prix hors taxe :</th>
+                <th>{{ totalHT }}</th>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td></td>
+                <th>Prix taxes comprises :</th>
+                <th style="color:red">{{ totalTC }}</th>
+                <td></td>
+                <td></td>
+            </tr>
+        </tbody>
+    </table>   
+    <div class="col-md-12">
+        <a data-toggle="modal" data-target="#modalCreateDesignation" href="{% url 'visualImpactSAV:createDesignation' pkSAVFile=current_sav_file.id %}">Ajouter une désignation</a>
+    </div>
+    <div class="col-md-offset-4 col-md-2">
+        <a role="button" class="btn btn-primary" href="{% url 'visualImpactSAV:generatePdf' pkSAVFile=current_sav_file.id %}">Générer PDF</a>
+        <a role="button" class="btn btn-primary" href="{% url 'visualImpactSAV:sendPdf' pkSAVFile=current_sav_file.id %}">Envoyer PDF</a>
+    </div>
+    <div class="col-md-12 block-button"> 
+        <input type="submit" value="Mettre à jour">
+    </div>
     </form>
 
     <div class="modal" id="modalUpdateEvent"></div>
     <div class="modal" id="modalCreateEvent"></div>
     <div class="modal" id="modalDeleteEvent"></div>
+
+    <div class="modal" id="modalUpdateDesignation"></div>
+    <div class="modal" id="modalCreateDesignation"></div>
+    <div class="modal" id="modalDeleteDesignation"></div>
 {% endblock %}

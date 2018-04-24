@@ -62,6 +62,16 @@ class SAVFileUpdateView(LoginRequiredMixin, UpdateView):
         context['current_sav_file'] = self.object
         context['sav_file_status'] = SAV_file_status.objects.all()
         context['events'] = Event.objects.all().filter(refered_SAV_file = self.object).order_by('date')
+        designations = Designation.objects.all().filter(refered_SAV_file = self.object) 
+        context['designations'] = designations
+
+        total = Decimal(0.0)
+        for designation in designations:
+            total += Decimal(designation.quantity) * Decimal(designation.price)
+
+        TAX_RATE = Decimal(1.2)
+        context['totalHT'] = round(total, 2)
+        context['totalTC'] = round(total * TAX_RATE, 2)
 
         return context 
 

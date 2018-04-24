@@ -101,7 +101,7 @@
                 <th>Numéro de série</th>
                 <th> </th>
                 <th> </th>
-                <th> </th>
+                <!--th> </th-->
             </tr>
         </thead>
         <tbody>
@@ -120,7 +120,7 @@
                 <td>{{ file.serial_number_product }}</td>
                 <td><a class="glyphicon glyphicon-zoom-in" href="{% url 'visualImpactSAV:detailSAVFile' file.id %}" style="color: black;"></a> </td>
                 <td><a class="glyphicon glyphicon-pencil" href="{% url 'visualImpactSAV:updateSAVFile' file.id %}" style="color: black;"></a> </td>
-                <td><a class="glyphicon glyphicon-download-alt" href="{% url 'visualImpactSAV:listDesignation' file.id %}" style="color: black;"></a> </td>
+                <!--td><a class="glyphicon glyphicon-download-alt" href="{% url 'visualImpactSAV:listDesignation' file.id %}" style="color: black;"></a> </td-->
             </tr>
             {% endfor %}
         </tbody>
