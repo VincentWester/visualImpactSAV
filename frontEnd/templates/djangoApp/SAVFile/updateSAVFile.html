@@ -126,7 +126,7 @@
             {{ form.out_of_order_reason.errors }}
         </div>
 
-        <div class="col-md-12 row block-files">
+        <div class="col-md-12 block-files">
             <label for="id_client_bill">Facture client :</label>
             <input id="id_client_bill" type="file" name="client_bill" />
             {% if current_sav_file.client_bill %}
@@ -134,7 +134,9 @@
             {% endif %}
             {{ form.client_bill.errors }}
         </div>
-
+        <div class="col-md-12 mini-title">
+            <h3> Evenements </h3>
+        </div>
         <table class="table">
             <thead>
                 <tr>
@@ -157,10 +159,12 @@
                 {% endfor %}
             </tbody>
         </table>
-        <div class="col-md-12">
+        <div class="col-md-12 add-button">
             <a data-toggle="modal" data-target="#modalCreateEvent" href="{% url 'visualImpactSAV:createEvent' pkSAVFile=current_sav_file.id %}">Ajouter un évenement</a>
         </div>
-
+        <div class="col-md-12 mini-title">
+            <h3> Génération de PDF </h3>
+        </div>
         <table class="table">
         <thead>
             <tr>
@@ -197,10 +201,10 @@
             </tr>
         </tbody>
     </table>   
-    <div class="col-md-12">
+    <div class="col-md-12 add-button">
         <a data-toggle="modal" data-target="#modalCreateDesignation" href="{% url 'visualImpactSAV:createDesignation' pkSAVFile=current_sav_file.id %}">Ajouter une désignation</a>
     </div>
-    <div class="col-md-offset-4 col-md-2">
+    <div class="col-md-12 pdf-buttons">
         <a role="button" class="btn btn-primary" href="{% url 'visualImpactSAV:generatePdf' pkSAVFile=current_sav_file.id %}">Générer PDF</a>
         <a role="button" class="btn btn-primary" href="{% url 'visualImpactSAV:sendPdf' pkSAVFile=current_sav_file.id %}">Envoyer PDF</a>
     </div>

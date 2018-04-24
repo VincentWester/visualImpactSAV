@@ -99,3 +99,19 @@ form {
   	width: 10%;
 }
 
+.mini-title {
+	margin-top: 20px;
+	text-align: center;
+	text-decoration: underline;
+	border-top: solid 1px black;
+}
+
+.pdf-buttons {
+	text-align: center;
+	margin-top: 10px;
+}
+
+.add-button {
+	text-align: right;
+	font-size: 20px;
+}
