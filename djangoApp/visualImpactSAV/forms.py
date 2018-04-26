@@ -1,5 +1,5 @@
 from django.contrib.auth.models import User
-from django.forms import ModelForm, CharField, EmailField, PasswordInput, ValidationError
+from django.forms import ModelForm, CharField, EmailField, PasswordInput, ValidationError, ModelChoiceField
 from .models import SAV_file, Event, Designation, Guarantee, Furnisher
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
@@ -45,6 +45,8 @@ class SignUpForm(UserCreationForm):
         return user
 
 class SAV_fileForm(ModelForm):
+    furnisher = ModelChoiceField(queryset = Furnisher.objects.all(), empty_label = "---", required = False)
+
     class Meta:
         model = SAV_file
         fields = [field.name for field in model._meta.fields if not (field.name == "creation_date" or field.name == "registred_by")]    

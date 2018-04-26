@@ -29,12 +29,15 @@ class Guarantee(models.Model):
 
 class Furnisher(models.Model):
     mark = models.CharField(max_length = 200, default = "")
-    phone = models.CharField(max_length = 200, default = "")
     street = models.CharField(max_length = 300, default = "")
     complements = models.CharField(max_length = 300, default = "", blank = True)
     zipcode = models.CharField(max_length = 10, default = "")
     city = models.CharField(max_length = 10, default = "")
-    commentary = models.TextField()   
+    phone = models.CharField(max_length = 200, default = "")
+    commentary = models.TextField(blank = True)   
+
+    def __str__(self):
+        return self.mark.encode('utf-8')
 
 class SAV_file(models.Model):
     creation_date = models.DateTimeField(default = timezone.now)    
@@ -54,6 +57,7 @@ class SAV_file(models.Model):
     guarantee = models.CharField(max_length = 100, default = "Sur garantie")
     out_of_order_reason = models.TextField()
     client_bill = models.FileField(blank = True)
+    furnisher = models.ForeignKey(Furnisher, null = True)
 
     registred_by = models.ForeignKey(get_user_model(), default = 1)
 

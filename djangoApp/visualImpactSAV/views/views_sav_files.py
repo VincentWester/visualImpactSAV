@@ -10,7 +10,7 @@ from django.views.generic import DetailView, ListView
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 
 # models part
-from visualImpactSAV.models import SAV_file, SAV_file_status, Event, Designation
+from visualImpactSAV.models import SAV_file, SAV_file_status, Event, Designation, Furnisher
 # forms part
 from visualImpactSAV.forms import SAV_fileForm
 
@@ -62,6 +62,8 @@ class SAVFileUpdateView(LoginRequiredMixin, UpdateView):
         context['current_sav_file'] = self.object
         context['sav_file_status'] = SAV_file_status.objects.all()
         context['events'] = Event.objects.all().filter(refered_SAV_file = self.object).order_by('date')
+        context['furnishers'] = Furnisher.objects.all().order_by('mark')
+
         designations = Designation.objects.all().filter(refered_SAV_file = self.object) 
         context['designations'] = designations
 
@@ -82,6 +84,7 @@ class SAVFileUpdateView(LoginRequiredMixin, UpdateView):
     Check if the form is valid and save the object.
     """
     def form_valid(self, form):
+        print form
         return super(SAVFileUpdateView, self).form_valid(form)
 
 DEFAULT_PAGINATION_BY = 40

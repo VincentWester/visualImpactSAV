@@ -203,10 +203,23 @@
     </table>   
     <div class="col-md-12 add-button">
         <a data-toggle="modal" data-target="#modalCreateDesignation" href="{% url 'visualImpactSAV:createDesignation' pkSAVFile=current_sav_file.id %}">Ajouter une désignation</a>
+    </div>            
+    <div class="col-md-12 pdf-buttons">           
+        <!--label for="id_furnisher">Fournisseur :</label>
+        <select id="id_furnisher" name="furnisher">
+            {% for furnisher in furnishers %}            
+                {% if furnisher.id == current_sav_file.furnisher.id %}
+                    <option selected="selected"  value="{{ furnisher.id }}">{{ furnisher.mark }}</option>
+                {% else %}
+                    <option value="{{ furnisher.id }}">{{ furnisher.mark }}</option>
+                {% endif %}
+            {% endfor %}
+        </select-->
+        {{ form.furnisher }}
     </div>
     <div class="col-md-12 pdf-buttons">
-        <a role="button" class="btn btn-primary" href="{% url 'visualImpactSAV:generatePdf' pkSAVFile=current_sav_file.id %}">Générer PDF</a>
-        <a role="button" class="btn btn-primary" href="{% url 'visualImpactSAV:sendPdf' pkSAVFile=current_sav_file.id %}">Envoyer PDF</a>
+        <a role="button" class="btn btn-primary" href="{% url 'visualImpactSAV:generatePdf' pkSAVFile=current_sav_file.id %}">Générer le devis client</a>
+        <a role="button" class="btn btn-primary" href="{% url 'visualImpactSAV:sendPdf' pkSAVFile=current_sav_file.id %}">Générer l'envoi au fournisseur</a>
     </div>
     <div class="col-md-12 block-button"> 
         <input type="submit" value="Mettre à jour">

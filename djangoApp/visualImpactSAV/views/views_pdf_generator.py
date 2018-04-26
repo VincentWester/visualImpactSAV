@@ -26,9 +26,9 @@ from visualImpactSAV.models import Designation, SAV_file
 def generate_pdf_name(sav_file):    
     filename = 'devis-client-'
     if not sav_file.society_client == '':
-        filename = '{0}{1}{2}'.format(filename, sav_file.society_client, '.pdf')
+        filename = '{0}__{1}{2}'.format(filename, sav_file.society_client.replace(' ', '_'), '.pdf')
     else:
-        filename = '{0}{1}{2}'.format(filename, sav_file.name_client.replace(' ', '_'), '.pdf')
+        filename = '{0}__{1}{2}'.format(filename, sav_file.name_client.replace(' ', '_'), '.pdf')
 
     return filename
 
@@ -58,6 +58,28 @@ def send_pdf(request, pkSAVFile):
     os.remove(filename)
 
     return redirect('visualImpactSAV:detailSAVFile', pkSAVFile)
+
+def generate_pdf(request, pkSAVFile):
+    # Create the HttpResponse object with the appropriate PDF headers.
+    sav_file = get_object_or_404(SAV_file, id = pkSAVFile)
+    filename = generate_pdf_name(sav_file)
+
+    response = HttpResponse(content_type='application/pdf')
+    response['Content-Disposition'] = 'attachment; filename="{0}"'.format(filename)
+
+    # Create the PDF object, using the BytesIO object as its "file."
+    buffer = BytesIO()
+    p = canvas.Canvas(buffer)
+
+    build_header(request, p, "Offre commerciale")
+    build_pdf(request, sav_file, p)
+
+    pdf = buffer.getvalue()
+    buffer.close()
+
+    response.write(pdf)
+    return response
+
 
 def generate_pdf(request, pkSAVFile):
     # Create the HttpResponse object with the appropriate PDF headers.
