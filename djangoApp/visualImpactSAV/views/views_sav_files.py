@@ -28,6 +28,18 @@ class SAVFileDetailView(LoginRequiredMixin, DetailView):
         context = super(SAVFileDetailView, self).get_context_data(**kwargs)
         context['pkSAVFile'] = self.object.id
         context['events'] = Event.objects.all().filter(refered_SAV_file = self.object).order_by('date')
+        context['furnishers'] = Furnisher.objects.all().order_by('mark')
+
+        designations = Designation.objects.all().filter(refered_SAV_file = self.object) 
+        context['designations'] = designations
+
+        total = Decimal(0.0)
+        for designation in designations:
+            total += Decimal(designation.quantity) * Decimal(designation.price)
+
+        TAX_RATE = Decimal(1.2)
+        context['totalHT'] = round(total, 2)
+        context['totalTC'] = round(total * TAX_RATE, 2)
 
         return context
 
@@ -84,7 +96,6 @@ class SAVFileUpdateView(LoginRequiredMixin, UpdateView):
     Check if the form is valid and save the object.
     """
     def form_valid(self, form):
-        print form
         return super(SAVFileUpdateView, self).form_valid(form)
 
 DEFAULT_PAGINATION_BY = 40

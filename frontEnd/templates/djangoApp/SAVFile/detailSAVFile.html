@@ -3,7 +3,10 @@
 {% block style %}
     <link href="{% static 'css/SAVFile/createSAVFile.css' %}" rel="stylesheet" media="screen">
 {% endblock %}
-{% block content %}                
+{% block content %}     
+    <div class="col-md-12 update-sav-file-button">
+        <a href="{% url 'visualImpactSAV:updateSAVFile' pkSAVFile %}">Modifier</a>
+    </div>              
     <div class="col-md-offset-4 col-md-6 block-characteristic-client">
         <label>Crée par :</label>
         <span>{{ sav_file.registred_by.username }}</span>
@@ -105,6 +108,9 @@
         {% endif %}
     </div>
 
+    <div class="col-md-12 mini-title">
+        <h3> Evenements </h3>
+    </div>
     <div class="col-md-12">
         <div id="eventOrDesignation">
             <table class="table">
@@ -127,4 +133,70 @@
             </table>
         </div>
     </div>
+
+    <div class="col-md-12 mini-title">
+        <h3> Génération de PDF </h3>
+    </div>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Designation</th>
+                <th>Quantité</th>
+                <th>Prix</th>
+                <th> </th>
+                <th> </th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for designation in designations %}
+                <tr>
+                    <td>{{ designation.designation }}</td>
+                    <td>{{ designation.quantity }}</td>
+                    <td>{{ designation.price }}</td>
+                    <td><a class="glyphicon glyphicon-pencil" data-toggle="modal" data-target="#modalUpdateDesignation" href="{% url 'visualImpactSAV:updateDesignation' pk=designation.id%}" style="color: black;"></a> </td>
+                    <td><a class="glyphicon glyphicon-remove" data-toggle="modal" data-target="#modalDeleteDesignation" href="{% url 'visualImpactSAV:deleteDesignation' pk=designation.id%}" style="color: black;"></a> </td>
+                </tr>
+            {% endfor %}
+            <tr>
+                <td></td>
+                <th>Prix hors taxe :</th>
+                <th>{{ totalHT }}</th>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td></td>
+                <th>Prix taxes comprises :</th>
+                <th style="color:red">{{ totalTC }}</th>
+                <td></td>
+                <td></td>
+            </tr>
+        </tbody>
+    </table>   
+    <div class="col-md-12 add-button">
+        <a data-toggle="modal" data-target="#modalCreateDesignation" href="{% url 'visualImpactSAV:createDesignation' pkSAVFile %}">Ajouter une désignation</a>
+    </div>            
+    <div class="col-md-12 pdf-buttons">
+        <label>Fournisseur :</label>
+        {% if sav_file.furnisher is not None %}
+            <span>{{ sav_file.furnisher.mark }}<span>
+        {% else %}
+            <span> --- --- --- <span>
+        {% endif %}
+    </div>
+    <div class="col-md-12 pdf-buttons">
+        <a role="button" class="btn btn-primary" href="{% url 'visualImpactSAV:generatePdfClient' pkSAVFile %}">Générer le devis client</a>
+        {% if sav_file.furnisher is not None %}
+            <a role="button" class="btn btn-primary" href="{% url 'visualImpactSAV:generatePdfFurnisher' pkSAVFile %}">Générer l'envoi de devis au fournisseur</a>
+        {% else %}
+            <a role="button" class="btn-disabled" href="#">Pas de fournisseur pour ce fichier : impossible d'envoyer un devis</a>
+        {% endif %}
+    </div>
+    <div class="col-md-12 update-sav-file-button">
+        <a href="{% url 'visualImpactSAV:updateSAVFile' pkSAVFile %}">Modifier</a>
+    </div>  
+
+    <div class="modal" id="modalUpdateDesignation"></div>
+    <div class="modal" id="modalCreateDesignation"></div>
+    <div class="modal" id="modalDeleteDesignation"></div>
 {% endblock %}

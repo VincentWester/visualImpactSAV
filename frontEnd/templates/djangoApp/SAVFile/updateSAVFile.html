@@ -204,22 +204,8 @@
     <div class="col-md-12 add-button">
         <a data-toggle="modal" data-target="#modalCreateDesignation" href="{% url 'visualImpactSAV:createDesignation' pkSAVFile=current_sav_file.id %}">Ajouter une désignation</a>
     </div>            
-    <div class="col-md-12 pdf-buttons">           
-        <!--label for="id_furnisher">Fournisseur :</label>
-        <select id="id_furnisher" name="furnisher">
-            {% for furnisher in furnishers %}            
-                {% if furnisher.id == current_sav_file.furnisher.id %}
-                    <option selected="selected"  value="{{ furnisher.id }}">{{ furnisher.mark }}</option>
-                {% else %}
-                    <option value="{{ furnisher.id }}">{{ furnisher.mark }}</option>
-                {% endif %}
-            {% endfor %}
-        </select-->
-        {{ form.furnisher }}
-    </div>
-    <div class="col-md-12 pdf-buttons">
-        <a role="button" class="btn btn-primary" href="{% url 'visualImpactSAV:generatePdfClient' pkSAVFile=current_sav_file.id %}">Générer le devis client</a>
-        <a role="button" class="btn btn-primary" href="{% url 'visualImpactSAV:generatePdfFurnisher' pkSAVFile=current_sav_file.id %}">Générer l'envoi au fournisseur</a>
+    <div class="col-md-12 pdf-buttons">     
+        <p>{{ form.furnisher }}<p>
     </div>
     <div class="col-md-12 block-button"> 
         <input type="submit" value="Mettre à jour">
@@ -229,8 +215,4 @@
     <div class="modal" id="modalUpdateEvent"></div>
     <div class="modal" id="modalCreateEvent"></div>
     <div class="modal" id="modalDeleteEvent"></div>
-
-    <div class="modal" id="modalUpdateDesignation"></div>
-    <div class="modal" id="modalCreateDesignation"></div>
-    <div class="modal" id="modalDeleteDesignation"></div>
 {% endblock %}
