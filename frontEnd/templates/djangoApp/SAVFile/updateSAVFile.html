@@ -218,8 +218,8 @@
         {{ form.furnisher }}
     </div>
     <div class="col-md-12 pdf-buttons">
-        <a role="button" class="btn btn-primary" href="{% url 'visualImpactSAV:generatePdf' pkSAVFile=current_sav_file.id %}">Générer le devis client</a>
-        <a role="button" class="btn btn-primary" href="{% url 'visualImpactSAV:sendPdf' pkSAVFile=current_sav_file.id %}">Générer l'envoi au fournisseur</a>
+        <a role="button" class="btn btn-primary" href="{% url 'visualImpactSAV:generatePdfClient' pkSAVFile=current_sav_file.id %}">Générer le devis client</a>
+        <a role="button" class="btn btn-primary" href="{% url 'visualImpactSAV:generatePdfFurnisher' pkSAVFile=current_sav_file.id %}">Générer l'envoi au fournisseur</a>
     </div>
     <div class="col-md-12 block-button"> 
         <input type="submit" value="Mettre à jour">
