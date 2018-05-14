@@ -17,7 +17,7 @@ class SAV_file_status(models.Model):
     class_css = models.CharField(max_length = 50, blank = True)
 
     def __unicode__(self):
-        return self.libelle 
+        return str(self.id) + "-" + self.libelle 
 
 DEFAULT_SAV_FILE_STATUS_ID = 1
 
@@ -31,8 +31,8 @@ class Furnisher(models.Model):
     mark = models.CharField(max_length = 200, default = "")
     street = models.CharField(max_length = 300, default = "")
     complements = models.CharField(max_length = 300, default = "", blank = True)
-    zipcode = models.CharField(max_length = 10, default = "")
-    city = models.CharField(max_length = 10, default = "")
+    zipcode = models.CharField(max_length = 30, default = "")
+    city = models.CharField(max_length = 100, default = "")
     phone = models.CharField(max_length = 200, default = "")
     commentary = models.TextField(blank = True)   
 
@@ -46,8 +46,8 @@ class SAV_file(models.Model):
     name_client = models.CharField(max_length = 300, default = "")
     street_client = models.CharField(max_length = 300, default = "")
     complements_client = models.CharField(max_length = 300, default = "", blank = True)
-    zipcode_client = models.CharField(max_length = 10, default = "")
-    city_client = models.CharField(max_length = 10, default = "")
+    zipcode_client = models.CharField(max_length = 30, default = "")
+    city_client = models.CharField(max_length = 100, default = "")
     phone_client = models.CharField(max_length = 30, default = "")
     email_client = models.CharField(max_length = 100, default = "")
     name_product = models.CharField(max_length = 200, default = "")

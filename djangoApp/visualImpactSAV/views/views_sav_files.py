@@ -111,7 +111,7 @@ class SAVFileListView(LoginRequiredMixin, ListView):
         results = self.get_queryset()
 
         libelle_stats = {}
-        for sav_file_status in SAV_file_status.objects.all():
+        for sav_file_status in SAV_file_status.objects.all().order_by('id'):
             libelle_stats[sav_file_status.libelle] = results.filter(sav_file_status__libelle = sav_file_status.libelle).count()
 
         context['libelle_stats'] = libelle_stats

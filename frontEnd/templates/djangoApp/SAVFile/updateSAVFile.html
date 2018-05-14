@@ -16,9 +16,9 @@
             <select id="id_sav_file_status" name="sav_file_status" >
                 {% for st in sav_file_status %}
                     {% if st.id == current_sav_file.sav_file_status.id %}
-                        <option selected="selected"  value="{{ st.id }}">{{ st }}</option>
+                        <option selected="selected"  value="{{ st.id }}">{{ st.libelle }}</option>
                     {% else %}
-                        <option value="{{ st.id }}">{{ st }}</option>
+                        <option value="{{ st.id }}">{{ st.libelle }}</option>
                     {% endif %}
                 {% endfor %}
             </select>
@@ -203,9 +203,11 @@
     </table>   
     <div class="col-md-12 add-button">
         <a data-toggle="modal" data-target="#modalCreateDesignation" href="{% url 'visualImpactSAV:createDesignation' pkSAVFile=current_sav_file.id %}">Ajouter une désignation</a>
-    </div>            
-    <div class="col-md-12 pdf-buttons">     
-        <p>{{ form.furnisher }}<p>
+    </div> 
+    <div class="col-md-12 pdf-buttons"> 
+        <label for="id_furnisher">Fournisseur :</label>  
+        {{ form.furnisher }}
+        {{ form.furnisher.errors }}
     </div>
     <div class="col-md-12 block-button"> 
         <input type="submit" value="Mettre à jour">

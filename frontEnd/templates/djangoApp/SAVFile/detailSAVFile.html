@@ -19,7 +19,7 @@
 
     <div class="col-md-4 second-block">           
         <label>Statut de la fiche SAV :</label>
-        <span>{{ sav_file.sav_file_status }}</span>
+        <span>{{ sav_file.sav_file_status.libelle }}</span>
     </div>
  
     <div class="col-md-4 second-block">            
@@ -187,7 +187,7 @@
     <div class="col-md-12 pdf-buttons">
         <a role="button" class="btn btn-primary" href="{% url 'visualImpactSAV:generatePdfClient' pkSAVFile %}">Générer le devis client</a>
         {% if sav_file.furnisher is not None %}
-            <a role="button" class="btn btn-primary" href="{% url 'visualImpactSAV:generatePdfFurnisher' pkSAVFile %}">Générer l'envoi de devis au fournisseur</a>
+            <a role="button" class="btn btn-primary" href="{% url 'visualImpactSAV:generatePdfFurnisher' pkSAVFile %}">Générer la fiche de renvoi au fournisseur</a>
         {% else %}
             <a role="button" class="btn-disabled" href="#">Pas de fournisseur pour ce fichier : impossible d'envoyer un devis</a>
         {% endif %}

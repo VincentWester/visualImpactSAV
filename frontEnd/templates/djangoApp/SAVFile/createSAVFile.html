@@ -5,16 +5,13 @@
 {% endblock %}
 {% block menu_add %}<li class="list-SAV-file active row"><a href="#" class="col-md-12">Ajouter</a></li>{% endblock %}
 {% block content %}          
-    
+    {{ global_error }}
     <form class="row" enctype="multipart/form-data" method=POST action="{% url 'visualImpactSAV:createSAVFile' %}" accept-charset="utf-8">
         {% csrf_token %}
         <div class="col-md-6 first-block"> 
             <label for="id_sav_file_status">Status de la fiche SAV :</label>
-            <select id="id_sav_file_status" name="sav_file_status">
-                <option value="">-- Selectionnez un statut --</option>
-                {% for st in sav_file_status %}
-                    <option value="{{ st.id }}">{{ st }}</option>
-                {% endfor %}
+            <select id="id_sav_file_status" name="sav_file_status" disabled="true">
+                <option value="{{ 1 }}">Ouvert</option>
             </select>
             {{ form.sav_file_status.errors }}
         </div>
@@ -48,7 +45,7 @@
                 <div class="col-md-3  block-characteristic-product">           
                     <label for="id_guarantee">Garantie :</label>
                     <select id="id_guarantee" name="guarantee" >
-                        <option value="Sur garantie">Sur garantie</option>
+                        <option value="Sous garantie">Sous garantie</option>
                         <option value="Hors garantie">Hors garantie</option>
                     </select>
                     {{ form.guarantee.errors }}
