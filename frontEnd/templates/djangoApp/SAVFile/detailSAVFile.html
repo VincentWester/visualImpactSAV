@@ -185,11 +185,12 @@
         {% endif %}
     </div>
     <div class="col-md-12 pdf-buttons">
-        <a role="button" class="btn btn-primary" href="{% url 'visualImpactSAV:generatePdfClient' pkSAVFile %}">Générer le devis client</a>
+        <a role="button" class="btn btn-primary" href="{% url 'visualImpactSAV:generatePdfClient' pkSAVFile %}">Fiche récapitulative</a>
+        <a role="button" class="btn btn-primary" href="{% url 'visualImpactSAV:generatePdfClientCostEstimate' pkSAVFile %}">Devis</a>
         {% if sav_file.furnisher is not None %}
-            <a role="button" class="btn btn-primary" href="{% url 'visualImpactSAV:generatePdfFurnisher' pkSAVFile %}">Générer la fiche de renvoi au fournisseur</a>
+            <a role="button" class="btn btn-primary" href="{% url 'visualImpactSAV:generatePdfFurnisher' pkSAVFile %}">Renvoi fournisseur</a>
         {% else %}
-            <a role="button" class="btn-disabled" href="#">Pas de fournisseur pour ce fichier : impossible d'envoyer un devis</a>
+            <p>Pas de fournisseur : impossible d'envoyer une fiche de renvoi<p>
         {% endif %}
     </div>
     <div class="col-md-12 update-sav-file-button">
