@@ -11,6 +11,7 @@ from django.urls import reverse
 from django.conf import settings
 from django.utils.translation import ugettext_lazy as _
 from django.contrib.auth import get_user_model
+from django.db.models import PROTECT
 
 class SAV_file_status(models.Model):
     libelle = models.CharField(max_length = 50)
@@ -57,7 +58,7 @@ class SAV_file(models.Model):
     guarantee = models.CharField(max_length = 100, default = "Sur garantie")
     out_of_order_reason = models.TextField()
     client_bill = models.FileField(blank = True)
-    furnisher = models.ForeignKey(Furnisher, null = True)
+    furnisher = models.ForeignKey(Furnisher, null = True, on_delete = PROTECT)
 
     registred_by = models.ForeignKey(get_user_model(), default = 1)
 

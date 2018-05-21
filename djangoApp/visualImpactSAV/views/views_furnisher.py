@@ -10,6 +10,7 @@ from django.template.loader import render_to_string
 from django.urls import reverse_lazy
 from django.views.generic import DetailView, ListView
 from django.views.generic.edit import CreateView, DeleteView
+from django.db.models import ProtectedError
 
 # models part
 from visualImpactSAV.models import Furnisher
@@ -65,8 +66,16 @@ class FurnisherDeleteView(DeleteView):
 
         return context
 
+    def delete(self, request, *args, **kwargs):
+        try:
+            return super(FurnisherDeleteView, self).delete(request, *args, **kwargs)
+        except ProtectedError:            
+            url = "{0}".format(self.request.META.get('HTTP_REFERER', '/'))
+            return HttpResponse(render(request, 'djangoApp/errors/nonValideSAVFile.html', {'errors': 'Un de vos dossiers possède ce fournisseur comme référence', 'url': url })) 
+
+
     def get_success_url(self, *args, **kwargs): 
-        return reverse_lazy(self.url_to_redirect, kwargs={}) 
+        return reverse_lazy(self.url_to_redirect, kwargs={})
 
 DEFAULT_PAGINATION_BY = 40
 
