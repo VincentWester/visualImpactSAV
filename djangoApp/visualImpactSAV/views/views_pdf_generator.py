@@ -23,8 +23,7 @@ from reportlab.lib.units import inch
 # models part
 from visualImpactSAV.models import Designation, SAV_file
 
-def generate_pdf_name(sav_file):    
-    filename = 'devis-client-'
+def generate_pdf_name(sav_file, filename):    
     if not sav_file.society_client == '':
         filename = '{0}__{1}{2}'.format(filename, sav_file.society_client.replace(' ', '_'), '.pdf')
     else:
@@ -62,7 +61,7 @@ def generate_pdf_name(sav_file):
 def generate_pdf_client_cost_estimate(request, pkSAVFile):
     # Create the HttpResponse object with the appropriate PDF headers.
     sav_file = get_object_or_404(SAV_file, id = pkSAVFile)
-    filename = generate_pdf_name(sav_file)
+    filename = generate_pdf_name(sav_file, 'devis-client-')
 
     response = HttpResponse(content_type='application/pdf')
     response['Content-Disposition'] = 'attachment; filename="{0}"'.format(filename)
@@ -86,7 +85,7 @@ def generate_pdf_client_cost_estimate(request, pkSAVFile):
 def generate_pdf_furnisher(request, pkSAVFile):
     # Create the HttpResponse object with the appropriate PDF headers.
     sav_file = get_object_or_404(SAV_file, id = pkSAVFile)
-    filename = generate_pdf_name(sav_file)
+    filename = generate_pdf_name(sav_file, 'réparation-')
 
     response = HttpResponse(content_type='application/pdf')
     response['Content-Disposition'] = 'attachment; filename="{0}"'.format(filename)
@@ -110,7 +109,7 @@ def generate_pdf_furnisher(request, pkSAVFile):
 def generate_pdf_client(request, pkSAVFile):
     # Create the HttpResponse object with the appropriate PDF headers.
     sav_file = get_object_or_404(SAV_file, id = pkSAVFile)
-    filename = generate_pdf_name(sav_file)
+    filename = generate_pdf_name(sav_file, 'récapitulatif-')
 
     response = HttpResponse(content_type='application/pdf')
     response['Content-Disposition'] = 'attachment; filename="{0}"'.format(filename)

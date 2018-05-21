@@ -20,7 +20,7 @@
                 <select id="id_sav_file_status" name="sav_file_status">
                     <option value="">  ----  </option>
                     {% for st in sav_file_status %}
-                        <option value="{{ st.id }}">{{ st }}</option>
+                        <option value="{{ st.id }}">{{ st.libelle }}</option>
                     {% endfor %}
                 </select>
             </div>
