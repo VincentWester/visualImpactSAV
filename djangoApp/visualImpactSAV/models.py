@@ -24,7 +24,7 @@ DEFAULT_SAV_FILE_STATUS_ID = 1
 
 class Guarantee(models.Model):
     mark = models.CharField(max_length = 200, default = "")
-    complements = models.CharField(max_length = 200, default = "")
+    complements = models.CharField(max_length = 200, default = "", blank = True)
     guarantee_time = models.CharField(max_length = 20, default = "")
     procedure = models.TextField()    
 
