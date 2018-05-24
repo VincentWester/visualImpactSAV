@@ -12,11 +12,19 @@ pip install virtualenvwrapper
 
 export WORKON_HOME=~/.virtualenvs
 mkdir -p $WORKON_HOME
-source ~/.local/bin/virtualenvwrapper.sh
+
+filepath="~/.local/bin/virtualenvwrapper.sh"
+
+if ! [ -f "$filepath" ] 
+then
+    filepath="/usr/local/bin/virtualenvwrapper.sh"
+fi
+
+source $filepath
 
 echo "" >> ~/.bashrc
 echo "export WORKON_HOME=~/.virtualenvs" >> ~/.bashrc
-echo "~/.local/bin/virtualenvwrapper.sh" >> ~/.bashrc
+echo "$filepath" >> ~/.bashrc
 
 mkvirtualenv visualImpactSAV
 
