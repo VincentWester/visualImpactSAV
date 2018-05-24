@@ -6,7 +6,7 @@ sudo apt install postgresql postgresql-contrib
 #A partir de cette ligne, veuillez créer un user mot de passe et une database dont 
 #vous reporterez les valeurs dans le fichiers settings.py de l'application.
 
-sudo apt install virtualenv
+sudo apt install python-virtualenv
 
 pip install virtualenvwrapper
 
