@@ -191,7 +191,7 @@ def build_pdf_client_cost_estimate(request, sav_file, p):
 
     p.setFont("Helvetica", 10)
 
-    p.drawString(4.5*inch, 8.8*inch, "Visual Studio")
+    p.drawString(4.5*inch, 8.8*inch, "Visual Impact France")
     p.drawString(4.5*inch, 8.6*inch, "74 boulevard de Reuilly")
     p.drawString(4.5*inch, 8.4*inch, "75012 - Paris")
     p.drawString(4.5*inch, 8.1*inch, sav_file.registred_by.email)
@@ -337,33 +337,20 @@ def build_pdf_furnisher(request, sav_file, p):
 
     p.setFont("Helvetica", 10)
 
-    p.drawString(4.5*inch, 8.4*inch, "Visual Studio")
+    p.drawString(4.5*inch, 8.4*inch, "Visual Impact France")
     p.drawString(4.5*inch, 8.2*inch, "74 boulevard de Reuilly")
     p.drawString(4.5*inch, 8.0*inch, "75012 - Paris")
     p.drawString(4.5*inch, 7.7*inch, sav_file.registred_by.email)
 
-    p.setFont("Helvetica-Bold", 12)
+    height = 7
 
-    p.drawString(0*inch, 7.1*inch, "Désignation")
-    p.drawString(5.8*inch, 7.1*inch, "Qté")
-    p.line(-0.5*inch,7*inch,6.7*inch,7*inch)
-
+    p.setFont("Helvetica-Bold", 12) 
+    p.drawString(2.5*inch, (height)*inch, "Description du problème")
     p.setFont("Helvetica", 10)
+    p.drawString(-0.3*inch, (height - 0.3)*inch, sav_file.out_of_order_reason)
 
-    total = Decimal(0.0)
-    height = 6.8
-    i = 1
+    height = height - 7
 
-    designations = Designation.objects.all().filter(refered_SAV_file = sav_file).order_by('quantity')
-    for designation in designations:
-        height = height - 0.2
-        p.drawString(-0.3*inch, height*inch, str(i) + "-")
-        i += 1
-        p.drawString(0*inch, height*inch, designation.designation)
-        p.drawString(5.8*inch, height*inch, str(designation.quantity))
-
-    p.setFillColorRGB(0,0,0)
-    height = height - 1.55
     p.rect(-0.5*inch, height*inch, 7.6*inch, 1.3*inch, fill=0)
     p.line(-0.5*inch, (height + 1)*inch, 7.1*inch, (height + 1)*inch)        
     p.setFont("Helvetica-Bold", 12)
@@ -434,8 +421,21 @@ def build_pdf_client(request, sav_file, p):
     p.setFont("Helvetica", 10)
     p.drawString(-0.3*inch, (height - 0.3)*inch, sav_file.out_of_order_reason)
 
-    height = height - 7.8 
+    height = height - 6.05 
     
+    p.rect(-0.5*inch, height*inch, 7.6*inch, 1.3*inch, fill=0)
+    p.line(-0.5*inch, (height + 1)*inch, 7.1*inch, (height + 1)*inch)        
+    p.setFont("Helvetica-Bold", 12)
+    p.drawString(2*inch, (height + 1.1)*inch, "Conditions de prise en charge")
+    p.setFont("Helvetica", 7)
+
+    p.drawString(-0.4*inch, (height + 0.8)*inch, "- Tout appareil remis en SAV doit être accompagné de la présente fiche de dépôt complétée datée et signée. Les pièces détachées ne sont ni reprises ni échangées.")
+    p.drawString(-0.4*inch, (height + 0.6)*inch, "- Tout devis refusé fera l’objet d’une facturation de 90€ HT.")
+    p.drawString(-0.4*inch, (height + 0.4)*inch, "- Sous réserve d’ensemble ou sous ensemble à changer en plus du montant indiqué ci-dessus qui n’auraient pas été décelés comme étant défectueux lors de l’élaboration.")
+    p.drawString(-0.4*inch, (height + 0.2)*inch, "- Attention pour les dossiers comprenant des données stockées sous forme de carte ou de cassette aucune garantie de récupération n’est accordée.")    
+
+    height = height - 1.75
+
     p.rect(-0.5*inch, height*inch, 7.6*inch, 1.3*inch, fill=0)
     p.line(-0.5*inch, (height + 1)*inch, 7.1*inch, (height + 1)*inch)        
     p.setFont("Helvetica-Bold", 12)
@@ -447,3 +447,4 @@ def build_pdf_client(request, sav_file, p):
     p.drawString(2*inch, (height + 0.4)*inch, "Tel: +33 1 42 22 02 05, Fax: +33 1 42 22 02 85, vifrance@visualsfrance.com")
     p.drawString(2*inch, (height + 0.2)*inch, "No TVA: FR72448429274, SIRET: 44842927400021, Code APE: 4643Z")    
 
+    

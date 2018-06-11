@@ -118,6 +118,12 @@
             <input id="id_client_bill" type="file" name="client_bill" />
             {{ form.client_bill.errors }}
         </div>
+        
+        <div class="col-md-12 pdf-buttons"> 
+            <label for="id_furnisher">Fournisseur :</label>  
+            {{ form.furnisher }}
+            {{ form.furnisher.errors }}
+        </div>
 
         <div class="col-md-12 block-button"> 
             <input type="submit" value="Valider">

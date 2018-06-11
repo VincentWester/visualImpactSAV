@@ -51,6 +51,7 @@ class SAVFileCreateView(LoginRequiredMixin, CreateView):
     def get_context_data(self, **kwargs):
         context = super(SAVFileCreateView, self).get_context_data(**kwargs)
         context['sav_file_status'] = SAV_file_status.objects.all()
+        context['furnishers'] = Furnisher.objects.all().order_by('mark')
 
         return context 
 
