@@ -56,9 +56,11 @@
                         {{ form.as_p }}
                         <button type="submit">Login</button>
                       </form>
-                    <!--<a href="{% url 'signup' %}" class="col-md-12">S'inscrire</a>-->
+                    <a data-toggle="modal" data-target="#modalInscription" href="{% url 'signup' %}">S'inscrire</a>
                 </div>
             {% endif %}
         </div>  
+
+         <div class="modal" id="modalInscription"></div>
     </body>
 </html>

@@ -17,7 +17,7 @@ class SignUpForm(UserCreationForm):
         self.fields['username'].label = _('Nom d\'utilisateur')
         self.fields['password1'].help_text = _('Obligatoire. Veuillez indiquer votre mot de passe.')
         self.fields['password1'].label = _('Mot de passe')
-        self.fields['password2'].help_text = _('Obligatoire. Vérification du mot de passe : retapez votre mot de passe.')
+        self.fields['password2'].help_text = _('Obligatoire. Verification du mot de passe : retapez votre mot de passe.')
         self.fields['password2'].label = _('Confirmation')
 
     class Meta:
@@ -26,16 +26,16 @@ class SignUpForm(UserCreationForm):
 
         error_messages = {
             'username': {
-                'required': _("Un nom d'utilisateur doit etre renseigné."),
+                'required': _("Un nom d'utilisateur doit etre renseigne."),
             },
             'email': {
-                'required': _("Un email doit etre renseigné."),
+                'required': _("Un email doit etre renseigne."),
             },
             'password1': {
-                'required': _("Un mot de passe doit etre renseigné."),
+                'required': _("Un mot de passe doit etre renseigne."),
             },
             'password2': {
-                'required': _("Le mot de passe n'a pas ete recopié."),
+                'required': _("Le mot de passe n'a pas ete recopie."),
             },
         }
 
