@@ -61,7 +61,7 @@ def generate_pdf_name(sav_file, filename):
 def generate_pdf_client_cost_estimate(request, pkSAVFile):
     # Create the HttpResponse object with the appropriate PDF headers.
     sav_file = get_object_or_404(SAV_file, id = pkSAVFile)
-    filename = generate_pdf_name(sav_file, 'devis-client-')
+    filename = generate_pdf_name(sav_file, 'devis-client')
 
     response = HttpResponse(content_type='application/pdf')
     response['Content-Disposition'] = 'attachment; filename="{0}"'.format(filename)
@@ -85,7 +85,7 @@ def generate_pdf_client_cost_estimate(request, pkSAVFile):
 def generate_pdf_furnisher(request, pkSAVFile):
     # Create the HttpResponse object with the appropriate PDF headers.
     sav_file = get_object_or_404(SAV_file, id = pkSAVFile)
-    filename = generate_pdf_name(sav_file, 'réparation-')
+    filename = generate_pdf_name(sav_file, 'réparation')
 
     response = HttpResponse(content_type='application/pdf')
     response['Content-Disposition'] = 'attachment; filename="{0}"'.format(filename)
@@ -109,7 +109,7 @@ def generate_pdf_furnisher(request, pkSAVFile):
 def generate_pdf_client(request, pkSAVFile):
     # Create the HttpResponse object with the appropriate PDF headers.
     sav_file = get_object_or_404(SAV_file, id = pkSAVFile)
-    filename = generate_pdf_name(sav_file, 'récapitulatif-')
+    filename = generate_pdf_name(sav_file, 'récapitulatif')
 
     response = HttpResponse(content_type='application/pdf')
     response['Content-Disposition'] = 'attachment; filename="{0}"'.format(filename)
@@ -147,15 +147,14 @@ def build_header(request, p, title):
     p.setFont("Helvetica-Bold", 20)
     p.drawString(3*inch, 10.2*inch, title)
 
-
 def build_pdf_client_cost_estimate(request, sav_file, p):
     p.setFont("Helvetica", 12)
     p.drawString(-0.5*inch, 9.6*inch, "Réference du fichier SAV : VIF-SAV-" + str(sav_file.id))
-    p.rect(-0.5*inch, 8*inch, 2.4*inch, 1.3*inch, fill=0)
+    #p.rect(-0.5*inch, 8*inch, 2.4*inch, 1.3*inch, fill=0)
 
     p.setFont("Helvetica-Bold", 12)
     p.drawString(-0.3*inch, 9.1*inch, "Adresse de facturation")
-    p.line(-0.5*inch,9*inch,1.9*inch,9*inch)
+    #p.line(-0.5*inch,9*inch,1.9*inch,9*inch)
 
     p.setFont("Helvetica", 10)
     global_name_client = sav_file.name_client
@@ -165,48 +164,62 @@ def build_pdf_client_cost_estimate(request, sav_file, p):
     p.drawString(-0.3*inch, 8.8*inch, global_name_client)
     p.drawString(-0.3*inch, 8.6*inch, sav_file.street_client)
     p.drawString(-0.3*inch, 8.4*inch, sav_file.zipcode_client + " - " + sav_file.city_client)
-    p.drawString(-0.3*inch, 8.1*inch, sav_file.email_client)
+    p.drawString(-0.3*inch, 8.2*inch, sav_file.email_client)
 
-
-    p.rect(1.9*inch, 8*inch, 2.4*inch, 1.3*inch, fill=0)
+    #p.rect(4.3*inch, 8*inch, 2.4*inch, 1.3*inch, fill=0)
     p.setFont("Helvetica-Bold", 12)
 
-    p.drawString(2.1*inch, 9.1*inch, "Référence du produit")
-    p.line(1.9*inch,9*inch,4.3*inch,9*inch)
+    p.drawString(4.5*inch, 7.8*inch, "Dossier suivi par : " + sav_file.registred_by.username)
+    #p.line(4.3*inch,9*inch,6.7*inch,9*inch)
 
     p.setFont("Helvetica", 10)
 
-    p.drawString(2.1*inch, 8.8*inch, "Marque : " + sav_file.mark_product)
-    p.drawString(2.1*inch, 8.6*inch, "Modèle : " + sav_file.name_product)
-    p.drawString(2.1*inch, 8.4*inch, "N° série : " + sav_file.serial_number_product)
+    p.drawString(4.5*inch, 7.5*inch, "Visual Impact France")
+    p.drawString(4.5*inch, 7.3*inch, "74 boulevard de Reuilly")
+    p.drawString(4.5*inch, 7.1*inch, "75012 - Paris")
+    p.drawString(4.5*inch, 6.8*inch, sav_file.registred_by.email)
+
+
+    p.rect(-0.5*inch, 5.9*inch, 7.2*inch, 0.8*inch, fill=0)
+    p.setFont("Helvetica-Bold", 12)
+
+    p.drawString(2.1*inch, 6.5*inch, "Référence du produit")
+    p.line(-0.5*inch, 6.4*inch, 6.7*inch, 6.4*inch)
+
+    p.setFont("Helvetica-Bold", 10)
+    p.drawString(-0.3*inch, 6.2*inch, "Marque : ")
+    p.setFont("Helvetica", 10)
+    p.drawString(-0.3*inch, 6*inch, sav_file.mark_product)
+    p.setFont("Helvetica-Bold", 10)
+    p.drawString(1.5*inch, 6.2*inch, "Modèle : ")
+    p.setFont("Helvetica", 10)
+    p.drawString(1.5*inch, 6*inch, sav_file.name_product)
+    p.setFont("Helvetica-Bold", 10)
+    p.drawString(3.7*inch, 6.2*inch, "N° série : ")
+    p.setFont("Helvetica", 10)
+    p.drawString(3.7*inch, 6*inch, sav_file.serial_number_product)
+    p.setFont("Helvetica-Bold", 10)
+    p.drawString(5.5*inch, 6.2*inch, "N° suivi : ")
+    p.setFont("Helvetica", 10)
+
     if sav_file.tracking_number:     
-        p.drawString(2.1*inch, 8.1*inch, "N° suivi : " + sav_file.tracking_number)
+        p.drawString(5.5*inch, 6*inch, sav_file.tracking_number)
+    else:
+        p.drawString(5.5*inch, 6*inch,"Inconnu")
 
 
-    p.rect(4.3*inch, 8*inch, 2.4*inch, 1.3*inch, fill=0)
-    p.setFont("Helvetica", 12)
-
-    p.drawString(4.5*inch, 9.1*inch, "Dossier suivi par : " + sav_file.registred_by.username)
-    p.line(4.3*inch,9*inch,6.7*inch,9*inch)
-
-    p.setFont("Helvetica", 10)
-
-    p.drawString(4.5*inch, 8.8*inch, "Visual Impact France")
-    p.drawString(4.5*inch, 8.6*inch, "74 boulevard de Reuilly")
-    p.drawString(4.5*inch, 8.4*inch, "75012 - Paris")
-    p.drawString(4.5*inch, 8.1*inch, sav_file.registred_by.email)
 
     p.setFont("Helvetica-Bold", 12)
 
-    p.drawString(0*inch, 7.1*inch, "Désignation")
-    p.drawString(4.8*inch, 7.1*inch, "Qté")
-    p.drawString(5.8*inch, 7.1*inch, "Prix HT")
-    p.line(-0.5*inch,7*inch,6.7*inch,7*inch)
+    p.drawString(0*inch, 5.5*inch, "Désignation")
+    p.drawString(4.8*inch, 5.5*inch, "Qté")
+    p.drawString(5.8*inch, 5.5*inch, "Prix HT")
+    p.line(-0.5*inch, 5.4*inch, 6.7*inch, 5.4*inch)
 
     p.setFont("Helvetica", 10)
 
     total = Decimal(0.0)
-    height = 6.8
+    height = 5.2
     i = 1
 
     designations = Designation.objects.all().filter(refered_SAV_file = sav_file).order_by('quantity')
@@ -299,11 +312,11 @@ def build_pdf_furnisher(request, sav_file, p):
     p.setFont("Helvetica", 12)
     p.drawString(-0.5*inch, 9.6*inch, "Réference du fichier SAV : VIF-SAV-" + str(sav_file.id))
     p.drawString(-0.5*inch, 9.4*inch, "Veuillez nous indiquer cette référence dans toutes nos correspondances.")
-    p.rect(-0.5*inch, 7.6*inch, 2.4*inch, 1.3*inch, fill=0)
+    #p.rect(-0.5*inch, 7.6*inch, 2.4*inch, 1.3*inch, fill=0)
 
     p.setFont("Helvetica-Bold", 12)
     p.drawString(-0.3*inch, 8.7*inch, "Adresse du fournisseur")
-    p.line(-0.5*inch,8.6*inch,1.9*inch,8.6*inch)
+    #p.line(-0.5*inch,8.6*inch,1.9*inch,8.6*inch)
 
     p.setFont("Helvetica", 10)
     furnisher = sav_file.furnisher
@@ -311,45 +324,60 @@ def build_pdf_furnisher(request, sav_file, p):
     p.drawString(-0.3*inch, 8.4*inch, furnisher.mark)
     p.drawString(-0.3*inch, 8.2*inch, furnisher.street + ", " + furnisher.complements)
     p.drawString(-0.3*inch, 8.0*inch, furnisher.zipcode + " - " + furnisher.city)
-    p.drawString(-0.3*inch, 7.7*inch, furnisher.phone)
+    p.drawString(-0.3*inch, 7.8*inch, furnisher.phone)
 
 
-    p.rect(1.9*inch, 7.6*inch, 2.4*inch, 1.3*inch, fill=0)
     p.setFont("Helvetica-Bold", 12)
 
-    p.drawString(2.1*inch, 8.7*inch, "Référence du produit")
-    p.line(1.9*inch,8.6*inch,4.3*inch,8.6*inch)
+    p.drawString(4.5*inch, 7.5*inch, "Dossier suivi par : " + sav_file.registred_by.username)
+    #p.line(4.3*inch,9*inch,6.7*inch,9*inch)
 
     p.setFont("Helvetica", 10)
 
-    p.drawString(2.1*inch, 8.4*inch, "Marque : " + sav_file.mark_product)
-    p.drawString(2.1*inch, 8.2*inch, "Modèle : " + sav_file.name_product)
-    p.drawString(2.1*inch, 8.0*inch, "N° série : " + sav_file.serial_number_product)
+    p.drawString(4.5*inch, 7.2*inch, "Visual Impact France")
+    p.drawString(4.5*inch, 7*inch, "74 boulevard de Reuilly")
+    p.drawString(4.5*inch, 6.8*inch, "75012 - Paris")
+    p.drawString(4.5*inch, 6.6*inch, sav_file.registred_by.email)
+
+
+    p.rect(-0.5*inch, 5.8*inch, 7.2*inch, 0.8*inch, fill=0)
+    p.setFont("Helvetica-Bold", 12)
+
+    p.drawString(2.1*inch, 6.4*inch, "Référence du produit")
+    p.line(-0.5*inch, 6.3*inch, 6.7*inch, 6.4*inch)
+
+    p.setFont("Helvetica-Bold", 10)
+    p.drawString(-0.3*inch, 6.1*inch, "Marque : ")
+    p.setFont("Helvetica", 10)
+    p.drawString(-0.3*inch, 5.9*inch, sav_file.mark_product)
+    p.setFont("Helvetica-Bold", 10)
+    p.drawString(1.5*inch, 6.1*inch, "Modèle : ")
+    p.setFont("Helvetica", 10)
+    p.drawString(1.5*inch, 5.9*inch, sav_file.name_product)
+    p.setFont("Helvetica-Bold", 10)
+    p.drawString(3.7*inch, 6.1*inch, "N° série : ")
+    p.setFont("Helvetica", 10)
+    p.drawString(3.7*inch, 5.9*inch, sav_file.serial_number_product)
+    p.setFont("Helvetica-Bold", 10)
+    p.drawString(5.5*inch, 6.1*inch, "N° suivi : ")
+    p.setFont("Helvetica", 10)
+
     if sav_file.tracking_number:     
-        p.drawString(2.1*inch, 7.7*inch, "N° suivi : " + sav_file.tracking_number)
+        p.drawString(5.5*inch, 5.9*inch, sav_file.tracking_number)
+    else:
+        p.drawString(5.5*inch, 5.9*inch,"Inconnu")
 
-
-    p.rect(4.3*inch, 7.6*inch, 2.4*inch, 1.3*inch, fill=0)
-    p.setFont("Helvetica", 12)
-
-    p.drawString(4.5*inch, 8.7*inch, "Dossier suivi par : " + sav_file.registred_by.username)
-    p.line(4.3*inch,8.6*inch,6.7*inch,8.6*inch)
-
-    p.setFont("Helvetica", 10)
-
-    p.drawString(4.5*inch, 8.4*inch, "Visual Impact France")
-    p.drawString(4.5*inch, 8.2*inch, "74 boulevard de Reuilly")
-    p.drawString(4.5*inch, 8.0*inch, "75012 - Paris")
-    p.drawString(4.5*inch, 7.7*inch, sav_file.registred_by.email)
-
-    height = 7
+    height = 5.4
 
     p.setFont("Helvetica-Bold", 12) 
     p.drawString(2.5*inch, (height)*inch, "Description du problème")
     p.setFont("Helvetica", 10)
-    p.drawString(-0.3*inch, (height - 0.3)*inch, sav_file.out_of_order_reason)
+    lines = sav_file.out_of_order_reason.split('\n')
+    for line in lines:
+        height = height - 0.3
+        p.drawString(-0.3*inch, height*inch, line)
 
-    height = height - 7
+    height = -0.5
 
     p.rect(-0.5*inch, height*inch, 7.6*inch, 1.3*inch, fill=0)
     p.line(-0.5*inch, (height + 1)*inch, 7.1*inch, (height + 1)*inch)        
@@ -379,9 +407,9 @@ def build_pdf_client(request, sav_file, p):
     p.drawString(0.8*inch, (height - 0.3)*inch, sav_file.name_client)
     height = height - 1.8 
 
-    p.rect(-0.5*inch, height*inch, 7.6*inch, 1.3*inch, fill=0)
-    p.line(-0.5*inch, (height + 1)*inch, 7.1*inch, (height + 1)*inch)    
-    p.line(3.5*inch, height*inch, 3.5*inch, (height + 1.3)*inch)       
+    #p.rect(-0.5*inch, height*inch, 7.6*inch, 1.3*inch, fill=0)
+    #p.line(-0.5*inch, (height + 1)*inch, 7.1*inch, (height + 1)*inch)    
+    #p.line(3.5*inch, height*inch, 3.5*inch, (height + 1.3)*inch)       
     p.setFont("Helvetica-Bold", 12) 
     p.drawString(0.5*inch, (height + 1.1)*inch, "Adresse de facturation")
     p.drawString(4.5*inch, (height + 1.1)*inch, "Référence du produit")
@@ -419,7 +447,10 @@ def build_pdf_client(request, sav_file, p):
     p.setFont("Helvetica-Bold", 12) 
     p.drawString(2.5*inch, (height)*inch, "Description du problème")
     p.setFont("Helvetica", 10)
-    p.drawString(-0.3*inch, (height - 0.3)*inch, sav_file.out_of_order_reason)
+    lines = sav_file.out_of_order_reason.split('\n')
+    for line in lines:
+        height = height - 0.3
+        p.drawString(-0.3*inch, height*inch, line)
 
     height = height - 6.05 
     
