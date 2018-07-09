@@ -124,13 +124,13 @@ class SAVFileListView(LoginRequiredMixin, ListView):
     """
     def get_queryset(self):
         file_reference = self.request.GET.get('file_reference')
-        tracking_number = self.request.GET.get('status')
+        rma_number = self.request.GET.get('status')
         client_name = self.request.GET.get('client_name')
         client_society = self.request.GET.get('client_society')
         product_name = self.request.GET.get('product_name')
         product_mark = self.request.GET.get('product_mark')
         product_serial_number = self.request.GET.get('product_serial_number')
-        tracking_number = self.request.GET.get('tracking_number')
+        rma_number = self.request.GET.get('rma_number')
         sav_file_status = self.request.GET.get('sav_file_status')
         results = SAV_file.objects.all()
         
@@ -152,8 +152,8 @@ class SAVFileListView(LoginRequiredMixin, ListView):
         if product_serial_number:
             results = results.filter(serial_number_product__icontains = product_serial_number)
 
-        if tracking_number:
-            results = results.filter(tracking_number__icontains = tracking_number)
+        if rma_number:
+            results = results.filter(rma_number__icontains = rma_number)
 
         if sav_file_status:
             results = results.filter(sav_file_status = sav_file_status)

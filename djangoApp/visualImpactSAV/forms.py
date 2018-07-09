@@ -82,6 +82,10 @@ class SAV_fileForm(ModelForm):
             'serial_number_product': {
                 'required': _("Le numéro de serie du produit doit etre renseigné."),
             },
+            'rma_number': {
+                'required': _("Le statut de garantie du produit doit etre renseigné."),
+            },
+
             'guarantee': {
                 'required': _("Le statut de garantie du produit doit etre renseigné."),
             },

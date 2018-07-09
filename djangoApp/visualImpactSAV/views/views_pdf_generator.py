@@ -138,11 +138,11 @@ class Pdf_generator_client(Pdf_generator):
         p.drawString(3.7*inch, (height + 0.4)*inch, "N° série : ")
         p.setFont("Helvetica", 10)
         p.drawString(4.5*inch, (height + 0.4)*inch, sav_file.serial_number_product)
-        if sav_file.tracking_number:     
+        if sav_file.rma_number:     
             p.setFont("Helvetica-Bold", 10)
             p.drawString(3.7*inch, (height + 0.2)*inch, "N° suivi : ")
             p.setFont("Helvetica", 10)
-            p.drawString(4.5*inch, (height + 0.2)*inch, sav_file.tracking_number)
+            p.drawString(4.5*inch, (height + 0.2)*inch, sav_file.rma_number)
 
         height = height - 0.3 
         
@@ -220,8 +220,8 @@ class Pdf_generator_cost_estimate(Pdf_generator):
         p.drawString(5.5*inch, 6.2*inch, "N° suivi : ")
         p.setFont("Helvetica", 10)
 
-        if sav_file.tracking_number:     
-            p.drawString(5.5*inch, 6*inch, sav_file.tracking_number)
+        if sav_file.rma_number:     
+            p.drawString(5.5*inch, 6*inch, sav_file.rma_number)
         else:
             p.drawString(5.5*inch, 6*inch,"Inconnu")
 
@@ -380,8 +380,8 @@ class Pdf_generator_furnisher(Pdf_generator):
         p.drawString(5.5*inch, 6.1*inch, "N° suivi : ")
         p.setFont("Helvetica", 10)
 
-        if sav_file.tracking_number:     
-            p.drawString(5.5*inch, 5.9*inch, sav_file.tracking_number)
+        if sav_file.rma_number:     
+            p.drawString(5.5*inch, 5.9*inch, sav_file.rma_number)
         else:
             p.drawString(5.5*inch, 5.9*inch,"Inconnu")
 
