@@ -114,7 +114,7 @@ class Pdf_generator_client(Pdf_generator):
 
         p.setFont("Helvetica-Bold", 12) 
         p.drawString(0.5*inch, (height + 1.1)*inch, "Adresse de facturation")
-        p.drawString(4.5*inch, (height + 1.1)*inch, "Référence du produit")
+        p.drawString(4.5*inch, (height + 0)*inch, "Référence du produit")
 
         global_name_client = sav_file.name_client
         if sav_file.society_client:            
@@ -127,24 +127,23 @@ class Pdf_generator_client(Pdf_generator):
         p.drawString(-0.3*inch, (height + 0.2)*inch, sav_file.email_client)
 
         p.setFont("Helvetica-Bold", 10)
-        p.drawString(3.7*inch, (height + 0.8)*inch, "Marque : ")
+        p.drawString(3.7*inch, (height - 0.3)*inch, "Marque : ")
         p.setFont("Helvetica", 10)
-        p.drawString(4.5*inch, (height + 0.8)*inch, sav_file.mark_product)
+        p.drawString(4.5*inch, (height - 0.3)*inch, sav_file.mark_product)
         p.setFont("Helvetica-Bold", 10)
-        p.drawString(3.7*inch, (height + 0.6)*inch, "Modèle : ")
+        p.drawString(3.7*inch, (height - 0.5)*inch, "Modèle : ")
         p.setFont("Helvetica", 10)
-        p.drawString(4.5*inch, (height + 0.6)*inch, sav_file.name_product)
+        p.drawString(4.5*inch, (height - 0.5)*inch, sav_file.name_product)
         p.setFont("Helvetica-Bold", 10)
-        p.drawString(3.7*inch, (height + 0.4)*inch, "N° série : ")
+        p.drawString(3.7*inch, (height - 0.7)*inch, "N° série : ")
         p.setFont("Helvetica", 10)
-        p.drawString(4.5*inch, (height + 0.4)*inch, sav_file.serial_number_product)
-        if sav_file.rma_number:     
-            p.setFont("Helvetica-Bold", 10)
-            p.drawString(3.7*inch, (height + 0.2)*inch, "N° suivi : ")
-            p.setFont("Helvetica", 10)
-            p.drawString(4.5*inch, (height + 0.2)*inch, sav_file.rma_number)
+        p.drawString(4.5*inch, (height - 0.7)*inch, sav_file.serial_number_product)
+        p.setFont("Helvetica-Bold", 10)
+        p.drawString(3.7*inch, (height - 0.9)*inch, "N° RMA : ")
+        p.setFont("Helvetica", 10)
+        p.drawString(4.5*inch, (height - 0.9)*inch, sav_file.rma_number)
 
-        height = height - 0.3 
+        height = height - 1.3 
         
         self.draw_description_part(height, p)
 
