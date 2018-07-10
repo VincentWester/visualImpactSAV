@@ -1,16 +1,16 @@
 .opened {
-    background-color: orange;
+    background-color: #90EE90;
 }
 
 .closed {
-    background-color: #32CD32;
+    background-color: #FFD700;
 }
 
 .waiting {
-    background-color: #98FB98;
+    background-color: #6495ED;
 }
 
 .problem {
-    background-color: #FF6347;
+    background-color: orange;
 }
 
