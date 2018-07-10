@@ -187,6 +187,7 @@
     <div class="col-md-12 pdf-buttons">
         <a role="button" class="btn btn-primary" href="{% url 'visualImpactSAV:generatePdfClient' pkSAVFile %}">Fiche récapitulative</a>
         <a role="button" class="btn btn-primary" href="{% url 'visualImpactSAV:generatePdfClientCostEstimate' pkSAVFile %}">Devis</a>
+        <a role="button" class="btn btn-primary" href="{% url 'visualImpactSAV:generatePdfReparation' pkSAVFile %}">Retour client</a>
         {% if sav_file.furnisher is not None %}
             <a role="button" class="btn btn-primary" href="{% url 'visualImpactSAV:generatePdfFurnisher' pkSAVFile %}">Renvoi fournisseur</a>
         {% else %}

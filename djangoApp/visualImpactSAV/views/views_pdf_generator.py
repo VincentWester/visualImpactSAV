@@ -97,26 +97,30 @@ class Pdf_generator_client(Pdf_generator):
         height = 9.5
 
         sav_file = self.sav_file
+        global_name_client = sav_file.name_client
 
         p.setFont("Helvetica-Bold", 12)
         p.drawString(-0.5*inch, height*inch, "Référence : ")
         p.setFont("Helvetica", 12)
         p.drawString(0.5*inch, height*inch, "VIF-SAV-" + str(sav_file.id))
         p.setFont("Helvetica-Bold", 12)
-        p.drawString(3.7*inch, height*inch, "Suivi par : ")
+        p.drawString(3.7*inch, height*inch, "Crée le : ")
         p.setFont("Helvetica", 12)
-        p.drawString(4.7*inch, height*inch, sav_file.registred_by.username)
+        p.drawString(5*inch, height*inch, sav_file.creation_date.strftime("%d/%m/%Y %H:%M"))
         p.setFont("Helvetica-Bold", 12)
-        p.drawString(-0.5*inch, (height - 0.3)*inch, "Nom du client : ")
+        p.drawString(-0.5*inch, (height - 0.3)*inch, "Suivi par : ")
         p.setFont("Helvetica", 12)
-        p.drawString(0.8*inch, (height - 0.3)*inch, sav_file.name_client)
+        p.drawString(0.5*inch, (height - 0.3)*inch, sav_file.registred_by.username)
+        p.setFont("Helvetica-Bold", 12)
+        p.drawString(3.7*inch, (height - 0.3)*inch, "Nom du client : ")
+        p.setFont("Helvetica", 12)
+        p.drawString(5*inch, (height - 0.3)*inch, global_name_client)
         height = height - 1.8  
 
         p.setFont("Helvetica-Bold", 12) 
         p.drawString(0.5*inch, (height + 1.1)*inch, "Adresse de facturation")
         p.drawString(4.5*inch, (height + 0)*inch, "Référence du produit")
 
-        global_name_client = sav_file.name_client
         if sav_file.society_client:            
             global_name_client = sav_file.society_client + " - " + global_name_client 
 
@@ -395,3 +399,65 @@ class Pdf_generator_furnisher(Pdf_generator):
         lines.append("No TVA: FR72448429274, SIRET: 44842927400021, Code APE: 4643Z")
         self.draw_table_one_column(-0.7, 7.6, 2, 2, "Informations complémentaires", lines, p)     
         
+class Pdf_answer_reparation(Pdf_generator): 
+    def __init__(self):
+        super(Pdf_answer_reparation, self).__init__('retour_client', 'Retour réparation')
+
+    def build_pdf(self, p):
+        height = 9.5
+
+        sav_file = self.sav_file
+
+        p.setFont("Helvetica-Bold", 12)
+        p.drawString(-0.5*inch, height*inch, "Référence : ")
+        p.setFont("Helvetica", 12)
+        p.drawString(0.5*inch, height*inch, "VIF-SAV-" + str(sav_file.id))
+        p.setFont("Helvetica-Bold", 12)
+        p.drawString(3.7*inch, height*inch, "Suivi par : ")
+        p.setFont("Helvetica", 12)
+        p.drawString(4.7*inch, height*inch, sav_file.registred_by.username)
+        p.setFont("Helvetica-Bold", 12)
+        p.drawString(-0.5*inch, (height - 0.3)*inch, "Nom du client : ")
+        p.setFont("Helvetica", 12)
+        p.drawString(0.8*inch, (height - 0.3)*inch, sav_file.name_client)
+        height = height - 1.8  
+
+        p.setFont("Helvetica-Bold", 12) 
+        p.drawString(0.5*inch, (height + 1.1)*inch, "Adresse de facturation")
+        p.drawString(4.5*inch, (height + 0)*inch, "Référence du produit")
+
+        global_name_client = sav_file.name_client
+        if sav_file.society_client:            
+            global_name_client = sav_file.society_client + " - " + global_name_client 
+
+        p.setFont("Helvetica", 10)
+        p.drawString(-0.3*inch, (height + 0.8)*inch, global_name_client)
+        p.drawString(-0.3*inch, (height + 0.6)*inch, sav_file.street_client)
+        p.drawString(-0.3*inch, (height + 0.4)*inch, sav_file.zipcode_client + " - " + sav_file.city_client)
+        p.drawString(-0.3*inch, (height + 0.2)*inch, sav_file.email_client)
+
+        p.setFont("Helvetica-Bold", 10)
+        p.drawString(3.7*inch, (height - 0.3)*inch, "Marque : ")
+        p.setFont("Helvetica", 10)
+        p.drawString(4.5*inch, (height - 0.3)*inch, sav_file.mark_product)
+        p.setFont("Helvetica-Bold", 10)
+        p.drawString(3.7*inch, (height - 0.5)*inch, "Modèle : ")
+        p.setFont("Helvetica", 10)
+        p.drawString(4.5*inch, (height - 0.5)*inch, sav_file.name_product)
+        p.setFont("Helvetica-Bold", 10)
+        p.drawString(3.7*inch, (height - 0.7)*inch, "N° série : ")
+        p.setFont("Helvetica", 10)
+        p.drawString(4.5*inch, (height - 0.7)*inch, sav_file.serial_number_product)
+        p.setFont("Helvetica-Bold", 10)
+        p.drawString(3.7*inch, (height - 0.9)*inch, "N° RMA : ")
+        p.setFont("Helvetica", 10)
+        p.drawString(4.5*inch, (height - 0.9)*inch, sav_file.rma_number)
+
+        height = 5.4
+
+        lines = []
+        lines.append("Visual Impact France SAS au capital de 300000.00 euros")
+        lines.append("74 Boulevard de Reuilly, 75012 Paris, France")
+        lines.append("Tel: +33 1 42 22 02 05, Fax: +33 1 42 22 02 85, vifrance@visualsfrance.com")
+        lines.append("No TVA: FR72448429274, SIRET: 44842927400021, Code APE: 4643Z")
+        self.draw_table_one_column(-0.7, 7.6, 2, 2, "Informations complémentaires", lines, p)  

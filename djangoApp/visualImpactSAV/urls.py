@@ -7,7 +7,7 @@ from .views.views_designations import DesignationCreateView, DesignationUpdateVi
 from .views.views_guarantee import GuaranteeCreateView, GuaranteeUpdateView, GuaranteeDeleteView, GuaranteeListView
 from .views.views_furnisher import FurnisherCreateView, FurnisherUpdateView, FurnisherDeleteView, FurnisherListView
 
-from .views.views_pdf_generator import Pdf_generator_cost_estimate, Pdf_generator_client, Pdf_generator_furnisher #generate_pdf_client, generate_pdf_furnisher, generate_pdf_client_cost_estimate
+from .views.views_pdf_generator import Pdf_generator_cost_estimate, Pdf_generator_client, Pdf_generator_furnisher, Pdf_answer_reparation
 
 urlpatterns = [
     url(r'^createSAVFile/$', SAVFileCreateView.as_view(), name="createSAVFile"),
@@ -37,5 +37,6 @@ urlpatterns = [
     url(r'^generatePdfClientCostEstimate/(?P<pkSAVFile>[\w\-]+)$$', Pdf_generator_cost_estimate.as_view(), name="generatePdfClientCostEstimate"),
     url(r'^generatePdfClient/(?P<pkSAVFile>[\w\-]+)$$', Pdf_generator_client.as_view(), name="generatePdfClient"), 
     url(r'^generatePdfFurnisher/(?P<pkSAVFile>[\w\-]+)$$', Pdf_generator_furnisher.as_view(), name="generatePdfFurnisher"), 
+    url(r'^generatePdfReparation/(?P<pkSAVFile>[\w\-]+)$$', Pdf_answer_reparation.as_view(), name="generatePdfReparation"),
     #url(r'^sendPdf/(?P<pkSAVFile>[\w\-]+)$$', send_pdf, name="sendPdf"), 
 ]
