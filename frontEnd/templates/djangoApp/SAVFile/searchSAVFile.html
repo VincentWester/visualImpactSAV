@@ -92,6 +92,7 @@
     <table class="table">
         <thead>
             <tr>
+                <th>Date de création</th>
                 <th>Référence du fichier SAV</th>
                 <th>Référent</th>
                 <th>Nom du client</th>
@@ -111,6 +112,7 @@
                 {% else %}
                     <tr class="">
                 {% endif %}
+                <td>{{ file.creation_date }}</td>
                 <td>VIF-SAV-{{ file.id }}</td>
                 <td>{{ file.registred_by }}</td>
                 <td>{{ file.name_client }}</td>

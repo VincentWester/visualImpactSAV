@@ -56,38 +56,37 @@ class SAV_fileForm(ModelForm):
 
         error_messages = {
             'name_client': {
-                'required': _("Le nom du client doit etre renseigné."),
+                'required': _("Le nom du client doit etre renseigne."),
             },
             'street_client': {
-                'required': _("La rue du client doit etre renseigné."),
+                'required': _("La rue du client doit etre renseigne."),
             },
             'city_client': {
-                'required': _("La ville du client doit etre renseigné."),
+                'required': _("La ville du client doit etre renseigne."),
             },
             'zipcode_client': {
-                'required': _("Le code postal du client doit etre renseigné."),
+                'required': _("Le code postal du client doit etre renseigne."),
             },
             'phone_client': {
-                'required': _("Le téléphone du client doit etre renseigné."),
+                'required': _("Le telephone du client doit etre renseigne."),
             },
             'email_client': {
-                'required': _("L'email du client doit etre renseigné."),
+                'required': _("L'email du client doit etre renseigne."),
             },
             'name_product': {
-                'required': _("Le modèle du produit doit etre renseigné."),
+                'required': _("Le modèle du produit doit etre renseigne."),
             },
             'mark_product': {
-                'required': _("La marque du produit doit etre renseigné."),
+                'required': _("La marque du produit doit etre renseigne."),
             },
             'serial_number_product': {
-                'required': _("Le numéro de serie du produit doit etre renseigné."),
+                'required': _("Le numero de serie du produit doit etre renseigne."),
             },
             'rma_number': {
-                'required': _("Le statut de garantie du produit doit etre renseigné."),
+                'required': _("Le numero RMA doit etre renseigne."),
             },
-
             'guarantee': {
-                'required': _("Le statut de garantie du produit doit etre renseigné."),
+                'required': _("Le statut de garantie du produit doit etre renseigne."),
             },
         }
     
@@ -105,8 +104,8 @@ class DesignationForm(ModelForm):
         model = Designation
         fields = [field.name for field in model._meta.fields if not (field.name == "refered_SAV_file")]  
         labels = {
-            "designation": "Désignation",
-            "quantity": "Quantité",
+            "designation": "Designation",
+            "quantity": "Quantite",
             "price": "Prix",
         } 
 
@@ -116,9 +115,9 @@ class GuaranteeForm(ModelForm):
         fields = [field.name for field in model._meta.fields]   
         labels = {
             "mark": "Marque",
-            "complements": "Informations supplémentaires",
+            "complements": "Informations supplementaires",
             "guarantee_time": "Temps de garantie",
-            "procedure": "Procédure",
+            "procedure": "Procedure",
         }
 
 class FurnisherForm(ModelForm):
@@ -128,10 +127,10 @@ class FurnisherForm(ModelForm):
         labels = {
             "mark": "Marque",
             "street": "Rue",
-            "complements": "Compléments",
+            "complements": "Complements",
             "zipcode": "Code postal",
             "city": "Ville",
-            "phone": "Téléphone",
+            "phone": "Telephone",
             "commentary": "Commentaire",
         }
 

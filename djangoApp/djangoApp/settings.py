@@ -146,13 +146,6 @@ STATICFILES_DIRS = [
 
 STATIC_ROOT = '/var/www/visualImpactSAV.fr/static/'
 
+TIME_ZONE = 'Europe/Paris'
 
-def set_date_tzinfo(d, tz_name=None):
-    """ Date without tzinfo shoudbe utc.
-    This function set the right tz to date that aren't utc and don't have tzinfo
-    """
-    if tz_name is not None:
-        tz = pytz.timezone(tz_name)
-        return tz.localize(d)
-    else:
-        return d
+LANGUAGE_CODE = 'fr-FR'

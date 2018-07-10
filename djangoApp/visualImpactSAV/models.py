@@ -6,12 +6,14 @@ import uuid
 from datetime import datetime
 
 from django.db import models
-from django.utils import timezone
 from django.urls import reverse
 from django.conf import settings
-from django.utils.translation import ugettext_lazy as _
+from django.utils import timezone
 from django.contrib.auth import get_user_model
 from django.db.models import PROTECT
+
+
+DEFAULT_SAV_FILE_STATUS_ID = 1
 
 class SAV_file_status(models.Model):
     libelle = models.CharField(max_length = 50)
@@ -19,8 +21,6 @@ class SAV_file_status(models.Model):
 
     def __unicode__(self):
         return str(self.id) + "-" + self.libelle 
-
-DEFAULT_SAV_FILE_STATUS_ID = 1
 
 class Guarantee(models.Model):
     mark = models.CharField(max_length = 200, default = "")
@@ -41,7 +41,7 @@ class Furnisher(models.Model):
         return self.mark.encode('utf-8')
 
 class SAV_file(models.Model):
-    creation_date = models.DateTimeField(default = timezone.now)    
+    creation_date = models.DateTimeField(default = timezone.now)
     sav_file_status = models.ForeignKey(SAV_file_status, default = DEFAULT_SAV_FILE_STATUS_ID)
     society_client = models.CharField(max_length = 300, default = "", blank = True)
     name_client = models.CharField(max_length = 300, default = "")
