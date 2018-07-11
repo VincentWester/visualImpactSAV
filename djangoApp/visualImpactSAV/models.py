@@ -78,4 +78,4 @@ class Designation(models.Model):
     refered_SAV_file = models.ForeignKey(SAV_file)
     designation = models.CharField(max_length = 100, default = "")
     quantity = models.IntegerField(default = 1)
-    price = models.DecimalField(default = 0.0, max_digits = 5, decimal_places = 2)
+    price = models.DecimalField(default = 0.0, max_digits = 18, decimal_places = 2)
