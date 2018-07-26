@@ -54,7 +54,7 @@ class SAV_file(models.Model):
     name_product = models.CharField(max_length = 200, default = "")
     mark_product = models.CharField(max_length = 200, default = "")
     serial_number_product = models.CharField(max_length = 200, default = "")    
-    rma_number = models.CharField(max_length = 100, default = "")       
+    rma_number = models.CharField(max_length = 100, default = "", blank = True)       
     guarantee = models.CharField(max_length = 100, default = "Sous garantie")
     out_of_order_reason = models.TextField()
     client_bill = models.FileField(blank = True)
