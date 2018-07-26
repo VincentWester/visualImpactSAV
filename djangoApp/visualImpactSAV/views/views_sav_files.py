@@ -16,6 +16,8 @@ from visualImpactSAV.forms import SAV_fileForm
 
 from django.contrib.auth.mixins import LoginRequiredMixin
 
+import re
+
 class SAVFileDetailView(LoginRequiredMixin, DetailView):
     template_name = 'djangoApp/SAVFile/detailSAVFile.html'
     queryset = SAV_file.objects.all()
@@ -99,7 +101,7 @@ class SAVFileUpdateView(LoginRequiredMixin, UpdateView):
     def form_valid(self, form):
         return super(SAVFileUpdateView, self).form_valid(form)
 
-DEFAULT_PAGINATION_BY = 40
+DEFAULT_PAGINATION_BY = 40  
 
 class SAVFileListView(LoginRequiredMixin, ListView):
     template_name = 'djangoApp/SAVFile/searchSAVFile.html'
@@ -117,6 +119,12 @@ class SAVFileListView(LoginRequiredMixin, ListView):
 
         context['libelle_stats'] = libelle_stats
         context['nb_sav_file_status'] = results.count()
+
+        if re.match('.*/$', self.request.get_full_path()):
+            context['redirection_adresse'] = self.request.get_full_path() + '?'
+        else:
+            context['redirection_adresse'] = self.request.get_full_path() + '&'
+
         return context
 
     """
