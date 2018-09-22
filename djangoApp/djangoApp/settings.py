@@ -35,16 +35,15 @@ AUTH_USER_MODEL = 'auth.User'
 # Application definition
 
 INSTALLED_APPS = [
+    'visualImpactSAV.apps.VisualimpactsavConfig',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'djangosecure',
-    'widget_tweaks',
-    'visualImpactSAV.apps.VisualimpactsavConfig',
     'visualImpactSAV.templatetags',
+    'widget_tweaks',
 ]
 
 PASSWORD_HASHERS = [
@@ -150,5 +149,3 @@ STATIC_ROOT = '/var/www/visualImpactSAV.fr/static/'
 TIME_ZONE = 'Europe/Paris'
 
 LANGUAGE_CODE = 'fr-FR'
-
-SECURE_SSL_REDIRECT = True
