@@ -20,13 +20,13 @@ from .views_template_parameters_sav_files import ParameterUpdateView, ParameterD
 
 class GuaranteeCreateView(CreateView):
     model = Guarantee
-    form_class = GuaranteeForm 
-    template_name = 'djangoApp/Guarantee/createGuarantee.html'    
+    form_class = GuaranteeForm
+    template_name = 'djangoApp/Guarantee/createGuarantee.html'
 
     def form_invalid(self, form):
         url = "{0}".format(self.request.META.get('HTTP_REFERER', '/'))
         return HttpResponse(render_to_string('djangoApp/errors/nonValideSAVFile.html', {'errors': form.errors, 'url': url }))
-        
+
     """
     Check if the form is valid and save the object.
     """
@@ -65,8 +65,8 @@ class GuaranteeDeleteView(DeleteView):
 
         return context
 
-    def get_success_url(self, *args, **kwargs): 
-        return reverse_lazy(self.url_to_redirect, kwargs={}) 
+    def get_success_url(self, *args, **kwargs):
+        return reverse_lazy(self.url_to_redirect, kwargs={})
 
 DEFAULT_PAGINATION_BY = 40
 
