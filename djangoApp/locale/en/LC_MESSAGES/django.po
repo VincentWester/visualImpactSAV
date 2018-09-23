@@ -1,0 +1,83 @@
+#: djangoApp/settings.py:126
+msgid "English"
+msgstr ""
+
+#: djangoApp/settings.py:127
+msgid "French"
+msgstr ""
+
+#: visualImpactSAV/forms.py:11
+msgid "Required. Write a valide email."
+msgstr ""
+
+#: visualImpactSAV/forms.py:15
+msgid "Required. Write a username."
+msgstr ""
+
+#: visualImpactSAV/forms.py:16
+msgid "Required. Choose a password."
+msgstr ""
+
+#: visualImpactSAV/forms.py:17
+msgid "Required. Password checking : copy your password."
+msgstr ""
+
+#: visualImpactSAV/forms.py:25
+msgid "The username attribute should be filled"
+msgstr ""
+
+#: visualImpactSAV/forms.py:28
+msgid "The email attribute should be filled"
+msgstr ""
+
+#: visualImpactSAV/forms.py:31
+msgid "The password attribute should be filled"
+msgstr ""
+
+#: visualImpactSAV/forms.py:34
+msgid "The password haven't been well copied"
+msgstr ""
+
+#: visualImpactSAV/forms.py:55
+msgid "The customer name attribute should be filled"
+msgstr ""
+
+#: visualImpactSAV/forms.py:58
+msgid "The customer street attribute should be filled"
+msgstr ""
+
+#: visualImpactSAV/forms.py:61
+msgid "The customer city attribute should be filled"
+msgstr ""
+
+#: visualImpactSAV/forms.py:64
+msgid "The customer zipcode attribute should be filled"
+msgstr ""
+
+#: visualImpactSAV/forms.py:67
+msgid "The customer phone attribute should be filled"
+msgstr ""
+
+#: visualImpactSAV/forms.py:70
+msgid "The customer email attribute should be filled"
+msgstr ""
+
+#: visualImpactSAV/forms.py:73
+msgid "The product's model attribute should be filled"
+msgstr ""
+
+#: visualImpactSAV/forms.py:76
+msgid "The product's brand attribute should be filled"
+msgstr ""
+
+#: visualImpactSAV/forms.py:79
+msgid "The product's serial number attribute should be filled"
+msgstr ""
+
+#: visualImpactSAV/forms.py:82
+msgid "The RMA number attribute should be filled"
+msgstr ""
+
+#: visualImpactSAV/forms.py:85
+msgid "The waranty's status attribute should be filled"
+msgstr ""

@@ -1,5 +1,4 @@
 # coding: utf-8
-
 from django.contrib.auth.models import User
 from django.forms import ModelForm, CharField, EmailField, PasswordInput, ValidationError, ModelChoiceField
 from .models import SAV_file, SAV_file_status, Event, Designation, Guarantee, Furnisher
@@ -9,16 +8,13 @@ from django.contrib.auth.models import User
 from django.utils.translation import ugettext_lazy as _
 
 class SignUpForm(UserCreationForm):
-    email = EmailField(max_length=254, help_text='Obligatoire. Veuillez indiquer une adresse mail valide.')    
-    
+    email = EmailField(max_length=254, help_text=_('Required. Write a valide email.'))
+
     def __init__(self, *args, **kwargs):
         super(UserCreationForm, self).__init__(*args, **kwargs)
-        self.fields['username'].help_text = _('Obligatoire. Inscrivez votre nom d\'utilisateur.')
-        self.fields['username'].label = _('Nom d\'utilisateur')
-        self.fields['password1'].help_text = _('Obligatoire. Veuillez indiquer votre mot de passe.')
-        self.fields['password1'].label = _('Mot de passe')
-        self.fields['password2'].help_text = _('Obligatoire. Verification du mot de passe : retapez votre mot de passe.')
-        self.fields['password2'].label = _('Confirmation')
+        self.fields['username'].help_text = _('Required. Write a username.')
+        self.fields['password1'].help_text = _('Required. Choose a password.')
+        self.fields['password2'].help_text = _('Required. Password checking : copy your password.')
 
     class Meta:
         model = User
@@ -26,16 +22,16 @@ class SignUpForm(UserCreationForm):
 
         error_messages = {
             'username': {
-                'required': _("Un nom d'utilisateur doit etre renseigne."),
+                'required': _("The username attribute should be filled"),
             },
             'email': {
-                'required': _("Un email doit etre renseigne."),
+                'required': _("The email attribute should be filled"),
             },
             'password1': {
-                'required': _("Un mot de passe doit etre renseigne."),
+                'required': _("The password attribute should be filled"),
             },
             'password2': {
-                'required': _("Le mot de passe n'a pas ete recopie."),
+                'required': _("The password haven't been well copied"),
             },
         }
 
@@ -52,93 +48,70 @@ class SAV_fileForm(ModelForm):
 
     class Meta:
         model = SAV_file
-        fields = [field.name for field in model._meta.fields if not (field.name == "creation_date" or field.name == "registred_by")]    
+        fields = [field.name for field in model._meta.fields if not (field.name == "creation_date" or field.name == "registred_by")]
 
         error_messages = {
             'name_client': {
-                'required': _("Le nom du client doit etre renseigne."),
+                'required': _("The customer name attribute should be filled"),
             },
             'street_client': {
-                'required': _("La rue du client doit etre renseigne."),
+                'required': _("The customer street attribute should be filled"),
             },
             'city_client': {
-                'required': _("La ville du client doit etre renseigne."),
+                'required': _("The customer city attribute should be filled"),
             },
             'zipcode_client': {
-                'required': _("Le code postal du client doit etre renseigne."),
+                'required': _("The customer zipcode attribute should be filled"),
             },
             'phone_client': {
-                'required': _("Le telephone du client doit etre renseigne."),
+                'required': _("The customer phone attribute should be filled"),
             },
             'email_client': {
-                'required': _("L'email du client doit etre renseigne."),
+                'required': _("The customer email attribute should be filled"),
             },
             'name_product': {
-                'required': _("Le modèle du produit doit etre renseigne."),
+                'required': _("The product's model attribute should be filled"),
             },
             'mark_product': {
-                'required': _("La marque du produit doit etre renseigne."),
+                'required': _("The product's brand attribute should be filled"),
             },
             'serial_number_product': {
-                'required': _("Le numero de serie du produit doit etre renseigne."),
+                'required': _("The product's serial number attribute should be filled"),
             },
             'rma_number': {
-                'required': _("Le numero RMA doit etre renseigne."),
+                'required': _("The RMA number attribute should be filled"),
             },
             'guarantee': {
-                'required': _("Le statut de garantie du produit doit etre renseigne."),
+                'required': _("The waranty's status attribute should be filled"),
             },
         }
-    
+
+
 class EventForm(ModelForm):
     class Meta:
         model = Event
         fields = [field.name for field in model._meta.fields if not (field.name == "date" or field.name == "refered_SAV_file")]
-        labels = {
-            "title": "Titre",
-            "action": "Action",
-        }
+
 
 class DesignationForm(ModelForm):
     class Meta:
         model = Designation
-        fields = [field.name for field in model._meta.fields if not (field.name == "refered_SAV_file")]  
-        labels = {
-            "designation": "Designation",
-            "quantity": "Quantite",
-            "price": "Prix",
-        } 
+        fields = [field.name for field in model._meta.fields if not (field.name == "refered_SAV_file")]
+
 
 class GuaranteeForm(ModelForm):
     class Meta:
         model = Guarantee
-        fields = [field.name for field in model._meta.fields]   
-        labels = {
-            "mark": "Marque",
-            "complements": "Informations supplementaires",
-            "guarantee_time": "Temps de garantie",
-            "procedure": "Procedure",
-        }
+        fields = [field.name for field in model._meta.fields]
+
 
 class FurnisherForm(ModelForm):
     class Meta:
         model = Furnisher
-        fields = [field.name for field in model._meta.fields] 
-        labels = {
-            "mark": "Marque",
-            "street": "Rue",
-            "complements": "Complements",
-            "zipcode": "Code postal",
-            "city": "Ville",
-            "phone": "Telephone",
-            "commentary": "Commentaire",
-        }
+        fields = [field.name for field in model._meta.fields]
+
 
 class UserForm(ModelForm):
     class Meta:
         model = User
         fields = []
-
-
-
-
