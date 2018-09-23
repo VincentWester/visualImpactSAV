@@ -1,21 +1,36 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"POT-Creation-Date: \n"
+"PO-Revision-Date: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Language: fr\n"
+"X-Generator: Poedit 2.1.1\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+"X-Poedit-SourceCharset: UTF-8\n"
+
 #: djangoApp/settings.py:126
 msgid "English"
 msgstr "Anglais"
 
 #: djangoApp/settings.py:127
 msgid "French"
-msgstr "Francais"
+msgstr "Français"
 
 #: visualImpactSAV/forms.py:11
-msgid "Required. Write a valide email."
+msgid "Required. Write a valide email"
 msgstr "Obligatoire. Veuillez taper un email valide"
 
 #: visualImpactSAV/forms.py:15
-msgid "Required. Write a username."
+msgid "Required. Write a username"
 msgstr "Obligatoire. Veuillez taper un nom d'utilisateur"
 
 #: visualImpactSAV/forms.py:16
-msgid "Required. Choose a password."
+msgid "Required. Choose a password"
 msgstr "Obligatoire. Veuillez taper un mot de passe"
 
 #: visualImpactSAV/forms.py:17
@@ -35,49 +50,231 @@ msgid "The password attribute should be filled"
 msgstr "Le champ 'mot de passe' est vide"
 
 #: visualImpactSAV/forms.py:34
+#, fuzzy
 msgid "The password haven't been well copied"
-msgstr "Le mot de passe n'a pas ete correctement recopie"
+msgstr "Le mot de passe n'a pas été correctement recopié"
 
-#: visualImpactSAV/forms.py:55
+#: visualImpactSAV/forms.py:56
 msgid "The customer name attribute should be filled"
 msgstr "Le champ 'nom du client' est vide"
 
-#: visualImpactSAV/forms.py:58
+#: visualImpactSAV/forms.py:59
 msgid "The customer street attribute should be filled"
 msgstr "Le champ 'rue du client' est vide"
 
-#: visualImpactSAV/forms.py:61
+#: visualImpactSAV/forms.py:62
 msgid "The customer city attribute should be filled"
 msgstr "Le champ 'ville du client' est vide"
 
-#: visualImpactSAV/forms.py:64
+#: visualImpactSAV/forms.py:65
 msgid "The customer zipcode attribute should be filled"
 msgstr "Le champ 'code postale du client' est vide"
 
-#: visualImpactSAV/forms.py:67
+#: visualImpactSAV/forms.py:68
 msgid "The customer phone attribute should be filled"
-msgstr "Le champ 'telephone du client' est vide"
+msgstr "Le champ 'téléphone du client' est vide"
 
-#: visualImpactSAV/forms.py:70
+#: visualImpactSAV/forms.py:71
 msgid "The customer email attribute should be filled"
 msgstr "Le champ 'email du client' est vide"
 
-#: visualImpactSAV/forms.py:73
+#: visualImpactSAV/forms.py:74
 msgid "The product's model attribute should be filled"
-msgstr "Le champ 'modele du produit' est vide"
+msgstr "Le champ 'modèle du produit' est vide"
 
-#: visualImpactSAV/forms.py:76
+#: visualImpactSAV/forms.py:77
 msgid "The product's brand attribute should be filled"
 msgstr "Le champ 'marque du produit' est vide"
 
-#: visualImpactSAV/forms.py:79
+#: visualImpactSAV/forms.py:80
 msgid "The product's serial number attribute should be filled"
-msgstr "Le champ 'numero de serie' est vide"
+msgstr "Le champ 'numéro de série' est vide"
 
-#: visualImpactSAV/forms.py:82
+#: visualImpactSAV/forms.py:83
 msgid "The RMA number attribute should be filled"
 msgstr "Le champ 'numero RMA du produit' est vide"
 
-#: visualImpactSAV/forms.py:85
+#: visualImpactSAV/forms.py:86
 msgid "The waranty's status attribute should be filled"
 msgstr "Le champ 'statut de garantie' est vide"
+
+#: visualImpactSAV/models.py:22 visualImpactSAV/models.py:23
+msgid "after sale file status"
+msgstr "Statut"
+
+#: visualImpactSAV/models.py:27 visualImpactSAV/models.py:39
+msgid "Brand"
+msgstr "Marque"
+
+#: visualImpactSAV/models.py:28 visualImpactSAV/models.py:41
+msgid "Complements"
+msgstr "Compléments"
+
+#: visualImpactSAV/models.py:29
+msgid "Waranty time"
+msgstr "Durée de garantie"
+
+#: visualImpactSAV/models.py:30
+msgid "Procedure"
+msgstr "Procédure"
+
+#: visualImpactSAV/models.py:33
+msgid "waranty"
+msgstr "garantie"
+
+#: visualImpactSAV/models.py:34
+msgid "waranties"
+msgstr "garanties"
+
+#: visualImpactSAV/models.py:40
+msgid "Street"
+msgstr "Rue"
+
+#: visualImpactSAV/models.py:42
+msgid "Zipcode"
+msgstr "Code postal"
+
+#: visualImpactSAV/models.py:43
+msgid "City"
+msgstr "Ville"
+
+#: visualImpactSAV/models.py:44
+msgid "Phone"
+msgstr "Téléphona"
+
+#: visualImpactSAV/models.py:45
+msgid "Commentary"
+msgstr "Commentaire"
+
+#: visualImpactSAV/models.py:51
+msgid "furnisher"
+msgstr "fournisseur"
+
+#: visualImpactSAV/models.py:52
+msgid "furnishers"
+msgstr "fournisseurs"
+
+#: visualImpactSAV/models.py:57
+msgid "Creation date"
+msgstr "Date de création"
+
+#: visualImpactSAV/models.py:58
+msgid "Status"
+msgstr "Statut"
+
+#: visualImpactSAV/models.py:59
+msgid "Society"
+msgstr "Société"
+
+#: visualImpactSAV/models.py:60
+msgid "Customer name"
+msgstr "Nom du client"
+
+#: visualImpactSAV/models.py:61
+msgid "Customer street"
+msgstr "Rue du client"
+
+#: visualImpactSAV/models.py:62
+msgid "Customer address complements"
+msgstr "Complément d'adresse du client"
+
+#: visualImpactSAV/models.py:63
+msgid "Customer zipcode"
+msgstr "Code postal du client"
+
+#: visualImpactSAV/models.py:64
+msgid "Customer city"
+msgstr "Ville du client"
+
+#: visualImpactSAV/models.py:65
+msgid "Customer phone"
+msgstr "Téléphone du client"
+
+#: visualImpactSAV/models.py:66
+msgid "Customer email"
+msgstr "Email du client"
+
+#: visualImpactSAV/models.py:67
+msgid "Product model"
+msgstr "Modèle du produit"
+
+#: visualImpactSAV/models.py:68
+msgid "Product brand"
+msgstr "Marque du produit"
+
+#: visualImpactSAV/models.py:69
+msgid "Product serial number"
+msgstr "Numéro de série du produit"
+
+#: visualImpactSAV/models.py:70
+msgid "Product RMA number"
+msgstr "numéro RMA"
+
+#: visualImpactSAV/models.py:71
+msgid "Waranty"
+msgstr "Garantie"
+
+#: visualImpactSAV/models.py:72
+msgid "Out of order reason"
+msgstr "Raison du défaut"
+
+#: visualImpactSAV/models.py:73
+msgid "Client bill"
+msgstr "Facture client"
+
+#: visualImpactSAV/models.py:74
+msgid "Furnisher"
+msgstr "Fournisseur"
+
+#: visualImpactSAV/models.py:76
+msgid "User"
+msgstr "Utilisateur"
+
+#: visualImpactSAV/models.py:85 visualImpactSAV/models.py:90
+#: visualImpactSAV/models.py:102
+msgid "After sale file"
+msgstr "Dossier après-vente"
+
+#: visualImpactSAV/models.py:86
+msgid "After sale files"
+msgstr "Dossiers après-vente"
+
+#: visualImpactSAV/models.py:91
+msgid "Title"
+msgstr "Titre"
+
+#: visualImpactSAV/models.py:92
+msgid "Action"
+msgstr "Action"
+
+#: visualImpactSAV/models.py:93
+msgid "Date"
+msgstr "Date"
+
+#: visualImpactSAV/models.py:96
+msgid "event"
+msgstr "évenement"
+
+#: visualImpactSAV/models.py:97
+msgid "events"
+msgstr "évenements"
+
+#: visualImpactSAV/models.py:103
+msgid "Designation"
+msgstr "Désignation"
+
+#: visualImpactSAV/models.py:104
+msgid "Quantity"
+msgstr "Quantité"
+
+#: visualImpactSAV/models.py:105
+msgid "Price"
+msgstr "Prix"
+
+#: visualImpactSAV/models.py:108
+msgid "designation"
+msgstr "désignation"
+
+#: visualImpactSAV/models.py:109
+msgid "designations"
+msgstr "désignations"
