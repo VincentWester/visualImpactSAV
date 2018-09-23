@@ -10,15 +10,18 @@ from .views_template_parameters_sav_files import ParameterCreateView, ParameterU
 from visualImpactSAV.models import Designation
 from visualImpactSAV.forms import DesignationForm
 
+
 class DesignationCreateView(ParameterCreateView):
     model = Designation
     form_class = DesignationForm
     template_name = 'djangoApp/Designation/createDesignation.html'
 
+
 class DesignationUpdateView(ParameterUpdateView):
     model = Designation
     form_class = DesignationForm
     template_name = 'djangoApp/Designation/updateDesignation.html'
+
 
 class DesignationDeleteView(ParameterDeleteView):
     model = Designation
@@ -27,7 +30,7 @@ class DesignationDeleteView(ParameterDeleteView):
     def dispatch(self, *args, **kwargs):
         self.pk = kwargs['pk']
         self.url_to_redirect = 'visualImpactSAV:updateSAVFile'
-        return super(DesignationDeleteView, self).dispatch( *args, **kwargs)
+        return super(DesignationDeleteView, self).dispatch(*args, **kwargs)
 
     def get_context_data(self, **kwargs):
         context = super(DesignationDeleteView, self).get_context_data(**kwargs)
@@ -36,6 +39,7 @@ class DesignationDeleteView(ParameterDeleteView):
         context['name_object'] = self.object.designation
 
         return context
+
 
 TAX_RATE = Decimal(1.2)
 
@@ -46,7 +50,7 @@ class DesignationListView(ListView):
 
     def dispatch(self, *args, **kwargs):
         self.pkSAVFile = kwargs['pkSAVFile']
-        return super(DesignationListView, self).dispatch( *args, **kwargs)
+        return super(DesignationListView, self).dispatch(*args, **kwargs)
 
     def get_context_data(self, **kwargs):
         context = super(DesignationListView, self).get_context_data(**kwargs)
@@ -65,5 +69,4 @@ class DesignationListView(ListView):
         return context
 
     def get_queryset(self):
-        return Designation.objects.filter(refered_SAV_file__id = self.pkSAVFile)
-
+        return Designation.objects.filter(refered_SAV_file__id=self.pkSAVFile)

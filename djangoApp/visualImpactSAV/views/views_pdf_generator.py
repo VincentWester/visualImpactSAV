@@ -1,26 +1,23 @@
 # -*- coding: utf-8 -*-
-from __future__ import unicode_literals
-
-import os, urllib, cStringIO
+import os
+import urllib
+import cStringIO
 
 from PIL import Image
 from io import BytesIO
-
 from decimal import Decimal
+from reportlab.pdfgen import canvas
+from reportlab.lib.units import inch
 
 from django.http import HttpResponse
 from django.conf import settings
 from django.views import View
-from django.shortcuts import get_object_or_404, redirect
+from django.shortcuts import get_object_or_404
 from django.template.loader import render_to_string
-from django.core.mail import EmailMessage
-from django.conf import settings
+# from django.core.mail import EmailMessage
 
-from reportlab.pdfgen import canvas
-from reportlab.lib.units import inch
-
-# models part
 from visualImpactSAV.models import Designation, SAV_file
+
 
 class Pdf_generator(View):
     def __init__(self, filename, title):
@@ -28,13 +25,21 @@ class Pdf_generator(View):
         self.title = title
 
     def build_header(self, p):
-        p.translate(inch,inch)
+        p.translate(inch, inch)
         url = os.path.join(settings.STATICFILES_DIRS[0], 'images/logoVisual.jpg')
 
         if not os.path.isfile(url):
             buffer.close()
             url_redirect = u"{% url 'visualImpactSAV:detailSAVFile' sav_file.id %}"
-            return HttpResponse(render_to_string('djangoApp/errors/missingLogo.html', {'errors': "le logo de votre entreprise n'existe plus. Veuillez contacter le service technique. ", 'url': url_redirect }))
+            return HttpResponse(
+                render_to_string(
+                    'djangoApp/errors/missingLogo.html',
+                    {
+                        'errors': "le logo de votre entreprise n'existe plus. Veuillez contacter le service technique. ",
+                        'url': url_redirect
+                    }
+                )
+            )
 
         logo = cStringIO.StringIO(urllib.urlopen(url).read())
 
@@ -67,7 +72,7 @@ class Pdf_generator(View):
             p.drawString(-0.3*inch, height*inch, line)
 
     def get(self, request, pkSAVFile):
-        self.sav_file = get_object_or_404(SAV_file, id = pkSAVFile)
+        self.sav_file = get_object_or_404(SAV_file, id=pkSAVFile)
         filename_client_part = self.sav_file.name_client.replace(' ', '_') if self.sav_file.society_client == '' else self.sav_file.society_client.replace(' ', '_')
         final_filename = '{0}__{1}{2}'.format(self.filename, filename_client_part, '.pdf')
 
@@ -88,6 +93,7 @@ class Pdf_generator(View):
 
         response.write(pdf)
         return response
+
 
 class Pdf_generator_client(Pdf_generator):
     def __init__(self):
@@ -200,7 +206,6 @@ class Pdf_generator_cost_estimate(Pdf_generator):
         p.drawString(4.5*inch, 7.1*inch, "75012 - Paris")
         p.drawString(4.5*inch, 6.8*inch, sav_file.registred_by.email)
 
-
         p.rect(-0.5*inch, 5.9*inch, 7.2*inch, 0.8*inch, fill=0)
         p.setFont("Helvetica-Bold", 12)
 
@@ -226,9 +231,7 @@ class Pdf_generator_cost_estimate(Pdf_generator):
         if sav_file.rma_number:
             p.drawString(5.5*inch, 6*inch, sav_file.rma_number)
         else:
-            p.drawString(5.5*inch, 6*inch,"Inconnu")
-
-
+            p.drawString(5.5*inch, 6*inch, "Inconnu")
 
         p.setFont("Helvetica-Bold", 12)
 
@@ -243,7 +246,7 @@ class Pdf_generator_cost_estimate(Pdf_generator):
         height = 5.2
         i = 1
 
-        designations = Designation.objects.all().filter(refered_SAV_file = sav_file).order_by('quantity')
+        designations = Designation.objects.all().filter(refered_SAV_file=sav_file).order_by('quantity')
         for designation in designations:
             height = height - 0.2
             p.drawString(-0.3*inch, height*inch, str(i) + "-")
@@ -254,7 +257,7 @@ class Pdf_generator_cost_estimate(Pdf_generator):
             total += Decimal(designation.quantity) * Decimal(designation.price)
 
         height = height - 0.2
-        p.line(4.5*inch,height*inch,6.7*inch,height*inch)
+        p.line(4.5*inch, height*inch, 6.7*inch, height*inch)
         height = height - 0.2
 
         p.setFont("Helvetica", 10)
@@ -280,13 +283,13 @@ class Pdf_generator_cost_estimate(Pdf_generator):
         height = height - 0.025
         p.setFont("Helvetica-Bold", 10)
         p.drawString(4.5*inch, height*inch, "Prix total TC : ")
-        p.setFillColorRGB(1,0,0)
+        p.setFillColorRGB(1, 0, 0)
         p.drawString(5.8*inch, height*inch, str(round(total * Decimal(1.2), 2)) + " €")
-        p.setFillColorRGB(0,0,0)
+        p.setFillColorRGB(0, 0, 0)
         height = height - 0.05
         p.rect(-0.5*inch, height*inch, 4.7*inch, 0.835*inch, fill=0)
 
-        p.setFillColorRGB(1,0,0)
+        p.setFillColorRGB(1, 0, 0)
         height = height - 0.25
         p.setFont("Helvetica-Bold", 9)
         p.drawString(-0.3*inch, height*inch, "TOUT DEVIS REFUSE FERA L'OBJET D'UNE FACTURATION D'UNE SOMME FORFAITAIRE DE 95.00€ HT")
@@ -294,7 +297,7 @@ class Pdf_generator_cost_estimate(Pdf_generator):
         p.rect(-0.5*inch, height*inch, 7.2*inch, 0.3*inch, fill=0)
         height = height - 0.225
 
-        p.setFillColorRGB(0,0,0)
+        p.setFillColorRGB(0, 0, 0)
         p.setFont("Helvetica-Bold", 7)
         p.drawString(-0.3*inch, height*inch, "Delai de livraison : ")
         p.drawString(3.3*inch, height*inch, "Moyen de paiement : ")
@@ -305,7 +308,7 @@ class Pdf_generator_cost_estimate(Pdf_generator):
         p.rect(-0.5*inch, height*inch, 3.6*inch, 0.3*inch, fill=0)
         p.rect(3.1*inch, height*inch, 3.6*inch, 0.3*inch, fill=0)
 
-        p.setFillColorRGB(0,0,0)
+        p.setFillColorRGB(0, 0, 0)
         height = height - 1.35
 
         lines = []
@@ -348,7 +351,6 @@ class Pdf_generator_furnisher(Pdf_generator):
         p.drawString(-0.3*inch, 8.0*inch, furnisher.zipcode + " - " + furnisher.city)
         p.drawString(-0.3*inch, 7.8*inch, furnisher.phone)
 
-
         p.setFont("Helvetica-Bold", 12)
 
         p.drawString(4.5*inch, 7.5*inch, "Dossier suivi par : " + sav_file.registred_by.username)
@@ -359,7 +361,6 @@ class Pdf_generator_furnisher(Pdf_generator):
         p.drawString(4.5*inch, 7*inch, "74 boulevard de Reuilly")
         p.drawString(4.5*inch, 6.8*inch, "75012 - Paris")
         p.drawString(4.5*inch, 6.6*inch, sav_file.registred_by.email)
-
 
         p.rect(-0.5*inch, 5.8*inch, 7.2*inch, 0.8*inch, fill=0)
         p.setFont("Helvetica-Bold", 12)
@@ -386,18 +387,19 @@ class Pdf_generator_furnisher(Pdf_generator):
         if sav_file.rma_number:
             p.drawString(5.5*inch, 5.9*inch, sav_file.rma_number)
         else:
-            p.drawString(5.5*inch, 5.9*inch,"Inconnu")
+            p.drawString(5.5*inch, 5.9*inch, "Inconnu")
 
         height = 5.4
 
         self.draw_description_part(height, p)
 
         lines = []
-        lines.append("Visual Impact France SAS au capital de 300000.00 euros")
+        lines.append("Visual Impact France SAS au capital de 300000 euros")
         lines.append("74 Boulevard de Reuilly, 75012 Paris, France")
         lines.append("Tel: +33 1 42 22 02 05, Fax: +33 1 42 22 02 85, vifrance@visualsfrance.com")
         lines.append("No TVA: FR72448429274, SIRET: 44842927400021, Code APE: 4643Z")
         self.draw_table_one_column(-0.7, 7.6, 2, 2, "Informations complémentaires", lines, p)
+
 
 class Pdf_answer_reparation(Pdf_generator):
     def __init__(self):

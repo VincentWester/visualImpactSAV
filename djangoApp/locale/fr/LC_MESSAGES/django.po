@@ -4,19 +4,19 @@ msgstr "Anglais"
 
 #: djangoApp/settings.py:127
 msgid "French"
-msgstr "Français"
+msgstr "Francais"
 
 #: visualImpactSAV/forms.py:11
 msgid "Required. Write a valide email."
-msgstr "Obligatoire. Veuillez écrire un email valide"
+msgstr "Obligatoire. Veuillez taper un email valide"
 
 #: visualImpactSAV/forms.py:15
 msgid "Required. Write a username."
-msgstr "Obligatoire. Veuillez écrire un nom d'utilisateur"
+msgstr "Obligatoire. Veuillez taper un nom d'utilisateur"
 
 #: visualImpactSAV/forms.py:16
 msgid "Required. Choose a password."
-msgstr "Obligatoire. Veuillez écrire un mot de passe"
+msgstr "Obligatoire. Veuillez taper un mot de passe"
 
 #: visualImpactSAV/forms.py:17
 msgid "Required. Password checking : copy your password"
@@ -36,7 +36,7 @@ msgstr "Le champ 'mot de passe' est vide"
 
 #: visualImpactSAV/forms.py:34
 msgid "The password haven't been well copied"
-msgstr "Le mot de passe n'a pas été correctement recopié"
+msgstr "Le mot de passe n'a pas ete correctement recopie"
 
 #: visualImpactSAV/forms.py:55
 msgid "The customer name attribute should be filled"
@@ -56,7 +56,7 @@ msgstr "Le champ 'code postale du client' est vide"
 
 #: visualImpactSAV/forms.py:67
 msgid "The customer phone attribute should be filled"
-msgstr "Le champ 'téléphone du client' est vide"
+msgstr "Le champ 'telephone du client' est vide"
 
 #: visualImpactSAV/forms.py:70
 msgid "The customer email attribute should be filled"
@@ -64,7 +64,7 @@ msgstr "Le champ 'email du client' est vide"
 
 #: visualImpactSAV/forms.py:73
 msgid "The product's model attribute should be filled"
-msgstr "Le champ 'modèle du produit' est vide"
+msgstr "Le champ 'modele du produit' est vide"
 
 #: visualImpactSAV/forms.py:76
 msgid "The product's brand attribute should be filled"
@@ -72,11 +72,11 @@ msgstr "Le champ 'marque du produit' est vide"
 
 #: visualImpactSAV/forms.py:79
 msgid "The product's serial number attribute should be filled"
-msgstr "Le champ 'numéro de série' est vide"
+msgstr "Le champ 'numero de serie' est vide"
 
 #: visualImpactSAV/forms.py:82
 msgid "The RMA number attribute should be filled"
-msgstr "Le champ 'numéro RMA du produit' est vide"
+msgstr "Le champ 'numero RMA du produit' est vide"
 
 #: visualImpactSAV/forms.py:85
 msgid "The waranty's status attribute should be filled"

@@ -34,7 +34,7 @@ class EventDeleteView(ParameterDeleteView):
     def dispatch(self, *args, **kwargs):
         self.pk = kwargs['pk']
         self.url_to_redirect = 'visualImpactSAV:updateSAVFile'
-        return super(EventDeleteView, self).dispatch( *args, **kwargs)
+        return super(EventDeleteView, self).dispatch(*args, **kwargs)
 
     def get_context_data(self, **kwargs):
         context = super(EventDeleteView, self).get_context_data(**kwargs)
@@ -43,4 +43,3 @@ class EventDeleteView(ParameterDeleteView):
         context['name_object'] = self.object.title
 
         return context
-

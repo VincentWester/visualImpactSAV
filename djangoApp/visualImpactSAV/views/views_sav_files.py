@@ -1,13 +1,10 @@
 # -*- coding: utf-8 -*-
-from __future__ import unicode_literals
-
+import re
 from decimal import Decimal
 
-from django.http import HttpResponse
 from django.shortcuts import render
-from django.template.loader import render_to_string
 from django.views.generic import DetailView, ListView
-from django.views.generic.edit import CreateView, UpdateView, DeleteView
+from django.views.generic.edit import CreateView, UpdateView
 
 # models part
 from visualImpactSAV.models import SAV_file, SAV_file_status, Event, Designation, Furnisher
@@ -16,7 +13,6 @@ from visualImpactSAV.forms import SAV_fileForm
 
 from django.contrib.auth.mixins import LoginRequiredMixin
 
-import re
 
 class SAVFileDetailView(LoginRequiredMixin, DetailView):
     template_name = 'djangoApp/SAVFile/detailSAVFile.html'
@@ -29,10 +25,10 @@ class SAVFileDetailView(LoginRequiredMixin, DetailView):
     def get_context_data(self, **kwargs):
         context = super(SAVFileDetailView, self).get_context_data(**kwargs)
         context['pkSAVFile'] = self.object.id
-        context['events'] = Event.objects.all().filter(refered_SAV_file = self.object).order_by('date')
+        context['events'] = Event.objects.all().filter(refered_SAV_file=self.object).order_by('date')
         context['furnishers'] = Furnisher.objects.all().order_by('mark')
 
-        designations = Designation.objects.all().filter(refered_SAV_file = self.object)
+        designations = Designation.objects.all().filter(refered_SAV_file=self.object)
         context['designations'] = designations
 
         total = Decimal(0.0)
@@ -59,7 +55,7 @@ class SAVFileCreateView(LoginRequiredMixin, CreateView):
         return context
 
     def form_invalid(self, form):
-        return render(self.request, 'djangoApp/SAVFile/createSAVFile.html', { 'form': form, 'sav_file_status': SAV_file_status.objects.all()})
+        return render(self.request, 'djangoApp/SAVFile/createSAVFile.html', {'form': form, 'sav_file_status': SAV_file_status.objects.all()})
 
     """
     Check if the form is valid and save the object.
@@ -78,10 +74,10 @@ class SAVFileUpdateView(LoginRequiredMixin, UpdateView):
         context = super(SAVFileUpdateView, self).get_context_data(**kwargs)
         context['current_sav_file'] = self.object
         context['sav_file_status'] = SAV_file_status.objects.all()
-        context['events'] = Event.objects.all().filter(refered_SAV_file = self.object).order_by('date')
+        context['events'] = Event.objects.all().filter(refered_SAV_file=self.object).order_by('date')
         context['furnishers'] = Furnisher.objects.all().order_by('mark')
 
-        designations = Designation.objects.all().filter(refered_SAV_file = self.object)
+        designations = Designation.objects.all().filter(refered_SAV_file=self.object)
         context['designations'] = designations
 
         total = Decimal(0.0)
@@ -95,10 +91,11 @@ class SAVFileUpdateView(LoginRequiredMixin, UpdateView):
         return context
 
     def form_invalid(self, form):
-        return render(self.request, 'djangoApp/SAVFile/updateSAVFile.html', { 'form': form })
+        return render(self.request, 'djangoApp/SAVFile/updateSAVFile.html', {'form': form})
 
     def form_valid(self, form):
         return super(SAVFileUpdateView, self).form_valid(form)
+
 
 DEFAULT_PAGINATION_BY = 40
 
@@ -115,7 +112,7 @@ class SAVFileListView(LoginRequiredMixin, ListView):
 
         libelle_stats = {}
         for sav_file_status in SAV_file_status.objects.all().order_by('id'):
-            libelle_stats[sav_file_status.libelle] = results.filter(sav_file_status__libelle = sav_file_status.libelle).count()
+            libelle_stats[sav_file_status.libelle] = results.filter(sav_file_status__libelle=sav_file_status.libelle).count()
 
         context['libelle_stats'] = libelle_stats
         context['nb_sav_file_status'] = results.count()
@@ -143,27 +140,27 @@ class SAVFileListView(LoginRequiredMixin, ListView):
         results = SAV_file.objects.all()
 
         if file_reference:
-            results = results.filter(id = file_reference)
+            results = results.filter(id=file_reference)
 
         if client_name:
-            results = results.filter(name_client__icontains = client_name)
+            results = results.filter(name_client__icontains=client_name)
 
         if client_society:
-            results = results.filter(society_client__icontains = client_society)
+            results = results.filter(society_client__icontains=client_society)
 
         if product_name:
-            results = results.filter(name_product__icontains = product_name)
+            results = results.filter(name_product__icontains=product_name)
 
         if product_mark:
-            results = results.filter(mark_product__icontains = product_mark)
+            results = results.filter(mark_product__icontains=product_mark)
 
         if product_serial_number:
-            results = results.filter(serial_number_product__icontains = product_serial_number)
+            results = results.filter(serial_number_product__icontains=product_serial_number)
 
         if rma_number:
-            results = results.filter(rma_number__icontains = rma_number)
+            results = results.filter(rma_number__icontains=rma_number)
 
         if sav_file_status:
-            results = results.filter(sav_file_status = sav_file_status)
+            results = results.filter(sav_file_status=sav_file_status)
 
         return results.order_by('id')

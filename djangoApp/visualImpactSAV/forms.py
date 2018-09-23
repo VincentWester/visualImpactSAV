@@ -1,11 +1,11 @@
 # -*- coding: utf-8 -*-
 from django.contrib.auth.models import User
-from django.forms import ModelForm, CharField, EmailField, PasswordInput, ValidationError, ModelChoiceField
+from django.forms import ModelForm, EmailField, ModelChoiceField
 from .models import SAV_file, SAV_file_status, Event, Designation, Guarantee, Furnisher
 from django.contrib.auth.forms import UserCreationForm
-from django.contrib.auth.models import User
 
 from django.utils.translation import ugettext_lazy as _
+
 
 class SignUpForm(UserCreationForm):
     email = EmailField(max_length=254, help_text=_('Required. Write a valide email.'))
@@ -42,9 +42,10 @@ class SignUpForm(UserCreationForm):
             user.save()
         return user
 
+
 class SAV_fileForm(ModelForm):
-    furnisher = ModelChoiceField(queryset = Furnisher.objects.all(), empty_label = "---", required = False)
-    sav_file_status = ModelChoiceField(queryset = SAV_file_status.objects.all(), required = False)
+    furnisher = ModelChoiceField(queryset=Furnisher.objects.all(), empty_label="---", required=False)
+    sav_file_status = ModelChoiceField(queryset=SAV_file_status.objects.all(), required=False)
 
     class Meta:
         model = SAV_file
@@ -76,7 +77,7 @@ class SAV_fileForm(ModelForm):
                 'required': _("The product's brand attribute should be filled"),
             },
             'serial_number_product': {
-                'required': _("The product's serial number attribute should be filled"),
+                'required': _("The product's serial number attribute should be filled").encode('utf-8'),
             },
             'rma_number': {
                 'required': _("The RMA number attribute should be filled"),

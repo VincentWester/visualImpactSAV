@@ -1,5 +1,4 @@
-from django.conf.urls import include, url
-from django.contrib import admin
+from django.conf.urls import url
 
 from .views.views_sav_files import SAVFileCreateView, SAVFileUpdateView, SAVFileDetailView, SAVFileListView
 from .views.views_events import EventCreateView, EventUpdateView, EventDeleteView
@@ -11,8 +10,8 @@ from .views.views_pdf_generator import Pdf_generator_cost_estimate, Pdf_generato
 
 urlpatterns = [
     url(r'^createSAVFile/$', SAVFileCreateView.as_view(), name="createSAVFile"),
-    url(r'^updateSAVFile/(?P<pk>[\w\-]+)$', SAVFileUpdateView.as_view() , name='updateSAVFile'),
-    url(r'^detailSAVFile/(?P<pk>[\w\-]+)$', SAVFileDetailView.as_view() , name='detailSAVFile'),
+    url(r'^updateSAVFile/(?P<pk>[\w\-]+)$', SAVFileUpdateView.as_view(), name='updateSAVFile'),
+    url(r'^detailSAVFile/(?P<pk>[\w\-]+)$', SAVFileDetailView.as_view(), name='detailSAVFile'),
     url(r'^searchSAVFile/$', SAVFileListView.as_view(), name="searchSAVFile"),
 
     url(r'^createEvent/(?P<pkSAVFile>[\w\-]+)$$', EventCreateView.as_view(), name="createEvent"),
@@ -38,5 +37,4 @@ urlpatterns = [
     url(r'^generatePdfClient/(?P<pkSAVFile>[\w\-]+)$$', Pdf_generator_client.as_view(), name="generatePdfClient"),
     url(r'^generatePdfFurnisher/(?P<pkSAVFile>[\w\-]+)$$', Pdf_generator_furnisher.as_view(), name="generatePdfFurnisher"),
     url(r'^generatePdfReparation/(?P<pkSAVFile>[\w\-]+)$$', Pdf_answer_reparation.as_view(), name="generatePdfReparation"),
-    #url(r'^sendPdf/(?P<pkSAVFile>[\w\-]+)$$', send_pdf, name="sendPdf"),
 ]
