@@ -21,7 +21,7 @@ urlpatterns = [
 
     url(r'^createDesignation/(?P<pkSAVFile>[\w\-]+)$$', DesignationCreateView.as_view(), name="createDesignation"),
     url(r'^updateDesignation/(?P<pk>[\w\-]+)$$', DesignationUpdateView.as_view(), name="updateDesignation"),
-    url(r'^deleteDesignation/(?P<pk>[\w\-]+)$$', DesignationDeleteView.as_view(), name="deleteDesignation"), 
+    url(r'^deleteDesignation/(?P<pk>[\w\-]+)$$', DesignationDeleteView.as_view(), name="deleteDesignation"),
     url(r'^listDesignation/(?P<pkSAVFile>[\w\-]+)$$', DesignationListView.as_view(), name="listDesignation"),
 
     url(r'^listGuarantee/$', GuaranteeListView.as_view(), name="listGuarantee"),
@@ -35,8 +35,8 @@ urlpatterns = [
     url(r'^deleteFurnisher/(?P<pk>[\w\-]+)$$', FurnisherDeleteView.as_view(), name="deleteFurnisher"),
 
     url(r'^generatePdfClientCostEstimate/(?P<pkSAVFile>[\w\-]+)$$', Pdf_generator_cost_estimate.as_view(), name="generatePdfClientCostEstimate"),
-    url(r'^generatePdfClient/(?P<pkSAVFile>[\w\-]+)$$', Pdf_generator_client.as_view(), name="generatePdfClient"), 
-    url(r'^generatePdfFurnisher/(?P<pkSAVFile>[\w\-]+)$$', Pdf_generator_furnisher.as_view(), name="generatePdfFurnisher"), 
+    url(r'^generatePdfClient/(?P<pkSAVFile>[\w\-]+)$$', Pdf_generator_client.as_view(), name="generatePdfClient"),
+    url(r'^generatePdfFurnisher/(?P<pkSAVFile>[\w\-]+)$$', Pdf_generator_furnisher.as_view(), name="generatePdfFurnisher"),
     url(r'^generatePdfReparation/(?P<pkSAVFile>[\w\-]+)$$', Pdf_answer_reparation.as_view(), name="generatePdfReparation"),
-    #url(r'^sendPdf/(?P<pkSAVFile>[\w\-]+)$$', send_pdf, name="sendPdf"), 
+    #url(r'^sendPdf/(?P<pkSAVFile>[\w\-]+)$$', send_pdf, name="sendPdf"),
 ]

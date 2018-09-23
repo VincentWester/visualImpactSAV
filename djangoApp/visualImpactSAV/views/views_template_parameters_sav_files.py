@@ -16,7 +16,7 @@ class ParameterCreateView(CreateView):
     def get_context_data(self, **kwargs):
         context = super(ParameterCreateView, self).get_context_data(**kwargs)
         context['pkSAVFile'] = self.pkSAVFile
-        return context 
+        return context
 
     def form_invalid(self, form):
         url = "{0}".format(self.request.META.get('HTTP_REFERER', '/'))
@@ -33,6 +33,7 @@ class ParameterCreateView(CreateView):
 
         return HttpResponseRedirect(url)
 
+
 class ParameterUpdateView(UpdateView):
     def dispatch(self, *args, **kwargs):
         self.pk = kwargs['pk']
@@ -42,23 +43,21 @@ class ParameterUpdateView(UpdateView):
         context = super(ParameterUpdateView, self).get_context_data(**kwargs)
         context['pk'] = self.pk
 
-        return context 
+        return context
 
     def form_invalid(self, form):
         url = "{0}".format(self.request.META.get('HTTP_REFERER', '/'))
         return HttpResponse(render_to_string('djangoApp/errors/nonValideSAVFile.html', {'errors': form.errors, 'url': url }))
-        
-    """
-    Check if the form is valid and save the object.
-    """
+
     def form_valid(self, form):
         self.object = form.save()
         url = "{0}".format(self.request.META.get('HTTP_REFERER', '/'))
         return HttpResponseRedirect(url)
 
+
 class ParameterDeleteView(DeleteView):
-    def get_success_url(self, *args, **kwargs): 
+    def get_success_url(self, *args, **kwargs):
         if self.url_to_redirect == 'visualImpactSAV:listDesignation':
-            return reverse_lazy(self.url_to_redirect,  kwargs={ 'pkSAVFile' : self.object.refered_SAV_file.id }) 
+            return reverse_lazy(self.url_to_redirect,  kwargs={ 'pkSAVFile' : self.object.refered_SAV_file.id })
         else:
-            return reverse_lazy(self.url_to_redirect,  kwargs={ 'pk' : self.object.refered_SAV_file.id }) 
+            return reverse_lazy(self.url_to_redirect,  kwargs={ 'pk' : self.object.refered_SAV_file.id })

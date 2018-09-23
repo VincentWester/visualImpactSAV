@@ -21,16 +21,13 @@ from .views_template_parameters_sav_files import ParameterUpdateView, ParameterD
 
 class FurnisherCreateView(CreateView):
     model = Furnisher
-    form_class = FurnisherForm 
-    template_name = 'djangoApp/Furnisher/createFurnisher.html'    
+    form_class = FurnisherForm
+    template_name = 'djangoApp/Furnisher/createFurnisher.html'
 
     def form_invalid(self, form):
         url = "{0}".format(self.request.META.get('HTTP_REFERER', '/'))
         return HttpResponse(render_to_string('djangoApp/errors/nonValideSAVFile.html', {'errors': form.errors, 'url': url }))
-        
-    """
-    Check if the form is valid and save the object.
-    """
+
     def form_valid(self, form):
         self.object = form.save()
         url = "{0}".format(self.request.META.get('HTTP_REFERER', '/'))
@@ -69,12 +66,12 @@ class FurnisherDeleteView(DeleteView):
     def delete(self, request, *args, **kwargs):
         try:
             return super(FurnisherDeleteView, self).delete(request, *args, **kwargs)
-        except ProtectedError:            
+        except ProtectedError:
             url = "{0}".format(self.request.META.get('HTTP_REFERER', '/'))
             return HttpResponse(render(request, 'djangoApp/errors/nonValideSAVFile.html', {'errors': 'Un de vos dossiers possède ce fournisseur comme référence', 'url': url })) 
 
 
-    def get_success_url(self, *args, **kwargs): 
+    def get_success_url(self, *args, **kwargs):
         return reverse_lazy(self.url_to_redirect, kwargs={})
 
 DEFAULT_PAGINATION_BY = 40

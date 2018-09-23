@@ -20,13 +20,15 @@ class SAV_file_status(models.Model):
     class_css = models.CharField(max_length = 50, blank = True)
 
     def __unicode__(self):
-        return str(self.id) + "-" + self.libelle 
+        return str(self.id) + "-" + self.libelle
+
 
 class Guarantee(models.Model):
     mark = models.CharField(max_length = 200, default = "")
     complements = models.CharField(max_length = 200, default = "", blank = True)
     guarantee_time = models.CharField(max_length = 20, default = "")
-    procedure = models.TextField()    
+    procedure = models.TextField()
+
 
 class Furnisher(models.Model):
     mark = models.CharField(max_length = 200, default = "")
@@ -35,10 +37,11 @@ class Furnisher(models.Model):
     zipcode = models.CharField(max_length = 30, default = "")
     city = models.CharField(max_length = 100, default = "")
     phone = models.CharField(max_length = 200, default = "")
-    commentary = models.TextField(blank = True)   
+    commentary = models.TextField(blank = True)
 
     def __str__(self):
         return self.mark.encode('utf-8')
+
 
 class SAV_file(models.Model):
     creation_date = models.DateTimeField(default = timezone.now)
@@ -53,8 +56,8 @@ class SAV_file(models.Model):
     email_client = models.CharField(max_length = 100, default = "")
     name_product = models.CharField(max_length = 200, default = "")
     mark_product = models.CharField(max_length = 200, default = "")
-    serial_number_product = models.CharField(max_length = 200, default = "")    
-    rma_number = models.CharField(max_length = 100, default = "", blank = True)       
+    serial_number_product = models.CharField(max_length = 200, default = "")
+    rma_number = models.CharField(max_length = 100, default = "", blank = True)
     guarantee = models.CharField(max_length = 100, default = "Sous garantie")
     out_of_order_reason = models.TextField()
     client_bill = models.FileField(blank = True)
@@ -63,16 +66,18 @@ class SAV_file(models.Model):
     registred_by = models.ForeignKey(get_user_model(), default = 1)
 
     def __unicode__(self):
-        return str(self.id) 
+        return str(self.id)
 
     def get_absolute_url(self):
         return reverse('visualImpactSAV:detailSAVFile', kwargs = {'pk' : self.pk})
+
 
 class Event(models.Model):
     refered_SAV_file = models.ForeignKey(SAV_file)
     title = models.CharField(max_length = 100)
     action = models.TextField()
     date = models.DateTimeField(default = timezone.now)
+
 
 class Designation(models.Model):
     refered_SAV_file = models.ForeignKey(SAV_file)

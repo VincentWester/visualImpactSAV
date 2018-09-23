@@ -8,10 +8,12 @@ from visualImpactSAV.models import Event
 # forms part
 from visualImpactSAV.forms import EventForm
 
+
 class EventCreateView(ParameterCreateView):
     model = Event
-    form_class = EventForm 
+    form_class = EventForm
     template_name = 'djangoApp/Event/createEvent.html'
+
 
 class EventUpdateView(ParameterUpdateView):
     model = Event
@@ -24,10 +26,11 @@ class EventUpdateView(ParameterUpdateView):
 
         return context
 
+
 class EventDeleteView(ParameterDeleteView):
     model = Event
     template_name = 'djangoApp/Event/confirmDeleteEvent.html'
-    
+
     def dispatch(self, *args, **kwargs):
         self.pk = kwargs['pk']
         self.url_to_redirect = 'visualImpactSAV:updateSAVFile'
@@ -40,4 +43,4 @@ class EventDeleteView(ParameterDeleteView):
         context['name_object'] = self.object.title
 
         return context
-    
+

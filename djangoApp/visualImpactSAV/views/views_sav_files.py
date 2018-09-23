@@ -32,7 +32,7 @@ class SAVFileDetailView(LoginRequiredMixin, DetailView):
         context['events'] = Event.objects.all().filter(refered_SAV_file = self.object).order_by('date')
         context['furnishers'] = Furnisher.objects.all().order_by('mark')
 
-        designations = Designation.objects.all().filter(refered_SAV_file = self.object) 
+        designations = Designation.objects.all().filter(refered_SAV_file = self.object)
         context['designations'] = designations
 
         total = Decimal(0.0)
@@ -45,6 +45,7 @@ class SAVFileDetailView(LoginRequiredMixin, DetailView):
 
         return context
 
+
 class SAVFileCreateView(LoginRequiredMixin, CreateView):
     model = SAV_file
     form_class = SAV_fileForm
@@ -55,7 +56,7 @@ class SAVFileCreateView(LoginRequiredMixin, CreateView):
         context['sav_file_status'] = SAV_file_status.objects.all()
         context['furnishers'] = Furnisher.objects.all().order_by('mark')
 
-        return context 
+        return context
 
     def form_invalid(self, form):
         return render(self.request, 'djangoApp/SAVFile/createSAVFile.html', { 'form': form, 'sav_file_status': SAV_file_status.objects.all()})
@@ -66,6 +67,7 @@ class SAVFileCreateView(LoginRequiredMixin, CreateView):
     def form_valid(self, form):
         form.instance.registred_by = self.request.user
         return super(SAVFileCreateView, self).form_valid(form)
+
 
 class SAVFileUpdateView(LoginRequiredMixin, UpdateView):
     model = SAV_file
@@ -79,7 +81,7 @@ class SAVFileUpdateView(LoginRequiredMixin, UpdateView):
         context['events'] = Event.objects.all().filter(refered_SAV_file = self.object).order_by('date')
         context['furnishers'] = Furnisher.objects.all().order_by('mark')
 
-        designations = Designation.objects.all().filter(refered_SAV_file = self.object) 
+        designations = Designation.objects.all().filter(refered_SAV_file = self.object)
         context['designations'] = designations
 
         total = Decimal(0.0)
@@ -90,18 +92,16 @@ class SAVFileUpdateView(LoginRequiredMixin, UpdateView):
         context['totalHT'] = round(total, 2)
         context['totalTC'] = round(total * TAX_RATE, 2)
 
-        return context 
+        return context
 
     def form_invalid(self, form):
         return render(self.request, 'djangoApp/SAVFile/updateSAVFile.html', { 'form': form })
-        
-    """
-    Check if the form is valid and save the object.
-    """
+
     def form_valid(self, form):
         return super(SAVFileUpdateView, self).form_valid(form)
 
-DEFAULT_PAGINATION_BY = 40  
+DEFAULT_PAGINATION_BY = 40
+
 
 class SAVFileListView(LoginRequiredMixin, ListView):
     template_name = 'djangoApp/SAVFile/searchSAVFile.html'
@@ -141,21 +141,21 @@ class SAVFileListView(LoginRequiredMixin, ListView):
         rma_number = self.request.GET.get('rma_number')
         sav_file_status = self.request.GET.get('sav_file_status')
         results = SAV_file.objects.all()
-        
+
         if file_reference:
             results = results.filter(id = file_reference)
 
         if client_name:
-            results = results.filter(name_client__icontains = client_name) 
+            results = results.filter(name_client__icontains = client_name)
 
         if client_society:
-            results = results.filter(society_client__icontains = client_society) 
-        
+            results = results.filter(society_client__icontains = client_society)
+
         if product_name:
             results = results.filter(name_product__icontains = product_name)
 
         if product_mark:
-            results = results.filter(mark_product__icontains = product_mark) 
+            results = results.filter(mark_product__icontains = product_mark)
 
         if product_serial_number:
             results = results.filter(serial_number_product__icontains = product_serial_number)

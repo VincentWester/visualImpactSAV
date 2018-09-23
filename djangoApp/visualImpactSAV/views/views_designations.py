@@ -7,14 +7,12 @@ from django.views.generic import ListView
 
 from .views_template_parameters_sav_files import ParameterCreateView, ParameterUpdateView, ParameterDeleteView
 
-# models part
 from visualImpactSAV.models import Designation
-# forms part
 from visualImpactSAV.forms import DesignationForm
 
 class DesignationCreateView(ParameterCreateView):
     model = Designation
-    form_class = DesignationForm 
+    form_class = DesignationForm
     template_name = 'djangoApp/Designation/createDesignation.html'
 
 class DesignationUpdateView(ParameterUpdateView):
@@ -41,8 +39,9 @@ class DesignationDeleteView(ParameterDeleteView):
 
 TAX_RATE = Decimal(1.2)
 
+
 class DesignationListView(ListView):
-    model = Designation    
+    model = Designation
     template_name = 'djangoApp/Designation/listDesignation.html'
 
     def dispatch(self, *args, **kwargs):

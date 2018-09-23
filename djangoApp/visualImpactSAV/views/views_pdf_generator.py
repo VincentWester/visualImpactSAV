@@ -22,7 +22,7 @@ from reportlab.lib.units import inch
 # models part
 from visualImpactSAV.models import Designation, SAV_file
 
-class Pdf_generator(View):    
+class Pdf_generator(View):
     def __init__(self, filename, title):
         self.filename = filename
         self.title = title
@@ -47,16 +47,16 @@ class Pdf_generator(View):
     def draw_table_one_column(self, height, length, alinea_title, alinea_lines, title, lines, p):
         size = len(lines)
         p.rect(-0.5*inch, height*inch, length*inch, (size * 0.2 + 0.5)*inch, fill=0)
-        p.line(-0.5*inch, (height + 1)*inch, (length - 0.5)*inch, (height + 1)*inch)        
+        p.line(-0.5*inch, (height + 1)*inch, (length - 0.5)*inch, (height + 1)*inch)
         p.setFont("Helvetica-Bold", 12)
         p.drawString(alinea_title*inch, (height + 1.1)*inch, title)
         p.setFont("Helvetica", 7)
 
         for i in range(size):
-            p.drawString(alinea_lines*inch, (height + (i + 1)*0.2)*inch, lines[size - (i + 1)]) 
+            p.drawString(alinea_lines*inch, (height + (i + 1)*0.2)*inch, lines[size - (i + 1)])
 
-    def draw_description_part(self, height, p):        
-        p.setFont("Helvetica-Bold", 12) 
+    def draw_description_part(self, height, p):
+        p.setFont("Helvetica-Bold", 12)
         p.drawString(2.5*inch, (height)*inch, "Description du problème")
         p.setFont("Helvetica", 10)
         lines = self.sav_file.out_of_order_reason.split('\n')
@@ -79,7 +79,7 @@ class Pdf_generator(View):
 
         self.build_header(p)
         self.build_pdf(p)
-        
+
         p.showPage()
         p.save()
 
@@ -89,7 +89,7 @@ class Pdf_generator(View):
         response.write(pdf)
         return response
 
-class Pdf_generator_client(Pdf_generator): 
+class Pdf_generator_client(Pdf_generator):
     def __init__(self):
         super(Pdf_generator_client, self).__init__('récapitulatif', 'Fiche SAV récapitulative')
 
@@ -115,14 +115,14 @@ class Pdf_generator_client(Pdf_generator):
         p.drawString(3.7*inch, (height - 0.3)*inch, "Nom du client : ")
         p.setFont("Helvetica", 12)
         p.drawString(5*inch, (height - 0.3)*inch, global_name_client)
-        height = height - 1.8  
+        height = height - 1.8
 
-        p.setFont("Helvetica-Bold", 12) 
+        p.setFont("Helvetica-Bold", 12)
         p.drawString(0.5*inch, (height + 1.1)*inch, "Adresse de facturation")
         p.drawString(4.5*inch, (height + 0)*inch, "Référence du produit")
 
-        if sav_file.society_client:            
-            global_name_client = sav_file.society_client + " - " + global_name_client 
+        if sav_file.society_client:
+            global_name_client = sav_file.society_client + " - " + global_name_client
 
         p.setFont("Helvetica", 10)
         p.drawString(-0.3*inch, (height + 0.8)*inch, global_name_client)
@@ -147,8 +147,8 @@ class Pdf_generator_client(Pdf_generator):
         p.setFont("Helvetica", 10)
         p.drawString(4.5*inch, (height - 0.9)*inch, sav_file.rma_number)
 
-        height = height - 1.3 
-        
+        height = height - 1.3
+
         self.draw_description_part(height, p)
 
         lines = []
@@ -157,7 +157,7 @@ class Pdf_generator_client(Pdf_generator):
         lines.append("- Sous réserve d’ensemble ou sous ensemble à changer en plus du montant indiqué ci-dessus qui n’auraient pas été décelés comme étant défectueux lors de l’élaboration.")
         lines.append("- Attention pour les dossiers comprenant des données stockées sous forme de carte ou de cassette aucune garantie de récupération n’est accordée.")
         self.draw_table_one_column(0.8, 7.6, 2, -0.4, "Conditions de prise en charge", lines, p)
-        
+
         lines = []
         lines.append("Visual Impact France SAS au capital de 300000.00 euros")
         lines.append("74 Boulevard de Reuilly, 75012 Paris, France")
@@ -170,7 +170,7 @@ class Pdf_generator_cost_estimate(Pdf_generator):
     def __init__(self):
         super(Pdf_generator_cost_estimate, self).__init__('devis-client', 'Offre commerciale')
 
-    def build_pdf(self, p):   
+    def build_pdf(self, p):
         sav_file = self.sav_file
 
         p.setFont("Helvetica", 12)
@@ -181,8 +181,8 @@ class Pdf_generator_cost_estimate(Pdf_generator):
 
         p.setFont("Helvetica", 10)
         global_name_client = sav_file.name_client
-        if sav_file.society_client:            
-            global_name_client = sav_file.society_client + " - " + global_name_client 
+        if sav_file.society_client:
+            global_name_client = sav_file.society_client + " - " + global_name_client
 
         p.drawString(-0.3*inch, 8.8*inch, global_name_client)
         p.drawString(-0.3*inch, 8.6*inch, sav_file.street_client)
@@ -223,7 +223,7 @@ class Pdf_generator_cost_estimate(Pdf_generator):
         p.drawString(5.5*inch, 6.2*inch, "N° suivi : ")
         p.setFont("Helvetica", 10)
 
-        if sav_file.rma_number:     
+        if sav_file.rma_number:
             p.drawString(5.5*inch, 6*inch, sav_file.rma_number)
         else:
             p.drawString(5.5*inch, 6*inch,"Inconnu")
@@ -262,13 +262,13 @@ class Pdf_generator_cost_estimate(Pdf_generator):
         p.setFont("Helvetica-Bold", 10)
         p.drawString(4.5*inch, height*inch, "Prix total HT : ")
         p.drawString(5.8*inch, height*inch, str(round(total, 2)) + " €")
-        height = height - 0.2        
+        height = height - 0.2
         p.setFont("Helvetica", 10)
         p.drawString(-0.3*inch, height*inch, "Frais de transport sur demande sauf mention contraire.")
         p.setFont("Helvetica-Bold", 10)
         p.drawString(4.5*inch, height*inch, "Taxe : ")
         p.drawString(5.8*inch, height*inch, "20%")
-        height = height - 0.125   
+        height = height - 0.125
         p.setFont("Helvetica", 5)
         p.drawString(-0.3*inch, height*inch, "Nous nous réservons la propriété des marchandises jusqu'au complet paiement du prix par l'acheteur.")
         height = height - 0.075
@@ -285,7 +285,7 @@ class Pdf_generator_cost_estimate(Pdf_generator):
         p.setFillColorRGB(0,0,0)
         height = height - 0.05
         p.rect(-0.5*inch, height*inch, 4.7*inch, 0.835*inch, fill=0)
-        
+
         p.setFillColorRGB(1,0,0)
         height = height - 0.25
         p.setFont("Helvetica-Bold", 9)
@@ -314,7 +314,7 @@ class Pdf_generator_cost_estimate(Pdf_generator):
         lines.append("IBAN: FR76 3000 3031 9000 0201 1919 212, Code BICS : SOGEFRPP")
         lines.append("Titulaire du Compte : Visual Impact France")
         self.draw_table_one_column(height, 7.2, 2.5, 1.8, "Coordonnée", lines, p)
-        
+
         height = height - 1.35
 
         lines = []
@@ -322,8 +322,8 @@ class Pdf_generator_cost_estimate(Pdf_generator):
         lines.append("74 Boulevard de Reuilly, 75012 Paris, France")
         lines.append("Tel: +33 1 42 22 02 05, Fax: +33 1 42 22 02 85, vifrance@visualsfrance.com")
         lines.append("No TVA: FR72448429274, SIRET: 44842927400021, Code APE: 4643Z")
-        self.draw_table_one_column(height, 7.2, 2, 1.8, "Informations complémentaires", lines, p)       
-        
+        self.draw_table_one_column(height, 7.2, 2, 1.8, "Informations complémentaires", lines, p)
+
 
 class Pdf_generator_furnisher(Pdf_generator):
     def __init__(self):
@@ -383,7 +383,7 @@ class Pdf_generator_furnisher(Pdf_generator):
         p.drawString(5.5*inch, 6.1*inch, "N° suivi : ")
         p.setFont("Helvetica", 10)
 
-        if sav_file.rma_number:     
+        if sav_file.rma_number:
             p.drawString(5.5*inch, 5.9*inch, sav_file.rma_number)
         else:
             p.drawString(5.5*inch, 5.9*inch,"Inconnu")
@@ -397,9 +397,9 @@ class Pdf_generator_furnisher(Pdf_generator):
         lines.append("74 Boulevard de Reuilly, 75012 Paris, France")
         lines.append("Tel: +33 1 42 22 02 05, Fax: +33 1 42 22 02 85, vifrance@visualsfrance.com")
         lines.append("No TVA: FR72448429274, SIRET: 44842927400021, Code APE: 4643Z")
-        self.draw_table_one_column(-0.7, 7.6, 2, 2, "Informations complémentaires", lines, p)     
-        
-class Pdf_answer_reparation(Pdf_generator): 
+        self.draw_table_one_column(-0.7, 7.6, 2, 2, "Informations complémentaires", lines, p)
+
+class Pdf_answer_reparation(Pdf_generator):
     def __init__(self):
         super(Pdf_answer_reparation, self).__init__('retour_client', 'Retour réparation')
 
@@ -420,15 +420,15 @@ class Pdf_answer_reparation(Pdf_generator):
         p.drawString(-0.5*inch, (height - 0.3)*inch, "Nom du client : ")
         p.setFont("Helvetica", 12)
         p.drawString(0.8*inch, (height - 0.3)*inch, sav_file.name_client)
-        height = height - 1.8  
+        height = height - 1.8
 
-        p.setFont("Helvetica-Bold", 12) 
+        p.setFont("Helvetica-Bold", 12)
         p.drawString(0.5*inch, (height + 1.1)*inch, "Adresse de facturation")
         p.drawString(4.5*inch, (height + 0)*inch, "Référence du produit")
 
         global_name_client = sav_file.name_client
-        if sav_file.society_client:            
-            global_name_client = sav_file.society_client + " - " + global_name_client 
+        if sav_file.society_client:
+            global_name_client = sav_file.society_client + " - " + global_name_client
 
         p.setFont("Helvetica", 10)
         p.drawString(-0.3*inch, (height + 0.8)*inch, global_name_client)
@@ -460,4 +460,4 @@ class Pdf_answer_reparation(Pdf_generator):
         lines.append("74 Boulevard de Reuilly, 75012 Paris, France")
         lines.append("Tel: +33 1 42 22 02 05, Fax: +33 1 42 22 02 85, vifrance@visualsfrance.com")
         lines.append("No TVA: FR72448429274, SIRET: 44842927400021, Code APE: 4643Z")
-        self.draw_table_one_column(-0.7, 7.6, 2, 2, "Informations complémentaires", lines, p)  
+        self.draw_table_one_column(-0.7, 7.6, 2, 2, "Informations complémentaires", lines, p)
