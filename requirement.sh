@@ -35,6 +35,7 @@ pip install psycopg2 psycopg2-binary
 pip install django-widget-tweaks
 pip install pillow
 pip install reportlab
+pip install django-environ
 pip install flake8
 
 
