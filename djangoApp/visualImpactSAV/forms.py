@@ -1,4 +1,6 @@
 # -*- coding: utf-8 -*-
+from __future__ import unicode_literals
+
 from django.contrib.auth.models import User
 from django.forms import ModelForm, EmailField, ModelChoiceField
 from .models import SAV_file, SAV_file_status, Event, Designation, Guarantee, Furnisher
