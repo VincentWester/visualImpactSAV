@@ -1,280 +1,575 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
-"POT-Creation-Date: \n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2018-09-24 18:28+0200\n"
 "PO-Revision-Date: \n"
 "Last-Translator: \n"
 "Language-Team: \n"
+"Language: fr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Language: fr\n"
 "X-Generator: Poedit 2.1.1\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 "X-Poedit-SourceCharset: UTF-8\n"
 
-#: djangoApp/settings.py:126
+#: djangoApp/settings.py:137
 msgid "English"
 msgstr "Anglais"
 
-#: djangoApp/settings.py:127
+#: djangoApp/settings.py:138
 msgid "French"
 msgstr "Français"
 
-#: visualImpactSAV/forms.py:11
-msgid "Required. Write a valide email"
-msgstr "Obligatoire. Veuillez taper un email valide"
-
-#: visualImpactSAV/forms.py:15
-msgid "Required. Write a username"
-msgstr "Obligatoire. Veuillez taper un nom d'utilisateur"
-
-#: visualImpactSAV/forms.py:16
-msgid "Required. Choose a password"
-msgstr "Obligatoire. Veuillez taper un mot de passe"
+#: visualImpactSAV/forms.py:13
+msgid "Required. Write a valide email."
+msgstr "Obligatoire. Veuillez taper un email valide."
 
 #: visualImpactSAV/forms.py:17
-msgid "Required. Password checking : copy your password"
-msgstr "Obligatoire. Veuillez recopier votre mot de passe"
+msgid "Required. Write a username."
+msgstr "Obligatoire. Veuillez taper un nom d'utilisateur."
 
-#: visualImpactSAV/forms.py:25
+#: visualImpactSAV/forms.py:18
+msgid "Required. Choose a password."
+msgstr "Obligatoire. Veuillez taper un mot de passe."
+
+#: visualImpactSAV/forms.py:19
+msgid "Required. Password checking : copy your password."
+msgstr "Obligatoire. Veuillez recopier votre mot de passe."
+
+#: visualImpactSAV/forms.py:27
 msgid "The username attribute should be filled"
 msgstr "Le champ 'nom d'utilisateur' est vide"
 
-#: visualImpactSAV/forms.py:28
+#: visualImpactSAV/forms.py:30
 msgid "The email attribute should be filled"
 msgstr "Le champ 'email' est vide"
 
-#: visualImpactSAV/forms.py:31
+#: visualImpactSAV/forms.py:33
 msgid "The password attribute should be filled"
 msgstr "Le champ 'mot de passe' est vide"
 
-#: visualImpactSAV/forms.py:34
-#, fuzzy
+#: visualImpactSAV/forms.py:36
 msgid "The password haven't been well copied"
 msgstr "Le mot de passe n'a pas été correctement recopié"
 
-#: visualImpactSAV/forms.py:56
+#: visualImpactSAV/forms.py:61
 msgid "The customer name attribute should be filled"
 msgstr "Le champ 'nom du client' est vide"
 
-#: visualImpactSAV/forms.py:59
+#: visualImpactSAV/forms.py:64
 msgid "The customer street attribute should be filled"
 msgstr "Le champ 'rue du client' est vide"
 
-#: visualImpactSAV/forms.py:62
+#: visualImpactSAV/forms.py:67
 msgid "The customer city attribute should be filled"
 msgstr "Le champ 'ville du client' est vide"
 
-#: visualImpactSAV/forms.py:65
+#: visualImpactSAV/forms.py:70
 msgid "The customer zipcode attribute should be filled"
 msgstr "Le champ 'code postale du client' est vide"
 
-#: visualImpactSAV/forms.py:68
+#: visualImpactSAV/forms.py:73
 msgid "The customer phone attribute should be filled"
 msgstr "Le champ 'téléphone du client' est vide"
 
-#: visualImpactSAV/forms.py:71
+#: visualImpactSAV/forms.py:76
 msgid "The customer email attribute should be filled"
 msgstr "Le champ 'email du client' est vide"
 
-#: visualImpactSAV/forms.py:74
+#: visualImpactSAV/forms.py:79
 msgid "The product's model attribute should be filled"
 msgstr "Le champ 'modèle du produit' est vide"
 
-#: visualImpactSAV/forms.py:77
+#: visualImpactSAV/forms.py:82
 msgid "The product's brand attribute should be filled"
 msgstr "Le champ 'marque du produit' est vide"
 
-#: visualImpactSAV/forms.py:80
+#: visualImpactSAV/forms.py:85
 msgid "The product's serial number attribute should be filled"
 msgstr "Le champ 'numéro de série' est vide"
 
-#: visualImpactSAV/forms.py:83
+#: visualImpactSAV/forms.py:88
 msgid "The RMA number attribute should be filled"
 msgstr "Le champ 'numero RMA du produit' est vide"
 
-#: visualImpactSAV/forms.py:86
+#: visualImpactSAV/forms.py:91
 msgid "The waranty's status attribute should be filled"
 msgstr "Le champ 'statut de garantie' est vide"
 
-#: visualImpactSAV/models.py:22 visualImpactSAV/models.py:23
+#: visualImpactSAV/models.py:23 visualImpactSAV/models.py:24
 msgid "after sale file status"
-msgstr "Statut"
+msgstr "statut du fichier SAV"
 
-#: visualImpactSAV/models.py:27 visualImpactSAV/models.py:39
+#: visualImpactSAV/models.py:28 visualImpactSAV/models.py:40
+#: visualImpactSAV/views/views_pdf_generator.py:165
+#: visualImpactSAV/views/views_pdf_generator.py:253
+#: visualImpactSAV/views/views_pdf_generator.py:428
+#: visualImpactSAV/views/views_pdf_generator.py:498
 msgid "Brand"
 msgstr "Marque"
 
-#: visualImpactSAV/models.py:28 visualImpactSAV/models.py:41
+#: visualImpactSAV/models.py:29 visualImpactSAV/models.py:42
 msgid "Complements"
 msgstr "Compléments"
 
-#: visualImpactSAV/models.py:29
-msgid "Waranty time"
+#: visualImpactSAV/models.py:30
+msgid "Waranty_time"
 msgstr "Durée de garantie"
 
-#: visualImpactSAV/models.py:30
+#: visualImpactSAV/models.py:31
 msgid "Procedure"
 msgstr "Procédure"
 
-#: visualImpactSAV/models.py:33
+#: visualImpactSAV/models.py:34
 msgid "waranty"
 msgstr "garantie"
 
-#: visualImpactSAV/models.py:34
+#: visualImpactSAV/models.py:35
 msgid "waranties"
 msgstr "garanties"
 
-#: visualImpactSAV/models.py:40
+#: visualImpactSAV/models.py:41
 msgid "Street"
 msgstr "Rue"
 
-#: visualImpactSAV/models.py:42
+#: visualImpactSAV/models.py:43
 msgid "Zipcode"
 msgstr "Code postal"
 
-#: visualImpactSAV/models.py:43
+#: visualImpactSAV/models.py:44
 msgid "City"
 msgstr "Ville"
 
-#: visualImpactSAV/models.py:44
+#: visualImpactSAV/models.py:45
 msgid "Phone"
 msgstr "Téléphona"
 
-#: visualImpactSAV/models.py:45
+#: visualImpactSAV/models.py:46
 msgid "Commentary"
 msgstr "Commentaire"
 
-#: visualImpactSAV/models.py:51
+#: visualImpactSAV/models.py:52
 msgid "furnisher"
 msgstr "fournisseur"
 
-#: visualImpactSAV/models.py:52
+#: visualImpactSAV/models.py:53
 msgid "furnishers"
 msgstr "fournisseurs"
 
-#: visualImpactSAV/models.py:57
+#: visualImpactSAV/models.py:58
 msgid "Creation date"
 msgstr "Date de création"
 
-#: visualImpactSAV/models.py:58
+#: visualImpactSAV/models.py:59
 msgid "Status"
 msgstr "Statut"
 
-#: visualImpactSAV/models.py:59
+#: visualImpactSAV/models.py:60
 msgid "Society"
 msgstr "Société"
 
-#: visualImpactSAV/models.py:60
+#: visualImpactSAV/models.py:61
+#: visualImpactSAV/views/views_pdf_generator.py:143
+#: visualImpactSAV/views/views_pdf_generator.py:478
 msgid "Customer name"
 msgstr "Nom du client"
 
-#: visualImpactSAV/models.py:61
+#: visualImpactSAV/models.py:62
 msgid "Customer street"
 msgstr "Rue du client"
 
-#: visualImpactSAV/models.py:62
+#: visualImpactSAV/models.py:63
 msgid "Customer address complements"
 msgstr "Complément d'adresse du client"
 
-#: visualImpactSAV/models.py:63
+#: visualImpactSAV/models.py:64
 msgid "Customer zipcode"
 msgstr "Code postal du client"
 
-#: visualImpactSAV/models.py:64
+#: visualImpactSAV/models.py:65
 msgid "Customer city"
 msgstr "Ville du client"
 
-#: visualImpactSAV/models.py:65
+#: visualImpactSAV/models.py:66
 msgid "Customer phone"
 msgstr "Téléphone du client"
 
-#: visualImpactSAV/models.py:66
+#: visualImpactSAV/models.py:67
 msgid "Customer email"
 msgstr "Email du client"
 
-#: visualImpactSAV/models.py:67
+#: visualImpactSAV/models.py:68
 msgid "Product model"
 msgstr "Modèle du produit"
 
-#: visualImpactSAV/models.py:68
+#: visualImpactSAV/models.py:69
 msgid "Product brand"
 msgstr "Marque du produit"
 
-#: visualImpactSAV/models.py:69
+#: visualImpactSAV/models.py:70
 msgid "Product serial number"
 msgstr "Numéro de série du produit"
 
-#: visualImpactSAV/models.py:70
-msgid "Product RMA number"
-msgstr "numéro RMA"
-
 #: visualImpactSAV/models.py:71
+msgid "Product RMA number"
+msgstr "Numéro RMA du produit"
+
+#: visualImpactSAV/models.py:72
 msgid "Waranty"
 msgstr "Garantie"
 
-#: visualImpactSAV/models.py:72
+#: visualImpactSAV/models.py:73
 msgid "Out of order reason"
 msgstr "Raison du défaut"
 
-#: visualImpactSAV/models.py:73
+#: visualImpactSAV/models.py:74
 msgid "Client bill"
 msgstr "Facture client"
 
-#: visualImpactSAV/models.py:74
+#: visualImpactSAV/models.py:75
 msgid "Furnisher"
 msgstr "Fournisseur"
 
-#: visualImpactSAV/models.py:76
+#: visualImpactSAV/models.py:77
 msgid "User"
 msgstr "Utilisateur"
 
-#: visualImpactSAV/models.py:85 visualImpactSAV/models.py:90
-#: visualImpactSAV/models.py:102
+#: visualImpactSAV/models.py:86 visualImpactSAV/models.py:92
+#: visualImpactSAV/models.py:104
 msgid "After sale file"
 msgstr "Dossier après-vente"
 
-#: visualImpactSAV/models.py:86
+#: visualImpactSAV/models.py:87
 msgid "After sale files"
 msgstr "Dossiers après-vente"
 
-#: visualImpactSAV/models.py:91
+#: visualImpactSAV/models.py:93
 msgid "Title"
 msgstr "Titre"
 
-#: visualImpactSAV/models.py:92
+#: visualImpactSAV/models.py:94
 msgid "Action"
 msgstr "Action"
 
-#: visualImpactSAV/models.py:93
+#: visualImpactSAV/models.py:95
 msgid "Date"
 msgstr "Date"
 
-#: visualImpactSAV/models.py:96
+#: visualImpactSAV/models.py:98
 msgid "event"
 msgstr "évenement"
 
-#: visualImpactSAV/models.py:97
+#: visualImpactSAV/models.py:99
 msgid "events"
 msgstr "évenements"
 
-#: visualImpactSAV/models.py:103
+#: visualImpactSAV/models.py:105
 msgid "Designation"
 msgstr "Désignation"
 
-#: visualImpactSAV/models.py:104
+#: visualImpactSAV/models.py:106
+#: visualImpactSAV/views/views_pdf_generator.py:276
 msgid "Quantity"
 msgstr "Quantité"
 
-#: visualImpactSAV/models.py:105
+#: visualImpactSAV/models.py:107
 msgid "Price"
 msgstr "Prix"
 
-#: visualImpactSAV/models.py:108
+#: visualImpactSAV/models.py:110
 msgid "designation"
 msgstr "désignation"
 
-#: visualImpactSAV/models.py:109
+#: visualImpactSAV/models.py:111
 msgid "designations"
 msgstr "désignations"
+
+#: visualImpactSAV/views/views_pdf_generator.py:45
+msgid "Logo Error"
+msgstr ""
+"Le logo de votre entreprise n'existe plus. Veuillez contacter le service "
+"technique."
+
+#: visualImpactSAV/views/views_pdf_generator.py:75
+msgid "Problems' description"
+msgstr "Description des problèmes"
+
+#: visualImpactSAV/views/views_pdf_generator.py:117
+msgid "customer-summary"
+msgstr "Email du client"
+
+#: visualImpactSAV/views/views_pdf_generator.py:117
+msgid "Summary after sell sheet"
+msgstr "Récapitulatif du dossier SAV"
+
+#: visualImpactSAV/views/views_pdf_generator.py:127
+#: visualImpactSAV/views/views_pdf_generator.py:470
+msgid "Reference"
+msgstr "Référence"
+
+#: visualImpactSAV/views/views_pdf_generator.py:130
+#: visualImpactSAV/views/views_pdf_generator.py:215
+#: visualImpactSAV/views/views_pdf_generator.py:395
+#: visualImpactSAV/views/views_pdf_generator.py:472
+msgid "VIF-AS-"
+msgstr "VIF-SAV-"
+
+#: visualImpactSAV/views/views_pdf_generator.py:138
+#: visualImpactSAV/views/views_pdf_generator.py:474
+msgid "Managed by"
+msgstr "Suivi par"
+
+#: visualImpactSAV/views/views_pdf_generator.py:150
+#: visualImpactSAV/views/views_pdf_generator.py:219
+#: visualImpactSAV/views/views_pdf_generator.py:400
+#: visualImpactSAV/views/views_pdf_generator.py:484
+msgid "Billing address"
+msgstr "Adresse de facturation"
+
+#: visualImpactSAV/views/views_pdf_generator.py:152
+#: visualImpactSAV/views/views_pdf_generator.py:249
+#: visualImpactSAV/views/views_pdf_generator.py:424
+#: visualImpactSAV/views/views_pdf_generator.py:485
+msgid "Product reference"
+msgstr "Référence du produit"
+
+#: visualImpactSAV/views/views_pdf_generator.py:170
+#: visualImpactSAV/views/views_pdf_generator.py:257
+#: visualImpactSAV/views/views_pdf_generator.py:432
+#: visualImpactSAV/views/views_pdf_generator.py:502
+msgid "Model"
+msgstr "Modèle"
+
+#: visualImpactSAV/views/views_pdf_generator.py:175
+#: visualImpactSAV/views/views_pdf_generator.py:261
+#: visualImpactSAV/views/views_pdf_generator.py:436
+#: visualImpactSAV/views/views_pdf_generator.py:506
+msgid "Serial number"
+msgstr "Numéro de série"
+
+#: visualImpactSAV/views/views_pdf_generator.py:180
+#: visualImpactSAV/views/views_pdf_generator.py:265
+#: visualImpactSAV/views/views_pdf_generator.py:440
+#: visualImpactSAV/views/views_pdf_generator.py:510
+msgid "RMA number"
+msgstr "Numéro RMA"
+
+#: visualImpactSAV/views/views_pdf_generator.py:188
+msgid "AS condition 1"
+msgstr ""
+"- Tout appareil remis en SAV doit être accompagné de la présente fiche de "
+"dépôt complétée datée et signée. Les pièces détachées ne sont ni reprises ni "
+"échangées."
+
+#: visualImpactSAV/views/views_pdf_generator.py:188
+msgid "AS condition 2"
+msgstr "- Tout devis refusé fera l’objet d’une facturation de 90€ HT."
+
+#: visualImpactSAV/views/views_pdf_generator.py:188
+msgid "AS condition 3"
+msgstr ""
+"- Sous réserve d’ensemble ou sous ensemble à changer en plus du montant "
+"indiqué ci-dessus qui n’auraient pas été décelés comme étant défectueux lors "
+"de l’élaboration."
+
+#: visualImpactSAV/views/views_pdf_generator.py:189
+msgid "AS condition 4"
+msgstr ""
+"- Attention pour les dossiers comprenant des données stockées sous forme de "
+"carte ou de cassette aucune garantie de récupération n’est accordée."
+
+#: visualImpactSAV/views/views_pdf_generator.py:195
+msgid "Conditions"
+msgstr "Conditions"
+
+#: visualImpactSAV/views/views_pdf_generator.py:197
+#: visualImpactSAV/views/views_pdf_generator.py:377
+#: visualImpactSAV/views/views_pdf_generator.py:452
+#: visualImpactSAV/views/views_pdf_generator.py:516
+msgid "VI Addr name-capital-social"
+msgstr "Visual Impact France SAS au capital de 300000.00 €"
+
+#: visualImpactSAV/views/views_pdf_generator.py:197
+#: visualImpactSAV/views/views_pdf_generator.py:377
+#: visualImpactSAV/views/views_pdf_generator.py:452
+#: visualImpactSAV/views/views_pdf_generator.py:516
+msgid "VI Addr street-zipcode"
+msgstr "74 Boulevard de Reuilly, 75012 Paris, France"
+
+#: visualImpactSAV/views/views_pdf_generator.py:197
+#: visualImpactSAV/views/views_pdf_generator.py:377
+#: visualImpactSAV/views/views_pdf_generator.py:452
+#: visualImpactSAV/views/views_pdf_generator.py:516
+msgid "VI Addr phone-mail"
+msgstr ""
+"Tel: +33 1 42 22 02 05, Fax: +33 1 42 22 02 85, vifrance@visualsfrance.com"
+
+#: visualImpactSAV/views/views_pdf_generator.py:197
+#: visualImpactSAV/views/views_pdf_generator.py:377
+#: visualImpactSAV/views/views_pdf_generator.py:452
+#: visualImpactSAV/views/views_pdf_generator.py:516
+msgid "VI Infos"
+msgstr "No TVA: FR72448429274, SIRET: 44842927400021, Code APE: 4643Z"
+
+#: visualImpactSAV/views/views_pdf_generator.py:203
+#: visualImpactSAV/views/views_pdf_generator.py:382
+#: visualImpactSAV/views/views_pdf_generator.py:457
+#: visualImpactSAV/views/views_pdf_generator.py:521
+msgid "Added informations"
+msgstr "Informations complémentaires"
+
+#: visualImpactSAV/views/views_pdf_generator.py:209
+msgid "cost-estimate"
+msgstr "devis-client"
+
+#: visualImpactSAV/views/views_pdf_generator.py:209
+msgid "Commercial offer"
+msgstr "Offre commerciale"
+
+#: visualImpactSAV/views/views_pdf_generator.py:215
+#: visualImpactSAV/views/views_pdf_generator.py:395
+msgid "AS file reference"
+msgstr "Référence du fichier SAV"
+
+#: visualImpactSAV/views/views_pdf_generator.py:233
+#: visualImpactSAV/views/views_pdf_generator.py:412
+msgid "File managed by"
+msgstr "Fichier SAV suivi par"
+
+#: visualImpactSAV/views/views_pdf_generator.py:238
+#: visualImpactSAV/views/views_pdf_generator.py:416
+msgid "VI Addr name"
+msgstr "Visual Impact France"
+
+#: visualImpactSAV/views/views_pdf_generator.py:240
+#: visualImpactSAV/views/views_pdf_generator.py:417
+msgid "VI Addr street"
+msgstr "74 boulevard de Reuilly"
+
+#: visualImpactSAV/views/views_pdf_generator.py:242
+#: visualImpactSAV/views/views_pdf_generator.py:418
+msgid "VI Addr zipcode"
+msgstr "75012 - Paris"
+
+#: visualImpactSAV/views/views_pdf_generator.py:271
+#: visualImpactSAV/views/views_pdf_generator.py:446
+msgid "Unknown"
+msgstr "Inconnu"
+
+#: visualImpactSAV/views/views_pdf_generator.py:275
+msgid "Designations"
+msgstr "Désignations"
+
+#: visualImpactSAV/views/views_pdf_generator.py:277
+msgid "Pre-tax price"
+msgstr "Prix HT"
+
+#: visualImpactSAV/views/views_pdf_generator.py:295
+#: visualImpactSAV/views/views_pdf_generator.py:307
+#: visualImpactSAV/views/views_pdf_generator.py:335
+msgid " £"
+msgstr " €"
+
+#: visualImpactSAV/views/views_pdf_generator.py:304
+msgid "All our prices are given as excluding tax"
+msgstr "Tous nos prix s’entendent Hors Taxes et EXW PARIS"
+
+#: visualImpactSAV/views/views_pdf_generator.py:306
+msgid "Total pre-tax price"
+msgstr "Prix total HT"
+
+#: visualImpactSAV/views/views_pdf_generator.py:311
+msgid "Transport fees when asked except where otherwise specified"
+msgstr "Frais de transport sur demande sauf mention contraire"
+
+#: visualImpactSAV/views/views_pdf_generator.py:316
+msgid "Tax percent"
+msgstr "20%"
+
+#: visualImpactSAV/views/views_pdf_generator.py:320
+msgid "Buying condition 1"
+msgstr ""
+"Nous nous réservons la propriété des marchandises jusqu'au complet paiement "
+"du prix par l'acheteur."
+
+#: visualImpactSAV/views/views_pdf_generator.py:323
+msgid "Buying condition 2"
+msgstr ""
+"Notre droit de revendication porte aussi bien sur les marchandises que sur "
+"leur prix si elles ont déjà été revendues."
+
+#: visualImpactSAV/views/views_pdf_generator.py:326
+msgid "Buying condition 3"
+msgstr ""
+"En cas de retard de paiement aux termes fixés, les sommes dues porteront "
+"intérêt de plein droit et sans qu'il soit besoin d'une mise en demeure."
+
+#: visualImpactSAV/views/views_pdf_generator.py:329
+msgid "Buying condition 4"
+msgstr ""
+"La pénalité sera d'un montant égal à trois fois le taux d'intérêt légal (loi "
+"du 31/12/1992), sans que cette clause nuise à l'exigibilité de la dette."
+
+#: visualImpactSAV/views/views_pdf_generator.py:333
+msgid "Total price AI"
+msgstr "Prix total TTC"
+
+#: visualImpactSAV/views/views_pdf_generator.py:344
+msgid "ALL REFUSED COST ESTIMATE WILL BE FACTURED 90£ (TAX EXCLUDED)"
+msgstr ""
+"TOUT DEVIS REFUSE FERA L'OBJET D'UNE FACTURATION D'UNE SOMME FORFAITAIRE DE "
+"95.00€ HT"
+
+#: visualImpactSAV/views/views_pdf_generator.py:352
+msgid "Delivery time"
+msgstr "Délai de livraison"
+
+#: visualImpactSAV/views/views_pdf_generator.py:354
+msgid "Means of payment"
+msgstr "Moyen de paiement"
+
+#: visualImpactSAV/views/views_pdf_generator.py:357
+msgid "to confirm"
+msgstr "à confirmer"
+
+#: visualImpactSAV/views/views_pdf_generator.py:359
+msgid "to define before the command"
+msgstr "à définir avant la commande"
+
+#: visualImpactSAV/views/views_pdf_generator.py:367
+msgid "VI bank-code bank"
+msgstr "Banque : Societe Generale, Code Banque : 30003"
+
+#: visualImpactSAV/views/views_pdf_generator.py:367
+msgid "VI RIB"
+msgstr "Code Guichet : 03190, Clé RIB : 12, Numero de Compte : 00020119192"
+
+#: visualImpactSAV/views/views_pdf_generator.py:367
+msgid "VI IBAN"
+msgstr "IBAN: FR76 3000 3031 9000 0201 1919 212, Code BICS : SOGEFRPP"
+
+#: visualImpactSAV/views/views_pdf_generator.py:367
+msgid "VI account owner"
+msgstr "Titulaire du Compte : Visual Impact France"
+
+#: visualImpactSAV/views/views_pdf_generator.py:373
+msgid "Bank details"
+msgstr "Coordonnées bancaires"
+
+#: visualImpactSAV/views/views_pdf_generator.py:388
+msgid "repairs"
+msgstr "réparations"
+
+#: visualImpactSAV/views/views_pdf_generator.py:388
+msgid "Repairs asking"
+msgstr "Demande de réparations"
+
+#: visualImpactSAV/views/views_pdf_generator.py:397
+msgid "Please, tell this reference number in all our correspondances."
+msgstr ""
+"Veuillez nous indiquer cette référence dans toutes nos correspondances."
+
+#~ msgid "Tax"
+#~ msgstr "Taxe"
