@@ -10,27 +10,39 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/1.11/ref/settings/
 """
 import os
+import environ
 from django.utils.translation import ugettext_lazy as _
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
+root = environ.Path(__file__) - 3 # 3 folder back (/a/b/c/ - 3 = /)
+SITE_ROOT = root()
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media/')
 MEDIA_URL = "/media/"
+
+
+env = environ.Env(DEBUG=(bool, False),) # set default values and casting
+environ.Env.read_env(env_file=root('.env')) # reading .env file
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/1.11/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = '%zntn11kblu$u1gi$w9cd5$9(-2hsl(j-jevf)w!qg*b#)wy56'
+SECRET_KEY = env('DJANGO_SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = env('DEBUG') # False if not in os.environ, see line 23
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = [env('IP'), env('LOCALHOST_NAME')]
 LOGIN_REDIRECT_URL = 'visualImpactSAV:searchSAVFile'
 LOGIN_URL = 'login'
 AUTH_USER_MODEL = 'auth.User'
 
+EMAIL_HOST = env.str('EMAIL_HOST', '') 
+EMAIL_HOST_USER = env.str('EMAIL_HOST_USER', '') 
+EMAIL_HOST_PASSWORD = env.str('EMAIL_HOST', '')
+EMAIL_PORT = env.int('EMAIL_PORT', 5888888887) 
+EMAIL_USE_TLS = True
 
 # Application definition
 INSTALLED_APPS = [
@@ -91,13 +103,12 @@ WSGI_APPLICATION = 'djangoApp.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'visualimpactsavdev',
-        'USER': 'admin',
-        'PASSWORD': 'admin',
-        'HOST': 'localhost',
-        'PORT': '',
+        'NAME': env('NAME_DB'),
+        'USER': env('USER_DB'),
+        'PASSWORD': env('PASSWORD_DB'),
+        'HOST': env('HOST_DB'),
+        'PORT': env('PORT_DB'),
     }
-
 }
 
 
@@ -143,4 +154,4 @@ STATICFILES_DIRS = [
     '/var/www/static/',
 ]
 
-STATIC_ROOT = '/var/www/visualImpactSAV.fr/static/'
+STATIC_ROOT = os.path.join(BASE_DIR, 'static/')
