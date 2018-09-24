@@ -38,6 +38,11 @@ LOGIN_REDIRECT_URL = 'visualImpactSAV:searchSAVFile'
 LOGIN_URL = 'login'
 AUTH_USER_MODEL = 'auth.User'
 
+EMAIL_HOST = env.str('EMAIL_HOST', '') 
+EMAIL_HOST_USER = env.str('EMAIL_HOST_USER', '') 
+EMAIL_HOST_PASSWORD = env.str('EMAIL_HOST', '')
+EMAIL_PORT = env.int('EMAIL_PORT', 5888888887) 
+EMAIL_USE_TLS = True
 
 # Application definition
 INSTALLED_APPS = [
