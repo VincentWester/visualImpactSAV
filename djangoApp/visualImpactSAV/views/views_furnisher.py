@@ -66,7 +66,13 @@ class FurnisherDeleteView(DeleteView):
             return super(FurnisherDeleteView, self).delete(request, *args, **kwargs)
         except ProtectedError:
             url = "{0}".format(self.request.META.get('HTTP_REFERER', '/'))
-            return HttpResponse(render(request, 'djangoApp/errors/nonValideSAVFile.html', {'errors': 'Un de vos dossiers possède ce fournisseur comme référence', 'url': url}))
+            return HttpResponse(
+                render(
+                    request,
+                    'djangoApp/errors/nonValideSAVFile.html',
+                    {'errors': 'Un de vos dossiers possède ce fournisseur comme référence', 'url': url}
+                )
+            )
 
     def get_success_url(self, *args, **kwargs):
         return reverse_lazy(self.url_to_redirect, kwargs={})

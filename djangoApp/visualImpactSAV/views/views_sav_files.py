@@ -8,9 +8,7 @@ from django.shortcuts import render
 from django.views.generic import DetailView, ListView
 from django.views.generic.edit import CreateView, UpdateView
 
-# models part
 from visualImpactSAV.models import SAV_file, SAV_file_status, Event, Designation, Furnisher
-# forms part
 from visualImpactSAV.forms import SAV_fileForm
 
 from django.contrib.auth.mixins import LoginRequiredMixin
@@ -57,7 +55,11 @@ class SAVFileCreateView(LoginRequiredMixin, CreateView):
         return context
 
     def form_invalid(self, form):
-        return render(self.request, 'djangoApp/SAVFile/createSAVFile.html', {'form': form, 'sav_file_status': SAV_file_status.objects.all()})
+        return render(
+            self.request,
+            'djangoApp/SAVFile/createSAVFile.html',
+            {'form': form, 'sav_file_status': SAV_file_status.objects.all()}
+        )
 
     """
     Check if the form is valid and save the object.

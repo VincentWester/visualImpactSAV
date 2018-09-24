@@ -87,6 +87,7 @@ class SAV_file(models.Model):
         verbose_name_plural = _("After sale files")
         ordering = ['creation_date']
 
+
 class Event(models.Model):
     refered_SAV_file = models.ForeignKey(SAV_file, verbose_name=_("After sale file"))
     title = models.CharField(_("Title"), max_length=100)

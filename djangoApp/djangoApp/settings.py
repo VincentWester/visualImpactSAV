@@ -14,15 +14,15 @@ import environ
 from django.utils.translation import ugettext_lazy as _
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
-root = environ.Path(__file__) - 3 # 3 folder back (/a/b/c/ - 3 = /)
+root = environ.Path(__file__) - 3  # 3 folder back (/a/b/c/ - 3 = /)
 SITE_ROOT = root()
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media/')
 MEDIA_URL = "/media/"
 
 
-env = environ.Env(DEBUG=(bool, False),) # set default values and casting
-environ.Env.read_env(env_file=root('.env')) # reading .env file
+env = environ.Env(DEBUG=(bool, False),)  # set default values and casting
+environ.Env.read_env(env_file=root('.env'))  # reading .env file
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/1.11/howto/deployment/checklist/
@@ -31,17 +31,17 @@ environ.Env.read_env(env_file=root('.env')) # reading .env file
 SECRET_KEY = env('DJANGO_SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = env('DEBUG') # False if not in os.environ, see line 23
+DEBUG = env('DEBUG')  # False if not in os.environ, see line 23
 
 ALLOWED_HOSTS = [env('IP'), env('LOCALHOST_NAME')]
 LOGIN_REDIRECT_URL = 'visualImpactSAV:searchSAVFile'
 LOGIN_URL = 'login'
 AUTH_USER_MODEL = 'auth.User'
 
-EMAIL_HOST = env.str('EMAIL_HOST', '') 
-EMAIL_HOST_USER = env.str('EMAIL_HOST_USER', '') 
+EMAIL_HOST = env.str('EMAIL_HOST', '')
+EMAIL_HOST_USER = env.str('EMAIL_HOST_USER', '')
 EMAIL_HOST_PASSWORD = env.str('EMAIL_HOST', '')
-EMAIL_PORT = env.int('EMAIL_PORT', 5888888887) 
+EMAIL_PORT = env.int('EMAIL_PORT', 5888888887)
 EMAIL_USE_TLS = True
 
 # Application definition

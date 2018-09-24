@@ -75,8 +75,14 @@ class Pdf_generator(View):
 
     def get(self, request, pkSAVFile):
         self.sav_file = get_object_or_404(SAV_file, id=pkSAVFile)
-        filename_client_part = self.sav_file.name_client.replace(' ', '_') if self.sav_file.society_client == '' else self.sav_file.society_client.replace(' ', '_')
-        final_filename = '{0}__{1}{2}'.format(self.filename, filename_client_part, '.pdf')
+
+        filename_customer_part = ''
+        if self.sav_file.society_client == '':
+            filename_customer_part = self.sav_file.name_client.replace(' ', '_')
+        else:
+            filename_customer_part = self.sav_file.society_client.replace(' ', '_')
+
+        final_filename = '{0}__{1}{2}'.format(self.filename, filename_customer_part, '.pdf')
 
         response = HttpResponse(content_type='application/pdf')
         response['Content-Disposition'] = 'attachment; filename="{0}"'.format(final_filename)
