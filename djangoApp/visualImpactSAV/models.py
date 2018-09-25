@@ -101,7 +101,7 @@ class Event(models.Model):
 
 
 class Designation(models.Model):
-    refered_SAV_file = models.ForeignKey(SAV_file, verbose_name=_("After sale file"))
+    refered_SAV_file = models.ForeignKey(SAV_file, verbose_name=_("After sale file"), related_name="designations")
     designation = models.CharField(_("Designation"), max_length=100, default="")
     quantity = models.IntegerField(_("Quantity"), default=1)
     price = models.DecimalField(_("Price"), default=0.0, max_digits=18, decimal_places=2)
