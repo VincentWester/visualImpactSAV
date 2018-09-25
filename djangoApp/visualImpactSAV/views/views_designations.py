@@ -5,8 +5,8 @@ from decimal import Decimal
 
 from django.views.generic import ListView
 
+import constants
 from .views_template_parameters_sav_files import ParameterCreateView, ParameterUpdateView, ParameterDeleteView
-
 from visualImpactSAV.models import Designation
 from visualImpactSAV.forms import DesignationForm
 
@@ -41,9 +41,6 @@ class DesignationDeleteView(ParameterDeleteView):
         return context
 
 
-TAX_RATE = Decimal(1.2)
-
-
 class DesignationListView(ListView):
     model = Designation
     template_name = 'djangoApp/Designation/listDesignation.html'
@@ -65,7 +62,7 @@ class DesignationListView(ListView):
             total += Decimal(designation.quantity) * Decimal(designation.price)
 
         context['totalHT'] = round(total, 2)
-        context['totalTC'] = round(total * TAX_RATE, 2)
+        context['totalTC'] = round(total * constants.TAX_RATE, 2)
         return context
 
     def get_queryset(self):

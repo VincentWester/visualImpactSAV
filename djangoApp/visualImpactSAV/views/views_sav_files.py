@@ -11,6 +11,7 @@ from django.views.generic.edit import CreateView, UpdateView
 from visualImpactSAV.models import SAV_file, SAV_file_status, Event, Designation, Furnisher
 from visualImpactSAV.forms import SAV_fileForm
 
+import constants
 from django.contrib.auth.mixins import LoginRequiredMixin
 
 
@@ -35,9 +36,8 @@ class SAVFileDetailView(LoginRequiredMixin, DetailView):
         for designation in designations:
             total += Decimal(designation.quantity) * Decimal(designation.price)
 
-        TAX_RATE = Decimal(1.2)
         context['totalHT'] = round(total, 2)
-        context['totalTC'] = round(total * TAX_RATE, 2)
+        context['totalTC'] = round(total * constants.TAX_RATE, 2)
 
         return context
 
@@ -88,9 +88,8 @@ class SAVFileUpdateView(LoginRequiredMixin, UpdateView):
         for designation in designations:
             total += Decimal(designation.quantity) * Decimal(designation.price)
 
-        TAX_RATE = Decimal(1.2)
         context['totalHT'] = round(total, 2)
-        context['totalTC'] = round(total * TAX_RATE, 2)
+        context['totalTC'] = round(total * constants.TAX_RATE, 2)
 
         return context
 
@@ -101,13 +100,10 @@ class SAVFileUpdateView(LoginRequiredMixin, UpdateView):
         return super(SAVFileUpdateView, self).form_valid(form)
 
 
-DEFAULT_PAGINATION_BY = 40
-
-
 class SAVFileListView(LoginRequiredMixin, ListView):
     template_name = 'djangoApp/SAVFile/searchSAVFile.html'
     context_object_name = 'results'
-    paginate_by = DEFAULT_PAGINATION_BY
+    paginate_by = constants.DEFAULT_ASS_FILE_LIST_VIEW_PAGINATION_BY
 
     def get_context_data(self, **kwargs):
         context = super(SAVFileListView, self).get_context_data(**kwargs)

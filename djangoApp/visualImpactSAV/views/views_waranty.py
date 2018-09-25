@@ -8,17 +8,17 @@ from django.urls import reverse_lazy
 from django.views.generic import ListView
 from django.views.generic.edit import CreateView, DeleteView
 
-from visualImpactSAV.models import Guarantee
-from visualImpactSAV.forms import GuaranteeForm
+from visualImpactSAV.models import Waranty
+from visualImpactSAV.forms import WarantyForm
 
 import constants
 from .views_template_parameters_sav_files import ParameterUpdateView
 
 
-class GuaranteeCreateView(CreateView):
-    model = Guarantee
-    form_class = GuaranteeForm
-    template_name = 'djangoApp/Guarantee/createGuarantee.html'
+class WarantyCreateView(CreateView):
+    model = Waranty
+    form_class = WarantyForm
+    template_name = 'djangoApp/Warantee/createWaranty.html'
 
     def form_invalid(self, form):
         url = "{0}".format(self.request.META.get('HTTP_REFERER', '/'))
@@ -31,29 +31,29 @@ class GuaranteeCreateView(CreateView):
         return HttpResponseRedirect(url)
 
 
-class GuaranteeUpdateView(ParameterUpdateView):
-    model = Guarantee
-    form_class = GuaranteeForm
-    template_name = 'djangoApp/Guarantee/updateGuarantee.html'
+class WarantyUpdateView(ParameterUpdateView):
+    model = Waranty
+    form_class = WarantyForm
+    template_name = 'djangoApp/Waranty/updateWaranty.html'
 
     def get_context_data(self, **kwargs):
-        context = super(GuaranteeUpdateView, self).get_context_data(**kwargs)
-        context['current_guarantee'] = self.object
+        context = super(WarantyUpdateView, self).get_context_data(**kwargs)
+        context['current_Waranty'] = self.object
 
         return context
 
 
-class GuaranteeDeleteView(DeleteView):
-    model = Guarantee
-    template_name = 'djangoApp/Guarantee/confirmDeleteGuarantee.html'
+class WarantyDeleteView(DeleteView):
+    model = Waranty
+    template_name = 'djangoApp/Waranty/confirmDeleteWaranty.html'
 
     def dispatch(self, *args, **kwargs):
         self.pk = kwargs['pk']
-        self.url_to_redirect = 'visualImpactSAV:listGuarantee'
-        return super(GuaranteeDeleteView, self).dispatch(*args, **kwargs)
+        self.url_to_redirect = 'visualImpactSAV:listWaranty'
+        return super(WarantyDeleteView, self).dispatch(*args, **kwargs)
 
     def get_context_data(self, **kwargs):
-        context = super(GuaranteeDeleteView, self).get_context_data(**kwargs)
+        context = super(WarantyDeleteView, self).get_context_data(**kwargs)
         context['id_to_delete'] = self.pk
         context['name_class'] = self.object.__class__.__name__
         context['name_object'] = self.object.mark
@@ -64,8 +64,8 @@ class GuaranteeDeleteView(DeleteView):
         return reverse_lazy(self.url_to_redirect, kwargs={})
 
 
-class GuaranteeListView(LoginRequiredMixin, ListView):
-    queryset = Guarantee.objects.order_by('mark')
-    template_name = 'djangoApp/Guarantee/listGuarantee.html'
+class WarantyListView(LoginRequiredMixin, ListView):
+    queryset = Waranty.objects.order_by('mark')
+    template_name = 'djangoApp/Waranty/listWaranty.html'
     context_object_name = 'results'
     paginate_by = constants.DEFAULT_WARANTY_LIST_VIEW_PAGINATION_BY

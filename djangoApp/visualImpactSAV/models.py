@@ -7,9 +7,7 @@ from django.urls import reverse
 from django.utils import timezone
 from django.contrib.auth import get_user_model
 from django.db.models import PROTECT
-
-
-DEFAULT_SAV_FILE_STATUS_ID = 1
+import constants
 
 
 class SAV_file_status(models.Model):
@@ -23,11 +21,21 @@ class SAV_file_status(models.Model):
         verbose_name = _("after sale file status")
         verbose_name_plural = _("after sale file status")
 
+class Waranty(models.Model):
+    brand = models.CharField(_("Brand"), max_length=200, default="")
+    complements = models.CharField(_("Complements"), max_length=200, default="", blank=True)
+    waranty_time = models.CharField(_("Waranty time"), max_length=20, default="")
+    procedure = models.TextField(_("Procedure"))
+
+    class Meta:
+        verbose_name = _("waranty")
+        verbose_name_plural = _("waranties")
+        ordering = ['brand']
 
 class Guarantee(models.Model):
     mark = models.CharField(_("Brand"), max_length=200, default="")
     complements = models.CharField(_("Complements"), max_length=200, default="", blank=True)
-    guarantee_time = models.CharField(_("Waranty_time"), max_length=20, default="")
+    guarantee_time = models.CharField(_("Waranty time"), max_length=20, default="")
     procedure = models.TextField(_("Procedure"))
 
     class Meta:
@@ -56,7 +64,7 @@ class Furnisher(models.Model):
 
 class SAV_file(models.Model):
     creation_date = models.DateTimeField(_("Creation date"), default=timezone.now)
-    sav_file_status = models.ForeignKey(SAV_file_status, default=DEFAULT_SAV_FILE_STATUS_ID, verbose_name=_("Status"))
+    sav_file_status = models.ForeignKey(SAV_file_status, default=constants.DEFAULT_SAV_FILE_STATUS_ID, verbose_name=_("Status"))
     society_client = models.CharField(_("Society"), max_length=300, default="", blank=True)
     name_client = models.CharField(_("Customer name"), max_length=300, default="")
     street_client = models.CharField(_("Customer street"), max_length=300, default="")
@@ -73,8 +81,7 @@ class SAV_file(models.Model):
     out_of_order_reason = models.TextField(_("Out of order reason"))
     client_bill = models.FileField(_("Client bill"), blank=True)
     furnisher = models.ForeignKey(Furnisher, null=True, on_delete=PROTECT, verbose_name=_("Furnisher"))
-
-    registred_by = models.ForeignKey(get_user_model(), default=1, verbose_name=_("User"))
+    registred_by = models.ForeignKey(get_user_model(), default=constants.DEFAULT_USERS_ID, verbose_name=_("User"))
 
     def __unicode__(self):
         return str(self.id).encode('utf-8')

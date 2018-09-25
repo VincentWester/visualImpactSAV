@@ -13,6 +13,7 @@ from django.db.models import ProtectedError
 from visualImpactSAV.models import Furnisher
 from visualImpactSAV.forms import FurnisherForm
 
+import constants
 from .views_template_parameters_sav_files import ParameterUpdateView
 
 
@@ -78,11 +79,8 @@ class FurnisherDeleteView(DeleteView):
         return reverse_lazy(self.url_to_redirect, kwargs={})
 
 
-DEFAULT_PAGINATION_BY = 40
-
-
 class FurnisherListView(LoginRequiredMixin, ListView):
     queryset = Furnisher.objects.order_by('mark')
     template_name = 'djangoApp/Furnisher/listFurnisher.html'
     context_object_name = 'results'
-    paginate_by = DEFAULT_PAGINATION_BY
+    paginate_by = constants.DEFAULT_FURNISHER_LIST_VIEW_PAGINATION_BY
