@@ -523,7 +523,7 @@ class Pdf_generator_furnisher(Pdf_generator):
                 'func': "draw_title_and_text_in_column",
                 'kwargs': {
                     'alinea': -0.5,
-                    'height_start': 8.7,
+                    'height_start': 9,
                     'alinea_title': -0.5,
                     'title': _("Furnisher address"),
                     'lines': [
@@ -538,7 +538,7 @@ class Pdf_generator_furnisher(Pdf_generator):
                 'func': "draw_title_and_text_in_column",
                 'kwargs': {
                     'alinea': 4,
-                    'height_start': 7.5,
+                    'height_start': 7.8,
                     'alinea_title': 4,
                     'title': _("File managed by") + constants.FIELD_SEPARATOR + sav_file.registred_by.username,
                     'lines': [
