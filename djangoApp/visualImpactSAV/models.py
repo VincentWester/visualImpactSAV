@@ -21,6 +21,7 @@ class SAV_file_status(models.Model):
         verbose_name = _("after sale file status")
         verbose_name_plural = _("after sale file status")
 
+
 class Waranty(models.Model):
     brand = models.CharField(_("Brand"), max_length=200, default="")
     complements = models.CharField(_("Complements"), max_length=200, default="", blank=True)
@@ -35,6 +36,7 @@ class Waranty(models.Model):
 
 class Furnisher(models.Model):
     mark = models.CharField(_("Brand"), max_length=200, default="")
+    brand = models.CharField(_("Brand"), max_length=200, default="")
     street = models.CharField(_("Street"), max_length=300, default="")
     complements = models.CharField(_("Complements"), max_length=300, default="", blank=True)
     zipcode = models.CharField(_("Zipcode"), max_length=30, default="")
@@ -48,12 +50,16 @@ class Furnisher(models.Model):
     class Meta:
         verbose_name = _("furnisher")
         verbose_name_plural = _("furnishers")
-        ordering = ['mark']
+        ordering = ['brand']
 
 
 class SAV_file(models.Model):
     creation_date = models.DateTimeField(_("Creation date"), default=timezone.now)
-    sav_file_status = models.ForeignKey(SAV_file_status, default=constants.DEFAULT_FILE_AS_STATUS_ID, verbose_name=_("Status"))
+    sav_file_status = models.ForeignKey(
+        SAV_file_status,
+        default=constants.DEFAULT_FILE_AS_STATUS_ID,
+        verbose_name=_("Status")
+    )
     society_client = models.CharField(_("Society"), max_length=300, default="", blank=True)
     name_client = models.CharField(_("Customer name"), max_length=300, default="")
     street_client = models.CharField(_("Customer street"), max_length=300, default="")

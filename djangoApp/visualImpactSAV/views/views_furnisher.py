@@ -58,7 +58,7 @@ class FurnisherDeleteView(DeleteView):
         context = super(FurnisherDeleteView, self).get_context_data(**kwargs)
         context['id_to_delete'] = self.pk
         context['name_class'] = self.object.__class__.__name__
-        context['name_object'] = self.object.mark
+        context['name_object'] = self.object.brand
 
         return context
 
@@ -80,7 +80,7 @@ class FurnisherDeleteView(DeleteView):
 
 
 class FurnisherListView(LoginRequiredMixin, ListView):
-    queryset = Furnisher.objects.order_by('mark')
+    queryset = Furnisher.objects.order_by('brand')
     template_name = 'djangoApp/Furnisher/listFurnisher.html'
     context_object_name = 'results'
     paginate_by = constants.DEFAULT_FURNISHER_LIST_VIEW_PAGINATION_BY

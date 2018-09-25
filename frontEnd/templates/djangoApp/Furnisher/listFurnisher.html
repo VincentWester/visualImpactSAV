@@ -6,8 +6,8 @@
     <link href="{% static 'css/SAVFile/classSAVFileStatus.css' %}" rel="stylesheet" media="screen">
 {% endblock %}
 {% block menu_furnisher %}<li class="list-SAV-file active row"><a href="#" class="col-md-12">Fournisseur</a></li>{% endblock %}
-{% block content %}    
-    <div class="col-md-12 block-button">        
+{% block content %}
+    <div class="col-md-12 block-button">
         <a data-toggle="modal" data-target="#modalCreateFurnisher" href="{% url 'visualImpactSAV:createFurnisher' %}">Ajouter fournisseur</a>
     </div>
 
@@ -27,7 +27,7 @@
         </thead>
         <tbody>
             {% for furnisher in results %}
-                <td>{{ furnisher.mark }}</td>
+                <td>{{ furnisher.brand }}</td>
                 <td>{{ furnisher.street }}</td>
                 <td>{{ furnisher.complements }}</td>
                 <td>{{ furnisher.zipcode }}</td>
