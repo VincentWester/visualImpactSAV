@@ -32,17 +32,6 @@ class Waranty(models.Model):
         verbose_name_plural = _("waranties")
         ordering = ['brand']
 
-class Guarantee(models.Model):
-    mark = models.CharField(_("Brand"), max_length=200, default="")
-    complements = models.CharField(_("Complements"), max_length=200, default="", blank=True)
-    guarantee_time = models.CharField(_("Waranty time"), max_length=20, default="")
-    procedure = models.TextField(_("Procedure"))
-
-    class Meta:
-        verbose_name = _("waranty")
-        verbose_name_plural = _("waranties")
-        ordering = ['mark']
-
 
 class Furnisher(models.Model):
     mark = models.CharField(_("Brand"), max_length=200, default="")

@@ -17,12 +17,6 @@ from .views.views_designations import (
     DesignationDeleteView,
     DesignationListView,
 )
-from .views.views_guarantee import (
-    GuaranteeCreateView,
-    GuaranteeUpdateView,
-    GuaranteeDeleteView,
-    GuaranteeListView,
-)
 from .views.views_waranty import (
     WarantyCreateView,
     WarantyUpdateView,
@@ -120,28 +114,6 @@ urlpatterns = [
         r'^deleteWaranty/(?P<pk>[\w\-]+)$$',
         WarantyDeleteView.as_view(),
         name="deleteWaranty"
-    ),
-
-
-    url(
-        r'^listGuarantee/$',
-        GuaranteeListView.as_view(),
-        name="listGuarantee"
-    ),
-    url(
-        r'^createGuarantee/$',
-        GuaranteeCreateView.as_view(),
-        name="createGuarantee"
-    ),
-    url(
-        r'^updateGuarantee/(?P<pk>[\w\-]+)$$',
-        GuaranteeUpdateView.as_view(),
-        name="updateGuarantee"
-    ),
-    url(
-        r'^deleteGuarantee/(?P<pk>[\w\-]+)$$',
-        GuaranteeDeleteView.as_view(),
-        name="deleteGuarantee"
     ),
 
     url(
