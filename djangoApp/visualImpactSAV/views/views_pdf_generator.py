@@ -132,7 +132,6 @@ class Pdf_generator(View):
         p.drawString(alinea_title*inch, (height)*inch, _("Problems' description"))
         p.setFont(constants.FONT_STYLE, constants.FONT_SMALLER_SIZE)
 
-
         # this trick is used for deleting the EOF character
         lines = self.sav_file.out_of_order_reason.split('\n')
         size = len(lines)
@@ -212,7 +211,6 @@ class Pdf_generator(View):
         p.rect(-0.5*inch, height*inch, 3.6*inch, 0.3*inch, fill=0)
         p.rect(3.1*inch, height*inch, 3.6*inch, 0.3*inch, fill=0)
 
-
     def get(self, request, pkSAVFile):
         self.sav_file = get_object_or_404(SAV_file, id=pkSAVFile)
 
@@ -258,10 +256,34 @@ class Pdf_generator_client(Pdf_generator):
                 'func': "draw_raw_text_with_bold",
                 'kwargs': {
                     'lines': [
-                        (9.5, -0.5, _("Reference") + constants.FIELD_SEPARATOR, 0.5, _("VIF-AS-") + str(sav_file.id)),
-                        (9.5, 3.2, _("Creation date") + constants.FIELD_SEPARATOR, 5, sav_file.creation_date.strftime("%d/%m/%Y %H:%M")),
-                        (9.2, -0.5, _("Managed by") + constants.FIELD_SEPARATOR, 0.5, sav_file.registred_by.username),
-                        (9.2, 3.2, _("Customer name") + constants.FIELD_SEPARATOR, 5, global_name_client),
+                        (
+                            9.5,
+                            -0.5,
+                            _("Reference") + constants.FIELD_SEPARATOR,
+                            0.5,
+                            _("VIF-AS-") + str(sav_file.id)
+                        ),
+                        (
+                            9.5,
+                            3.2,
+                            _("Creation date") + constants.FIELD_SEPARATOR,
+                            5,
+                            sav_file.creation_date.strftime("%d/%m/%Y %H:%M")
+                        ),
+                        (
+                            9.2,
+                            -0.5,
+                            _("Managed by") + constants.FIELD_SEPARATOR,
+                            0.5,
+                            sav_file.registred_by.username
+                        ),
+                        (
+                            9.2,
+                            3.2,
+                            _("Customer name") + constants.FIELD_SEPARATOR,
+                            5,
+                            global_name_client
+                        ),
                     ]
                 }
             },
@@ -310,7 +332,7 @@ class Pdf_generator_client(Pdf_generator):
                             3.7,
                             _("RMA number") + constants.FIELD_SEPARATOR,
                             5,
-                            sav_file.rma_number if sav_file.rma_number else  _("Unknown"),
+                            sav_file.rma_number if sav_file.rma_number else _("Unknown"),
                         )
                     ]
                 }
@@ -373,8 +395,7 @@ class Pdf_generator_cost_estimate(Pdf_generator):
             global_name_client = sav_file.society_client + constants.NORMAL_SEPARATOR + global_name_client
 
         height_start_designations_part = 5.5
-        height_taken_by_designations = designations.count() * 0.2
-        # 3.075 is the result of the sum of all the height taken by the other parts of this pdf
+        # 3.4 is the result of the sum of all the height taken by the other parts of this pdf
         # excluding the designation list height, in the method `draw_designations_part`
         heigh_start_for_bank_info = height_start_designations_part - 3.4 - designations.count() * 0.2
         heigh_start_for_VI_info = heigh_start_for_bank_info - 1.35
@@ -679,7 +700,7 @@ class Pdf_answer_reparation(Pdf_generator):
                         (
                             5.2,
                             _("RMA number") + constants.FIELD_SEPARATOR,
-                            sav_file.rma_number if sav_file.rma_number else  _("Unknown"),
+                            sav_file.rma_number if sav_file.rma_number else _("Unknown"),
                         )
                     ]
                 }
