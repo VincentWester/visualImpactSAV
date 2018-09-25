@@ -35,7 +35,6 @@ class Waranty(models.Model):
 
 
 class Furnisher(models.Model):
-    mark = models.CharField(_("Brand"), max_length=200, default="")
     brand = models.CharField(_("Brand"), max_length=200, default="")
     street = models.CharField(_("Street"), max_length=300, default="")
     complements = models.CharField(_("Complements"), max_length=300, default="", blank=True)
