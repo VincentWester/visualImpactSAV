@@ -37,7 +37,7 @@
                 {% if user.is_authenticated %}
                     {% block menu_search %}<li class="list-SAV-file row"><a href="{% url 'visualImpactSAV:searchSAVFile' %}" class="col-md-12">Rechercher</a></li>{% endblock %}
                     {% block menu_add %}<li class="list-SAV-file row"><a href="{% url 'visualImpactSAV:createSAVFile' %}" class="col-md-12">Ajouter</a></li>{% endblock %}
-                    {% block menu_guarantee %}<li class="list-SAV-file row"><a href="{% url 'visualImpactSAV:listWaranty' %}" class="col-md-12">Garantie</a></li>{% endblock %}
+                    {% block menu_waranty %}<li class="list-SAV-file row"><a href="{% url 'visualImpactSAV:listWaranty' %}" class="col-md-12">Garantie</a></li>{% endblock %}
                     {% block menu_furnisher %}<li class="list-SAV-file row"><a href="{% url 'visualImpactSAV:listFurnisher' %}" class="col-md-12">Fournisseur</a></li>{% endblock %}
                 {% endif %}
             </ul>
