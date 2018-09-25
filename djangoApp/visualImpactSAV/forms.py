@@ -3,7 +3,7 @@ from __future__ import unicode_literals
 
 from django.contrib.auth.models import User
 from django.forms import ModelForm, EmailField, ModelChoiceField
-from .models import SAV_file, SAV_file_status, Event, Designation, Guarantee, Furnisher
+from .models import SAV_file, SAV_file_status, Event, Designation, Guarantee, Furnisher, Waranty
 from django.contrib.auth.forms import UserCreationForm
 
 from django.utils.translation import ugettext_lazy as _
@@ -111,6 +111,11 @@ class DesignationForm(ModelForm):
 class GuaranteeForm(ModelForm):
     class Meta:
         model = Guarantee
+        fields = [field.name for field in model._meta.fields]
+
+class WarantyForm(ModelForm):
+    class Meta:
+        model = Waranty
         fields = [field.name for field in model._meta.fields]
 
 
