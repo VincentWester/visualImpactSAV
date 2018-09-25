@@ -23,6 +23,12 @@ from .views.views_guarantee import (
     GuaranteeDeleteView,
     GuaranteeListView,
 )
+from .views.views_waranty import (
+    WarantyCreateView,
+    WarantyUpdateView,
+    WarantyDeleteView,
+    WarantyListView,
+)
 from .views.views_furnisher import (
     FurnisherCreateView,
     FurnisherUpdateView,
@@ -94,6 +100,28 @@ urlpatterns = [
         DesignationListView.as_view(),
         name="listDesignation"
     ),
+
+    url(
+        r'^listWaranty/$',
+        WarantyListView.as_view(),
+        name="listWaranty"
+    ),
+    url(
+        r'^createWaranty/$',
+        WarantyCreateView.as_view(),
+        name="createWaranty"
+    ),
+    url(
+        r'^updateWaranty/(?P<pk>[\w\-]+)$$',
+        WarantyUpdateView.as_view(),
+        name="updateWaranty"
+    ),
+    url(
+        r'^deleteWaranty/(?P<pk>[\w\-]+)$$',
+        WarantyDeleteView.as_view(),
+        name="deleteWaranty"
+    ),
+
 
     url(
         r'^listGuarantee/$',

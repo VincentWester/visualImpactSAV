@@ -38,7 +38,7 @@ class WarantyUpdateView(ParameterUpdateView):
 
     def get_context_data(self, **kwargs):
         context = super(WarantyUpdateView, self).get_context_data(**kwargs)
-        context['current_Waranty'] = self.object
+        context['current_waranty'] = self.object
 
         return context
 
@@ -65,7 +65,7 @@ class WarantyDeleteView(DeleteView):
 
 
 class WarantyListView(LoginRequiredMixin, ListView):
-    queryset = Waranty.objects.order_by('mark')
+    queryset = Waranty.objects.order_by('brand')
     template_name = 'djangoApp/Waranty/listWaranty.html'
     context_object_name = 'results'
     paginate_by = constants.DEFAULT_WARANTY_LIST_VIEW_PAGINATION_BY
