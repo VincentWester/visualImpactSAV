@@ -18,7 +18,7 @@ from .views_template_parameters_sav_files import ParameterUpdateView
 class WarantyCreateView(CreateView):
     model = Waranty
     form_class = WarantyForm
-    template_name = 'djangoApp/Warantee/createWaranty.html'
+    template_name = 'djangoApp/Waranty/createWaranty.html'
 
     def form_invalid(self, form):
         url = "{0}".format(self.request.META.get('HTTP_REFERER', '/'))
@@ -56,7 +56,7 @@ class WarantyDeleteView(DeleteView):
         context = super(WarantyDeleteView, self).get_context_data(**kwargs)
         context['id_to_delete'] = self.pk
         context['name_class'] = self.object.__class__.__name__
-        context['name_object'] = self.object.mark
+        context['name_object'] = self.object.brand
 
         return context
 

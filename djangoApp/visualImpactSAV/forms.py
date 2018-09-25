@@ -113,6 +113,7 @@ class GuaranteeForm(ModelForm):
         model = Guarantee
         fields = [field.name for field in model._meta.fields]
 
+
 class WarantyForm(ModelForm):
     class Meta:
         model = Waranty

@@ -14,7 +14,6 @@ class Command(BaseCommand):
 
         for guarantee in guarantee_all:
             kwargs = {
-                'id': guarantee.id,
                 'brand': guarantee.mark,
                 'complements': guarantee.complements,
                 'waranty_time': guarantee.guarantee_time,
