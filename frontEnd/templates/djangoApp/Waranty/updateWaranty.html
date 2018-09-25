@@ -1,6 +1,6 @@
 {% load i18n widget_tweaks %}
 <div class="modal-dialog modal-lg" role="document">
-    <form action="{% url 'visualImpactSAV:updateGuarantee' pk=current_guarantee.id %}" method="post" id="updateGuarantee" class="form">
+    <form action="{% url 'visualImpactSAV:updateGuarantee' pk=current_waranty.id %}" method="post" id="updateGuarantee" class="form">
         {% csrf_token %}
         <div class="modal-content">
             <div class="modal-header">

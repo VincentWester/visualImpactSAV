@@ -5,10 +5,10 @@
     <link href="{% static 'css/SAVFile/searchSAVFile.css' %}" rel="stylesheet" media="screen">
     <link href="{% static 'css/SAVFile/classSAVFileStatus.css' %}" rel="stylesheet" media="screen">
 {% endblock %}
-{% block menu_guarantee %}<li class="list-SAV-file active row"><a href="#" class="col-md-12">Garantie</a></li>{% endblock %}
-{% block content %}    
-    <div class="col-md-12 block-button">        
-        <a data-toggle="modal" data-target="#modalCreateGuarantee" href="{% url 'visualImpactSAV:createGuarantee' %}">Ajouter garantie</a>
+{% block menu_waranty %}<li class="list-SAV-file active row"><a href="#" class="col-md-12">Garantie</a></li>{% endblock %}
+{% block content %}
+    <div class="col-md-12 block-button">
+        <a data-toggle="modal" data-target="#modalCreateWaranty" href="{% url 'visualImpactSAV:createWaranty' %}">Ajouter garantie</a>
     </div>
 
     <table class="table">
@@ -23,13 +23,13 @@
             </tr>
         </thead>
         <tbody>
-            {% for guarantee in results %}
-                <td>{{ guarantee.mark }}</td>
-                <td>{{ guarantee.complements }}</td>
-                <td>{{ guarantee.guarantee_time }}</td>
-                <td>{{ guarantee.procedure }}</td>
-                <td><a class="glyphicon glyphicon-pencil" data-toggle="modal" data-target="#modalUpdateGuarantee" href="{% url 'visualImpactSAV:updateGuarantee' guarantee.id %}" style="color: black;"></a> </td>
-                <td><a class="glyphicon glyphicon-remove" data-toggle="modal" data-target="#modalDeleteGuarantee" href="{% url 'visualImpactSAV:deleteGuarantee' guarantee.id %}" style="color: black;"></a> </td>
+            {% for waranty in results %}
+                <td>{{ waranty.brand }}</td>
+                <td>{{ waranty.complements }}</td>
+                <td>{{ waranty.waranty_time }}</td>
+                <td>{{ waranty.procedure }}</td>
+                <td><a class="glyphicon glyphicon-pencil" data-toggle="modal" data-target="#modalUpdateWaranty" href="{% url 'visualImpactSAV:updateWaranty' waranty.id %}" style="color: black;"></a> </td>
+                <td><a class="glyphicon glyphicon-remove" data-toggle="modal" data-target="#modalDeleteWaranty" href="{% url 'visualImpactSAV:deleteWaranty' waranty.id %}" style="color: black;"></a> </td>
             </tr>
             {% endfor %}
         </tbody>
@@ -49,7 +49,7 @@
             </span>
         </div>
     {% endif %}
-    <div class="modal" id="modalCreateGuarantee"></div>
-    <div class="modal" id="modalUpdateGuarantee"></div>
-    <div class="modal" id="modalDeleteGuarantee"></div>
+    <div class="modal" id="modalCreateWaranty"></div>
+    <div class="modal" id="modalUpdateWaranty"></div>
+    <div class="modal" id="modalDeleteWaranty"></div>
 {% endblock %}

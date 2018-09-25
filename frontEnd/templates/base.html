@@ -4,13 +4,11 @@
     <head>
         <!-- En-tête de la page -->
         <meta charset="utf-8" />
-        <title>Visual Impact SAV</title>    
+        <title>Visual Impact SAV</title>
         <script src="{% static 'bootstrap/js/jquery-1.12.0.min.js' %}"></script>
         <script src="{% static 'bootstrap/js/bootstrap.min.js' %}"></script>
-        <!--script src="{% static 'bootstrap/js/bootstrap-datetimepicker.min.js' %}"></script-->
         <link href="{% static 'bootstrap/css/bootstrap.min.css' %}" rel="stylesheet" media="screen">
-        <!--link href="{% static 'bootstrap/css/bootstrap-datetimepicker.min.css' %}" rel="stylesheet" media="screen"-->
-        <link href="{% static 'css/base.css' %}" rel="stylesheet" media="screen">        
+        <link href="{% static 'css/base.css' %}" rel="stylesheet" media="screen">
         {% block js %}
         {% endblock %}
         {% block style %}
@@ -39,7 +37,7 @@
                 {% if user.is_authenticated %}
                     {% block menu_search %}<li class="list-SAV-file row"><a href="{% url 'visualImpactSAV:searchSAVFile' %}" class="col-md-12">Rechercher</a></li>{% endblock %}
                     {% block menu_add %}<li class="list-SAV-file row"><a href="{% url 'visualImpactSAV:createSAVFile' %}" class="col-md-12">Ajouter</a></li>{% endblock %}
-                    {% block menu_guarantee %}<li class="list-SAV-file row"><a href="{% url 'visualImpactSAV:listGuarantee' %}" class="col-md-12">Garantie</a></li>{% endblock %}
+                    {% block menu_guarantee %}<li class="list-SAV-file row"><a href="{% url 'visualImpactSAV:listWaranty' %}" class="col-md-12">Garantie</a></li>{% endblock %}
                     {% block menu_furnisher %}<li class="list-SAV-file row"><a href="{% url 'visualImpactSAV:listFurnisher' %}" class="col-md-12">Fournisseur</a></li>{% endblock %}
                 {% endif %}
             </ul>
@@ -59,8 +57,7 @@
                     <a data-toggle="modal" data-target="#modalInscription" href="{% url 'signup' %}">S'inscrire</a>
                 </div>
             {% endif %}
-        </div>  
-
+        </div>
          <div class="modal" id="modalInscription"></div>
     </body>
 </html>

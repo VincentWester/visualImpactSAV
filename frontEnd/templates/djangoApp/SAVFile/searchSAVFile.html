@@ -6,16 +6,16 @@
     <link href="{% static 'css/SAVFile/classSAVFileStatus.css' %}" rel="stylesheet" media="screen">
 {% endblock %}
 {% block menu_search %}<li class="list-SAV-file active row"><a href="#" class="col-md-12">Rechercher</a></li>{% endblock %}
-{% block content %}    
+{% block content %}
     {% block search %}
     <form class="row" method=GET action="{% url 'visualImpactSAV:searchSAVFile' %}" accept-charset="utf-8">
-        <div class="col-md-12 row block-file-reference-tracking-number"> 
+        <div class="col-md-12 row block-file-reference-tracking-number">
             <div class="col-md-4 first-block">
                 <label for="file_reference">Référence du fichier SAV :</label>
                 <input id="file_reference" type="text" name="file_reference">
             </div>
 
-            <div class="col-md-4 first-block">           
+            <div class="col-md-4 first-block">
                 <label for="id_sav_file_status">Status de la fiche SAV :</label>
                 <select id="id_sav_file_status" name="sav_file_status">
                     <option value="">  ----  </option>
@@ -33,14 +33,14 @@
 
         <div class="col-md-6 block-client">
             <div class="row panel-client">
-                <div class="col-md-12 title-panel-client">   
+                <div class="col-md-12 title-panel-client">
                     <h4>Filtrage par client</h4>
                 </div>
-                <div class="col-md-offset-2 col-md-10 block-name-client">            
+                <div class="col-md-offset-2 col-md-10 block-name-client">
                     <label for="client_society">Société :</label>
                     <input id="client_society" type="text" name="client_society">
                 </div>
-                <div class="col-md-offset-2 col-md-10 block-name-client">            
+                <div class="col-md-offset-2 col-md-10 block-name-client">
                     <label for="client_name">Nom :</label>
                     <input id="client_name" type="text" name="client_name">
                 </div>
@@ -49,14 +49,14 @@
 
         <div class="col-md-6 block-product">
             <div class="row panel-product">
-                <div class="col-md-12 title-panel-product">   
+                <div class="col-md-12 title-panel-product">
                     <h4>Filtrage par produit</h4>
                 </div>
                 <div class="col-md-offset-2 col-md-10 block-characteristic-product">
                     <label for="product_mark">Marque :</label>
                     <input id="product_mark" type="text" name="product_mark">
                 </div>
-                <div class="col-md-offset-2 col-md-10 block-characteristic-product">            
+                <div class="col-md-offset-2 col-md-10 block-characteristic-product">
                     <label for="product_name">Modèle :</label>
                     <input id="product_name" type="text" name="product_name">
                 </div>
@@ -77,7 +77,7 @@
             <input id="end_date" type="date" name="end_date">
         </div-->
 
-        <div class="col-md-12 block-button">        
+        <div class="col-md-12 block-button">
             <input type="submit" value="Valider">
         </div>
     </form>
@@ -86,7 +86,7 @@
         <p class="col-md-12"> Nombre de résultats <span class="badge" style="color: black;">{{ nb_sav_file_status }}</span></p>
         {% for st in sav_file_status %}
             <p class="col-md-3">{{ st.libelle }} <span class="badge {{ st.class_css }}" style="color: black;">{{ libelle_stats|nb_libelle:st.libelle }}</span></p>
-        {% endfor %}      
+        {% endfor %}
     </div>
 
     <table class="table">
