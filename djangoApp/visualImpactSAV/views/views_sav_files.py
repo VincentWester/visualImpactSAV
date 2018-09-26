@@ -29,7 +29,7 @@ class SAVFileDetailView(LoginRequiredMixin, DetailView):
         context['events'] = Event.objects.all().filter(refered_SAV_file=self.object).order_by('date')
         context['furnishers'] = Furnisher.objects.all().order_by('mark')
 
-        designations = Designation.objects.all().filter(refered_SAV_file=self.object)
+        designations = Designation.objects.all().filter(refered_SAV_file=self.object).order_by('id')
         context['designations'] = designations
 
         total = Decimal(0.0)
@@ -79,9 +79,9 @@ class SAVFileUpdateView(LoginRequiredMixin, UpdateView):
         context['current_sav_file'] = self.object
         context['sav_file_status'] = SAV_file_status.objects.all()
         context['events'] = Event.objects.all().filter(refered_SAV_file=self.object).order_by('date')
-        context['furnishers'] = Furnisher.objects.all().order_by('mark')
+        context['furnishers'] = Furnisher.objects.all()
 
-        designations = Designation.objects.all().filter(refered_SAV_file=self.object)
+        designations = Designation.objects.all().filter(refered_SAV_file=self.object).order_by('id')
         context['designations'] = designations
 
         total = Decimal(0.0)
