@@ -548,7 +548,7 @@ class Pdf_generator_furnisher(Pdf_generator):
                     'alinea_title': -0.5,
                     'title': _("Furnisher address"),
                     'lines': [
-                        furnisher.mark,
+                        furnisher.brand,
                         furnisher.street + constants.COMA_SEPARATOR + furnisher.complements,
                         furnisher.zipcode + constants.FIELD_SEPARATOR + furnisher.city,
                         furnisher.phone
