@@ -44,7 +44,7 @@ class Furnisher(models.Model):
     commentary = models.TextField(_("Commentary"), blank=True)
 
     def __str__(self):
-        return self.mark.encode('utf-8')
+        return self.brand.encode('utf-8')
 
     class Meta:
         verbose_name = _("furnisher")
