@@ -139,28 +139,33 @@ class SAVFileListView(LoginRequiredMixin, ListView):
         sav_file_status = self.request.GET.get('sav_file_status')
         results = SAV_file.objects.all()
 
+        kwargs = {}
+
         if file_reference:
-            results = results.filter(id=file_reference)
+            kwargs['id'] = file_reference
 
         if client_name:
-            results = results.filter(name_client__icontains=client_name)
+            kwargs['name_client__icontains'] = client_name
 
         if client_society:
-            results = results.filter(society_client__icontains=client_society)
+            kwargs['society_client__icontains'] = client_society
 
         if product_name:
-            results = results.filter(name_product__icontains=product_name)
+            kwargs['name_product__icontains'] = product_name
 
         if product_mark:
-            results = results.filter(mark_product__icontains=product_mark)
+            kwargs['mark_product__icontains'] = product_mark
 
         if product_serial_number:
-            results = results.filter(serial_number_product__icontains=product_serial_number)
+            kwargs['serial_number_product__icontains'] = product_serial_number
 
         if rma_number:
-            results = results.filter(rma_number__icontains=rma_number)
+            kwargs['rma_number__icontains'] = rma_number
 
         if sav_file_status:
-            results = results.filter(sav_file_status=sav_file_status)
+            kwargs['sav_file_status'] = sav_file_status
 
-        return results.order_by('id')
+        if not kwargs:
+            return results
+
+        return results.filter(**kwargs)
