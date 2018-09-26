@@ -29,7 +29,7 @@ class SAVFileDetailView(LoginRequiredMixin, DetailView):
         context['events'] = Event.objects.all().filter(refered_SAV_file=self.object).order_by('date')
         context['furnishers'] = Furnisher.objects.all().order_by('mark')
 
-        designations = Designation.objects.all().filter(refered_SAV_file=self.object).order_by('id')
+        designations = self.object.designations.all().order_by('id')
         context['designations'] = designations
 
         total = Decimal(0.0)
@@ -81,7 +81,7 @@ class SAVFileUpdateView(LoginRequiredMixin, UpdateView):
         context['events'] = Event.objects.all().filter(refered_SAV_file=self.object).order_by('date')
         context['furnishers'] = Furnisher.objects.all()
 
-        designations = Designation.objects.all().filter(refered_SAV_file=self.object).order_by('id')
+        designations = self.object.designations.all()
         context['designations'] = designations
 
         total = Decimal(0.0)
@@ -111,7 +111,7 @@ class SAVFileListView(LoginRequiredMixin, ListView):
         results = self.get_queryset()
 
         libelle_stats = {}
-        for sav_file_status in SAV_file_status.objects.all().order_by('id'):
+        for sav_file_status in SAV_file_status.objects.all():
             libelle_stats[sav_file_status.libelle] = results.filter(sav_file_status__libelle=sav_file_status.libelle).count()
 
         context['libelle_stats'] = libelle_stats
