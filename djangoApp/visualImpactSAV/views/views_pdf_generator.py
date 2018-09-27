@@ -260,29 +260,29 @@ class Pdf_generator_client(Pdf_generator):
                             9.5,
                             -0.5,
                             _("Reference") + constants.FIELD_SEPARATOR,
-                            0.5,
+                            0.9,
                             _("VIF-AS-") + str(sav_file.id)
                         ),
                         (
                             9.5,
-                            3.2,
+                            3.6,
                             _("Creation date") + constants.FIELD_SEPARATOR,
-                            5,
+                            5.1,
                             sav_file.creation_date.strftime("%d/%m/%Y %H:%M")
                         ),
                         (
                             9.2,
                             -0.5,
-                            _("Managed by") + constants.FIELD_SEPARATOR,
-                            0.5,
-                            sav_file.registred_by.username
+                            _("Customer name") + constants.FIELD_SEPARATOR,
+                            0.9,
+                            global_name_client
                         ),
                         (
                             9.2,
-                            3.2,
-                            _("Customer name") + constants.FIELD_SEPARATOR,
-                            5,
-                            global_name_client
+                            3.6,
+                            _("Managed by") + constants.FIELD_SEPARATOR,
+                            5.1,
+                            sav_file.registred_by.username
                         ),
                     ]
                 }
@@ -351,14 +351,14 @@ class Pdf_generator_client(Pdf_generator):
                     'alinea': -0.5,
                     'height': 0.8,
                     'length': 7.6,
-                    'alinea_title': 2,
-                    'alinea_lines': 2,
+                    'alinea_title': 2.7,
+                    'alinea_lines': -0.4,
                     'title': _("Conditions"),
                     'lines': [
-                        _("VI Addr name-capital-social"),
-                        _("VI Addr street-zipcode"),
-                        _("VI Addr phone-mail"),
-                        _("VI Infos")
+                        _("AS condition 1"),
+                        _("AS condition 2"),
+                        _("AS condition 3"),
+                        _("AS condition 4")
                     ]
                 }
             },
@@ -464,12 +464,12 @@ class Pdf_generator_cost_estimate(Pdf_generator):
                             sav_file.name_product,
                         ),
                         (
-                            3.7,
+                            3.3,
                             _("Serial number") + constants.FIELD_SEPARATOR,
                             sav_file.serial_number_product,
                         ),
                         (
-                            5.5,
+                            5.2,
                             _("RMA number") + constants.FIELD_SEPARATOR,
                             sav_file.rma_number if sav_file.rma_number else _("Unknown"),
                         )
@@ -593,12 +593,12 @@ class Pdf_generator_furnisher(Pdf_generator):
                             sav_file.name_product,
                         ),
                         (
-                            3.7,
+                            3.3,
                             _("Serial number") + constants.FIELD_SEPARATOR,
                             sav_file.serial_number_product,
                         ),
                         (
-                            5.5,
+                            5.2,
                             _("RMA number") + constants.FIELD_SEPARATOR,
                             sav_file.rma_number if sav_file.rma_number else _("Unknown"),
                         )
