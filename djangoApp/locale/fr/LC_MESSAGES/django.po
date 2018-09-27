@@ -605,3 +605,12 @@ msgstr "Retour de réparations"
 
 msgid "Tax"
 msgstr "Taxe"
+
+msgid "previous"
+msgstr "précédent"
+
+msgid "next"
+msgstr "suivant"
+
+msgid "Page"
+msgstr "Page"

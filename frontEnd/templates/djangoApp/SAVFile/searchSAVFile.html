@@ -1,5 +1,6 @@
 {% extends "base.html" %}
 {% load static %}
+{% load i18n %}
 {% load tags %}
 {% block style %}
     <link href="{% static 'css/SAVFile/searchSAVFile.css' %}" rel="stylesheet" media="screen">
@@ -8,139 +9,144 @@
 {% block menu_search %}<li class="list-SAV-file active row"><a href="#" class="col-md-12">Rechercher</a></li>{% endblock %}
 {% block content %}
     {% block search %}
-    <form class="row" method=GET action="{% url 'visualImpactSAV:searchSAVFile' %}" accept-charset="utf-8">
-        <div class="col-md-12 row block-file-reference-tracking-number">
-            <div class="col-md-4 first-block">
-                <label for="file_reference">Référence du fichier SAV :</label>
-                <input id="file_reference" type="text" name="file_reference">
-            </div>
-
-            <div class="col-md-4 first-block">
-                <label for="id_sav_file_status">Status de la fiche SAV :</label>
-                <select id="id_sav_file_status" name="sav_file_status">
-                    <option value="">  ----  </option>
-                    {% for st in sav_file_status %}
-                        <option value="{{ st.id }}">{{ st.libelle }}</option>
-                    {% endfor %}
-                </select>
-            </div>
-
-            <div class="col-md-4 first-block">
-                <label for="rma_number">Numéro RMA :</label>
-                <input id="rma_number" type="text" name="rma_number">
-            </div>
-        </div>
-
-        <div class="col-md-6 block-client">
-            <div class="row panel-client">
-                <div class="col-md-12 title-panel-client">
-                    <h4>Filtrage par client</h4>
+        <form class="row" method=GET action="{% url 'visualImpactSAV:searchSAVFile' %}" accept-charset="utf-8">
+            <div class="col-md-12 row block-file-reference-tracking-number">
+                <div class="col-md-4 first-block">
+                    <label for="file_reference">Référence du fichier SAV :</label>
+                    <input id="file_reference" type="text" name="file_reference">
                 </div>
-                <div class="col-md-offset-2 col-md-10 block-name-client">
-                    <label for="client_society">Société :</label>
-                    <input id="client_society" type="text" name="client_society">
+
+                <div class="col-md-4 first-block">
+                    <label for="id_sav_file_status">Status de la fiche SAV :</label>
+                    <select id="id_sav_file_status" name="sav_file_status">
+                        <option value="">  ----  </option>
+                        {% for st in sav_file_status %}
+                            <option value="{{ st.id }}">{{ st.libelle }}</option>
+                        {% endfor %}
+                    </select>
                 </div>
-                <div class="col-md-offset-2 col-md-10 block-name-client">
-                    <label for="client_name">Nom :</label>
-                    <input id="client_name" type="text" name="client_name">
+
+                <div class="col-md-4 first-block">
+                    <label for="rma_number">Numéro RMA :</label>
+                    <input id="rma_number" type="text" name="rma_number">
                 </div>
             </div>
-        </div>
 
-        <div class="col-md-6 block-product">
-            <div class="row panel-product">
-                <div class="col-md-12 title-panel-product">
-                    <h4>Filtrage par produit</h4>
-                </div>
-                <div class="col-md-offset-2 col-md-10 block-characteristic-product">
-                    <label for="product_mark">Marque :</label>
-                    <input id="product_mark" type="text" name="product_mark">
-                </div>
-                <div class="col-md-offset-2 col-md-10 block-characteristic-product">
-                    <label for="product_name">Modèle :</label>
-                    <input id="product_name" type="text" name="product_name">
-                </div>
-                <div class="col-md-offset-2 col-md-10 block-characteristic-product">
-                    <label for="product_serial_number">Numéro de série :</label>
-                    <input id="product_serial_number" type="text" name="product_serial_number">
+            <div class="col-md-6 block-client">
+                <div class="row panel-client">
+                    <div class="col-md-12 title-panel-client">
+                        <h4>Filtrage par client</h4>
+                    </div>
+                    <div class="col-md-offset-2 col-md-10 block-name-client">
+                        <label for="client_society">Société :</label>
+                        <input id="client_society" type="text" name="client_society">
+                    </div>
+                    <div class="col-md-offset-2 col-md-10 block-name-client">
+                        <label for="client_name">Nom :</label>
+                        <input id="client_name" type="text" name="client_name">
+                    </div>
                 </div>
             </div>
-        </div>
 
-        <!--div class="col-md-6 second-block">
-            <label for="begin_date">De cette date :</label>
-            <input id="begin_date" type="date" name="begin_date">
-        </div>
+            <div class="col-md-6 block-product">
+                <div class="row panel-product">
+                    <div class="col-md-12 title-panel-product">
+                        <h4>Filtrage par produit</h4>
+                    </div>
+                    <div class="col-md-offset-2 col-md-10 block-characteristic-product">
+                        <label for="product_mark">Marque :</label>
+                        <input id="product_mark" type="text" name="product_mark">
+                    </div>
+                    <div class="col-md-offset-2 col-md-10 block-characteristic-product">
+                        <label for="product_name">Modèle :</label>
+                        <input id="product_name" type="text" name="product_name">
+                    </div>
+                    <div class="col-md-offset-2 col-md-10 block-characteristic-product">
+                        <label for="product_serial_number">Numéro de série :</label>
+                        <input id="product_serial_number" type="text" name="product_serial_number">
+                    </div>
+                </div>
+            </div>
 
-        <div class="col-md-6 second-block input-append date form_datetime">
-            <label for="end_date">A cette date :</label>
-            <input id="end_date" type="date" name="end_date">
-        </div-->
+            <!--div class="col-md-6 second-block">
+                <label for="begin_date">De cette date :</label>
+                <input id="begin_date" type="date" name="begin_date">
+            </div>
 
-        <div class="col-md-12 block-button">
-            <input type="submit" value="Valider">
-        </div>
-    </form>
+            <div class="col-md-6 second-block input-append date form_datetime">
+                <label for="end_date">A cette date :</label>
+                <input id="end_date" type="date" name="end_date">
+            </div-->
 
-    <div class="row">
-        <p class="col-md-12"> Nombre de résultats <span class="badge" style="color: black;">{{ nb_sav_file_status }}</span></p>
-        {% for st in sav_file_status %}
-            <p class="col-md-3">{{ st.libelle }} <span class="badge {{ st.class_css }}" style="color: black;">{{ libelle_stats|nb_libelle:st.libelle }}</span></p>
-        {% endfor %}
-    </div>
+            <div class="col-md-12 block-button">
+                <input type="submit" value="Valider">
+            </div>
+        </form>
 
-    <table class="table">
-        <thead>
-            <tr>
-                <th>Date de création</th>
-                <th>Référence du fichier SAV</th>
-                <th>Référent</th>
-                <th>Nom du client</th>
-                <th>Societé du client</th>
-                <th>Marque</th>
-                <th>Modèle</th>
-                <th>Numéro de série</th>
-                <th> </th>
-                <th> </th>
-                <!--th> </th-->
-            </tr>
-        </thead>
-        <tbody>
-            {% for file in results %}
-                {% if file.sav_file_status.class_css != "" and file.sav_file_status.class_css is not None %}
-                    <tr class="{{ file.sav_file_status.class_css }}">
-                {% else %}
-                    <tr class="">
-                {% endif %}
-                <td>{{ file.creation_date }}</td>
-                <td>VIF-SAV-{{ file.id }}</td>
-                <td>{{ file.registred_by }}</td>
-                <td>{{ file.name_client }}</td>
-                <td>{{ file.society_client }}</td>
-                <td>{{ file.mark_product }}</td>
-                <td>{{ file.name_product }}</td>
-                <td>{{ file.serial_number_product }}</td>
-                <td><a class="glyphicon glyphicon-zoom-in" href="{% url 'visualImpactSAV:detailSAVFile' file.id %}" style="color: black;"></a> </td>
-                <td><a class="glyphicon glyphicon-pencil" href="{% url 'visualImpactSAV:updateSAVFile' file.id %}" style="color: black;"></a> </td>
-                <td><a class="glyphicon glyphicon-download-alt" href="{% url 'visualImpactSAV:generatePdfClient' file.id %}" style="color: black;"></a> </td>
-            </tr>
+        <div class="row">
+            <p class="col-md-12"> Nombre de résultats <span class="badge" style="color: black;">{{ nb_sav_file_status }}</span></p>
+            {% for st in sav_file_status %}
+                <p class="col-md-3">{{ st.libelle }} <span class="badge {{ st.class_css }}" style="color: black;">{{ libelle_stats|nb_libelle:st.libelle }}</span></p>
             {% endfor %}
-        </tbody>
-    </table>
-    {% if is_paginated %}
-        <div class="pagination">
-            <span class="page-links">
-                {% if page_obj.has_previous %}
-                    <a href="{{ redirection_adresse }}page={{ page_obj.previous_page_number }}">previous</a>
-                {% endif %}
-                <span class="page-current">
-                    Page {{ page_obj.number }} sur {{ page_obj.paginator.num_pages }}.
-                </span>
-                {% if page_obj.has_next %}
-                    <a href="{{ redirection_adresse }}page={{ page_obj.next_page_number }}">next</a>
-                {% endif %}
-            </span>
         </div>
-    {% endif %}
+
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Date de création</th>
+                    <th>Référence du fichier SAV</th>
+                    <th>Référent</th>
+                    <th>Nom du client</th>
+                    <th>Societé du client</th>
+                    <th>Marque</th>
+                    <th>Modèle</th>
+                    <th>Numéro de série</th>
+                    <th> </th>
+                    <th> </th>
+                    <!--th> </th-->
+                </tr>
+            </thead>
+            <tbody>
+                {% for file in results %}
+                    {% if file.sav_file_status.class_css != "" and file.sav_file_status.class_css is not None %}
+                        <tr class="{{ file.sav_file_status.class_css }}">
+                    {% else %}
+                        <tr class="">
+                    {% endif %}
+                    <td>{{ file.creation_date }}</td>
+                    <td>VIF-SAV-{{ file.id }}</td>
+                    <td>{{ file.registred_by }}</td>
+                    <td>{{ file.name_client }}</td>
+                    <td>{{ file.society_client }}</td>
+                    <td>{{ file.mark_product }}</td>
+                    <td>{{ file.name_product }}</td>
+                    <td>{{ file.serial_number_product }}</td>
+                    <td><a class="glyphicon glyphicon-zoom-in" href="{% url 'visualImpactSAV:detailSAVFile' file.id %}" style="color: black;"></a> </td>
+                    <td><a class="glyphicon glyphicon-pencil" href="{% url 'visualImpactSAV:updateSAVFile' file.id %}" style="color: black;"></a> </td>
+                    <td><a class="glyphicon glyphicon-download-alt" href="{% url 'visualImpactSAV:generatePdfClient' file.id %}" style="color: black;"></a> </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        {% if is_paginated %}
+            <div class="pagination">
+                <span class="page-links">
+                    <span> {% trans "Page" %} :</span>
+                    {% if page_obj.has_previous %}
+                        <span><a href="?page={{ page_obj.previous_page_number }}"> < {% trans "previous" %} </a></span>
+                    {% endif %}
+                    {% for i in paginator.page_range %}
+                        {% if page_obj.number == i %}
+                            <span>{{ i }}</span>
+                        {% else %}
+                            <span><a href="?page={{ i }}">{{ i }}</a></span>
+                        {% endif %}
+                    {% endfor %}
+                    {% if page_obj.has_next %}
+                        <span><a href="?page={{ page_obj.next_page_number }}"> {% trans "next" %} > </a></span>
+                    {% endif %}
+                </span>
+            </div>
+        {% endif %}
     {% endblock %}
 {% endblock %}

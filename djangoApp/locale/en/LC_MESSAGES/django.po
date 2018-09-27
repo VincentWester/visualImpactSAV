@@ -339,10 +339,6 @@ msgstr ""
 msgid "Tax percent"
 msgstr ""
 
-#: visualImpactSAV/views/views_pdf_generator.py:176
-msgid "Tax"
-msgstr ""
-
 #: visualImpactSAV/views/views_pdf_generator.py:179
 msgid "Buying condition 1"
 msgstr ""
@@ -579,4 +575,13 @@ msgstr ""
 
 #: visualImpactSAV/views/views_pdf_generator.py:639
 msgid "Repairs return"
+msgstr ""
+
+msgid "previous"
+msgstr ""
+
+msgid "next"
+msgstr ""
+
+msgid "Page"
 msgstr ""
