@@ -33,7 +33,7 @@ SECRET_KEY = env('DJANGO_SECRET_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = env('DEBUG')  # False if not in os.environ, see line 23
 
-ALLOWED_HOSTS = [env('IP'), env('LOCALHOST_NAME')]
+ALLOWED_HOSTS = [env('IP'), env('LOCALHOST_NAME'), env('DOMAIN_NAME')]
 LOGIN_REDIRECT_URL = 'visualImpactSAV:searchSAVFile'
 LOGIN_URL = 'login'
 AUTH_USER_MODEL = 'auth.User'
