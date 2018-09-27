@@ -603,5 +603,5 @@ msgstr "retour-client"
 msgid "Repairs return"
 msgstr "Retour de réparations"
 
-#~ msgid "Tax"
-#~ msgstr "Taxe"
+msgid "Tax"
+msgstr "Taxe"

@@ -172,7 +172,7 @@ class Pdf_generator(View):
         p.setFont(constants.FONT_STYLE, constants.FONT_SMALLER_SIZE)
         p.drawString(-0.3*inch, height*inch, _("Transport fees when asked except where otherwise specified"))
         p.setFont(constants.FONT_STYLE_BOLD, constants.FONT_SMALLER_SIZE)
-        p.drawString(4.5*inch, height*inch, ("Tax") + constants.FIELD_SEPARATOR)
+        p.drawString(4.5*inch, height*inch, _("Tax") + constants.FIELD_SEPARATOR)
         p.drawString(5.8*inch, height*inch, _("Tax percent"))
         height = height - 0.125
         p.setFont(constants.FONT_STYLE, constants.FONT_VERY_SMALL_SIZE)
