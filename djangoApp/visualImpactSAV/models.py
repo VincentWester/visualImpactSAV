@@ -71,7 +71,7 @@ class SAV_file(models.Model):
     mark_product = models.CharField(_("Product brand"), max_length=200, default="")
     serial_number_product = models.CharField(_("Product serial number"), max_length=200, default="")
     rma_number = models.CharField(_("Product RMA number"), max_length=100, default="", blank=True)
-    guarantee = models.CharField(_("Waranty"), max_length=100, default="Sous garantie")
+    guarantee = models.CharField(_("Waranty"), max_length=100, default=_("Included waranty"))
     out_of_order_reason = models.TextField(_("Out of order reason"))
     client_bill = models.FileField(_("Client bill"), blank=True)
     furnisher = models.ForeignKey(Furnisher, null=True, on_delete=PROTECT, verbose_name=_("Furnisher"))
@@ -90,7 +90,7 @@ class SAV_file(models.Model):
 
 
 class Event(models.Model):
-    refered_SAV_file = models.ForeignKey(SAV_file, verbose_name=_("After sale file"))
+    refered_SAV_file = models.ForeignKey(SAV_file, verbose_name=_("After sale file"), related_name="events")
     title = models.CharField(_("Title"), max_length=100)
     action = models.TextField(_("Action"))
     date = models.DateTimeField(_("Date"), default=timezone.now)

@@ -614,3 +614,79 @@ msgstr "suivant"
 
 msgid "Page"
 msgstr "Page"
+
+msgid "AS file Reference"
+msgstr "Référence du fichier SAV"
+
+msgid "Referent"
+msgstr "Référent"
+
+msgid "Total number of results"
+msgstr "Nombre de résultats"
+
+msgid "Name"
+msgstr "Nom"
+
+msgid "Customer filter"
+msgstr "Filtrage par client"
+
+msgid "Product filter"
+msgstr "Filtrage par produit"
+
+msgid "Customer informations"
+msgstr "Informations sur le client"
+
+msgid "Product informations"
+msgstr "Informations sur le produit"
+
+msgid "Included waranty"
+msgstr "Sous garantie"
+
+msgid "Excluded waranty"
+msgstr "Hors garantie"
+
+msgid "Phone and email"
+msgstr "Téléphone et e-mail"
+
+msgid "AS file's status"
+msgstr "Statut du fichier SAV"
+
+msgid "No furnisher for this AS file, please add one to be able to produce a furnisher file."
+msgstr "Pas de fournisseur : impossible d'envoyer une fiche de renvoi"
+
+msgid "Update"
+msgstr "Modifier"
+
+msgid "Create"
+msgstr "Ajouter"
+
+msgid "Summary file"
+msgstr "Fiche récapitulative"
+
+msgid "Cost estimate"
+msgstr "Devis"
+
+msgid "Return for customer"
+msgstr "Retour client"
+
+msgid "Create a furnisher file"
+msgstr "Renvoi fournisseur"
+
+msgid "Add a designation"
+msgstr "Ajouter une désignation"
+
+msgid "Add an event"
+msgstr "Ajouter un évenement"
+
+msgid "Events"
+msgstr "Evenements"
+
+msgid "None"
+msgstr "Aucune"
+
+msgid "Currently"
+msgstr "Actuellement"
+
+msgid "PDF Generation"
+msgstr "Génération de PDF"
+

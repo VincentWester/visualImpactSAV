@@ -1,124 +1,118 @@
 {% extends "base.html" %}
 {% load static %}
+{% load i18n %}
 {% block style %}
     <link href="{% static 'css/SAVFile/createSAVFile.css' %}" rel="stylesheet" media="screen">
 {% endblock %}
-{% block content %}     
+{% block content %}
     <div class="col-md-12 update-sav-file-button">
-        <a href="{% url 'visualImpactSAV:updateSAVFile' pkSAVFile %}">Modifier</a>
-    </div>              
+        <a href="{% url 'visualImpactSAV:updateSAVFile' pkSAVFile %}">{% trans "Update" %}</a>
+    </div>
     <div class="col-md-offset-4 col-md-6 block-characteristic-client">
-        <label>Crée par :</label>
+        <label>{% trans "Referent" %} :</label>
         <span>{{ sav_file.registred_by.username }}</span>
-    </div> 
-
+    </div>
     <div class="col-md-4 second-block">
-        <label>Reference du fichier SAV :</label>
+        <label>{% trans "AS file reference" %} :</label>
         <span>VIF-SAV-{{ sav_file.id }}</span>
     </div>
-
-    <div class="col-md-4 second-block">           
-        <label>Statut de la fiche SAV :</label>
+    <div class="col-md-4 second-block">
+        <label>{% trans "AS file's status" %} :</label>
         <span>{{ sav_file.sav_file_status.libelle }}</span>
     </div>
- 
-    <div class="col-md-4 second-block">            
-        <label>Numéro RMA :</label>
+    <div class="col-md-4 second-block">
+        <label>{% trans "RMA number" %} :</label>
         <span>{{ sav_file.rma_number }}</span>
-    </div>   
-
+    </div>
     <div class="col-md-12 block-product">
         <div class="row panel-product">
             <div class="col-md-12 title-panel-product">
-                <h4>Informations sur le produit</h4>
+                <h4>{% trans "Product informations" %}</h4>
             </div>
             <div class="col-md-3 block-characteristic-product">
-                <label>Marque :</label>
+                <label>{% trans "Brand" %} :</label>
                 <span>{{ sav_file.mark_product }}</span>
             </div>
             <div class="col-md-3 block-characteristic-product">
-                <label>Modèle :</label>
+                <label>{% trans "Model" %} :</label>
                 <span>{{ sav_file.name_product }}</span>
-            </div>    
+            </div>
             <div class="col-md-3 block-characteristic-product">
-                <label>Numéro de série :</label>
+                <label>{% trans "Serial number" %} :</label>
                 <span>{{ sav_file.serial_number_product }}</span>
-            </div>     
-            <div class="col-md-3 block-characteristic-product">           
-                <label>Statut de la garantie :</label>
+            </div>
+            <div class="col-md-3 block-characteristic-product">
+                <label>{% trans "Waranty" %} :</label>
                 <span>{{ sav_file.guarantee }}</span>
             </div>
         </div>
     </div>
-    
     <div class="col-md-12 block-client">
         <div class="row panel-client">
             <div class="col-md-12 title-panel-client">
-                <h4>Informations sur le client</h4>
+                <h4>{% trans "Customer informations" %}</h4>
             </div>
             <div class="col-md-6 block-name-client">
-                <label>Nom :</label>
+                <label>{% trans "Name" %} :</label>
                 <span>{{ sav_file.name_client }}</span>
             </div>
             <div class="col-md-6 block-name-client">
-                <label>Société :</label>
-                <span>{{ sav_file.society_client }}</span>
+                {% trans "None" as none %}
+                <label>{% trans "Society" %} :</label>
+                <span>{{ sav_file.society_client|default:none }}</span>
             </div>
             <div class="col-md-7 row">
                 <div class="col-md-12 address-client">
-                    <span class="glyphicon glyphicon-envelope"/><span>   Adresse</span>
-                </div>                     
+                    <span class="glyphicon glyphicon-envelope"/><span>   {% trans "Address" %}</span>
+                </div>
                 <div class="col-md-12 block-characteristic-client">
-                    <label>Rue :</label>
+                    <label>{% trans "Street" %} :</label>
                     <span>{{ sav_file.street_client }}</span>
-                </div>  
+                </div>
                 <div class="col-md-12 block-characteristic-client">
-                    <label>Ville  :</label>
+                    <label>{% trans "City" %}  :</label>
                     <span>{{ sav_file.city_client }}</span>
-                </div>   
+                </div>
                 <div class="col-md-12 block-characteristic-client">
-                    <label>Code postal :</label>
+                    <label>{% trans "Zipcode" %} :</label>
                     <span>{{ sav_file.zipcode_client }}</span>
-                </div>  
-            </div> 
-            <div class="col-md-5 row">                    
+                </div>
+            </div>
+            <div class="col-md-5 row">
                 <div class="col-md-12 address-client">
-                    <p>Téléphone et e-mail</p>
-                </div>  
+                    <p>{% trans "Phone and email" %}</p>
+                </div>
                 <div class="col-md-12 block-characteristic-client">
                     <label class="glyphicon glyphicon-earphone"> :</label>
                     <span>{{ sav_file.phone_client }}</span>
-                </div>    
+                </div>
                 <div class="col-md-12 block-characteristic-client">
                     <label>@ :</label>
                     <span>{{ sav_file.email_client }}</span>
-                </div>  
-            </div> 
-        </div> 
+                </div>
+            </div>
+        </div>
     </div>
-
-    <div class="col-md-12 second-block">            
-        <label>Raison du défaut de produit :</label>
+    <div class="col-md-12 second-block">
+        <label>{% trans "Out of order reason" %} :</label>
         <span>{{ sav_file.out_of_order_reason | linebreaks }}</span>
-    </div>        
-
+    </div>
     <div class="col-md-12 row block-files">
         {% if sav_file.client_bill %}
-            <label>Facture client : </label><a class="glyphicon glyphicon-file" target="_blank" href="{{ sav_file.client_bill.url }}">{{ sav_file.client_bill.url }}</a>
+            <label>{% trans "Client bill" %} : </label><a class="glyphicon glyphicon-file" target="_blank" href="{{ sav_file.client_bill.url }}">{{ sav_file.client_bill.url }}</a>
         {% endif %}
     </div>
-
     <div class="col-md-12 mini-title">
-        <h3> Evenements </h3>
+        <h3> {% trans "Events" %} </h3>
     </div>
     <div class="col-md-12">
         <div id="eventOrDesignation">
             <table class="table">
                 <thead>
                     <tr>
-                        <th>Date</th>
-                        <th>Titre</th>
-                        <th>Action</th>
+                        <th>{% trans "Date" %}</th>
+                        <th>{% trans "Title" %}</th>
+                        <th>{% trans "Action" %}</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -133,16 +127,15 @@
             </table>
         </div>
     </div>
-
     <div class="col-md-12 mini-title">
-        <h3> Génération de PDF </h3>
+        <h3> {% trans "PDF generation" %} </h3>
     </div>
     <table class="table">
         <thead>
             <tr>
-                <th>Designation</th>
-                <th>Quantité</th>
-                <th>Prix</th>
+                <th>{% trans "Designation" %}</th>
+                <th>{% trans "Quantity" %}</th>
+                <th>{% trans "Price" %}</th>
                 <th> </th>
                 <th> </th>
             </tr>
@@ -159,25 +152,25 @@
             {% endfor %}
             <tr>
                 <td></td>
-                <th>Prix hors taxe :</th>
+                <th>{% trans "Total pre-tax price" %} :</th>
                 <th>{{ totalHT }}</th>
                 <td></td>
                 <td></td>
             </tr>
             <tr>
                 <td></td>
-                <th>Prix taxes comprises :</th>
+                <th>{% trans "Total price AI" %} :</th>
                 <th style="color:red">{{ totalTC }}</th>
                 <td></td>
                 <td></td>
             </tr>
         </tbody>
-    </table>   
+    </table>
     <div class="col-md-12 add-button">
-        <a data-toggle="modal" data-target="#modalCreateDesignation" href="{% url 'visualImpactSAV:createDesignation' pkSAVFile %}">Ajouter une désignation</a>
-    </div>            
+        <a data-toggle="modal" data-target="#modalCreateDesignation" href="{% url 'visualImpactSAV:createDesignation' pkSAVFile %}">{% trans "Add a designation" %}</a>
+    </div>
     <div class="col-md-12 pdf-buttons">
-        <label>Fournisseur :</label>
+        <label>{% trans "Furnisher" %} :</label>
         {% if sav_file.furnisher is not None %}
             <span>{{ sav_file.furnisher.brand }}<span>
         {% else %}
@@ -185,19 +178,18 @@
         {% endif %}
     </div>
     <div class="col-md-12 pdf-buttons">
-        <a role="button" class="btn btn-primary" href="{% url 'visualImpactSAV:generatePdfClient' pkSAVFile %}">Fiche récapitulative</a>
-        <a role="button" class="btn btn-primary" href="{% url 'visualImpactSAV:generatePdfClientCostEstimate' pkSAVFile %}">Devis</a>
-        <a role="button" class="btn btn-primary" href="{% url 'visualImpactSAV:generatePdfReparation' pkSAVFile %}">Retour client</a>
+        <a role="button" class="btn btn-primary" href="{% url 'visualImpactSAV:generatePdfClient' pkSAVFile %}">{% trans "Summary file" %}</a>
+        <a role="button" class="btn btn-primary" href="{% url 'visualImpactSAV:generatePdfClientCostEstimate' pkSAVFile %}">{% trans "Cost estimate" %}</a>
+        <a role="button" class="btn btn-primary" href="{% url 'visualImpactSAV:generatePdfReparation' pkSAVFile %}">{% trans "Return for customer" %}</a>
         {% if sav_file.furnisher is not None %}
-            <a role="button" class="btn btn-primary" href="{% url 'visualImpactSAV:generatePdfFurnisher' pkSAVFile %}">Renvoi fournisseur</a>
+            <a role="button" class="btn btn-primary" href="{% url 'visualImpactSAV:generatePdfFurnisher' pkSAVFile %}">{% trans "Create a furnisher file" %}</a>
         {% else %}
-            <p>Pas de fournisseur : impossible d'envoyer une fiche de renvoi<p>
+            <p>{% trans "No furnisher for this AS file, please add one to be able to produce a furnisher file." %}<p>
         {% endif %}
     </div>
     <div class="col-md-12 update-sav-file-button">
-        <a href="{% url 'visualImpactSAV:updateSAVFile' pkSAVFile %}">Modifier</a>
-    </div>  
-
+        <a href="{% url 'visualImpactSAV:updateSAVFile' pkSAVFile %}">{% trans "Update" %}</a>
+    </div>
     <div class="modal" id="modalUpdateDesignation"></div>
     <div class="modal" id="modalCreateDesignation"></div>
     <div class="modal" id="modalDeleteDesignation"></div>

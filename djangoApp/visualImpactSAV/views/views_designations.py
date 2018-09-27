@@ -39,31 +39,3 @@ class DesignationDeleteView(ParameterDeleteView):
         context['name_object'] = self.object.designation
 
         return context
-
-
-class DesignationListView(ListView):
-    model = Designation
-    template_name = 'djangoApp/Designation/listDesignation.html'
-
-    def dispatch(self, *args, **kwargs):
-        self.pkSAVFile = kwargs['pkSAVFile']
-        return super(DesignationListView, self).dispatch(*args, **kwargs)
-
-    def get_context_data(self, **kwargs):
-        context = super(DesignationListView, self).get_context_data(**kwargs)
-        context['pkSAVFile'] = self.pkSAVFile
-
-        designations = self.get_queryset()
-
-        context['designations'] = designations
-
-        total = Decimal(0.0)
-        for designation in designations:
-            total += Decimal(designation.quantity) * Decimal(designation.price)
-
-        context['totalHT'] = round(total, 2)
-        context['totalTC'] = round(total * constants.TAX_RATE, 2)
-        return context
-
-    def get_queryset(self):
-        return Designation.objects.filter(refered_SAV_file__id=self.pkSAVFile)

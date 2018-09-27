@@ -585,3 +585,78 @@ msgstr ""
 
 msgid "Page"
 msgstr ""
+
+msgid "AS file Reference"
+msgstr ""
+
+msgid "Referent"
+msgstr ""
+
+msgid "Total number of results"
+msgstr ""
+
+msgid "Name"
+msgstr ""
+
+msgid "Customer filter"
+msgstr ""
+
+msgid "Product filter"
+msgstr ""
+
+msgid "Customer informations"
+msgstr ""
+
+msgid "Product informations"
+msgstr ""
+
+msgid "Included waranty"
+msgstr ""
+
+msgid "Excluded waranty"
+msgstr ""
+
+msgid "Phone and email"
+msgstr ""
+
+msgid "AS file's status"
+msgstr ""
+
+msgid "No furnisher for this AS file, please add one to be able to produce a furnisher file."
+msgstr ""
+
+msgid "Update"
+msgstr ""
+
+msgid "Create"
+msgstr ""
+
+msgid "Summary file"
+msgstr ""
+
+msgid "Cost estimate"
+msgstr ""
+
+msgid "Return for customer"
+msgstr ""
+
+msgid "Create a furnisher file"
+msgstr ""
+
+msgid "Add a designation"
+msgstr ""
+
+msgid "Add an event"
+msgstr ""
+
+msgid "Events"
+msgstr ""
+
+msgid "None"
+msgstr ""
+
+msgid "Currently"
+msgstr ""
+
+msgid "PDF Generation"
+msgstr ""

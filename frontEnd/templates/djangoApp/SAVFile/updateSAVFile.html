@@ -1,5 +1,6 @@
 {% extends "base.html" %}
 {% load static %}
+{% load i18n %}
 {% block style %}
     <link href="{% static 'css/SAVFile/createSAVFile.css' %}" rel="stylesheet" media="screen">
 {% endblock %}
@@ -7,12 +8,12 @@
     <form class="row" enctype="multipart/form-data" method=POST action="{% url 'visualImpactSAV:updateSAVFile' current_sav_file.id %}" accept-charset="utf-8">
         {% csrf_token %}
         <div class="col-md-4 first-block">
-            <label for="id_file_reference">Reference du fichier SAV :</label>
+            <label for="id_file_reference">{% trans "AS file reference" %} :</label>
             <input id="id_file_reference" type="text" name="file_reference" value="VIF-SAV-{{ current_sav_file.id }}" maxlength="33" disabled/>
         </div>
 
-        <div class="col-md-4 first-block">           
-            <label for="id_sav_file_status">Status de la fiche SAV :</label>
+        <div class="col-md-4 first-block">
+            <label for="id_sav_file_status">{% trans "AS file's status" %} :</label>
             <select id="id_sav_file_status" name="sav_file_status" >
                 {% for st in sav_file_status %}
                     {% if st.id == current_sav_file.sav_file_status.id %}
@@ -24,125 +25,123 @@
             </select>
             {{ form.sav_file_status.errors }}
         </div>
-       
-        <div class="col-md-4 first-block">            
-            <label for="id_rma_number">Numéro RMA :</label>
+        <div class="col-md-4 first-block">
+            <label for="id_rma_number">{% trans "RMA number" %} :</label>
             <input id="id_rma_number" type="text" name="rma_number" value="{{ current_sav_file.rma_number }}" maxlength="100"/>
             {{ form.rma_number.errors }}
-        </div> 
+        </div>
 
         <div class="col-md-12 block-product">
             <div class="row panel-product">
                 <div class="col-md-12 title-panel-product">
-                    <h4>Informations sur le produit</h4>
+                    <h4>{% trans "Product informations" %}</h4>
                 </div>
                 <div class="col-md-3 block-characteristic-product">
-                    <label for="id_mark_product">Marque :</label>
+                    <label for="id_mark_product">{% trans "Brand" %} :</label>
                     <input id="id_mark_product" type="text" name="mark_product" value="{{ current_sav_file.mark_product }}" maxlength="300" />
                     {{ form.mark_product.errors }}
                 </div>
                 <div class="col-md-3 block-characteristic-product">
-                    <label for="id_name_product">Modèle :</label>
+                    <label for="id_name_product">{% trans "Model" %} :</label>
                     <input id="id_name_product" type="text" name="name_product" value="{{ current_sav_file.name_product }}" maxlength="300" />
                     {{ form.name_product.errors }}
-                </div>    
+                </div>
                 <div class="col-md-3 block-characteristic-product">
-                    <label for="id_serial_number_product">Numéro de série :</label>
+                    <label for="id_serial_number_product">{% trans "Serial number" %} :</label>
                     <input id="id_serial_number_product" type="text" name="serial_number_product" value="{{ current_sav_file.serial_number_product }}" maxlength="300" />
                     {{ form.serial_number_product.errors }}
-                </div>         
-                <div class="col-md-3 block-characteristic-product">           
-                    <label for="id_guarantee">Garantie :</label>
+                </div>
+                <div class="col-md-3 block-characteristic-product">
+                    <label for="id_guarantee">{% trans "Waranty" %} :</label>
                     <select id="id_guarantee" name="guarantee" >
                         {% if "Sous garantie" == current_sav_file.guarantee %}
-                            <option selected="selected" value="Sous garantie">Sous garantie</option>
-                            <option value="Hors garantie">Hors garantie</option>
+                            <option selected="selected" value="Sous garantie">{% trans "Included waranty" %}</option>
+                            <option value="Hors garantie">{% trans "Included waranty" %}</option>
                         {% else %}
-                            <option value="Sous garantie">Sous garantie</option>
-                            <option selected="selected" value="Hors garantie">Hors garantie</option>
+                            <option value="Sous garantie">{% trans "Excluded waranty" %}</option>
+                            <option selected="selected" value="Hors garantie">{% trans "Excluded waranty" %}</option>
                         {% endif %}
                     </select>
                     {{ form.guarantee.errors }}
                 </div>
             </div>
         </div>
-        
         <div class="col-md-12 block-client">
             <div class="row panel-client">
                 <div class="col-md-12 title-panel-client">
-                    <h4>Informations sur le client</h4>
+                    <h4>{% trans "Customer informations" %}</h4>
                 </div>
                 <div class="col-md-6 block-name-client">
-                    <label for="id_name_client">Nom :</label>
+                    <label for="id_name_client">{% trans "Name" %} :</label>
                     <input id="id_name_client" type="text" name="name_client" value="{{ current_sav_file.name_client }}" maxlength="300" />
                     {{ form.name_client.errors }}
                 </div>
                 <div class="col-md-6 block-name-client">
-                    <label for="id_society_client">Societé :</label>
+                    <label for="id_society_client">{% trans "Society" %} :</label>
                     <input id="id_society_client" type="text" name="society_client" value="{{ current_sav_file.society_client }}" maxlength="300"/>
                     {{ form.society_client.errors }}
                 </div>
                 <div class="col-md-7 row">
                     <div class="col-md-12 address-client">
-                        <span class="glyphicon glyphicon-envelope"/><span>   Adresse</span>
-                    </div>                     
+                        <span class="glyphicon glyphicon-envelope"/><span>   {% trans "Address" %}</span>
+                    </div>
                     <div class="col-md-12 block-characteristic-client">
-                        <label for="id_street_client">Rue :</label>
+                        <label for="id_street_client">{% trans "Street" %} :</label>
                         <input id="id_street_client" type="text" name="street_client" value="{{ current_sav_file.street_client }}" maxlength="300" />
                         {{ form.street_client.errors }}
-                    </div>  
+                    </div>
                     <div class="col-md-12 block-characteristic-client">
-                        <label for="id_city_client">Ville  :</label>
+                        <label for="id_city_client">{% trans "City" %}  :</label>
                         <input id="id_city_client" type="text" name="city_client" value="{{ current_sav_file.city_client }}" maxlength="300" />
                         {{ form.city_client.errors }}
-                    </div>   
+                    </div>
                     <div class="col-md-12 block-characteristic-client">
-                        <label for="id_zipcode_client">Code postal :</label>
-                        <input id="id_zipcode_client" type="text" name="zipcode_client" value="{{ current_sav_file.zipcode_client }}" maxlength="300" />                        
+                        <label for="id_zipcode_client">{% trans "Zipcode" %} :</label>
+                        <input id="id_zipcode_client" type="text" name="zipcode_client" value="{{ current_sav_file.zipcode_client }}" maxlength="300" />
                         {{ form.zipcode_client.errors }}
-                    </div>  
-                </div> 
-                <div class="col-md-5 row">                    
+                    </div>
+                </div>
+                <div class="col-md-5 row">
                     <div class="col-md-12 address-client">
-                        <p>   Téléphone et e-mail</p>
-                    </div>  
+                        <p>   {% trans "Phone and email" %}</p>
+                    </div>
                     <div class="col-md-12 block-characteristic-client">
                         <label for="id_phone_client" class="glyphicon glyphicon-earphone"></label>
                         <input id="id_phone_client" type="text" name="phone_client" value="{{ current_sav_file.phone_client }}" maxlength="30" />
                         {{ form.phone_client.errors }}
-                    </div>    
+                    </div>
                     <div class="col-md-12 block-characteristic-client">
                         <label for="id_email_client">@ :</label>
                         <input id="id_email_client" type="email" name="email_client" value="{{ current_sav_file.email_client }}" />
                         {{ form.email_client.errors }}
-                    </div> 
-                </div> 
-            </div> 
+                    </div>
+                </div>
+            </div>
         </div>
 
-        <div class="col-md-12 block-out-of-order-reason">            
-            <label for="id_out_of_order_reason">Raison du défaut de produit :</label>
+        <div class="col-md-12 block-out-of-order-reason">
+            <label for="id_out_of_order_reason">{% trans "Out of order reason" %} :</label>
             <textarea id="id_out_of_order_reason" name="out_of_order_reason" rows="10" cols="40">{{ current_sav_file.out_of_order_reason }}</textarea>
             {{ form.out_of_order_reason.errors }}
         </div>
 
         <div class="col-md-12 block-files">
-            <label for="id_client_bill">Facture client :</label>
+            <label for="id_client_bill">{% trans "Client bill" %} :</label>
             <input id="id_client_bill" type="file" name="client_bill" />
             {% if current_sav_file.client_bill %}
-               Actuellement : <a class="glyphicon glyphicon-file" target="_blank" href="{{ current_sav_file.client_bill.url }}">{{ current_sav_file.client_bill.url }}</a>
+               {% trans "Currently" %} : <a class="glyphicon glyphicon-file" target="_blank" href="{{ current_sav_file.client_bill.url }}">{{ current_sav_file.client_bill.url }}</a>
             {% endif %}
             {{ form.client_bill.errors }}
         </div>
         <div class="col-md-12 mini-title">
-            <h3> Evenements </h3>
+            <h3> {% trans "Events" %} </h3>
         </div>
         <table class="table">
             <thead>
                 <tr>
-                    <th>Date</th>
-                    <th>Titre</th>
-                    <th>Action</th>
+                    <th>{% trans "Date" %}</th>
+                    <th>{% trans "Title" %}</th>
+                    <th>{% trans "Action" %}</th>
                     <th> </th>
                     <th> </th>
                 </tr>
@@ -160,17 +159,17 @@
             </tbody>
         </table>
         <div class="col-md-12 add-button">
-            <a data-toggle="modal" data-target="#modalCreateEvent" href="{% url 'visualImpactSAV:createEvent' pkSAVFile=current_sav_file.id %}">Ajouter un évenement</a>
+            <a data-toggle="modal" data-target="#modalCreateEvent" href="{% url 'visualImpactSAV:createEvent' pkSAVFile=current_sav_file.id %}">{% trans "Add an event" %}</a>
         </div>
         <div class="col-md-12 mini-title">
-            <h3> Génération de PDF </h3>
+            <h3> {% trans "PDF generation" %} </h3>
         </div>
         <table class="table">
         <thead>
             <tr>
-                <th>Designation</th>
-                <th>Quantité</th>
-                <th>Prix</th>
+                <th>{% trans "Designation" %}</th>
+                <th>{% trans "Quantity" %}</th>
+                <th>{% trans "Price" %}</th>
                 <th> </th>
                 <th> </th>
             </tr>
@@ -187,29 +186,29 @@
             {% endfor %}
             <tr>
                 <td></td>
-                <th>Prix hors taxe :</th>
+                <th>{% trans "Total pre-tax price" %} </th>
                 <th>{{ totalHT }}</th>
                 <td></td>
                 <td></td>
             </tr>
             <tr>
                 <td></td>
-                <th>Prix taxes comprises :</th>
+                <th>{% trans "Total price AI" %} :</th>
                 <th style="color:red">{{ totalTC }}</th>
                 <td></td>
                 <td></td>
             </tr>
         </tbody>
-    </table>   
+    </table>
     <div class="col-md-12 add-button">
-        <a data-toggle="modal" data-target="#modalCreateDesignation" href="{% url 'visualImpactSAV:createDesignation' pkSAVFile=current_sav_file.id %}">Ajouter une désignation</a>
-    </div> 
-    <div class="col-md-12 pdf-buttons"> 
-        <label for="id_furnisher">Fournisseur :</label>  
+        <a data-toggle="modal" data-target="#modalCreateDesignation" href="{% url 'visualImpactSAV:createDesignation' pkSAVFile=current_sav_file.id %}">{% trans "Add a designation" %}</a>
+    </div>
+    <div class="col-md-12 pdf-buttons">
+        <label for="id_furnisher">{% trans "Furnisher" %} :</label>
         {{ form.furnisher }}
         {{ form.furnisher.errors }}
     </div>
-    <div class="col-md-12 block-button"> 
+    <div class="col-md-12 block-button">
         <input type="submit" value="Mettre à jour">
     </div>
     </form>

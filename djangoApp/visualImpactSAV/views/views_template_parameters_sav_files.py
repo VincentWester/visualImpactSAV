@@ -58,7 +58,4 @@ class ParameterUpdateView(UpdateView):
 
 class ParameterDeleteView(DeleteView):
     def get_success_url(self, *args, **kwargs):
-        if self.url_to_redirect == 'visualImpactSAV:listDesignation':
-            return reverse_lazy(self.url_to_redirect,  kwargs={'pkSAVFile': self.object.refered_SAV_file.id})
-        else:
-            return reverse_lazy(self.url_to_redirect,  kwargs={'pk': self.object.refered_SAV_file.id})
+        return reverse_lazy(self.url_to_redirect,  kwargs={'pk': self.object.refered_SAV_file.id})

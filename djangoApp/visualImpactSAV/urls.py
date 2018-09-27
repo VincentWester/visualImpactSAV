@@ -15,7 +15,6 @@ from .views.views_designations import (
     DesignationCreateView,
     DesignationUpdateView,
     DesignationDeleteView,
-    DesignationListView,
 )
 from .views.views_waranty import (
     WarantyCreateView,
@@ -88,11 +87,6 @@ urlpatterns = [
         r'^deleteDesignation/(?P<pk>[\w\-]+)$$',
         DesignationDeleteView.as_view(),
         name="deleteDesignation"
-    ),
-    url(
-        r'^listDesignation/(?P<pkSAVFile>[\w\-]+)$$',
-        DesignationListView.as_view(),
-        name="listDesignation"
     ),
 
     url(

@@ -122,7 +122,6 @@ class SAVFileListView(LoginRequiredMixin, ListView):
         else:
             context['redirection_adresse'] = self.request.get_full_path() + '&'
 
-
         return context
 
     """
