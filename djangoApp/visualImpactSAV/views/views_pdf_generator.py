@@ -352,7 +352,7 @@ class Pdf_generator_client(Pdf_generator):
                     'height': 0.8,
                     'length': 7.6,
                     'alinea_title': 2,
-                    'alinea_lines': -0.4,
+                    'alinea_lines': 2,
                     'title': _("Conditions"),
                     'lines': [
                         _("VI Addr name-capital-social"),
@@ -493,10 +493,10 @@ class Pdf_generator_cost_estimate(Pdf_generator):
                     'alinea_lines': 2,
                     'title': _("Bank details"),
                     'lines': [
-                        _("VI Addr name-capital-social"),
-                        _("VI Addr street-zipcode"),
-                        _("VI Addr phone-mail"),
-                        _("VI Infos")
+                        _("VI bank-code bank"),
+                        _("VI RIB"),
+                        _("VI IBAN"),
+                        _("VI account owner")
                     ]
                 }
             },
@@ -510,10 +510,10 @@ class Pdf_generator_cost_estimate(Pdf_generator):
                     'alinea_lines': 2,
                     'title': _("Added informations"),
                     'lines': [
-                        _("VI bank-code bank"),
-                        _("VI RIB"),
-                        _("VI IBAN"),
-                        _("VI account owner")
+                        _("VI Addr name-capital-social"),
+                        _("VI Addr street-zipcode"),
+                        _("VI Addr phone-mail"),
+                        _("VI Infos")
                     ]
                 }
             },
