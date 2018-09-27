@@ -265,9 +265,9 @@ class Pdf_generator_client(Pdf_generator):
                         ),
                         (
                             9.5,
-                            3.6,
+                            3.8,
                             _("Creation date") + constants.FIELD_SEPARATOR,
-                            5.1,
+                            5.3,
                             sav_file.creation_date.strftime("%d/%m/%Y %H:%M")
                         ),
                         (
@@ -279,9 +279,9 @@ class Pdf_generator_client(Pdf_generator):
                         ),
                         (
                             9.2,
-                            3.6,
+                            3.8,
                             _("Managed by") + constants.FIELD_SEPARATOR,
-                            5.1,
+                            5.3,
                             sav_file.registred_by.username
                         ),
                     ]
