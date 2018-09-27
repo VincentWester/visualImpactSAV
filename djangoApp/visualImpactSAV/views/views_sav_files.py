@@ -117,6 +117,12 @@ class SAVFileListView(LoginRequiredMixin, ListView):
         context['libelle_stats'] = libelle_stats
         context['nb_sav_file_status'] = results.count()
 
+        if re.match('.*/$', self.request.get_full_path()):
+            context['redirection_adresse'] = self.request.get_full_path() + '?'
+        else:
+            context['redirection_adresse'] = self.request.get_full_path() + '&'
+
+
         return context
 
     """
