@@ -1,45 +1,49 @@
 # -*- coding: utf-8 -*-
 from __future__ import unicode_literals
 
-from .views_template_parameters_sav_files import ParameterCreateView, ParameterUpdateView, ParameterDeleteView
+from django.utils.translation import ugettext as _
+from django.core.urlresolvers import reverse
 
-# models part
+from .views_template_parameters_sav_files import ParameterCreateView, ParameterUpdateView, ParameterDeleteView
 from visualImpactSAV.models import Event
-# forms part
 from visualImpactSAV.forms import EventForm
 
 
 class EventCreateView(ParameterCreateView):
     model = Event
     form_class = EventForm
-    template_name = 'djangoApp/Event/createEvent.html'
 
+    def get_context_data(self, **kwargs):
+        context = super(EventCreateView, self).get_context_data(**kwargs)
+        context['url_action'] = reverse('visualImpactSAV:createEvent', args=[], kwargs={'pkSAVFile': self.pkSAVFile})
+        context['id_modal'] = 'createEvent'
+        context['action_to_made'] = _('Create')
+        context['value_button'] = _('Create this %s') % _('event')
+
+        return context
 
 class EventUpdateView(ParameterUpdateView):
     model = Event
     form_class = EventForm
-    template_name = 'djangoApp/Event/updateEvent.html'
 
     def get_context_data(self, **kwargs):
         context = super(EventUpdateView, self).get_context_data(**kwargs)
-        context['current_event'] = self.object
+        context['url_action'] = reverse('visualImpactSAV:updateEvent', args=[], kwargs={'pk': self.pk})
+        context['id_modal'] = 'updateEvent'
+        context['action_to_made'] = _('Update')
+        context['value_button'] = _('Update this %s') % _('event')
 
         return context
 
 
 class EventDeleteView(ParameterDeleteView):
     model = Event
-    template_name = 'djangoApp/Event/confirmDeleteEvent.html'
-
-    def dispatch(self, *args, **kwargs):
-        self.pk = kwargs['pk']
-        self.url_to_redirect = 'visualImpactSAV:updateSAVFile'
-        return super(EventDeleteView, self).dispatch(*args, **kwargs)
 
     def get_context_data(self, **kwargs):
         context = super(EventDeleteView, self).get_context_data(**kwargs)
-        context['id_to_delete'] = self.pk
-        context['name_class'] = self.object.__class__.__name__
-        context['name_object'] = self.object.title
+        context['url_action'] = reverse('visualImpactSAV:deleteEvent', args=[], kwargs={'pk': self.pk})
+        context['id_modal'] = 'deleteEvent'
+        context['action_to_made'] = _('Delete')
+        context['value_button'] = _('Delete this %s') % _('event')
 
         return context

@@ -28,6 +28,9 @@ class Waranty(models.Model):
     waranty_time = models.CharField(_("Waranty time"), max_length=20, default="")
     procedure = models.TextField(_("Procedure"))
 
+    def __unicode__(self):
+        return self.brand + " " + self.complements
+
     class Meta:
         verbose_name = _("waranty")
         verbose_name_plural = _("waranties")
@@ -43,8 +46,8 @@ class Furnisher(models.Model):
     phone = models.CharField(_("Phone"), max_length=200, default="")
     commentary = models.TextField(_("Commentary"), blank=True)
 
-    def __str__(self):
-        return self.brand.encode('utf-8')
+    def __unicode__(self):
+        return self.brand
 
     class Meta:
         verbose_name = _("furnisher")
@@ -78,7 +81,7 @@ class SAV_file(models.Model):
     registred_by = models.ForeignKey(get_user_model(), default=constants.DEFAULT_USERS_ID, verbose_name=_("User"))
 
     def __unicode__(self):
-        return str(self.id).encode('utf-8')
+        return str(self.id)
 
     def get_absolute_url(self):
         return reverse('visualImpactSAV:detailSAVFile', kwargs={'pk': self.pk})
@@ -95,6 +98,9 @@ class Event(models.Model):
     action = models.TextField(_("Action"))
     date = models.DateTimeField(_("Date"), default=timezone.now)
 
+    def __unicode__(self):
+        return self.title
+
     class Meta:
         verbose_name = _("event")
         verbose_name_plural = _("events")
@@ -106,6 +112,10 @@ class Designation(models.Model):
     designation = models.CharField(_("Designation"), max_length=100, default="")
     quantity = models.IntegerField(_("Quantity"), default=1)
     price = models.DecimalField(_("Price"), default=0.0, max_digits=18, decimal_places=2)
+
+
+    def __unicode__(self):
+        return self.designation
 
     class Meta:
         verbose_name = _("designation")

@@ -10,6 +10,8 @@ from visualImpactSAV.models import SAV_file
 
 
 class ParameterCreateView(CreateView):
+    template_name = 'djangoApp/common/createOrUpdate.html'
+
     def dispatch(self, *args, **kwargs):
         self.pkSAVFile = kwargs['pkSAVFile']
         return super(ParameterCreateView, self).dispatch(*args, **kwargs)
@@ -36,6 +38,8 @@ class ParameterCreateView(CreateView):
 
 
 class ParameterUpdateView(UpdateView):
+    template_name = 'djangoApp/common/createOrUpdate.html'
+
     def dispatch(self, *args, **kwargs):
         self.pk = kwargs['pk']
         return super(ParameterUpdateView, self).dispatch(*args, **kwargs)
@@ -57,5 +61,19 @@ class ParameterUpdateView(UpdateView):
 
 
 class ParameterDeleteView(DeleteView):
+    template_name = 'djangoApp/common/confirmDelete.html'
+
     def get_success_url(self, *args, **kwargs):
         return reverse_lazy(self.url_to_redirect,  kwargs={'pk': self.object.refered_SAV_file.id})
+
+    def dispatch(self, *args, **kwargs):
+        self.pk = kwargs['pk']
+        self.url_to_redirect = 'visualImpactSAV:updateSAVFile'
+        return super(ParameterDeleteView, self).dispatch(*args, **kwargs)
+
+    def get_context_data(self, **kwargs):
+        context = super(ParameterDeleteView, self).get_context_data(**kwargs)
+        context['name_class'] = self.object.__class__.__name__
+        context['name_object'] = unicode(self.object)
+
+        return context

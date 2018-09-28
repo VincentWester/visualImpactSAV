@@ -30,6 +30,9 @@ msgstr "En litige"
 msgid "Closed"
 msgstr "Fermé"
 
+msgid "Close"
+msgstr "Fermer"
+
 #: djangoApp/settings.py:137
 msgid "English"
 msgstr "Anglais"
@@ -690,3 +693,14 @@ msgstr "Actuellement"
 msgid "PDF Generation"
 msgstr "Génération de PDF"
 
+msgid "Delete"
+msgstr "Supprimer"
+
+msgid "Create this %s"
+msgstr "Ajouter %s"
+
+msgid "Update this %s"
+msgstr "Modifier %s"
+
+msgid "Delete this %s"
+msgstr "Supprimer %s"

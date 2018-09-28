@@ -3,9 +3,9 @@ from __future__ import unicode_literals
 
 from decimal import Decimal
 
-from django.views.generic import ListView
+from django.utils.translation import ugettext as _
+from django.core.urlresolvers import reverse
 
-import constants
 from .views_template_parameters_sav_files import ParameterCreateView, ParameterUpdateView, ParameterDeleteView
 from visualImpactSAV.models import Designation
 from visualImpactSAV.forms import DesignationForm
@@ -14,28 +14,37 @@ from visualImpactSAV.forms import DesignationForm
 class DesignationCreateView(ParameterCreateView):
     model = Designation
     form_class = DesignationForm
-    template_name = 'djangoApp/Designation/createDesignation.html'
 
+    def get_context_data(self, **kwargs):
+        context = super(DesignationCreateView, self).get_context_data(**kwargs)
+        context['url_action'] = reverse('visualImpactSAV:createDesignation', args=[], kwargs={'pkSAVFile': self.pkSAVFile})
+        context['id_modal'] = 'createDesignation'
+        context['action_to_made'] = _('Create')
+        context['value_button'] = _('Create this %s') % _('designation')
+
+        return context
 
 class DesignationUpdateView(ParameterUpdateView):
     model = Designation
     form_class = DesignationForm
-    template_name = 'djangoApp/Designation/updateDesignation.html'
 
+    def get_context_data(self, **kwargs):
+        context = super(DesignationUpdateView, self).get_context_data(**kwargs)
+        context['url_action'] = reverse('visualImpactSAV:updateDesignation', args=[], kwargs={'pk': self.pk})
+        context['id_modal'] = 'updateDesignation'
+        context['action_to_made'] = _('Update')
+        context['value_button'] = _('Update this %s') %  _('designation')
+
+        return context
 
 class DesignationDeleteView(ParameterDeleteView):
     model = Designation
-    template_name = 'djangoApp/Designation/confirmDeleteDesignation.html'
-
-    def dispatch(self, *args, **kwargs):
-        self.pk = kwargs['pk']
-        self.url_to_redirect = 'visualImpactSAV:updateSAVFile'
-        return super(DesignationDeleteView, self).dispatch(*args, **kwargs)
 
     def get_context_data(self, **kwargs):
         context = super(DesignationDeleteView, self).get_context_data(**kwargs)
-        context['id_to_delete'] = self.pk
-        context['name_class'] = self.object.__class__.__name__
-        context['name_object'] = self.object.designation
+        context['url_action'] = reverse('visualImpactSAV:deleteDesignation', args=[], kwargs={'pk': self.pk})
+        context['id_modal'] = 'deleteDesignation'
+        context['action_to_made'] = _('Delete')
+        context['value_button'] = _('Delete this %s') % _('designation')
 
         return context

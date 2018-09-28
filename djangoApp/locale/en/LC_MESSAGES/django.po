@@ -660,3 +660,15 @@ msgstr ""
 
 msgid "PDF Generation"
 msgstr ""
+
+msgid "Delete"
+msgstr ""
+
+msgid "Create this %s"
+msgstr ""
+
+msgid "Update this %s"
+msgstr ""
+
+msgid "Delete this %s"
+msgstr ""
