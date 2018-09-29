@@ -1,19 +1,20 @@
 # -*- coding: utf-8 -*-
 from __future__ import unicode_literals
 
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.http import HttpResponseRedirect, HttpResponse
 from django.template.loader import render_to_string
-from django.urls import reverse_lazy
+from django.core.urlresolvers import reverse
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 
 from visualImpactSAV.models import SAV_file
 
 
-class ParameterCreateView(CreateView):
+class ParameterCreateView(LoginRequiredMixin, CreateView):
     template_name = 'djangoApp/common/createOrUpdate.html'
 
     def dispatch(self, *args, **kwargs):
-        if hasattr(self, 'pkSAVFile'):
+        if 'pkSAVFile' in kwargs:
             self.pkSAVFile = kwargs['pkSAVFile']
         return super(ParameterCreateView, self).dispatch(*args, **kwargs)
 
@@ -39,7 +40,7 @@ class ParameterCreateView(CreateView):
         return HttpResponseRedirect(url)
 
 
-class ParameterUpdateView(UpdateView):
+class ParameterUpdateView(LoginRequiredMixin, UpdateView):
     template_name = 'djangoApp/common/createOrUpdate.html'
 
     def dispatch(self, *args, **kwargs):
@@ -62,15 +63,18 @@ class ParameterUpdateView(UpdateView):
         return HttpResponseRedirect(url)
 
 
-class ParameterDeleteView(DeleteView):
+class ParameterDeleteView(LoginRequiredMixin, DeleteView):
     template_name = 'djangoApp/common/confirmDelete.html'
 
     def get_success_url(self, *args, **kwargs):
-        return reverse_lazy(self.url_to_redirect,  kwargs={'pk': self.object.refered_SAV_file.id})
+        return reverse(self.url_to_redirect,  kwargs={'pk': self.object.refered_SAV_file.id})
 
     def dispatch(self, *args, **kwargs):
         self.pk = kwargs['pk']
-        self.url_to_redirect = 'visualImpactSAV:updateSAVFile'
+        if self.get_object().__class__.__name__ == 'Waranty':
+            self.url_to_redirect = 'visualImpactSAV:listWaranty'
+        else:
+            self.url_to_redirect = 'visualImpactSAV:updateSAVFile'
         return super(ParameterDeleteView, self).dispatch(*args, **kwargs)
 
     def get_context_data(self, **kwargs):

@@ -51,14 +51,8 @@ class WarantyUpdateView(ParameterUpdateView):
         return context
 
 
-class WarantyDeleteView(DeleteView):
+class WarantyDeleteView(ParameterDeleteView):
     model = Waranty
-    template_name = 'djangoApp/common/confirmDelete.html'
-
-    def dispatch(self, *args, **kwargs):
-        self.pk = kwargs['pk']
-        self.url_to_redirect = 'visualImpactSAV:listWaranty'
-        return super(WarantyDeleteView, self).dispatch(*args, **kwargs)
 
     def get_context_data(self, **kwargs):
         context = super(WarantyDeleteView, self).get_context_data(**kwargs)
@@ -70,7 +64,7 @@ class WarantyDeleteView(DeleteView):
         return context
 
     def get_success_url(self, *args, **kwargs):
-        return reverse_lazy(self.url_to_redirect, kwargs={})
+        return reverse(self.url_to_redirect, kwargs={})
 
 
 class WarantyListView(LoginRequiredMixin, ListView):
