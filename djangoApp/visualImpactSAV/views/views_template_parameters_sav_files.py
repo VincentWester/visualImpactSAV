@@ -7,11 +7,12 @@ from django.template.loader import render_to_string
 from django.core.urlresolvers import reverse
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 
+import constants
 from visualImpactSAV.models import SAV_file
 
 
 class ParameterCreateView(LoginRequiredMixin, CreateView):
-    template_name = 'djangoApp/common/createOrUpdate.html'
+    template_name = constants.UPDATE_OR_CREATE_TEMPLATE
 
     def dispatch(self, *args, **kwargs):
         if 'pkSAVFile' in kwargs:
@@ -28,9 +29,6 @@ class ParameterCreateView(LoginRequiredMixin, CreateView):
         url = "{0}".format(self.request.META.get('HTTP_REFERER', '/'))
         return HttpResponse(render_to_string('djangoApp/errors/nonValideSAVFile.html', {'errors': form.errors, 'url': url}))
 
-    """
-    Check if the form is valid and save the object.
-    """
     def form_valid(self, form):
         sav_file = SAV_file.objects.get(id=self.kwargs['pkSAVFile'])
         form.instance.refered_SAV_file = sav_file
@@ -41,7 +39,7 @@ class ParameterCreateView(LoginRequiredMixin, CreateView):
 
 
 class ParameterUpdateView(LoginRequiredMixin, UpdateView):
-    template_name = 'djangoApp/common/createOrUpdate.html'
+    template_name = constants.UPDATE_OR_CREATE_TEMPLATE
 
     def dispatch(self, *args, **kwargs):
         self.pk = kwargs['pk']
@@ -64,7 +62,7 @@ class ParameterUpdateView(LoginRequiredMixin, UpdateView):
 
 
 class ParameterDeleteView(LoginRequiredMixin, DeleteView):
-    template_name = 'djangoApp/common/confirmDelete.html'
+    template_name = constants.DELETE_TEMPLATE
 
     def get_success_url(self, *args, **kwargs):
         return reverse(self.url_to_redirect,  kwargs={'pk': self.object.refered_SAV_file.id})
