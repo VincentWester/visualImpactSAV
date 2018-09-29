@@ -135,7 +135,6 @@ msgstr "Compléments"
 
 #: visualImpactSAV/models.py:28
 #, fuzzy
-#| msgid "Waranty_time"
 msgid "Waranty time"
 msgstr "Durée de garantie"
 

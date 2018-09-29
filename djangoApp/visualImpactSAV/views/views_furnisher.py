@@ -8,6 +8,7 @@ from django.template.loader import render_to_string
 from django.urls import reverse_lazy
 from django.views.generic import ListView
 from django.views.generic.edit import CreateView, DeleteView
+
 from django.db.models import ProtectedError
 
 from visualImpactSAV.models import Furnisher

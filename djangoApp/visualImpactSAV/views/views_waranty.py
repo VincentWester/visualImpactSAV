@@ -1,6 +1,9 @@
 # -*- coding: utf-8 -*-
 from __future__ import unicode_literals
 
+from django.utils.translation import ugettext as _
+from django.core.urlresolvers import reverse
+
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.http import HttpResponseRedirect, HttpResponse
 from django.template.loader import render_to_string
@@ -12,17 +15,12 @@ from visualImpactSAV.models import Waranty
 from visualImpactSAV.forms import WarantyForm
 
 import constants
-from .views_template_parameters_sav_files import ParameterUpdateView
+from .views_template_parameters_sav_files import ParameterCreateView, ParameterUpdateView, ParameterDeleteView
 
 
-class WarantyCreateView(CreateView):
+class WarantyCreateView(ParameterCreateView):
     model = Waranty
     form_class = WarantyForm
-    template_name = 'djangoApp/Waranty/createWaranty.html'
-
-    def form_invalid(self, form):
-        url = "{0}".format(self.request.META.get('HTTP_REFERER', '/'))
-        return HttpResponse(render_to_string('djangoApp/errors/nonValideSAVFile.html', {'errors': form.errors, 'url': url}))
 
     def form_valid(self, form):
         self.object = form.save()
@@ -30,22 +28,32 @@ class WarantyCreateView(CreateView):
 
         return HttpResponseRedirect(url)
 
+    def get_context_data(self, **kwargs):
+        context = super(WarantyCreateView, self).get_context_data(**kwargs)
+        context['url_action'] = reverse('visualImpactSAV:createWaranty', args=[], kwargs={})
+        context['id_modal'] = 'createWaranty'
+        context['action_to_made'] = _('Create')
+        context['value_button'] = _('Create this %s') % _('waranty')
+
+        return context
 
 class WarantyUpdateView(ParameterUpdateView):
     model = Waranty
     form_class = WarantyForm
-    template_name = 'djangoApp/Waranty/updateWaranty.html'
 
     def get_context_data(self, **kwargs):
         context = super(WarantyUpdateView, self).get_context_data(**kwargs)
-        context['current_waranty'] = self.object
+        context['url_action'] = reverse('visualImpactSAV:updateWaranty', args=[], kwargs={'pk': self.pk})
+        context['id_modal'] = 'updateWaranty'
+        context['action_to_made'] = _('Update')
+        context['value_button'] = _('Update this %s') % _('waranty')
 
         return context
 
 
 class WarantyDeleteView(DeleteView):
     model = Waranty
-    template_name = 'djangoApp/Waranty/confirmDeleteWaranty.html'
+    template_name = 'djangoApp/common/confirmDelete.html'
 
     def dispatch(self, *args, **kwargs):
         self.pk = kwargs['pk']
@@ -54,9 +62,10 @@ class WarantyDeleteView(DeleteView):
 
     def get_context_data(self, **kwargs):
         context = super(WarantyDeleteView, self).get_context_data(**kwargs)
-        context['id_to_delete'] = self.pk
-        context['name_class'] = self.object.__class__.__name__
-        context['name_object'] = self.object.brand
+        context['url_action'] = reverse('visualImpactSAV:deleteWaranty', args=[], kwargs={'pk': self.pk})
+        context['id_modal'] = 'deleteWaranty'
+        context['action_to_made'] = _('Delete')
+        context['value_button'] = _('Delete this %s') % _('waranty')
 
         return context
 

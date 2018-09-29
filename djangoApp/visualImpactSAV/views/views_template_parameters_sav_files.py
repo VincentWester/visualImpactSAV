@@ -13,12 +13,14 @@ class ParameterCreateView(CreateView):
     template_name = 'djangoApp/common/createOrUpdate.html'
 
     def dispatch(self, *args, **kwargs):
-        self.pkSAVFile = kwargs['pkSAVFile']
+        if hasattr(self, 'pkSAVFile'):
+            self.pkSAVFile = kwargs['pkSAVFile']
         return super(ParameterCreateView, self).dispatch(*args, **kwargs)
 
     def get_context_data(self, **kwargs):
         context = super(ParameterCreateView, self).get_context_data(**kwargs)
-        context['pkSAVFile'] = self.pkSAVFile
+        if hasattr(self, 'pkSAVFile'):
+            context['pkSAVFile'] = self.pkSAVFile
         return context
 
     def form_invalid(self, form):
