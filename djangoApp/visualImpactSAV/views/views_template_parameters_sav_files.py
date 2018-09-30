@@ -71,6 +71,8 @@ class ParameterDeleteView(LoginRequiredMixin, DeleteView):
         self.pk = kwargs['pk']
         if self.get_object().__class__.__name__ == 'Waranty':
             self.url_to_redirect = 'visualImpactSAV:listWaranty'
+        elif self.get_object().__class__.__name__ == 'Furnisher':
+            self.url_to_redirect = 'visualImpactSAV:listFurnisher'
         else:
             self.url_to_redirect = 'visualImpactSAV:updateSAVFile'
         return super(ParameterDeleteView, self).dispatch(*args, **kwargs)

@@ -1,11 +1,13 @@
 # -*- coding: utf-8 -*-
 from __future__ import unicode_literals
 
+from django.utils.translation import ugettext as _
+from django.core.urlresolvers import reverse
+
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.http import HttpResponseRedirect, HttpResponse
 from django.shortcuts import render
 from django.template.loader import render_to_string
-from django.urls import reverse_lazy
 from django.views.generic import ListView
 from django.views.generic.edit import CreateView, DeleteView
 
@@ -15,17 +17,12 @@ from visualImpactSAV.models import Furnisher
 from visualImpactSAV.forms import FurnisherForm
 
 import constants
-from .views_template_parameters_sav_files import ParameterUpdateView
+from .views_template_parameters_sav_files import ParameterCreateView, ParameterUpdateView, ParameterDeleteView
 
 
-class FurnisherCreateView(CreateView):
+class FurnisherCreateView(ParameterCreateView):
     model = Furnisher
     form_class = FurnisherForm
-    template_name = 'djangoApp/Furnisher/createFurnisher.html'
-
-    def form_invalid(self, form):
-        url = "{0}".format(self.request.META.get('HTTP_REFERER', '/'))
-        return HttpResponse(render_to_string('djangoApp/errors/nonValideSAVFile.html', {'errors': form.errors, 'url': url}))
 
     def form_valid(self, form):
         self.object = form.save()
@@ -33,35 +30,44 @@ class FurnisherCreateView(CreateView):
 
         return HttpResponseRedirect(url)
 
+    def get_context_data(self, **kwargs):
+        context = super(FurnisherCreateView, self).get_context_data(**kwargs)
+        context['url_action'] = reverse('visualImpactSAV:createFurnisher', args=[], kwargs={})
+        context['id_modal'] = 'createFurnisher'
+        context['action_to_made'] = _('Create')
+        context['value_button'] = _('Create this %s') % _('furnisher')
+
+        return context
+
 
 class FurnisherUpdateView(ParameterUpdateView):
     model = Furnisher
     form_class = FurnisherForm
-    template_name = 'djangoApp/Furnisher/updateFurnisher.html'
 
     def get_context_data(self, **kwargs):
         context = super(FurnisherUpdateView, self).get_context_data(**kwargs)
-        context['current_furnisher'] = self.object
+        context['url_action'] = reverse('visualImpactSAV:updateFurnisher', args=[], kwargs={'pk': self.pk})
+        context['id_modal'] = 'updateFurnisher'
+        context['action_to_made'] = _('Update')
+        context['value_button'] = _('Update this %s') % _('furnisher')
 
         return context
 
 
-class FurnisherDeleteView(DeleteView):
+class FurnisherDeleteView(ParameterDeleteView):
     model = Furnisher
-    template_name = 'djangoApp/Furnisher/confirmDeleteFurnisher.html'
-
-    def dispatch(self, *args, **kwargs):
-        self.pk = kwargs['pk']
-        self.url_to_redirect = 'visualImpactSAV:listFurnisher'
-        return super(FurnisherDeleteView, self).dispatch(*args, **kwargs)
 
     def get_context_data(self, **kwargs):
         context = super(FurnisherDeleteView, self).get_context_data(**kwargs)
-        context['id_to_delete'] = self.pk
-        context['name_class'] = self.object.__class__.__name__
-        context['name_object'] = self.object.brand
+        context['url_action'] = reverse('visualImpactSAV:deleteFurnisher', args=[], kwargs={'pk': self.pk})
+        context['id_modal'] = 'deleteFurnisher'
+        context['action_to_made'] = _('Delete')
+        context['value_button'] = _('Delete this %s') % _('furnisher')
 
         return context
+
+    def get_success_url(self, *args, **kwargs):
+        return reverse(self.url_to_redirect, kwargs={})
 
     def delete(self, request, *args, **kwargs):
         try:
@@ -75,9 +81,6 @@ class FurnisherDeleteView(DeleteView):
                     {'errors': 'Un de vos dossiers possède ce fournisseur comme référence', 'url': url}
                 )
             )
-
-    def get_success_url(self, *args, **kwargs):
-        return reverse_lazy(self.url_to_redirect, kwargs={})
 
 
 class FurnisherListView(LoginRequiredMixin, ListView):
