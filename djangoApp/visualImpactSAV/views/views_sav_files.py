@@ -8,7 +8,7 @@ from django.shortcuts import render
 from django.views.generic import DetailView, ListView
 from django.views.generic.edit import CreateView, UpdateView
 
-from visualImpactSAV.models import SAV_file, SAV_file_status, Event, Designation, Furnisher
+from visualImpactSAV.models import SAV_file, SAV_file_status, Event, Furnisher
 from visualImpactSAV.forms import SAV_fileForm
 
 import constants
@@ -26,10 +26,9 @@ class SAVFileDetailView(LoginRequiredMixin, DetailView):
     def get_context_data(self, **kwargs):
         context = super(SAVFileDetailView, self).get_context_data(**kwargs)
         context['pkSAVFile'] = self.object.id
-        context['events'] = Event.objects.all().filter(refered_SAV_file=self.object).order_by('date')
-        context['furnishers'] = Furnisher.objects.all().order_by('mark')
+        context['events'] = self.object.events.all()
 
-        designations = self.object.designations.all().order_by('id')
+        designations = self.object.designations.all()
         context['designations'] = designations
 
         total = Decimal(0.0)
@@ -50,7 +49,7 @@ class SAVFileCreateView(LoginRequiredMixin, CreateView):
     def get_context_data(self, **kwargs):
         context = super(SAVFileCreateView, self).get_context_data(**kwargs)
         context['sav_file_status'] = SAV_file_status.objects.all()
-        context['furnishers'] = Furnisher.objects.all().order_by('mark')
+        context['furnishers'] = Furnisher.objects.all()
 
         return context
 
@@ -78,7 +77,7 @@ class SAVFileUpdateView(LoginRequiredMixin, UpdateView):
         context = super(SAVFileUpdateView, self).get_context_data(**kwargs)
         context['current_sav_file'] = self.object
         context['sav_file_status'] = SAV_file_status.objects.all()
-        context['events'] = Event.objects.all().filter(refered_SAV_file=self.object).order_by('date')
+        context['events'] = self.object.events.all()
         context['furnishers'] = Furnisher.objects.all()
 
         designations = self.object.designations.all()

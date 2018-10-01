@@ -47,4 +47,3 @@ DEFAULT_FURNISHER_LIST_VIEW_PAGINATION_BY = 40
 
 UPDATE_OR_CREATE_TEMPLATE = 'djangoApp/common/createOrUpdate.html'
 DELETE_TEMPLATE = 'djangoApp/common/confirmDelete.html'
-

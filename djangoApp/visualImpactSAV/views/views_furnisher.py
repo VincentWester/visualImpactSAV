@@ -7,9 +7,7 @@ from django.core.urlresolvers import reverse
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.http import HttpResponseRedirect, HttpResponse
 from django.shortcuts import render
-from django.template.loader import render_to_string
 from django.views.generic import ListView
-from django.views.generic.edit import CreateView, DeleteView
 
 from django.db.models import ProtectedError
 

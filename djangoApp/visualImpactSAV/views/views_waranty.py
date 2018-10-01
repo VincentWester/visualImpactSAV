@@ -5,11 +5,8 @@ from django.utils.translation import ugettext as _
 from django.core.urlresolvers import reverse
 
 from django.contrib.auth.mixins import LoginRequiredMixin
-from django.http import HttpResponseRedirect, HttpResponse
-from django.template.loader import render_to_string
-from django.urls import reverse_lazy
+from django.http import HttpResponseRedirect
 from django.views.generic import ListView
-from django.views.generic.edit import CreateView, DeleteView
 
 from visualImpactSAV.models import Waranty
 from visualImpactSAV.forms import WarantyForm
@@ -36,6 +33,7 @@ class WarantyCreateView(ParameterCreateView):
         context['value_button'] = _('Create this %s') % _('waranty')
 
         return context
+
 
 class WarantyUpdateView(ParameterUpdateView):
     model = Waranty

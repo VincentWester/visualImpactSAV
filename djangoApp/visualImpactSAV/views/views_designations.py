@@ -1,14 +1,12 @@
 # -*- coding: utf-8 -*-
 from __future__ import unicode_literals
 
-from decimal import Decimal
-
 from django.utils.translation import ugettext as _
 from django.core.urlresolvers import reverse
 
-from .views_template_parameters_sav_files import ParameterCreateView, ParameterUpdateView, ParameterDeleteView
 from visualImpactSAV.models import Designation
 from visualImpactSAV.forms import DesignationForm
+from .views_template_parameters_sav_files import ParameterCreateView, ParameterUpdateView, ParameterDeleteView
 
 
 class DesignationCreateView(ParameterCreateView):
@@ -24,6 +22,7 @@ class DesignationCreateView(ParameterCreateView):
 
         return context
 
+
 class DesignationUpdateView(ParameterUpdateView):
     model = Designation
     form_class = DesignationForm
@@ -33,9 +32,10 @@ class DesignationUpdateView(ParameterUpdateView):
         context['url_action'] = reverse('visualImpactSAV:updateDesignation', args=[], kwargs={'pk': self.pk})
         context['id_modal'] = 'updateDesignation'
         context['action_to_made'] = _('Update')
-        context['value_button'] = _('Update this %s') %  _('designation')
+        context['value_button'] = _('Update this %s') % _('designation')
 
         return context
+
 
 class DesignationDeleteView(ParameterDeleteView):
     model = Designation

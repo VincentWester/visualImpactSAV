@@ -22,6 +22,7 @@ class EventCreateView(ParameterCreateView):
 
         return context
 
+
 class EventUpdateView(ParameterUpdateView):
     model = Event
     form_class = EventForm

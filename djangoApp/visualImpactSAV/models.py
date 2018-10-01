@@ -104,7 +104,7 @@ class Event(models.Model):
     class Meta:
         verbose_name = _("event")
         verbose_name_plural = _("events")
-        ordering = ['refered_SAV_file']
+        ordering = ['date']
 
 
 class Designation(models.Model):
@@ -112,7 +112,6 @@ class Designation(models.Model):
     designation = models.CharField(_("Designation"), max_length=100, default="")
     quantity = models.IntegerField(_("Quantity"), default=1)
     price = models.DecimalField(_("Price"), default=0.0, max_digits=18, decimal_places=2)
-
 
     def __unicode__(self):
         return self.designation
