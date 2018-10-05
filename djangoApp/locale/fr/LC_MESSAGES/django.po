@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-09-27 12:51+0200\n"
+"POT-Creation-Date: 2018-10-05 11:02+0200\n"
 "PO-Revision-Date: \n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -30,14 +30,19 @@ msgstr "En litige"
 msgid "Closed"
 msgstr "Fermé"
 
-msgid "Close"
-msgstr "Fermer"
+#: constants.py:27 visualImpactSAV/models.py:77
+msgid "Included waranty"
+msgstr "Sous garantie"
 
-#: djangoApp/settings.py:137
+#: constants.py:28
+msgid "Excluded waranty"
+msgstr "Hors garantie"
+
+#: djangoApp/settings.py:140
 msgid "English"
 msgstr "Anglais"
 
-#: djangoApp/settings.py:138
+#: djangoApp/settings.py:141
 msgid "French"
 msgstr "Français"
 
@@ -121,7 +126,7 @@ msgstr "Le champ 'statut de garantie' est vide"
 msgid "after sale file status"
 msgstr "statut du fichier SAV"
 
-#: visualImpactSAV/models.py:26 visualImpactSAV/models.py:38
+#: visualImpactSAV/models.py:26 visualImpactSAV/models.py:41
 #: visualImpactSAV/views/views_pdf_generator.py:315
 #: visualImpactSAV/views/views_pdf_generator.py:458
 #: visualImpactSAV/views/views_pdf_generator.py:587
@@ -129,12 +134,11 @@ msgstr "statut du fichier SAV"
 msgid "Brand"
 msgstr "Marque"
 
-#: visualImpactSAV/models.py:27 visualImpactSAV/models.py:40
+#: visualImpactSAV/models.py:27 visualImpactSAV/models.py:43
 msgid "Complements"
 msgstr "Compléments"
 
 #: visualImpactSAV/models.py:28
-#, fuzzy
 msgid "Waranty time"
 msgstr "Durée de garantie"
 
@@ -142,170 +146,223 @@ msgstr "Durée de garantie"
 msgid "Procedure"
 msgstr "Procédure"
 
-#: visualImpactSAV/models.py:32
+#: visualImpactSAV/models.py:35 visualImpactSAV/views/views_waranty.py:33
+#: visualImpactSAV/views/views_waranty.py:47
+#: visualImpactSAV/views/views_waranty.py:60
 msgid "waranty"
 msgstr "garantie"
 
-#: visualImpactSAV/models.py:33
+#: visualImpactSAV/models.py:36
 msgid "waranties"
 msgstr "garanties"
 
-#: visualImpactSAV/models.py:39
+#: visualImpactSAV/models.py:42
 msgid "Street"
 msgstr "Rue"
 
-#: visualImpactSAV/models.py:41
+#: visualImpactSAV/models.py:44
 msgid "Zipcode"
 msgstr "Code postal"
 
-#: visualImpactSAV/models.py:42
+#: visualImpactSAV/models.py:45
 msgid "City"
 msgstr "Ville"
 
-#: visualImpactSAV/models.py:43
+#: visualImpactSAV/models.py:46
 msgid "Phone"
-msgstr "Téléphona"
+msgstr "Téléphone"
 
-#: visualImpactSAV/models.py:44
+#: visualImpactSAV/models.py:47
 msgid "Commentary"
 msgstr "Commentaire"
 
-#: visualImpactSAV/models.py:50
+#: visualImpactSAV/models.py:53 visualImpactSAV/views/views_furnisher.py:36
+#: visualImpactSAV/views/views_furnisher.py:50
+#: visualImpactSAV/views/views_furnisher.py:63
 msgid "furnisher"
 msgstr "fournisseur"
 
-#: visualImpactSAV/models.py:51
+#: visualImpactSAV/models.py:54
 msgid "furnishers"
 msgstr "fournisseurs"
 
-#: visualImpactSAV/models.py:56
+#: visualImpactSAV/models.py:59
 #: visualImpactSAV/views/views_pdf_generator.py:269
 msgid "Creation date"
 msgstr "Date de création"
 
-#: visualImpactSAV/models.py:60
+#: visualImpactSAV/models.py:63
 msgid "Status"
 msgstr "Statut"
 
-#: visualImpactSAV/models.py:62
+#: visualImpactSAV/models.py:65
 msgid "Society"
 msgstr "Société"
 
-#: visualImpactSAV/models.py:63
-#: visualImpactSAV/views/views_pdf_generator.py:283
+#: visualImpactSAV/models.py:66
+#: visualImpactSAV/views/views_pdf_generator.py:276
 #: visualImpactSAV/views/views_pdf_generator.py:654
 msgid "Customer name"
 msgstr "Nom du client"
 
-#: visualImpactSAV/models.py:64
+#: visualImpactSAV/models.py:67
 msgid "Customer street"
 msgstr "Rue du client"
 
-#: visualImpactSAV/models.py:65
+#: visualImpactSAV/models.py:68
 msgid "Customer address complements"
 msgstr "Complément d'adresse du client"
 
-#: visualImpactSAV/models.py:66
+#: visualImpactSAV/models.py:69
 msgid "Customer zipcode"
 msgstr "Code postal du client"
 
-#: visualImpactSAV/models.py:67
+#: visualImpactSAV/models.py:70
 msgid "Customer city"
 msgstr "Ville du client"
 
-#: visualImpactSAV/models.py:68
+#: visualImpactSAV/models.py:71
 msgid "Customer phone"
 msgstr "Téléphone du client"
 
-#: visualImpactSAV/models.py:69
+#: visualImpactSAV/models.py:72
 msgid "Customer email"
 msgstr "Email du client"
 
-#: visualImpactSAV/models.py:70
+#: visualImpactSAV/models.py:73
 msgid "Product model"
 msgstr "Modèle du produit"
 
-#: visualImpactSAV/models.py:71
+#: visualImpactSAV/models.py:74
 msgid "Product brand"
 msgstr "Marque du produit"
 
-#: visualImpactSAV/models.py:72
+#: visualImpactSAV/models.py:75
 msgid "Product serial number"
 msgstr "N° de série du produit"
 
-#: visualImpactSAV/models.py:73
+#: visualImpactSAV/models.py:76
 msgid "Product RMA number"
 msgstr "N° RMA du produit"
 
-#: visualImpactSAV/models.py:74
+#: visualImpactSAV/models.py:77
 msgid "Waranty"
 msgstr "Garantie"
 
-#: visualImpactSAV/models.py:75
+#: visualImpactSAV/models.py:78
 msgid "Out of order reason"
 msgstr "Raison du défaut"
 
-#: visualImpactSAV/models.py:76
+#: visualImpactSAV/models.py:79
 msgid "Client bill"
 msgstr "Facture client"
 
-#: visualImpactSAV/models.py:77
+#: visualImpactSAV/models.py:80
 msgid "Furnisher"
 msgstr "Fournisseur"
 
-#: visualImpactSAV/models.py:78
+#: visualImpactSAV/models.py:81
 msgid "User"
 msgstr "Utilisateur"
 
-#: visualImpactSAV/models.py:87 visualImpactSAV/models.py:93
-#: visualImpactSAV/models.py:105
+#: visualImpactSAV/models.py:90 visualImpactSAV/models.py:96
+#: visualImpactSAV/models.py:111
 msgid "After sale file"
 msgstr "Fichier après-vente"
 
-#: visualImpactSAV/models.py:88
+#: visualImpactSAV/models.py:91
 msgid "After sale files"
 msgstr "Fichiers après-vente"
 
-#: visualImpactSAV/models.py:94
+#: visualImpactSAV/models.py:97
 msgid "Title"
 msgstr "Titre"
 
-#: visualImpactSAV/models.py:95
+#: visualImpactSAV/models.py:98
 msgid "Action"
 msgstr "Action"
 
-#: visualImpactSAV/models.py:96
+#: visualImpactSAV/models.py:99
 msgid "Date"
 msgstr "Date"
 
-#: visualImpactSAV/models.py:99
+#: visualImpactSAV/models.py:105 visualImpactSAV/views/views_events.py:21
+#: visualImpactSAV/views/views_events.py:35
+#: visualImpactSAV/views/views_events.py:48
 msgid "event"
 msgstr "évenement"
 
-#: visualImpactSAV/models.py:100
+#: visualImpactSAV/models.py:106
 msgid "events"
 msgstr "évenements"
 
-#: visualImpactSAV/models.py:106
+#: visualImpactSAV/models.py:112
 msgid "Designation"
 msgstr "Désignation"
 
-#: visualImpactSAV/models.py:107
+#: visualImpactSAV/models.py:113
 #: visualImpactSAV/views/views_pdf_generator.py:146
 msgid "Quantity"
 msgstr "Quantité"
 
-#: visualImpactSAV/models.py:108
+#: visualImpactSAV/models.py:114
 msgid "Price"
 msgstr "Prix"
 
-#: visualImpactSAV/models.py:111
+#: visualImpactSAV/models.py:120 visualImpactSAV/views/views_designations.py:21
+#: visualImpactSAV/views/views_designations.py:35
+#: visualImpactSAV/views/views_designations.py:48
 msgid "designation"
 msgstr "désignation"
 
-#: visualImpactSAV/models.py:112
+#: visualImpactSAV/models.py:121
 msgid "designations"
 msgstr "désignations"
+
+#: visualImpactSAV/views/views_designations.py:20
+#: visualImpactSAV/views/views_events.py:20
+#: visualImpactSAV/views/views_furnisher.py:35
+#: visualImpactSAV/views/views_waranty.py:32
+msgid "Create"
+msgstr "Ajouter"
+
+#: visualImpactSAV/views/views_designations.py:21
+#: visualImpactSAV/views/views_events.py:21
+#: visualImpactSAV/views/views_furnisher.py:36
+#: visualImpactSAV/views/views_waranty.py:33
+#, python-format
+msgid "Create this %s"
+msgstr "Ajouter %s"
+
+#: visualImpactSAV/views/views_designations.py:34
+#: visualImpactSAV/views/views_events.py:34
+#: visualImpactSAV/views/views_furnisher.py:49
+#: visualImpactSAV/views/views_waranty.py:46
+msgid "Update"
+msgstr "Modifier"
+
+#: visualImpactSAV/views/views_designations.py:35
+#: visualImpactSAV/views/views_events.py:35
+#: visualImpactSAV/views/views_furnisher.py:50
+#: visualImpactSAV/views/views_waranty.py:47
+#, python-format
+msgid "Update this %s"
+msgstr "Modifier %s"
+
+#: visualImpactSAV/views/views_designations.py:47
+#: visualImpactSAV/views/views_events.py:47
+#: visualImpactSAV/views/views_furnisher.py:62
+#: visualImpactSAV/views/views_waranty.py:59
+msgid "Delete"
+msgstr "Supprimer"
+
+#: visualImpactSAV/views/views_designations.py:48
+#: visualImpactSAV/views/views_events.py:48
+#: visualImpactSAV/views/views_furnisher.py:63
+#: visualImpactSAV/views/views_waranty.py:60
+#, python-format
+msgid "Delete this %s"
+msgstr "Supprimer %s"
 
 #: visualImpactSAV/views/views_pdf_generator.py:42
 msgid "Logo Error"
@@ -342,6 +399,10 @@ msgstr "Prix total HT"
 #: visualImpactSAV/views/views_pdf_generator.py:173
 msgid "Transport fees when asked except where otherwise specified"
 msgstr "Frais de transport sur demande sauf mention contraire"
+
+#: visualImpactSAV/views/views_pdf_generator.py:175
+msgid "Tax"
+msgstr "Taxe"
 
 #: visualImpactSAV/views/views_pdf_generator.py:176
 msgid "Tax percent"
@@ -417,7 +478,7 @@ msgstr "Référence"
 msgid "VIF-AS-"
 msgstr "VIF-SAV-"
 
-#: visualImpactSAV/views/views_pdf_generator.py:276
+#: visualImpactSAV/views/views_pdf_generator.py:283
 #: visualImpactSAV/views/views_pdf_generator.py:653
 msgid "Managed by"
 msgstr "Suivi par"
@@ -605,101 +666,90 @@ msgstr "retour-client"
 msgid "Repairs return"
 msgstr "Retour de réparations"
 
-msgid "Tax"
-msgstr "Taxe"
+msgid "You close the app without being disconnected"
+msgstr "Vous avez fermé l'application sans vous être déconnecter"
 
-msgid "previous"
-msgstr "précédent"
+msgid "To search others AS files, you can click on the 'Validate' button"
+msgstr "Pour rechercher d'autre dossier SAV, vous pouvez cliquez sur 'Valider'"
 
-msgid "next"
-msgstr "suivant"
+msgid "You can also choose an other option on the left menu."
+msgstr ""
+"Ou alors, vous pouvez sélectionner une autre option à l'aide du menu à "
+"gauche."
 
-msgid "Page"
-msgstr "Page"
+#~ msgid "Close"
+#~ msgstr "Fermer"
 
-msgid "AS file Reference"
-msgstr "Référence du fichier SAV"
+#~ msgid "previous"
+#~ msgstr "précédent"
 
-msgid "Referent"
-msgstr "Référent"
+#~ msgid "next"
+#~ msgstr "suivant"
 
-msgid "Total number of results"
-msgstr "Nombre de résultats"
+#~ msgid "Page"
+#~ msgstr "Page"
 
-msgid "Name"
-msgstr "Nom"
+#~ msgid "AS file Reference"
+#~ msgstr "Référence du fichier SAV"
 
-msgid "Customer filter"
-msgstr "Filtrage par client"
+#~ msgid "Referent"
+#~ msgstr "Référent"
 
-msgid "Product filter"
-msgstr "Filtrage par produit"
+#~ msgid "Total number of results"
+#~ msgstr "Nombre de résultats"
 
-msgid "Customer informations"
-msgstr "Informations sur le client"
+#~ msgid "Name"
+#~ msgstr "Nom"
 
-msgid "Product informations"
-msgstr "Informations sur le produit"
+#~ msgid "Customer filter"
+#~ msgstr "Filtrage par client"
 
-msgid "Included waranty"
-msgstr "Sous garantie"
+#~ msgid "Product filter"
+#~ msgstr "Filtrage par produit"
 
-msgid "Excluded waranty"
-msgstr "Hors garantie"
+#~ msgid "Customer informations"
+#~ msgstr "Informations sur le client"
 
-msgid "Phone and email"
-msgstr "Téléphone et e-mail"
+#~ msgid "Product informations"
+#~ msgstr "Informations sur le produit"
 
-msgid "AS file's status"
-msgstr "Statut du fichier SAV"
+#~ msgid "Phone and email"
+#~ msgstr "Téléphone et e-mail"
 
-msgid "No furnisher for this AS file, please add one to be able to produce a furnisher file."
-msgstr "Pas de fournisseur : impossible d'envoyer une fiche de renvoi"
+#~ msgid "AS file's status"
+#~ msgstr "Statut du fichier SAV"
 
-msgid "Update"
-msgstr "Modifier"
+#~ msgid ""
+#~ "No furnisher for this AS file, please add one to be able to produce a "
+#~ "furnisher file."
+#~ msgstr "Pas de fournisseur : impossible d'envoyer une fiche de renvoi"
 
-msgid "Create"
-msgstr "Ajouter"
+#~ msgid "Summary file"
+#~ msgstr "Fiche récapitulative"
 
-msgid "Summary file"
-msgstr "Fiche récapitulative"
+#~ msgid "Cost estimate"
+#~ msgstr "Devis"
 
-msgid "Cost estimate"
-msgstr "Devis"
+#~ msgid "Return for customer"
+#~ msgstr "Retour client"
 
-msgid "Return for customer"
-msgstr "Retour client"
+#~ msgid "Create a furnisher file"
+#~ msgstr "Renvoi fournisseur"
 
-msgid "Create a furnisher file"
-msgstr "Renvoi fournisseur"
+#~ msgid "Add a designation"
+#~ msgstr "Ajouter une désignation"
 
-msgid "Add a designation"
-msgstr "Ajouter une désignation"
+#~ msgid "Add an event"
+#~ msgstr "Ajouter un évenement"
 
-msgid "Add an event"
-msgstr "Ajouter un évenement"
+#~ msgid "Events"
+#~ msgstr "Evenements"
 
-msgid "Events"
-msgstr "Evenements"
+#~ msgid "None"
+#~ msgstr "Aucune"
 
-msgid "None"
-msgstr "Aucune"
+#~ msgid "Currently"
+#~ msgstr "Actuellement"
 
-msgid "Currently"
-msgstr "Actuellement"
-
-msgid "PDF Generation"
-msgstr "Génération de PDF"
-
-msgid "Delete"
-msgstr "Supprimer"
-
-msgid "Create this %s"
-msgstr "Ajouter %s"
-
-msgid "Update this %s"
-msgstr "Modifier %s"
-
-msgid "Delete this %s"
-msgstr "Supprimer %s"
+#~ msgid "PDF Generation"
+#~ msgstr "Génération de PDF"

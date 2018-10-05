@@ -8,88 +8,87 @@
 {% endblock %}
 {% block menu_search %}<li class="list-SAV-file active row"><a href="#" class="col-md-12">{% trans "Search" %}</a></li>{% endblock %}
 {% block content %}
-    {% block search %}
-        <form class="row" method=GET action="{% url 'visualImpactSAV:searchSAVFile' %}" accept-charset="utf-8">
-            <div class="col-md-12 row block-file-reference-tracking-number">
-                <div class="col-md-4 first-block">
-                    <label for="file_reference">{% trans "AS file Reference" %} :</label>
-                    <input id="file_reference" type="text" name="file_reference">
-                </div>
-
-                <div class="col-md-4 first-block">
-                    <label for="id_sav_file_status">{% trans "Status" %} :</label>
-                    <select id="id_sav_file_status" name="sav_file_status">
-                        <option value="">  ----  </option>
-                        {% for st in sav_file_status %}
-                            <option value="{{ st.id }}">{{ st.libelle }}</option>
-                        {% endfor %}
-                    </select>
-                </div>
-
-                <div class="col-md-4 first-block">
-                    <label for="rma_number">{% trans "RMA number" %} :</label>
-                    <input id="rma_number" type="text" name="rma_number">
-                </div>
+    <form class="row" method=GET action="{% url 'visualImpactSAV:searchSAVFile' %}" accept-charset="utf-8">
+        <div class="col-md-12 row block-file-reference-tracking-number">
+            <div class="col-md-4 first-block">
+                <label for="file_reference">{% trans "AS file Reference" %} :</label>
+                <input id="file_reference" type="text" name="file_reference">
             </div>
 
-            <div class="col-md-6 block-client">
-                <div class="row panel-client">
-                    <div class="col-md-12 title-panel-client">
-                        <h4>{% trans "Customer filter" %}</h4>
-                    </div>
-                    <div class="col-md-offset-2 col-md-10 block-name-client">
-                        <label for="client_society">{% trans "Society" %} :</label>
-                        <input id="client_society" type="text" name="client_society">
-                    </div>
-                    <div class="col-md-offset-2 col-md-10 block-name-client">
-                        <label for="client_name">{% trans "Name" %} :</label>
-                        <input id="client_name" type="text" name="client_name">
-                    </div>
+            <div class="col-md-4 first-block">
+                <label for="id_sav_file_status">{% trans "Status" %} :</label>
+                <select id="id_sav_file_status" name="sav_file_status">
+                    <option value="">  ----  </option>
+                    {% for st in sav_file_status %}
+                        <option value="{{ st.id }}">{{ st.libelle }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+
+            <div class="col-md-4 first-block">
+                <label for="rma_number">{% trans "RMA number" %} :</label>
+                <input id="rma_number" type="text" name="rma_number">
+            </div>
+        </div>
+
+        <div class="col-md-6 block-client">
+            <div class="row panel-client">
+                <div class="col-md-12 title-panel-client">
+                    <h4>{% trans "Customer filter" %}</h4>
+                </div>
+                <div class="col-md-offset-2 col-md-10 block-name-client">
+                    <label for="client_society">{% trans "Society" %} :</label>
+                    <input id="client_society" type="text" name="client_society">
+                </div>
+                <div class="col-md-offset-2 col-md-10 block-name-client">
+                    <label for="client_name">{% trans "Name" %} :</label>
+                    <input id="client_name" type="text" name="client_name">
                 </div>
             </div>
+        </div>
 
-            <div class="col-md-6 block-product">
-                <div class="row panel-product">
-                    <div class="col-md-12 title-panel-product">
-                        <h4>{% trans "Product filter" %}</h4>
-                    </div>
-                    <div class="col-md-offset-2 col-md-10 block-characteristic-product">
-                        <label for="product_mark">{% trans "Brand" %}  :</label>
-                        <input id="product_mark" type="text" name="product_mark">
-                    </div>
-                    <div class="col-md-offset-2 col-md-10 block-characteristic-product">
-                        <label for="product_name">{% trans "Model" %}  :</label>
-                        <input id="product_name" type="text" name="product_name">
-                    </div>
-                    <div class="col-md-offset-2 col-md-10 block-characteristic-product">
-                        <label for="product_serial_number">{% trans "Serial number" %}  :</label>
-                        <input id="product_serial_number" type="text" name="product_serial_number">
-                    </div>
+        <div class="col-md-6 block-product">
+            <div class="row panel-product">
+                <div class="col-md-12 title-panel-product">
+                    <h4>{% trans "Product filter" %}</h4>
+                </div>
+                <div class="col-md-offset-2 col-md-10 block-characteristic-product">
+                    <label for="product_mark">{% trans "Brand" %}  :</label>
+                    <input id="product_mark" type="text" name="product_mark">
+                </div>
+                <div class="col-md-offset-2 col-md-10 block-characteristic-product">
+                    <label for="product_name">{% trans "Model" %}  :</label>
+                    <input id="product_name" type="text" name="product_name">
+                </div>
+                <div class="col-md-offset-2 col-md-10 block-characteristic-product">
+                    <label for="product_serial_number">{% trans "Serial number" %}  :</label>
+                    <input id="product_serial_number" type="text" name="product_serial_number">
                 </div>
             </div>
+        </div>
 
-            <!--div class="col-md-6 second-block">
-                <label for="begin_date">De cette date :</label>
-                <input id="begin_date" type="date" name="begin_date">
-            </div>
+        <!--div class="col-md-6 second-block">
+            <label for="begin_date">De cette date :</label>
+            <input id="begin_date" type="date" name="begin_date">
+        </div>
 
-            <div class="col-md-6 second-block input-append date form_datetime">
-                <label for="end_date">A cette date :</label>
-                <input id="end_date" type="date" name="end_date">
-            </div-->
+        <div class="col-md-6 second-block input-append date form_datetime">
+            <label for="end_date">A cette date :</label>
+            <input id="end_date" type="date" name="end_date">
+        </div-->
 
-            <div class="col-md-12 block-button">
-                <input type="submit" value="Valider">
-            </div>
-        </form>
+        <div class="col-md-12 block-button">
+            <input type="submit" value="Valider">
+        </div>
+    </form>
 
+    {% block results %}
         <div class="row">
             <p class="col-md-12"> {% trans "Total number of results" %} <span class="badge" style="color: black;">{{ nb_sav_file_status }}</span></p>
             {% for st in sav_file_status %}
                 <p class="col-md-3">{{ st.libelle }} <span class="badge {{ st.class_css }}" style="color: black;">{{ libelle_stats|nb_libelle:st.libelle }}</span></p>
             {% endfor %}
         </div>
-
         <table class="table">
             <thead>
                 <tr>
