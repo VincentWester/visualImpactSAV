@@ -20,12 +20,18 @@ from django.contrib import admin
 from django.contrib.auth import views as auth_views
 
 from visualImpactSAV.views import views
+import constants
 
 urlpatterns = [
     url(
         r'^$',
         auth_views.login,
-        {'template_name': 'djangoApp/home/home.html'},
+        {
+            'template_name': 'djangoApp/home/home.html',
+            'extra_context': {
+                'sav_file_status': constants.ALL_FILE_AS_STATUS
+            }
+        },
         name='login'
     ),
     url(r'^logout/$', auth_views.logout, {'next_page': '/'}, name='logout'),

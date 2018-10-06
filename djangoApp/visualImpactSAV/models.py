@@ -7,7 +7,6 @@ from django.urls import reverse
 from django.utils import timezone
 from django.contrib.auth import get_user_model
 from django.db.models import PROTECT
-import constants
 
 
 class SAV_file_status(models.Model):
@@ -56,6 +55,9 @@ class Furnisher(models.Model):
 
 
 class SAV_file(models.Model):
+    # avoid circular import, temporary => refactor SAVfile status
+    import constants
+
     creation_date = models.DateTimeField(_("Creation date"), default=timezone.now)
     sav_file_status = models.ForeignKey(
         SAV_file_status,

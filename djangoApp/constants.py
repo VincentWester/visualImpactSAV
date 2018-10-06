@@ -4,6 +4,7 @@ from __future__ import unicode_literals
 from decimal import Decimal
 
 from django.utils.translation import ugettext as _
+from visualImpactSAV.models import SAV_file_status
 
 DEFAULT_FILE_AS_STATUS_ID = 1
 DEFAULT_USERS_ID = 1
@@ -19,6 +20,9 @@ FILE_AS_STATUS_CHOICES = (
     (FILE_AS_STATUS_TYPE_PROBLEM, _("Problem")),
     (FILE_AS_STATUS_TYPE_CLOSED, _("Closed"))
 )
+
+#temporary, the time to work with the file AS status 
+ALL_FILE_AS_STATUS = SAV_file_status.objects.all()
 
 #: File AS waranty
 FILE_AS_WARANTY_TYPE_INCLUDED = 'IW'
