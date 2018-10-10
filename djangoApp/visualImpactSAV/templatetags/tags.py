@@ -6,6 +6,7 @@ import constants
 def nb_libelle(value, libelle):
     return value[libelle]
 
+
 @register.filter
 def have_libelle_from_code(value):
     for status in constants.SAV_FILE_STATUS_CHOICES:
@@ -14,11 +15,12 @@ def have_libelle_from_code(value):
 
     return ""
 
+
 @register.filter
 def have_css_class_from_code(value):
     if value == 'O':
         return 'opened'
-    
+
     if value == 'C':
         return 'closed'
 

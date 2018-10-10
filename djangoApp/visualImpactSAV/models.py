@@ -57,9 +57,6 @@ class Furnisher(models.Model):
 
 
 class SAV_file(models.Model):
-    # avoid circular import, temporary => refactor SAVfile status
-    import constants
-
     creation_date = models.DateTimeField(_("Creation date"), default=timezone.now)
     sav_file_status = models.ForeignKey(
         SAV_file_status,
