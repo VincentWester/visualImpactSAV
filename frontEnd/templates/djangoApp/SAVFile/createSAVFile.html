@@ -1,6 +1,7 @@
 {% extends "base.html" %}
 {% load static %}
 {% load i18n %}
+{% load tags %}
 {% block style %}
     <link href="{% static 'css/SAVFile/createSAVFile.css' %}" rel="stylesheet" media="screen">
 {% endblock %}
@@ -12,7 +13,7 @@
         <div class="col-md-6 first-block">
             <label for="id_sav_file_status">{% trans "AS file's status" %} :</label>
             <select id="id_sav_file_status" name="sav_file_status" disabled="true">
-                <option value="{{ 1 }}">{% trans "Opened" %}</option>
+                <option value="{{ 'O' }}">{% trans "Opened" %}</option>
             </select>
             {{ form.sav_file_status.errors }}
         </div>

@@ -29,7 +29,7 @@ urlpatterns = [
         {
             'template_name': 'djangoApp/home/home.html',
             'extra_context': {
-                'sav_file_status': constants.ALL_FILE_AS_STATUS
+                'sav_file_status': constants.SAV_FILE_STATUS_CHOICES
             }
         },
         name='login'

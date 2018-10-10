@@ -1,6 +1,7 @@
 {% extends "base.html" %}
 {% load static %}
 {% load i18n %}
+{% load tags %}
 {% block style %}
     <link href="{% static 'css/SAVFile/createSAVFile.css' %}" rel="stylesheet" media="screen">
 {% endblock %}
@@ -18,7 +19,7 @@
     </div>
     <div class="col-md-4 second-block">
         <label>{% trans "AS file's status" %} :</label>
-        <span>{{ sav_file.sav_file_status.libelle }}</span>
+        <span>{{ sav_file.status|have_libelle_from_code }}</span>
     </div>
     <div class="col-md-4 second-block">
         <label>{% trans "RMA number" %} :</label>

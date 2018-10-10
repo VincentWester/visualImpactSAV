@@ -1,6 +1,7 @@
 {% extends "base.html" %}
 {% load static %}
 {% load i18n %}
+{% load tags %}
 {% block style %}
     <link href="{% static 'css/SAVFile/createSAVFile.css' %}" rel="stylesheet" media="screen">
 {% endblock %}
@@ -16,10 +17,10 @@
             <label for="id_sav_file_status">{% trans "AS file's status" %} :</label>
             <select id="id_sav_file_status" name="sav_file_status" >
                 {% for st in sav_file_status %}
-                    {% if st.id == current_sav_file.sav_file_status.id %}
-                        <option selected="selected"  value="{{ st.id }}">{{ st.libelle }}</option>
+                    {% if st.0 == current_sav_file.status.0 %}
+                        <option selected="selected"  value="{{ st.0 }}">{{ st.1 }}</option>
                     {% else %}
-                        <option value="{{ st.id }}">{{ st.libelle }}</option>
+                        <option value="{{ st.0 }}">{{ st.1 }}</option>
                     {% endif %}
                 {% endfor %}
             </select>

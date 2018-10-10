@@ -48,7 +48,7 @@ class SAVFileCreateView(LoginRequiredMixin, CreateView):
 
     def get_context_data(self, **kwargs):
         context = super(SAVFileCreateView, self).get_context_data(**kwargs)
-        context['sav_file_status'] = SAV_file_status.objects.all()
+        context['sav_file_status'] = constants.SAV_FILE_STATUS_CHOICES
         context['furnishers'] = Furnisher.objects.all()
 
         return context
@@ -57,7 +57,7 @@ class SAVFileCreateView(LoginRequiredMixin, CreateView):
         return render(
             self.request,
             'djangoApp/SAVFile/createSAVFile.html',
-            {'form': form, 'sav_file_status': SAV_file_status.objects.all()}
+            {'form': form, 'sav_file_status': constants.SAV_FILE_STATUS_CHOICES}
         )
 
     """
@@ -76,7 +76,7 @@ class SAVFileUpdateView(LoginRequiredMixin, UpdateView):
     def get_context_data(self, **kwargs):
         context = super(SAVFileUpdateView, self).get_context_data(**kwargs)
         context['current_sav_file'] = self.object
-        context['sav_file_status'] = SAV_file_status.objects.all()
+        context['sav_file_status'] = constants.SAV_FILE_STATUS_CHOICES
         context['events'] = self.object.events.all()
         context['furnishers'] = Furnisher.objects.all()
 
@@ -106,12 +106,12 @@ class SAVFileListView(LoginRequiredMixin, ListView):
 
     def get_context_data(self, **kwargs):
         context = super(SAVFileListView, self).get_context_data(**kwargs)
-        context['sav_file_status'] = SAV_file_status.objects.all()
+        context['sav_file_status'] = constants.SAV_FILE_STATUS_CHOICES
         results = self.get_queryset()
 
         libelle_stats = {}
-        for sav_file_status in SAV_file_status.objects.all():
-            libelle_stats[sav_file_status.libelle] = results.filter(sav_file_status__libelle=sav_file_status.libelle).count()
+        for status in constants.SAV_FILE_STATUS_CHOICES:
+            libelle_stats[status[0]] = results.filter(status=status[0]).count()
 
         context['libelle_stats'] = libelle_stats
         context['nb_sav_file_status'] = results.count()
@@ -162,7 +162,7 @@ class SAVFileListView(LoginRequiredMixin, ListView):
             kwargs['rma_number__icontains'] = rma_number
 
         if sav_file_status:
-            kwargs['sav_file_status'] = sav_file_status
+            kwargs['status'] = sav_file_status
 
         if not kwargs:
             return results

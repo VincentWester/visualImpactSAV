@@ -20,7 +20,7 @@
                 <select id="id_sav_file_status" name="sav_file_status">
                     <option value="">  ----  </option>
                     {% for st in sav_file_status %}
-                        <option value="{{ st.id }}">{{ st.libelle }}</option>
+                        <option value="{{ st.0 }}">{{ st.1 }}</option>
                     {% endfor %}
                 </select>
             </div>
@@ -86,7 +86,7 @@
         <div class="row">
             <p class="col-md-12"> {% trans "Total number of results" %} <span class="badge" style="color: black;">{{ nb_sav_file_status }}</span></p>
             {% for st in sav_file_status %}
-                <p class="col-md-3">{{ st.libelle }} <span class="badge {{ st.class_css }}" style="color: black;">{{ libelle_stats|nb_libelle:st.libelle }}</span></p>
+                <p class="col-md-3">{{ st.1 }} <span class="badge {{ st.0|have_css_class_from_code }}" style="color: black;">{{ libelle_stats|nb_libelle:st.0 }}</span></p>
             {% endfor %}
         </div>
         <table class="table">
@@ -107,8 +107,8 @@
             </thead>
             <tbody>
                 {% for file in results %}
-                    {% if file.sav_file_status.class_css != "" and file.sav_file_status.class_css is not None %}
-                        <tr class="{{ file.sav_file_status.class_css }}">
+                    {% if file.status %}
+                        <tr class="{{ file.status|have_css_class_from_code }}">
                     {% else %}
                         <tr class="">
                     {% endif %}
