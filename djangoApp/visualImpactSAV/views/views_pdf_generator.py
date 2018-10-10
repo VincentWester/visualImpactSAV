@@ -314,7 +314,7 @@ class Pdf_generator_client(Pdf_generator):
                             3.7,
                             _("Brand") + constants.FIELD_SEPARATOR,
                             5,
-                            sav_file.mark_product,
+                            sav_file.brand_product,
                         ),
                         (
                             3.7,
@@ -456,7 +456,7 @@ class Pdf_generator_cost_estimate(Pdf_generator):
                         (
                             -0.3,
                             _("Brand") + constants.FIELD_SEPARATOR,
-                            sav_file.mark_product,
+                            sav_file.brand_product,
                         ),
                         (
                             1.5,
@@ -585,7 +585,7 @@ class Pdf_generator_furnisher(Pdf_generator):
                         (
                             -0.3,
                             _("Brand") + constants.FIELD_SEPARATOR,
-                            sav_file.mark_product,
+                            sav_file.brand_product,
                         ),
                         (
                             1.5,
@@ -685,7 +685,7 @@ class Pdf_answer_reparation(Pdf_generator):
                         (
                             -0.3,
                             _("Brand") + constants.FIELD_SEPARATOR,
-                            sav_file.mark_product,
+                            sav_file.brand_product,
                         ),
                         (
                             1.5,

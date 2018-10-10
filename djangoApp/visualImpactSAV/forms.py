@@ -2,11 +2,13 @@
 from __future__ import unicode_literals
 
 from django.contrib.auth.models import User
-from django.forms import ModelForm, EmailField, ModelChoiceField
+from django.forms import ModelForm, EmailField, ModelChoiceField, ChoiceField
 from .models import SAV_file, SAV_file_status, Event, Designation, Furnisher, Waranty
 from django.contrib.auth.forms import UserCreationForm
 
 from django.utils.translation import ugettext_lazy as _
+
+import constants
 
 
 class SignUpForm(UserCreationForm):
@@ -47,13 +49,13 @@ class SignUpForm(UserCreationForm):
 
 class SAV_fileForm(ModelForm):
     furnisher = ModelChoiceField(queryset=Furnisher.objects.all(), empty_label="---", required=False)
-    sav_file_status = ModelChoiceField(queryset=SAV_file_status.objects.all(), required=False)
+    status = ChoiceField(choices=constants.SAV_FILE_STATUS_CHOICES, required=False)
 
     class Meta:
         model = SAV_file
         fields = [
             field.name for field in model._meta.fields
-            if not (field.name == "creation_date" or field.name == "registred_by")
+            if not (field.name == "creation_date" or field.name == "sav_file_status" or field.name == "registred_by")
         ]
 
         error_messages = {
@@ -78,7 +80,7 @@ class SAV_fileForm(ModelForm):
             'name_product': {
                 'required': _("The product's model attribute should be filled"),
             },
-            'mark_product': {
+            'brand_product': {
                 'required': _("The product's brand attribute should be filled"),
             },
             'serial_number_product': {

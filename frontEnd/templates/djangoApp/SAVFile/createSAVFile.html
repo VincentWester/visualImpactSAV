@@ -11,11 +11,11 @@
     <form class="row" enctype="multipart/form-data" method=POST action="{% url 'visualImpactSAV:createSAVFile' %}" accept-charset="utf-8">
         {% csrf_token %}
         <div class="col-md-6 first-block">
-            <label for="id_sav_file_status">{% trans "AS file's status" %} :</label>
-            <select id="id_sav_file_status" name="sav_file_status" disabled="true">
+            <label for="id_status">{% trans "AS file's status" %} :</label>
+            <select id="id_status" name="status" disabled="true">
                 <option value="{{ 'O' }}">{% trans "Opened" %}</option>
             </select>
-            {{ form.sav_file_status.errors }}
+            {{ form.status.errors }}
         </div>
         <div class="col-md-6 first-block">
             <label for="id_rma_number">{% trans "RMA number" %} :</label>
@@ -28,14 +28,14 @@
                     <h4>{% trans "Product informations" %}</h4>
                 </div>
                 <div class="col-md-3 block-characteristic-product">
-                    <label for="id_mark_product">{% trans "Brand" %} :</label>
-                    <input id="id_mark_product" type="text" name="mark_product" maxlength="300" />
-                    {{ form.mark_product.errors }}
+                    <label for="id_brand_product">{% trans "Brand" %} :</label>
+                    <input id="id_brand_product" type="text" name="brand_product" maxlength="300" />
+                    {{ form.brand_product.errors }}
                 </div>
                 <div class="col-md-3 block-characteristic-product">
                     <label for="id_name_product">{% trans "Model" %} :</label>
                     <input id="id_name_product" type="text" name="name_product" maxlength="300" />
-                    {{ form.mark_product.errors }}
+                    {{ form.name_product.errors }}
                 </div>
                 <div class="col-md-3  block-characteristic-product">
                     <label for="id_serial_number_product">{% trans "Serial number" %} :</label>

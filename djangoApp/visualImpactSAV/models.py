@@ -77,7 +77,7 @@ class SAV_file(models.Model):
     phone_client = models.CharField(_("Customer phone"), max_length=30, default="")
     email_client = models.CharField(_("Customer email"), max_length=100, default="")
     name_product = models.CharField(_("Product model"), max_length=200, default="")
-    mark_product = models.CharField(_("Product brand"), max_length=200, default="")
+    brand_product = models.CharField(_("Product brand"), max_length=200, default="")
     serial_number_product = models.CharField(_("Product serial number"), max_length=200, default="")
     rma_number = models.CharField(_("Product RMA number"), max_length=100, default="", blank=True)
     guarantee = models.CharField(_("Waranty"), max_length=100, default=_("Included waranty"))

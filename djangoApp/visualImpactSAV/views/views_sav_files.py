@@ -129,11 +129,11 @@ class SAVFileListView(LoginRequiredMixin, ListView):
     def get_queryset(self):
         file_reference = self.request.GET.get('file_reference')
         rma_number = self.request.GET.get('status')
-        client_name = self.request.GET.get('client_name')
-        client_society = self.request.GET.get('client_society')
-        product_name = self.request.GET.get('product_name')
-        product_mark = self.request.GET.get('product_mark')
-        product_serial_number = self.request.GET.get('product_serial_number')
+        name_client = self.request.GET.get('name_client')
+        society_client = self.request.GET.get('society_client')
+        name_product = self.request.GET.get('name_product')
+        brand_product = self.request.GET.get('brand_product')
+        serial_number_product = self.request.GET.get('serial_number_product')
         rma_number = self.request.GET.get('rma_number')
         sav_file_status = self.request.GET.get('sav_file_status')
         results = SAV_file.objects.all()
@@ -143,20 +143,20 @@ class SAVFileListView(LoginRequiredMixin, ListView):
         if file_reference:
             kwargs['id'] = file_reference
 
-        if client_name:
-            kwargs['name_client__icontains'] = client_name
+        if name_client:
+            kwargs['name_client__icontains'] = name_client
 
-        if client_society:
-            kwargs['society_client__icontains'] = client_society
+        if society_client:
+            kwargs['society_client__icontains'] = society_client
 
-        if product_name:
-            kwargs['name_product__icontains'] = product_name
+        if name_product:
+            kwargs['name_product__icontains'] = name_product
 
-        if product_mark:
-            kwargs['mark_product__icontains'] = product_mark
+        if brand_product:
+            kwargs['brand_product__icontains'] = brand_product
 
-        if product_serial_number:
-            kwargs['serial_number_product__icontains'] = product_serial_number
+        if serial_number_product:
+            kwargs['serial_number_product__icontains'] = serial_number_product
 
         if rma_number:
             kwargs['rma_number__icontains'] = rma_number

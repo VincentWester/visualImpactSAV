@@ -37,12 +37,12 @@
                     <h4>{% trans "Customer filter" %}</h4>
                 </div>
                 <div class="col-md-offset-2 col-md-10 block-name-client">
-                    <label for="client_society">{% trans "Society" %} :</label>
-                    <input id="client_society" type="text" name="client_society">
+                    <label for="society_client">{% trans "Society" %} :</label>
+                    <input id="society_client" type="text" name="society_client">
                 </div>
                 <div class="col-md-offset-2 col-md-10 block-name-client">
-                    <label for="client_name">{% trans "Name" %} :</label>
-                    <input id="client_name" type="text" name="client_name">
+                    <label for="name_client">{% trans "Name" %} :</label>
+                    <input id="name_client" type="text" name="name_client">
                 </div>
             </div>
         </div>
@@ -53,16 +53,16 @@
                     <h4>{% trans "Product filter" %}</h4>
                 </div>
                 <div class="col-md-offset-2 col-md-10 block-characteristic-product">
-                    <label for="product_mark">{% trans "Brand" %}  :</label>
-                    <input id="product_mark" type="text" name="product_mark">
+                    <label for="brand_product">{% trans "Brand" %}  :</label>
+                    <input id="brand_product" type="text" name="brand_product">
                 </div>
                 <div class="col-md-offset-2 col-md-10 block-characteristic-product">
-                    <label for="product_name">{% trans "Model" %}  :</label>
-                    <input id="product_name" type="text" name="product_name">
+                    <label for="name_product">{% trans "Model" %}  :</label>
+                    <input id="name_product" type="text" name="name_product">
                 </div>
                 <div class="col-md-offset-2 col-md-10 block-characteristic-product">
-                    <label for="product_serial_number">{% trans "Serial number" %}  :</label>
-                    <input id="product_serial_number" type="text" name="product_serial_number">
+                    <label for="serial_number_product">{% trans "Serial number" %}  :</label>
+                    <input id="serial_number_product" type="text" name="serial_number_product">
                 </div>
             </div>
         </div>
@@ -117,7 +117,7 @@
                     <td>{{ file.registred_by }}</td>
                     <td>{{ file.name_client }}</td>
                     <td>{{ file.society_client }}</td>
-                    <td>{{ file.mark_product }}</td>
+                    <td>{{ file.brand_product }}</td>
                     <td>{{ file.name_product }}</td>
                     <td>{{ file.serial_number_product }}</td>
                     <td><a class="glyphicon glyphicon-zoom-in" href="{% url 'visualImpactSAV:detailSAVFile' file.id %}" style="color: black;"></a> </td>
