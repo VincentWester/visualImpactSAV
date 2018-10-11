@@ -64,7 +64,8 @@ class SAV_file(models.Model):
         verbose_name=_("Status")
     )
     status = models.CharField(
-        _("Status"), max_length=20,
+        _("Status"), 
+        max_length=20,
         choices=constants.SAV_FILE_STATUS_CHOICES,
         default=constants.SAV_FILE_STATUS_TYPE_OPENED,
     )
@@ -80,7 +81,12 @@ class SAV_file(models.Model):
     brand_product = models.CharField(_("Product brand"), max_length=200, default="")
     serial_number_product = models.CharField(_("Product serial number"), max_length=200, default="")
     rma_number = models.CharField(_("Product RMA number"), max_length=100, default="", blank=True)
-    guarantee = models.CharField(_("Waranty"), max_length=100, default=_("Included waranty"))
+    waranty = models.CharField(
+        _("Waranty"), 
+        max_length=100,         
+        choices=constants.SAV_FILE_WARANTY_TYPE_CHOICES,
+        default=constants.SAV_FILE_WARANTY_TYPE_INCLUDED,
+    )
     out_of_order_reason = models.TextField(_("Out of order reason"))
     bill_customer = models.FileField(_("Customer bill"), blank=True)
     furnisher = models.ForeignKey(Furnisher, null=True, on_delete=PROTECT, verbose_name=_("Furnisher"))

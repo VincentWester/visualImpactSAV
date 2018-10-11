@@ -19,7 +19,7 @@
     </div>
     <div class="col-md-4 second-block">
         <label>{% trans "AS file's status" %} :</label>
-        <span>{{ sav_file.status|have_libelle_from_code }}</span>
+        <span>{{ sav_file.status|have_libelle_from_code:'status' }}</span>
     </div>
     <div class="col-md-4 second-block">
         <label>{% trans "RMA number" %} :</label>
@@ -44,7 +44,7 @@
             </div>
             <div class="col-md-3 block-characteristic-product">
                 <label>{% trans "Waranty" %} :</label>
-                <span>{{ sav_file.guarantee }}</span>
+                <span>{{ sav_file.waranty|have_libelle_from_code:'waranty' }}</span>
             </div>
         </div>
     </div>

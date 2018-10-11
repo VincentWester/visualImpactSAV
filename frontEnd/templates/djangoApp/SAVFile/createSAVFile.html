@@ -43,12 +43,13 @@
                     {{ form.serial_number_product.errors }}
                 </div>
                 <div class="col-md-3  block-characteristic-product">
-                    <label for="id_guarantee">{% trans "Waranty" %} :</label>
-                    <select id="id_guarantee" name="guarantee" >
-                        <option value="Sous garantie">{% trans "Included waranty" %}</option>
-                        <option value="Hors garantie">{% trans "Excluded waranty" %}</option>
+                    <label for="id_waranty">{% trans "Waranty" %} :</label>
+                    <select id="id_waranty" name="waranty" >
+                        {% for waranty in waranties %}
+                            <option value="{{ waranty.0 }}">{{ waranty.1 }}</option>
+                        {% endfor %}
                     </select>
-                    {{ form.guarantee.errors }}
+                    {{ form.waranty.errors }}
                 </div>
             </div>
         </div>

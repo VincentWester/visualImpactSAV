@@ -53,17 +53,17 @@
                     {{ form.serial_number_product.errors }}
                 </div>
                 <div class="col-md-3 block-characteristic-product">
-                    <label for="id_guarantee">{% trans "Waranty" %} :</label>
-                    <select id="id_guarantee" name="guarantee" >
-                        {% if "Sous garantie" == current_sav_file.guarantee %}
-                            <option selected="selected" value="Sous garantie">{% trans "Included waranty" %}</option>
-                            <option value="Hors garantie">{% trans "Included waranty" %}</option>
-                        {% else %}
-                            <option value="Sous garantie">{% trans "Excluded waranty" %}</option>
-                            <option selected="selected" value="Hors garantie">{% trans "Excluded waranty" %}</option>
-                        {% endif %}
+                    <label for="id_waranty">{% trans "Waranty" %} :</label>
+                    <select id="id_waranty" name="waranty" >
+                        {% for waranty in waranties %}
+                            {% if waranty.0 == current_sav_file.waranty %}
+                                <option selected="selected" value="{{ waranty.0 }}">{{waranty.1}}</option>
+                            {% else %}
+                                <option value="{{ waranty.0 }}">{{waranty.1}}</option>
+                            {% endif %}
+                        {% endfor %}
                     </select>
-                    {{ form.guarantee.errors }}
+                    {{ form.waranty.errors }}
                 </div>
             </div>
         </div>

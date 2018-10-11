@@ -49,6 +49,7 @@ class SAVFileCreateView(LoginRequiredMixin, CreateView):
     def get_context_data(self, **kwargs):
         context = super(SAVFileCreateView, self).get_context_data(**kwargs)
         context['sav_file_status'] = constants.SAV_FILE_STATUS_CHOICES
+        context['waranties'] = constants.SAV_FILE_WARANTY_TYPE_CHOICES
         context['furnishers'] = Furnisher.objects.all()
 
         return context
@@ -77,6 +78,7 @@ class SAVFileUpdateView(LoginRequiredMixin, UpdateView):
         context = super(SAVFileUpdateView, self).get_context_data(**kwargs)
         context['current_sav_file'] = self.object
         context['sav_file_status'] = constants.SAV_FILE_STATUS_CHOICES
+        context['waranties'] = constants.SAV_FILE_WARANTY_TYPE_CHOICES
         context['events'] = self.object.events.all()
         context['furnishers'] = Furnisher.objects.all()
 

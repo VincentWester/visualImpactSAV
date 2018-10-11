@@ -215,10 +215,10 @@ class Pdf_generator(View):
         self.sav_file = get_object_or_404(SAV_file, id=pkSAVFile)
 
         filename_customer_part = ''
-        if self.sav_file.society_client == '':
-            filename_customer_part = self.sav_file.name_client.replace(' ', '_')
+        if self.sav_file.society_customer == '':
+            filename_customer_part = self.sav_file.name_customer.replace(' ', '_')
         else:
-            filename_customer_part = self.sav_file.society_client.replace(' ', '_')
+            filename_customer_part = self.sav_file.society_customer.replace(' ', '_')
 
         final_filename = '{0}__{1}{2}'.format(self.filename, filename_customer_part, '.pdf')
 
@@ -240,6 +240,12 @@ class Pdf_generator(View):
         response.write(pdf)
         return response
 
+    def build_global_name_customer(self):
+        if self.sav_file.society_customer:
+            return self.sav_file.society_customer + constants.NORMAL_SEPARATOR + self.sav_file.name_customer
+        
+        return self.sav_file.name_customer
+
 
 class Pdf_generator_client(Pdf_generator):
     def __init__(self):
@@ -247,9 +253,7 @@ class Pdf_generator_client(Pdf_generator):
 
     def build_template(self):
         sav_file = self.sav_file
-        global_name_client = sav_file.name_client
-        if sav_file.society_client:
-            global_name_client = sav_file.society_client + constants.NORMAL_SEPARATOR + global_name_client
+        global_name_customer = self.build_global_name_customer()
 
         template = [
             {
@@ -275,7 +279,7 @@ class Pdf_generator_client(Pdf_generator):
                             -0.5,
                             _("Customer name") + constants.FIELD_SEPARATOR,
                             0.9,
-                            global_name_client
+                            global_name_customer
                         ),
                         (
                             9.2,
@@ -295,10 +299,10 @@ class Pdf_generator_client(Pdf_generator):
                     'alinea_title': -0.5,
                     'title': _("Billing address"),
                     'lines': [
-                        global_name_client,
-                        sav_file.street_client,
-                        sav_file.zipcode_client + constants.NORMAL_SEPARATOR + sav_file.city_client,
-                        sav_file.email_client
+                        global_name_customer,
+                        sav_file.street_customer,
+                        sav_file.zipcode_customer + constants.NORMAL_SEPARATOR + sav_file.city_customer,
+                        sav_file.email_customer
                     ]
                 }
             },
@@ -390,9 +394,7 @@ class Pdf_generator_cost_estimate(Pdf_generator):
     def build_template(self):
         sav_file = self.sav_file
         designations = sav_file.designations.all()
-        global_name_client = sav_file.name_client
-        if sav_file.society_client:
-            global_name_client = sav_file.society_client + constants.NORMAL_SEPARATOR + global_name_client
+        global_name_customer = self.build_global_name_customer()
 
         height_start_designations_part = 5.5
         # 3.4 is the result of the sum of all the height taken by the other parts of this pdf
@@ -419,10 +421,10 @@ class Pdf_generator_cost_estimate(Pdf_generator):
                     'alinea_title': -0.5,
                     'title': _("Billing address"),
                     'lines': [
-                        global_name_client,
-                        sav_file.street_client,
-                        sav_file.zipcode_client + constants.NORMAL_SEPARATOR + sav_file.city_client,
-                        sav_file.email_client
+                        global_name_customer,
+                        sav_file.street_customer,
+                        sav_file.zipcode_customer + constants.NORMAL_SEPARATOR + sav_file.city_customer,
+                        sav_file.email_customer
                     ]
                 }
             },
@@ -640,9 +642,7 @@ class Pdf_answer_reparation(Pdf_generator):
 
     def build_template(self):
         sav_file = self.sav_file
-        global_name_client = sav_file.name_client
-        if sav_file.society_client:
-            global_name_client = sav_file.society_client + constants.NORMAL_SEPARATOR + global_name_client
+        global_name_customer = self.build_global_name_customer()
 
         template = [
             {
@@ -651,7 +651,7 @@ class Pdf_answer_reparation(Pdf_generator):
                     'lines': [
                         (9.5, -0.5, _("Reference") + constants.FIELD_SEPARATOR, 0.8, _("VIF-AS-") + str(sav_file.id)),
                         (9.5, 3.7, _("Managed by") + constants.FIELD_SEPARATOR, 5, sav_file.registred_by.username),
-                        (9.2, -0.5, _("Customer name") + constants.FIELD_SEPARATOR, 0.8, global_name_client),
+                        (9.2, -0.5, _("Customer name") + constants.FIELD_SEPARATOR, 0.8, global_name_customer),
                     ]
                 }
             },
@@ -663,10 +663,10 @@ class Pdf_answer_reparation(Pdf_generator):
                     'alinea_title': 2,
                     'title': _("Billing address"),
                     'lines': [
-                        global_name_client,
-                        sav_file.street_client,
-                        sav_file.zipcode_client + constants.NORMAL_SEPARATOR + sav_file.city_client,
-                        sav_file.email_client
+                        global_name_customer,
+                        sav_file.street_customer,
+                        sav_file.zipcode_customer + constants.NORMAL_SEPARATOR + sav_file.city_customer,
+                        sav_file.email_customer
                     ]
                 }
             },

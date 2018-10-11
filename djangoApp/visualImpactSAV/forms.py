@@ -89,7 +89,7 @@ class SAV_fileForm(ModelForm):
             'rma_number': {
                 'required': _("The RMA number attribute should be filled"),
             },
-            'guarantee': {
+            'waranty': {
                 'required': _("The waranty's status attribute should be filled"),
             },
         }

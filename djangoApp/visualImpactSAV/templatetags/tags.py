@@ -8,8 +8,19 @@ def nb_libelle(value, libelle):
 
 
 @register.filter
-def have_libelle_from_code(value):
-    for status in constants.SAV_FILE_STATUS_CHOICES:
+def have_libelle_from_code(value, type_list):
+    tuple_list = ()
+    if type_list == 'status':
+        tuple_list = constants.SAV_FILE_STATUS_CHOICES
+        print 'ici'
+    elif type_list == 'waranty':
+        tuple_list = constants.SAV_FILE_WARANTY_TYPE_CHOICES
+        print 'la'
+    
+    print tuple_list
+    print value
+
+    for status in tuple_list:
         if value == status[0]:
             return status[1]
 
