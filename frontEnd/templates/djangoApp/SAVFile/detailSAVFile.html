@@ -55,12 +55,12 @@
             </div>
             <div class="col-md-6 block-name-client">
                 <label>{% trans "Name" %} :</label>
-                <span>{{ sav_file.name_client }}</span>
+                <span>{{ sav_file.name_customer }}</span>
             </div>
             <div class="col-md-6 block-name-client">
                 {% trans "None" as none %}
                 <label>{% trans "Society" %} :</label>
-                <span>{{ sav_file.society_client|default:none }}</span>
+                <span>{{ sav_file.society_customer|default:none }}</span>
             </div>
             <div class="col-md-7 row">
                 <div class="col-md-12 address-client">
@@ -68,15 +68,15 @@
                 </div>
                 <div class="col-md-12 block-characteristic-client">
                     <label>{% trans "Street" %} :</label>
-                    <span>{{ sav_file.street_client }}</span>
+                    <span>{{ sav_file.street_customer }}</span>
                 </div>
                 <div class="col-md-12 block-characteristic-client">
                     <label>{% trans "City" %}  :</label>
-                    <span>{{ sav_file.city_client }}</span>
+                    <span>{{ sav_file.city_customer }}</span>
                 </div>
                 <div class="col-md-12 block-characteristic-client">
                     <label>{% trans "Zipcode" %} :</label>
-                    <span>{{ sav_file.zipcode_client }}</span>
+                    <span>{{ sav_file.zipcode_customer }}</span>
                 </div>
             </div>
             <div class="col-md-5 row">
@@ -85,11 +85,11 @@
                 </div>
                 <div class="col-md-12 block-characteristic-client">
                     <label class="glyphicon glyphicon-earphone"> :</label>
-                    <span>{{ sav_file.phone_client }}</span>
+                    <span>{{ sav_file.phone_customer }}</span>
                 </div>
                 <div class="col-md-12 block-characteristic-client">
                     <label>@ :</label>
-                    <span>{{ sav_file.email_client }}</span>
+                    <span>{{ sav_file.email_customer }}</span>
                 </div>
             </div>
         </div>
@@ -99,8 +99,8 @@
         <span>{{ sav_file.out_of_order_reason | linebreaks }}</span>
     </div>
     <div class="col-md-12 row block-files">
-        {% if sav_file.client_bill %}
-            <label>{% trans "Client bill" %} : </label><a class="glyphicon glyphicon-file" target="_blank" href="{{ sav_file.client_bill.url }}">{{ sav_file.client_bill.url }}</a>
+        {% if sav_file.bill_customer %}
+            <label>{% trans "Customer bill" %} : </label><a class="glyphicon glyphicon-file" target="_blank" href="{{ sav_file.bill_customer.url }}">{{ sav_file.bill_customer.url }}</a>
         {% endif %}
     </div>
     <div class="col-md-12 mini-title">

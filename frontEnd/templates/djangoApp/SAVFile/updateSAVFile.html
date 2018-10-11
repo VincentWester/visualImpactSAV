@@ -73,33 +73,33 @@
                     <h4>{% trans "Customer informations" %}</h4>
                 </div>
                 <div class="col-md-6 block-name-client">
-                    <label for="id_name_client">{% trans "Name" %} :</label>
-                    <input id="id_name_client" type="text" name="name_client" value="{{ current_sav_file.name_client }}" maxlength="300" />
-                    {{ form.name_client.errors }}
+                    <label for="id_name_customer">{% trans "Name" %} :</label>
+                    <input id="id_name_customer" type="text" name="name_customer" value="{{ current_sav_file.name_customer }}" maxlength="300" />
+                    {{ form.name_customer.errors }}
                 </div>
                 <div class="col-md-6 block-name-client">
-                    <label for="id_society_client">{% trans "Society" %} :</label>
-                    <input id="id_society_client" type="text" name="society_client" value="{{ current_sav_file.society_client }}" maxlength="300"/>
-                    {{ form.society_client.errors }}
+                    <label for="id_society_customer">{% trans "Society" %} :</label>
+                    <input id="id_society_customer" type="text" name="society_customer" value="{{ current_sav_file.society_customer }}" maxlength="300"/>
+                    {{ form.society_customer.errors }}
                 </div>
                 <div class="col-md-7 row">
                     <div class="col-md-12 address-client">
                         <span class="glyphicon glyphicon-envelope"/><span>   {% trans "Address" %}</span>
                     </div>
                     <div class="col-md-12 block-characteristic-client">
-                        <label for="id_street_client">{% trans "Street" %} :</label>
-                        <input id="id_street_client" type="text" name="street_client" value="{{ current_sav_file.street_client }}" maxlength="300" />
-                        {{ form.street_client.errors }}
+                        <label for="id_street_customer">{% trans "Street" %} :</label>
+                        <input id="id_street_customer" type="text" name="street_customer" value="{{ current_sav_file.street_customer }}" maxlength="300" />
+                        {{ form.street_customer.errors }}
                     </div>
                     <div class="col-md-12 block-characteristic-client">
-                        <label for="id_city_client">{% trans "City" %}  :</label>
-                        <input id="id_city_client" type="text" name="city_client" value="{{ current_sav_file.city_client }}" maxlength="300" />
-                        {{ form.city_client.errors }}
+                        <label for="id_city_customer">{% trans "City" %}  :</label>
+                        <input id="id_city_customer" type="text" name="city_customer" value="{{ current_sav_file.city_customer }}" maxlength="300" />
+                        {{ form.city_customer.errors }}
                     </div>
                     <div class="col-md-12 block-characteristic-client">
-                        <label for="id_zipcode_client">{% trans "Zipcode" %} :</label>
-                        <input id="id_zipcode_client" type="text" name="zipcode_client" value="{{ current_sav_file.zipcode_client }}" maxlength="300" />
-                        {{ form.zipcode_client.errors }}
+                        <label for="id_zipcode_customer">{% trans "Zipcode" %} :</label>
+                        <input id="id_zipcode_customer" type="text" name="zipcode_customer" value="{{ current_sav_file.zipcode_customer }}" maxlength="300" />
+                        {{ form.zipcode_customer.errors }}
                     </div>
                 </div>
                 <div class="col-md-5 row">
@@ -107,14 +107,14 @@
                         <p>   {% trans "Phone and email" %}</p>
                     </div>
                     <div class="col-md-12 block-characteristic-client">
-                        <label for="id_phone_client" class="glyphicon glyphicon-earphone"></label>
-                        <input id="id_phone_client" type="text" name="phone_client" value="{{ current_sav_file.phone_client }}" maxlength="30" />
-                        {{ form.phone_client.errors }}
+                        <label for="id_phone_customer" class="glyphicon glyphicon-earphone"></label>
+                        <input id="id_phone_customer" type="text" name="phone_customer" value="{{ current_sav_file.phone_customer }}" maxlength="30" />
+                        {{ form.phone_customer.errors }}
                     </div>
                     <div class="col-md-12 block-characteristic-client">
-                        <label for="id_email_client">@ :</label>
-                        <input id="id_email_client" type="email" name="email_client" value="{{ current_sav_file.email_client }}" />
-                        {{ form.email_client.errors }}
+                        <label for="id_email_customer">@ :</label>
+                        <input id="id_email_customer" type="email" name="email_customer" value="{{ current_sav_file.email_customer }}" />
+                        {{ form.email_customer.errors }}
                     </div>
                 </div>
             </div>
@@ -127,12 +127,12 @@
         </div>
 
         <div class="col-md-12 block-files">
-            <label for="id_client_bill">{% trans "Client bill" %} :</label>
-            <input id="id_client_bill" type="file" name="client_bill" />
-            {% if current_sav_file.client_bill %}
-               {% trans "Currently" %} : <a class="glyphicon glyphicon-file" target="_blank" href="{{ current_sav_file.client_bill.url }}">{{ current_sav_file.client_bill.url }}</a>
+            <label for="id_bill_customer">{% trans "Customer bill" %} :</label>
+            <input id="id_bill_customer" type="file" name="bill_customer" />
+            {% if current_sav_file.bill_customer %}
+               {% trans "Currently" %} : <a class="glyphicon glyphicon-file" target="_blank" href="{{ current_sav_file.bill_customer.url }}">{{ current_sav_file.bill_customer.url }}</a>
             {% endif %}
-            {{ form.client_bill.errors }}
+            {{ form.bill_customer.errors }}
         </div>
         <div class="col-md-12 mini-title">
             <h3> {% trans "Events" %} </h3>

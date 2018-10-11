@@ -59,22 +59,22 @@ class SAV_fileForm(ModelForm):
         ]
 
         error_messages = {
-            'name_client': {
+            'name_customer': {
                 'required': _("The customer name attribute should be filled"),
             },
-            'street_client': {
+            'street_customer': {
                 'required': _("The customer street attribute should be filled"),
             },
-            'city_client': {
+            'city_customer': {
                 'required': _("The customer city attribute should be filled"),
             },
-            'zipcode_client': {
+            'zipcode_customer': {
                 'required': _("The customer zipcode attribute should be filled"),
             },
-            'phone_client': {
+            'phone_customer': {
                 'required': _("The customer phone attribute should be filled"),
             },
-            'email_client': {
+            'email_customer': {
                 'required': _("The customer email attribute should be filled"),
             },
             'name_product': {

@@ -37,12 +37,12 @@
                     <h4>{% trans "Customer filter" %}</h4>
                 </div>
                 <div class="col-md-offset-2 col-md-10 block-name-client">
-                    <label for="society_client">{% trans "Society" %} :</label>
-                    <input id="society_client" type="text" name="society_client">
+                    <label for="society_customer">{% trans "Society" %} :</label>
+                    <input id="society_customer" type="text" name="society_customer">
                 </div>
                 <div class="col-md-offset-2 col-md-10 block-name-client">
-                    <label for="name_client">{% trans "Name" %} :</label>
-                    <input id="name_client" type="text" name="name_client">
+                    <label for="name_customer">{% trans "Name" %} :</label>
+                    <input id="name_customer" type="text" name="name_customer">
                 </div>
             </div>
         </div>
@@ -115,8 +115,8 @@
                     <td>{{ file.creation_date }}</td>
                     <td>{% trans "VIF-AS-" %}{{ file.id }}</td>
                     <td>{{ file.registred_by }}</td>
-                    <td>{{ file.name_client }}</td>
-                    <td>{{ file.society_client }}</td>
+                    <td>{{ file.name_customer }}</td>
+                    <td>{{ file.society_customer }}</td>
                     <td>{{ file.brand_product }}</td>
                     <td>{{ file.name_product }}</td>
                     <td>{{ file.serial_number_product }}</td>
