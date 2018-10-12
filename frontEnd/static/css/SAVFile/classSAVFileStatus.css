@@ -1,9 +1,9 @@
 .opened {
-    background-color: rgb(37, 162, 211);
+    background-color: #90ee90;
 }
 
 .closed {
-    background-color: green;
+    background-color: gold;
 }
 
 .in-progress {
@@ -11,6 +11,6 @@
 }
 
 .problem {
-    background-color: rgb(238, 57, 57);
+    background-color: #6495ed;
 }
 
