@@ -11,18 +11,6 @@ from django.db.models import PROTECT
 import constants
 
 
-class SAV_file_status(models.Model):
-    libelle = models.CharField(max_length=50)
-    class_css = models.CharField(max_length=50, blank=True)
-
-    def __unicode__(self):
-        return str(self.id) + "-" + self.libelle
-
-    class Meta:
-        verbose_name = _("after sale file status")
-        verbose_name_plural = _("after sale file status")
-
-
 class Waranty(models.Model):
     brand = models.CharField(_("Brand"), max_length=200, default="")
     complements = models.CharField(_("Complements"), max_length=200, default="", blank=True)
@@ -58,11 +46,6 @@ class Furnisher(models.Model):
 
 class SAV_file(models.Model):
     creation_date = models.DateTimeField(_("Creation date"), default=timezone.now)
-    sav_file_status = models.ForeignKey(
-        SAV_file_status,
-        default=constants.DEFAULT_SAV_FILE_STATUS_ID,
-        verbose_name=_("Status")
-    )
     status = models.CharField(
         _("Status"), 
         max_length=20,

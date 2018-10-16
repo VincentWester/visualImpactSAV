@@ -3,7 +3,7 @@ from __future__ import unicode_literals
 
 from django.contrib.auth.models import User
 from django.forms import ModelForm, EmailField, ModelChoiceField, ChoiceField
-from .models import SAV_file, SAV_file_status, Event, Designation, Furnisher, Waranty
+from .models import SAV_file, Event, Designation, Furnisher, Waranty
 from django.contrib.auth.forms import UserCreationForm
 
 from django.utils.translation import ugettext_lazy as _
@@ -55,7 +55,7 @@ class SAV_fileForm(ModelForm):
         model = SAV_file
         fields = [
             field.name for field in model._meta.fields
-            if not (field.name == "creation_date" or field.name == "sav_file_status" or field.name == "registred_by")
+            if not (field.name == "creation_date" or field.name == "registred_by")
         ]
 
         error_messages = {

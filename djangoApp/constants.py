@@ -5,7 +5,6 @@ from decimal import Decimal
 
 from django.utils.translation import ugettext as _
 
-DEFAULT_SAV_FILE_STATUS_ID = 1
 DEFAULT_USERS_ID = 1
 
 #: File AS status choices
