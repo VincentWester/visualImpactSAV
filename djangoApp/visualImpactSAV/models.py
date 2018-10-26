@@ -114,3 +114,4 @@ class Designation(models.Model):
     class Meta:
         verbose_name = _("designation")
         verbose_name_plural = _("designations")
+        ordering = ['id']
