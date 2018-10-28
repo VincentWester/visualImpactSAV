@@ -753,3 +753,6 @@ msgstr "Actuellement"
 
 msgid "PDF Generation"
 msgstr "Génération de PDF"
+
+msgid "Created on"
+msgstr "Créé le"

@@ -641,3 +641,6 @@ msgstr ""
 #: visualImpactSAV/views/views_pdf_generator.py:639
 msgid "Repairs return"
 msgstr ""
+
+msgid "Created on"
+msgstr ""

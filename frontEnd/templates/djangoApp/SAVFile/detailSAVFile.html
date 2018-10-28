@@ -9,9 +9,13 @@
     <div class="col-md-12 update-sav-file-button">
         <a href="{% url 'visualImpactSAV:updateSAVFile' pkSAVFile %}">{% trans "Update" %}</a>
     </div>
-    <div class="col-md-offset-4 col-md-6 block-characteristic-client">
+    <div class="col-md-offset-4 col-md-4 block-characteristic-client">
         <label>{% trans "Referent" %} :</label>
         <span>{{ sav_file.registred_by.username }}</span>
+    </div>
+    <div class="col-md-4 block-characteristic-client">
+        <label>{% trans "Created on" %} :</label>
+        <span>{{ sav_file.creation_date }}</span>
     </div>
     <div class="col-md-4 second-block">
         <label>{% trans "AS file reference" %} :</label>
