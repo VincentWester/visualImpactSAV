@@ -17,7 +17,7 @@
             <label for="id_status">{% trans "AS file's status" %} :</label>
             <select id="id_status" name="status" >
                 {% for st in sav_file_status %}
-                    {% if st.0 == current_sav_file.status.0 %}
+                    {% if st.0 == current_sav_file.status %}
                         <option selected="selected"  value="{{ st.0 }}">{{ st.1 }}</option>
                     {% else %}
                         <option value="{{ st.0 }}">{{ st.1 }}</option>
