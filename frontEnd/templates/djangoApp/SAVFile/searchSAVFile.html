@@ -7,7 +7,7 @@
     <link href="{% static 'css/SAVFile/classSAVFileStatus.css' %}" rel="stylesheet" media="screen">
 {% endblock %}
 {% block content %}
-    <form class="row" method=GET action="{% url 'visualImpactSAV:searchSAVFile' %}" accept-charset="utf-8">
+    <form class="form-class" method=GET action="{% url 'visualImpactSAV:searchSAVFile' %}" accept-charset="utf-8">
         <div class="col-md-12 row block-file-reference-tracking-number">
             <div class="col-md-4 first-block">
                 <label for="file_reference">{% trans "AS file Reference" %} :</label>
@@ -91,6 +91,9 @@
         <table class="table">
             <thead>
                 <tr>
+                    <th> </th>
+                    <th> </th>
+                    <th> </th>
                     <th>{% trans "Creation date" %}</th>
                     <th>{% trans "AS file Reference" %}</th>
                     <th>{% trans "Referent" %}</th>
@@ -99,9 +102,6 @@
                     <th>{% trans "Product brand" %}</th>
                     <th>{% trans "Product model" %}</th>
                     <th>{% trans "Product serial number" %}</th>
-                    <th> </th>
-                    <th> </th>
-                    <th> </th>
                 </tr>
             </thead>
             <tbody>
@@ -111,6 +111,9 @@
                     {% else %}
                         <tr class="">
                     {% endif %}
+                    <td><a class="glyphicon glyphicon-zoom-in" href="{% url 'visualImpactSAV:detailSAVFile' file.id %}" style="color: black;" data-toggle="tooltip" data-placement="bottom" title="Voir détails"></a> </td>
+                    <td><a class="glyphicon glyphicon-pencil" href="{% url 'visualImpactSAV:updateSAVFile' file.id %}" style="color: black;" data-toggle="tooltip" data-placement="bottom" title="Modifier"></a> </td>
+                    <td><a class="glyphicon glyphicon-download-alt" href="{% url 'visualImpactSAV:generatePdfClient' file.id %}" style="color: black;" data-toggle="tooltip" data-placement="bottom" title="Récap client en pdf"></a> </td>
                     <td>{{ file.creation_date }}</td>
                     <td><strong>{% trans "VIF-AS-" %}{{ file.id }}</strong></td>
                     <td>{{ file.registred_by }}</td>
@@ -119,9 +122,6 @@
                     <td>{{ file.brand_product }}</td>
                     <td>{{ file.name_product }}</td>
                     <td>{{ file.serial_number_product }}</td>
-                    <td><a class="glyphicon glyphicon-zoom-in" href="{% url 'visualImpactSAV:detailSAVFile' file.id %}" style="color: black;"></a> </td>
-                    <td><a class="glyphicon glyphicon-pencil" href="{% url 'visualImpactSAV:updateSAVFile' file.id %}" style="color: black;"></a> </td>
-                    <td><a class="glyphicon glyphicon-download-alt" href="{% url 'visualImpactSAV:generatePdfClient' file.id %}" style="color: black;"></a> </td>
                 </tr>
                 {% endfor %}
             </tbody>
@@ -129,7 +129,10 @@
         {% if is_paginated %}
             <div class="pagination">
                 <span class="page-links">
-                    <span> {% trans "Page" %} :</span>
+                    <span> {% trans "Page" %} :</span><td><a class="glyphicon glyphicon-zoom-in" href="{% url 'visualImpactSAV:detailSAVFile' file.id %}" style="color: black;" data-toggle="tooltip" data-placement="bottom" title="Tooltip on bottom"></a> </td>
+                    <td><a class="glyphicon glyphicon-pencil" href="{% url 'visualImpactSAV:updateSAVFile' file.id %}" style="color: black;" data-toggle="tooltip" data-placement="bottom" title="Tooltip on bottom"></a> </td>
+                    <td><a class="glyphicon glyphicon-download-alt" href="{% url 'visualImpactSAV:generatePdfClient' file.id %}" style="color: black;" data-toggle="tooltip" data-placement="bottom" title="Tooltip on bottom"></a> </td>
+                
                     {% if page_obj.has_previous %}
                         <span><a href="{{ redirection_adresse }}page={{ page_obj.previous_page_number }}"> < {% trans "previous" %} </a></span>
                     {% endif %}
