@@ -71,6 +71,7 @@ class SAV_file(models.Model):
         default=constants.SAV_FILE_WARANTY_TYPE_INCLUDED,
     )
     out_of_order_reason = models.TextField(_("Out of order reason"))
+    given_accessory = models.TextField(_("Given accessory"), blank=True)
     bill_customer = models.FileField(_("Customer bill"), blank=True)
     furnisher = models.ForeignKey(Furnisher, null=True, on_delete=PROTECT, verbose_name=_("Furnisher"))
     registred_by = models.ForeignKey(get_user_model(), default=constants.DEFAULT_USERS_ID, verbose_name=_("User"))

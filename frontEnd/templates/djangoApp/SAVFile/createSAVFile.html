@@ -110,7 +110,11 @@
             <textarea id="id_out_of_order_reason" name="out_of_order_reason" rows="10" cols="40" ></textarea>
             {{ form.out_of_order_reason.errors }}
         </div>
-
+        <div class="col-md-12 block-out-of-order-reason">
+            <label for="id_given_accessory">{% trans "Given accessory" %} :</label>
+            <textarea id="id_given_accessory" name="given_accessory" rows="10" cols="40" ></textarea>
+            {{ form.given_accessory.errors }}
+        </div>
         <div class="col-md-12 row block-files">
             <label for="id_bill_customer">{% trans "Customer bill" %} :</label>
             <input id="id_bill_customer" type="file" name="bill_customer" />

@@ -102,6 +102,10 @@
         <label>{% trans "Out of order reason" %} :</label>
         <span>{{ sav_file.out_of_order_reason | linebreaks }}</span>
     </div>
+    <div class="col-md-12 second-block">
+        <label>{% trans "Given accessory" %} :</label>
+        <span>{{ sav_file.given_accessory | linebreaks }}</span>
+    </div>
     <div class="col-md-12 row block-files">
         {% if sav_file.bill_customer %}
             <label>{% trans "Customer bill" %} : </label><a class="glyphicon glyphicon-file" target="_blank" href="{{ sav_file.bill_customer.url }}">{{ sav_file.bill_customer.url }}</a>
