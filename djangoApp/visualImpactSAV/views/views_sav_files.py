@@ -138,6 +138,8 @@ class SAVFileListView(LoginRequiredMixin, ListView):
         serial_number_product = self.request.GET.get('serial_number_product')
         rma_number = self.request.GET.get('rma_number')
         sav_file_status = self.request.GET.get('sav_file_status')
+        begin_date = self.request.GET.get('begin_date')
+        end_date = self.request.GET.get('end_date')
         results = SAV_file.objects.all()
 
         kwargs = {}
@@ -165,6 +167,12 @@ class SAVFileListView(LoginRequiredMixin, ListView):
 
         if sav_file_status:
             kwargs['status'] = sav_file_status
+        
+        if begin_date:
+            kwargs['creation_date__gte'] = begin_date
+        
+        if end_date:
+            kwargs['creation_date__lte'] = end_date
 
         if not kwargs:
             return results
