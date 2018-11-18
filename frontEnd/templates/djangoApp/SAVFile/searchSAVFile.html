@@ -129,10 +129,7 @@
         {% if is_paginated %}
             <div class="pagination">
                 <span class="page-links">
-                    <span> {% trans "Page" %} :</span><td><a class="glyphicon glyphicon-zoom-in" href="{% url 'visualImpactSAV:detailSAVFile' file.id %}" style="color: black;" data-toggle="tooltip" data-placement="bottom" title="Tooltip on bottom"></a> </td>
-                    <td><a class="glyphicon glyphicon-pencil" href="{% url 'visualImpactSAV:updateSAVFile' file.id %}" style="color: black;" data-toggle="tooltip" data-placement="bottom" title="Tooltip on bottom"></a> </td>
-                    <td><a class="glyphicon glyphicon-download-alt" href="{% url 'visualImpactSAV:generatePdfClient' file.id %}" style="color: black;" data-toggle="tooltip" data-placement="bottom" title="Tooltip on bottom"></a> </td>
-                
+                    <span> {% trans "Page" %} :</span>                
                     {% if page_obj.has_previous %}
                         <span><a href="{{ redirection_adresse }}page={{ page_obj.previous_page_number }}"> < {% trans "previous" %} </a></span>
                     {% endif %}
