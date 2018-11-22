@@ -85,7 +85,7 @@ class SAV_file(models.Model):
     class Meta:
         verbose_name = _("After sale file")
         verbose_name_plural = _("After sale files")
-        ordering = ['creation_date']
+        ordering = ['-creation_date']
 
 
 class Event(models.Model):
