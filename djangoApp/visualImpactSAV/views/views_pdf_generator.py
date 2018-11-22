@@ -127,13 +127,13 @@ class Pdf_generator(View):
             p.setFont(constants.FONT_STYLE, constants.FONT_SMALLER_SIZE)
             p.drawString(line[0]*inch, (height_line-0.4)*inch, line[2])
 
-    def draw_description_part(self, p, alinea_title, alinea_text, height):
+    def draw_text_area_part(self, p, alinea_title, title, alinea_text, text, height):
         p.setFont(constants.FONT_STYLE_BOLD, constants.FONT_NORMAL_SIZE)
-        p.drawString(alinea_title*inch, (height)*inch, _("Problems' description"))
+        p.drawString(alinea_title*inch, (height)*inch, title)
         p.setFont(constants.FONT_STYLE, constants.FONT_SMALLER_SIZE)
 
         # this trick is used for deleting the EOF character
-        lines = self.sav_file.out_of_order_reason.split('\n')
+        lines = text.split('\n')
         size = len(lines)
         for i in range(size):
             height = height - 0.3
@@ -342,11 +342,23 @@ class Pdf_generator_client(Pdf_generator):
                 }
             },
             {
-                'func': "draw_description_part",
+                'func': "draw_text_area_part",
                 'kwargs': {
                     'alinea_title': 2.2,
+                    'title': _("Problems' description"),
                     'alinea_text': -0.3,
+                    'text': self.sav_file.out_of_order_reason,
                     'height': 6,
+                }
+            },
+            {
+                'func': "draw_text_area_part",
+                'kwargs': {
+                    'alinea_title': 2.2,
+                    'title': _("Given accessories"),
+                    'alinea_text': -0.3,
+                    'text': self.sav_file.given_accessory,
+                    'height': 4,
                 }
             },
             {
@@ -608,11 +620,23 @@ class Pdf_generator_furnisher(Pdf_generator):
                 }
             },
             {
-                'func': "draw_description_part",
+                'func': "draw_text_area_part",
                 'kwargs': {
                     'alinea_title': 2.5,
+                    'title': _("Problems' description"),
                     'alinea_text': -0.3,
+                    'text': self.sav_file.out_of_order_reason,
                     'height': 5.4,
+                }
+            },
+            {
+                'func': "draw_text_area_part",
+                'kwargs': {
+                    'alinea_title': 2.2,
+                    'title': _("Given accessories"),
+                    'alinea_text': -0.3,
+                    'text': self.sav_file.given_accessory,
+                    'height': 3.4,
                 }
             },
             {

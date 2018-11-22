@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-11-17 16:43+0100\n"
+"POT-Creation-Date: 2018-11-22 21:57+0100\n"
 "PO-Revision-Date: \n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -122,9 +122,9 @@ msgstr ""
 
 #: visualImpactSAV/models.py:15 visualImpactSAV/models.py:30
 #: visualImpactSAV/views/views_pdf_generator.py:319
-#: visualImpactSAV/views/views_pdf_generator.py:460
-#: visualImpactSAV/views/views_pdf_generator.py:589
-#: visualImpactSAV/views/views_pdf_generator.py:687
+#: visualImpactSAV/views/views_pdf_generator.py:472
+#: visualImpactSAV/views/views_pdf_generator.py:601
+#: visualImpactSAV/views/views_pdf_generator.py:711
 msgid "Brand"
 msgstr ""
 
@@ -195,7 +195,7 @@ msgstr ""
 
 #: visualImpactSAV/models.py:56
 #: visualImpactSAV/views/views_pdf_generator.py:280
-#: visualImpactSAV/views/views_pdf_generator.py:654
+#: visualImpactSAV/views/views_pdf_generator.py:678
 msgid "Customer name"
 msgstr ""
 
@@ -248,6 +248,8 @@ msgid "Out of order reason"
 msgstr ""
 
 #: visualImpactSAV/models.py:74
+#: visualImpactSAV/views/views_pdf_generator.py:358
+#: visualImpactSAV/views/views_pdf_generator.py:636
 msgid "Given accessories"
 msgstr ""
 
@@ -366,10 +368,6 @@ msgstr ""
 msgid "Logo Error"
 msgstr ""
 
-#: visualImpactSAV/views/views_pdf_generator.py:132
-msgid "Problems' description"
-msgstr ""
-
 #: visualImpactSAV/views/views_pdf_generator.py:145
 msgid "Designations"
 msgstr ""
@@ -453,191 +451,196 @@ msgid "Summary after sell sheet"
 msgstr ""
 
 #: visualImpactSAV/views/views_pdf_generator.py:266
-#: visualImpactSAV/views/views_pdf_generator.py:652
+#: visualImpactSAV/views/views_pdf_generator.py:676
 msgid "Reference"
 msgstr ""
 
 #: visualImpactSAV/views/views_pdf_generator.py:268
-#: visualImpactSAV/views/views_pdf_generator.py:412
-#: visualImpactSAV/views/views_pdf_generator.py:540
-#: visualImpactSAV/views/views_pdf_generator.py:652
+#: visualImpactSAV/views/views_pdf_generator.py:424
+#: visualImpactSAV/views/views_pdf_generator.py:552
+#: visualImpactSAV/views/views_pdf_generator.py:676
 msgid "VIF-AS-"
 msgstr ""
 
 #: visualImpactSAV/views/views_pdf_generator.py:287
-#: visualImpactSAV/views/views_pdf_generator.py:653
+#: visualImpactSAV/views/views_pdf_generator.py:677
 msgid "Managed by"
 msgstr ""
 
 #: visualImpactSAV/views/views_pdf_generator.py:300
-#: visualImpactSAV/views/views_pdf_generator.py:422
-#: visualImpactSAV/views/views_pdf_generator.py:664
+#: visualImpactSAV/views/views_pdf_generator.py:434
+#: visualImpactSAV/views/views_pdf_generator.py:688
 msgid "Billing address"
 msgstr ""
 
 #: visualImpactSAV/views/views_pdf_generator.py:315
-#: visualImpactSAV/views/views_pdf_generator.py:456
-#: visualImpactSAV/views/views_pdf_generator.py:585
-#: visualImpactSAV/views/views_pdf_generator.py:683
+#: visualImpactSAV/views/views_pdf_generator.py:468
+#: visualImpactSAV/views/views_pdf_generator.py:597
+#: visualImpactSAV/views/views_pdf_generator.py:707
 msgid "Product reference"
 msgstr ""
 
 #: visualImpactSAV/views/views_pdf_generator.py:325
-#: visualImpactSAV/views/views_pdf_generator.py:465
-#: visualImpactSAV/views/views_pdf_generator.py:594
-#: visualImpactSAV/views/views_pdf_generator.py:692
+#: visualImpactSAV/views/views_pdf_generator.py:477
+#: visualImpactSAV/views/views_pdf_generator.py:606
+#: visualImpactSAV/views/views_pdf_generator.py:716
 msgid "Model"
 msgstr ""
 
 #: visualImpactSAV/views/views_pdf_generator.py:331
-#: visualImpactSAV/views/views_pdf_generator.py:470
-#: visualImpactSAV/views/views_pdf_generator.py:599
-#: visualImpactSAV/views/views_pdf_generator.py:697
+#: visualImpactSAV/views/views_pdf_generator.py:482
+#: visualImpactSAV/views/views_pdf_generator.py:611
+#: visualImpactSAV/views/views_pdf_generator.py:721
 msgid "Serial number"
 msgstr ""
 
 #: visualImpactSAV/views/views_pdf_generator.py:337
-#: visualImpactSAV/views/views_pdf_generator.py:475
-#: visualImpactSAV/views/views_pdf_generator.py:604
-#: visualImpactSAV/views/views_pdf_generator.py:702
+#: visualImpactSAV/views/views_pdf_generator.py:487
+#: visualImpactSAV/views/views_pdf_generator.py:616
+#: visualImpactSAV/views/views_pdf_generator.py:726
 msgid "RMA number"
 msgstr ""
 
 #: visualImpactSAV/views/views_pdf_generator.py:339
-#: visualImpactSAV/views/views_pdf_generator.py:476
-#: visualImpactSAV/views/views_pdf_generator.py:605
-#: visualImpactSAV/views/views_pdf_generator.py:703
+#: visualImpactSAV/views/views_pdf_generator.py:488
+#: visualImpactSAV/views/views_pdf_generator.py:617
+#: visualImpactSAV/views/views_pdf_generator.py:727
 msgid "Unknown"
 msgstr ""
 
-#: visualImpactSAV/views/views_pdf_generator.py:360
+#: visualImpactSAV/views/views_pdf_generator.py:348
+#: visualImpactSAV/views/views_pdf_generator.py:626
+msgid "Problems' description"
+msgstr ""
+
+#: visualImpactSAV/views/views_pdf_generator.py:372
 msgid "Conditions"
 msgstr ""
 
-#: visualImpactSAV/views/views_pdf_generator.py:362
+#: visualImpactSAV/views/views_pdf_generator.py:374
 msgid "AS condition 1"
 msgstr ""
 
-#: visualImpactSAV/views/views_pdf_generator.py:363
+#: visualImpactSAV/views/views_pdf_generator.py:375
 msgid "AS condition 2"
 msgstr ""
 
-#: visualImpactSAV/views/views_pdf_generator.py:364
+#: visualImpactSAV/views/views_pdf_generator.py:376
 msgid "AS condition 3"
 msgstr ""
 
-#: visualImpactSAV/views/views_pdf_generator.py:365
+#: visualImpactSAV/views/views_pdf_generator.py:377
 msgid "AS condition 4"
 msgstr ""
 
-#: visualImpactSAV/views/views_pdf_generator.py:377
-#: visualImpactSAV/views/views_pdf_generator.py:513
-#: visualImpactSAV/views/views_pdf_generator.py:626
-#: visualImpactSAV/views/views_pdf_generator.py:716
+#: visualImpactSAV/views/views_pdf_generator.py:389
+#: visualImpactSAV/views/views_pdf_generator.py:525
+#: visualImpactSAV/views/views_pdf_generator.py:650
+#: visualImpactSAV/views/views_pdf_generator.py:740
 msgid "Added informations"
 msgstr ""
 
-#: visualImpactSAV/views/views_pdf_generator.py:379
-#: visualImpactSAV/views/views_pdf_generator.py:515
-#: visualImpactSAV/views/views_pdf_generator.py:628
-#: visualImpactSAV/views/views_pdf_generator.py:718
+#: visualImpactSAV/views/views_pdf_generator.py:391
+#: visualImpactSAV/views/views_pdf_generator.py:527
+#: visualImpactSAV/views/views_pdf_generator.py:652
+#: visualImpactSAV/views/views_pdf_generator.py:742
 msgid "VI Addr name-capital-social"
 msgstr ""
 
-#: visualImpactSAV/views/views_pdf_generator.py:380
-#: visualImpactSAV/views/views_pdf_generator.py:516
-#: visualImpactSAV/views/views_pdf_generator.py:629
-#: visualImpactSAV/views/views_pdf_generator.py:719
+#: visualImpactSAV/views/views_pdf_generator.py:392
+#: visualImpactSAV/views/views_pdf_generator.py:528
+#: visualImpactSAV/views/views_pdf_generator.py:653
+#: visualImpactSAV/views/views_pdf_generator.py:743
 msgid "VI Addr street-zipcode"
 msgstr ""
 
-#: visualImpactSAV/views/views_pdf_generator.py:381
-#: visualImpactSAV/views/views_pdf_generator.py:517
-#: visualImpactSAV/views/views_pdf_generator.py:630
-#: visualImpactSAV/views/views_pdf_generator.py:720
+#: visualImpactSAV/views/views_pdf_generator.py:393
+#: visualImpactSAV/views/views_pdf_generator.py:529
+#: visualImpactSAV/views/views_pdf_generator.py:654
+#: visualImpactSAV/views/views_pdf_generator.py:744
 msgid "VI Addr phone-mail"
 msgstr ""
 
-#: visualImpactSAV/views/views_pdf_generator.py:382
-#: visualImpactSAV/views/views_pdf_generator.py:518
-#: visualImpactSAV/views/views_pdf_generator.py:631
-#: visualImpactSAV/views/views_pdf_generator.py:721
+#: visualImpactSAV/views/views_pdf_generator.py:394
+#: visualImpactSAV/views/views_pdf_generator.py:530
+#: visualImpactSAV/views/views_pdf_generator.py:655
+#: visualImpactSAV/views/views_pdf_generator.py:745
 msgid "VI Infos"
 msgstr ""
 
-#: visualImpactSAV/views/views_pdf_generator.py:392
+#: visualImpactSAV/views/views_pdf_generator.py:404
 msgid "cost-estimate"
 msgstr ""
 
-#: visualImpactSAV/views/views_pdf_generator.py:392
+#: visualImpactSAV/views/views_pdf_generator.py:404
 msgid "Commercial offer"
 msgstr ""
 
-#: visualImpactSAV/views/views_pdf_generator.py:412
-#: visualImpactSAV/views/views_pdf_generator.py:540
+#: visualImpactSAV/views/views_pdf_generator.py:424
+#: visualImpactSAV/views/views_pdf_generator.py:552
 msgid "AS file reference"
 msgstr ""
 
-#: visualImpactSAV/views/views_pdf_generator.py:437
-#: visualImpactSAV/views/views_pdf_generator.py:566
+#: visualImpactSAV/views/views_pdf_generator.py:449
+#: visualImpactSAV/views/views_pdf_generator.py:578
 msgid "File managed by"
 msgstr ""
 
-#: visualImpactSAV/views/views_pdf_generator.py:439
-#: visualImpactSAV/views/views_pdf_generator.py:568
+#: visualImpactSAV/views/views_pdf_generator.py:451
+#: visualImpactSAV/views/views_pdf_generator.py:580
 msgid "VI Addr name"
 msgstr ""
 
-#: visualImpactSAV/views/views_pdf_generator.py:440
-#: visualImpactSAV/views/views_pdf_generator.py:569
+#: visualImpactSAV/views/views_pdf_generator.py:452
+#: visualImpactSAV/views/views_pdf_generator.py:581
 msgid "VI Addr street"
 msgstr ""
 
-#: visualImpactSAV/views/views_pdf_generator.py:441
-#: visualImpactSAV/views/views_pdf_generator.py:570
+#: visualImpactSAV/views/views_pdf_generator.py:453
+#: visualImpactSAV/views/views_pdf_generator.py:582
 msgid "VI Addr zipcode"
 msgstr ""
 
-#: visualImpactSAV/views/views_pdf_generator.py:496
+#: visualImpactSAV/views/views_pdf_generator.py:508
 msgid "Bank details"
 msgstr ""
 
-#: visualImpactSAV/views/views_pdf_generator.py:498
+#: visualImpactSAV/views/views_pdf_generator.py:510
 msgid "VI bank-code bank"
 msgstr ""
 
-#: visualImpactSAV/views/views_pdf_generator.py:499
+#: visualImpactSAV/views/views_pdf_generator.py:511
 msgid "VI RIB"
 msgstr ""
 
-#: visualImpactSAV/views/views_pdf_generator.py:500
+#: visualImpactSAV/views/views_pdf_generator.py:512
 msgid "VI IBAN"
 msgstr ""
 
-#: visualImpactSAV/views/views_pdf_generator.py:501
+#: visualImpactSAV/views/views_pdf_generator.py:513
 msgid "VI account owner"
 msgstr ""
 
-#: visualImpactSAV/views/views_pdf_generator.py:528
+#: visualImpactSAV/views/views_pdf_generator.py:540
 msgid "repairs"
 msgstr ""
 
-#: visualImpactSAV/views/views_pdf_generator.py:528
+#: visualImpactSAV/views/views_pdf_generator.py:540
 msgid "Repairs asking"
 msgstr ""
 
-#: visualImpactSAV/views/views_pdf_generator.py:541
+#: visualImpactSAV/views/views_pdf_generator.py:553
 msgid "Please, tell this reference number in all our correspondances."
 msgstr ""
 
-#: visualImpactSAV/views/views_pdf_generator.py:551
+#: visualImpactSAV/views/views_pdf_generator.py:563
 msgid "Furnisher address"
 msgstr ""
 
-#: visualImpactSAV/views/views_pdf_generator.py:641
+#: visualImpactSAV/views/views_pdf_generator.py:665
 msgid "repairs-return"
 msgstr ""
 
-#: visualImpactSAV/views/views_pdf_generator.py:641
+#: visualImpactSAV/views/views_pdf_generator.py:665
 msgid "Repairs return"
 msgstr ""
