@@ -8,7 +8,7 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.http import HttpResponseRedirect
 from django.views.generic import ListView
 
-from visualImpactSAV.models import Waranty
+from visualImpactSAV.models.business_models import Waranty
 from visualImpactSAV.forms import WarantyForm
 
 import constants

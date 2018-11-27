@@ -8,7 +8,7 @@ from django.core.urlresolvers import reverse
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 
 import constants
-from visualImpactSAV.models import SAV_file
+from visualImpactSAV.models.business_models import SAV_file
 
 
 class ParameterCreateView(LoginRequiredMixin, CreateView):

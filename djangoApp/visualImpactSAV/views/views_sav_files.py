@@ -9,7 +9,7 @@ from django.views.generic import DetailView, ListView
 from django.views.generic.edit import CreateView, UpdateView
 from django.contrib.auth.mixins import LoginRequiredMixin
 
-from visualImpactSAV.models import SAV_file, Furnisher
+from visualImpactSAV.models.business_models import SAV_file, Furnisher
 from visualImpactSAV.forms import SAV_fileForm
 
 import constants

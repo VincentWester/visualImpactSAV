@@ -11,7 +11,7 @@ from django.views.generic import ListView
 
 from django.db.models import ProtectedError
 
-from visualImpactSAV.models import Furnisher
+from visualImpactSAV.models.business_models import Furnisher
 from visualImpactSAV.forms import FurnisherForm
 
 import constants
