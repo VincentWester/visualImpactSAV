@@ -175,6 +175,6 @@ class SAVFileListView(LoginRequiredMixin, ListView):
             kwargs['creation_date__lte'] = end_date
 
         if not kwargs:
-            return results.exclude(status='C')
+            return results.exclude(status=constants.SAV_FILE_STATUS_TYPE_CLOSED)
 
         return results.filter(**kwargs)
