@@ -9,6 +9,7 @@ from django.http import HttpResponseRedirect
 from django.views.generic import ListView
 
 from visualImpactSAV.models.business_models import Waranty
+from visualImpactSAV.models.session_models import SessionMailAndPhone
 from visualImpactSAV.forms import WarantyForm
 
 import constants
@@ -66,6 +67,10 @@ class WarantyDeleteView(ParameterDeleteView):
 
 
 class WarantyListView(LoginRequiredMixin, ListView):
+
+    def __init__(self):
+        SessionMailAndPhone.load_and_delete_all_mail_and_phones()
+
     queryset = Waranty.objects.order_by('brand')
     template_name = 'djangoApp/Waranty/listWaranty.html'
     context_object_name = 'results'

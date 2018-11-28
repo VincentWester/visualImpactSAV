@@ -763,3 +763,15 @@ msgstr "Génération de PDF"
 
 msgid "Created on"
 msgstr "Créé le"
+
+msgid "contact"
+msgstr "contact"
+
+msgid "contact"
+msgstr "contact"
+
+msgid "From"
+msgstr "De cette date"
+
+msgid "To"
+msgstr "A cette date"

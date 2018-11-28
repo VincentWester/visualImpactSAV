@@ -21,12 +21,14 @@ from django.template.loader import render_to_string
 
 import constants
 from visualImpactSAV.models.business_models import SAV_file
+from visualImpactSAV.models.session_models import SessionMailAndPhone
 
 
 class Pdf_generator(View):
     def __init__(self, filename, title):
         self.filename = filename
         self.title = title
+        SessionMailAndPhone.load_and_delete_all_mail_and_phones()
 
     def build_header(self, p):
         p.translate(inch, inch)

@@ -10,6 +10,7 @@ from django.views.generic.edit import CreateView, UpdateView
 from django.contrib.auth.mixins import LoginRequiredMixin
 
 from visualImpactSAV.models.business_models import SAV_file, Furnisher
+from visualImpactSAV.models.session_models import SessionMailAndPhone
 from visualImpactSAV.forms import SAV_fileForm
 
 import constants
@@ -18,6 +19,9 @@ import constants
 class SAVFileDetailView(LoginRequiredMixin, DetailView):
     template_name = 'djangoApp/SAVFile/detailSAVFile.html'
     queryset = SAV_file.objects.all()
+
+    def __init__(self):
+        SessionMailAndPhone.load_and_delete_all_mail_and_phones()
 
     def get_object(self):
         object = super(SAVFileDetailView, self).get_object()
@@ -66,6 +70,13 @@ class SAVFileCreateView(LoginRequiredMixin, CreateView):
     """
     def form_valid(self, form):
         form.instance.registred_by = self.request.user
+        all_contacts = SessionMailAndPhone.load_all_mail_and_phones()
+        for contact in all_contacts:
+            print(contact.name)
+            print(contact.email)
+            print(contact.phone)
+            print("-----------------------")
+        SessionMailAndPhone.load_and_unlink_all_mail_and_phones()
         return super(SAVFileCreateView, self).form_valid(form)
 
 
@@ -73,6 +84,9 @@ class SAVFileUpdateView(LoginRequiredMixin, UpdateView):
     model = SAV_file
     form_class = SAV_fileForm
     template_name = 'djangoApp/SAVFile/updateSAVFile.html'
+
+    def __init__(self):
+        SessionMailAndPhone.load_and_delete_all_mail_and_phones()
 
     def get_context_data(self, **kwargs):
         context = super(SAVFileUpdateView, self).get_context_data(**kwargs)
@@ -105,6 +119,9 @@ class SAVFileListView(LoginRequiredMixin, ListView):
     template_name = 'djangoApp/SAVFile/searchSAVFile.html'
     context_object_name = 'results'
     paginate_by = constants.DEFAULT_ASS_FILE_LIST_VIEW_PAGINATION_BY
+
+    def __init__(self):
+        SessionMailAndPhone.load_and_delete_all_mail_and_phones()
 
     def get_context_data(self, **kwargs):
         context = super(SAVFileListView, self).get_context_data(**kwargs)

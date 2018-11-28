@@ -105,6 +105,29 @@
                 </div>
             </div>
         </div>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>{% trans "Name" %}</th>
+                    <th>{% trans "Email" %}</th>
+                    <th>{% trans "Phone" %}</th>
+                    <th> </th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for contact in session_mail_and_phone %}
+                    <tr>
+                        <td>{{ contact.name }}</td>
+                        <td>{{ contact.email }}</td>
+                        <td>{{ contact.phone }}</td>
+                        <td><a class="glyphicon glyphicon-pencil" data-toggle="modal" data-target="#modalUpdateMailAndPhone" href="{% url 'visualImpactSAV:updateMailAndPhone' contact.id%}" style="color: black;"></a> </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        <div class="col-md-12 add-button">
+            <a data-toggle="modal" data-target="#modalCreateMailAndPhone" href="{% url 'visualImpactSAV:createMailAndPhoneInSession' %}">{% trans "Add a contact" %}</a>
+        </div>
         <div class="col-md-12 block-out-of-order-reason">
             <label for="id_out_of_order_reason">{% trans "Out of order reason" %} :</label>
             <textarea id="id_out_of_order_reason" name="out_of_order_reason" rows="10" cols="40" ></textarea>
@@ -130,4 +153,7 @@
             <input type="submit" value="Valider">
         </div>
     </form>
+
+    <div class="modal" id="modalUpdateMailAndPhone"></div>
+    <div class="modal" id="modalCreateMailAndPhone"></div>
 {% endblock %}

@@ -3,7 +3,6 @@ from __future__ import unicode_literals
 
 from django.db import models
 
-
 # Base pour créer des objets en Session tel que les adresses mail et telephones à contacter
 # pour les dossiers SAV 
 class SingletonModel(models.Model):
@@ -24,5 +23,19 @@ class SingletonModel(models.Model):
         return obj
 
 class SessionMailAndPhone(SingletonModel):
-    pass
-    
+
+    @classmethod
+    def load_all_mail_and_phones(cls):
+        obj = SessionMailAndPhone.load()
+        return obj.mailAndPhones.all()
+
+    @classmethod
+    def load_and_delete_all_mail_and_phones(cls):
+        obj = SessionMailAndPhone.load()
+        obj.mailAndPhones.all().delete()
+        return obj
+
+    @classmethod
+    def load_and_unlink_all_mail_and_phones(cls):
+        obj = SessionMailAndPhone.load()
+        obj.mailAndPhones.all().update(in_session=None)
