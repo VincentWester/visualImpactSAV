@@ -8,8 +8,6 @@ from django.utils import timezone
 from django.contrib.auth import get_user_model
 from django.db.models import PROTECT
 
-from .session_models import SessionMailAndPhone
-
 import constants
 
 
@@ -45,16 +43,6 @@ class Furnisher(models.Model):
         verbose_name_plural = _("furnishers")
         ordering = ['brand']
 
-class MailAndPhone(models.Model):
-    name = models.CharField(_("Customer name"), max_length=300, default="")
-    email = models.CharField(_("Customer email"), max_length=100, default="")
-    phone = models.CharField(_("Customer phone"), max_length=30, default="", blank=True)
-    in_session = models.ForeignKey(SessionMailAndPhone, null=True, on_delete=PROTECT, related_name="mailAndPhones")
-
-    class Meta:
-        verbose_name = _("contact")
-        verbose_name_plural = _("contacts")
-        ordering = ['name']
 
 class SAV_file(models.Model):
     creation_date = models.DateTimeField(_("Creation date"), default=timezone.now)

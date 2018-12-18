@@ -90,7 +90,6 @@ TEMPLATES = [
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
                 'django.template.context_processors.i18n',
-                'visualImpactSAV.context_processors.session_mail_and_phone',
             ],
         },
     },

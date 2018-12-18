@@ -11,12 +11,6 @@ from .views.views_events import (
     EventUpdateView,
     EventDeleteView,
 )
-from .views.views_mail_and_phone import (
-    MailAndPhoneInSessionCreateView,
-    MailAndPhoneInSAVFileCreateView,
-    MailAndPhoneUpdateView,
-    MailAndPhoneDeleteView,
-)
 from .views.views_designations import (
     DesignationCreateView,
     DesignationUpdateView,
@@ -61,27 +55,6 @@ urlpatterns = [
         r'^searchSAVFile/$',
         SAVFileListView.as_view(),
         name="searchSAVFile"
-    ),
-
-    url(
-        r'^createMailAndPhoneInSession/$',
-        MailAndPhoneInSessionCreateView.as_view(),
-        name="createMailAndPhoneInSession"
-    ),
-    url(
-        r'^createMailAndPhoneInSAVFile/(?P<pkSAVFile>[\w\-]+)$$',
-        MailAndPhoneInSAVFileCreateView.as_view(),
-        name="createMailAndPhoneInSAVFile"
-    ),
-    url(
-        r'^updateMailAndPhone/(?P<pk>[\w\-]+)$$',
-        MailAndPhoneUpdateView.as_view(),
-        name="updateMailAndPhone"
-    ),
-    url(
-        r'^deleteMailAndPhone/(?P<pk>[\w\-]+)$$',
-        MailAndPhoneDeleteView.as_view(),
-        name="deleteMailAndPhone"
     ),
 
     url(

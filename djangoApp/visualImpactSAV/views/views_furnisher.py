@@ -12,7 +12,6 @@ from django.views.generic import ListView
 from django.db.models import ProtectedError
 
 from visualImpactSAV.models.business_models import Furnisher
-from visualImpactSAV.models.session_models import SessionMailAndPhone
 from visualImpactSAV.forms import FurnisherForm
 
 import constants
@@ -83,10 +82,6 @@ class FurnisherDeleteView(ParameterDeleteView):
 
 
 class FurnisherListView(LoginRequiredMixin, ListView):
-
-    def __init__(self):
-        SessionMailAndPhone.load_and_delete_all_mail_and_phones()
-
     queryset = Furnisher.objects.order_by('brand')
     template_name = 'djangoApp/Furnisher/listFurnisher.html'
     context_object_name = 'results'

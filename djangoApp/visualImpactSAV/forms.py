@@ -3,7 +3,7 @@ from __future__ import unicode_literals
 
 from django.contrib.auth.models import User
 from django.forms import ModelForm, EmailField, ModelChoiceField, ChoiceField
-from .models.business_models import SAV_file, Event, Designation, Furnisher, Waranty, MailAndPhone
+from .models.business_models import SAV_file, Event, Designation, Furnisher, Waranty
 from django.contrib.auth.forms import UserCreationForm
 
 from django.utils.translation import ugettext_lazy as _
@@ -101,15 +101,6 @@ class EventForm(ModelForm):
         fields = [
             field.name for field in model._meta.fields
             if not (field.name == "date" or field.name == "refered_SAV_file")
-        ]
-
-
-class MailAndPhoneForm(ModelForm):
-    class Meta:
-        model = MailAndPhone
-        fields = [
-            field.name for field in model._meta.fields
-            if not (field.name == "in_session")
         ]
 
 
