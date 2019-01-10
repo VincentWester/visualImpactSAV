@@ -11,12 +11,11 @@ from django.views.generic import ListView
 
 from django.db.models import ProtectedError
 
-from visualImpactSAV.models.business_models import Furnisher
+from visualImpactSAV.models import Furnisher
 from visualImpactSAV.forms import FurnisherForm
+from visualImpactSAV.views.views_template_parameters_sav_files import ParameterCreateView, ParameterUpdateView, ParameterDeleteView
 
 import constants
-from .views_template_parameters_sav_files import ParameterCreateView, ParameterUpdateView, ParameterDeleteView
-
 
 class FurnisherCreateView(ParameterCreateView):
     model = Furnisher

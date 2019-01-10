@@ -3,11 +3,11 @@ from __future__ import unicode_literals
 
 from django.contrib.auth.models import User
 from django.forms import ModelForm, EmailField, ModelChoiceField, ChoiceField
-from .models.business_models import SAV_file, Event, Designation, Furnisher, Waranty
 from django.contrib.auth.forms import UserCreationForm
 
 from django.utils.translation import ugettext_lazy as _
 
+from visualImpactSAV.models import SAV_file, Event, Designation, Furnisher, Waranty
 import constants
 
 

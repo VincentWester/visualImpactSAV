@@ -20,7 +20,7 @@ from django.template.loader import render_to_string
 # from django.core.mail import EmailMessage
 
 import constants
-from visualImpactSAV.models.business_models import SAV_file
+from visualImpactSAV.models import SAV_file
 
 
 class Pdf_generator(View):

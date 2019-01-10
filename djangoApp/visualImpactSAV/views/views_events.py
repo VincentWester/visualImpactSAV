@@ -4,9 +4,9 @@ from __future__ import unicode_literals
 from django.utils.translation import ugettext as _
 from django.core.urlresolvers import reverse
 
-from .views_template_parameters_sav_files import ParameterCreateView, ParameterUpdateView, ParameterDeleteView
-from visualImpactSAV.models.business_models import Event
+from visualImpactSAV.models import Event
 from visualImpactSAV.forms import EventForm
+from visualImpactSAV.views.views_template_parameters_sav_files import ParameterCreateView, ParameterUpdateView, ParameterDeleteView
 
 
 class EventCreateView(ParameterCreateView):
