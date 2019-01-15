@@ -155,7 +155,7 @@ urlpatterns = [
         name="generatePdfReparation"
     ),
     url(
-        r'api/dossier_sav/',
+        r'api/dossiers_sav/',
         SAV_fileList.as_view(),
         name="restListSAVFiles"
     ),

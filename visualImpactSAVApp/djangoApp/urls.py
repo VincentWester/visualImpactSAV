@@ -37,6 +37,7 @@ urlpatterns = [
     url(r'^logout/$', auth_views.logout, {'next_page': '/'}, name='logout'),
     url(r'^signup/$', views.signup, name='signup'),
     url(r'^visualImpactSAV/', include('visualImpactSAV.urls', namespace='visualImpactSAV')),
+    url(r'^app/', include('reactApp.urls', namespace='reactApp')),
     url(r'^admin/', admin.site.urls),
 ]
 
