@@ -47,6 +47,7 @@ EMAIL_USE_TLS = True
 # Application definition
 INSTALLED_APPS = [
     'visualImpactSAV',
+    'rest_framework',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',

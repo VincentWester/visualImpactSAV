@@ -34,6 +34,9 @@ from .views.views_pdf_generator import (
     Pdf_generator_furnisher,
     Pdf_answer_reparation,
 )
+from .views.home_page_views import (
+    SAV_fileList,
+)
 
 urlpatterns = [
     url(
@@ -150,5 +153,10 @@ urlpatterns = [
         r'^generatePdfReparation/(?P<pkSAVFile>[\w\-]+)$$',
         Pdf_answer_reparation.as_view(),
         name="generatePdfReparation"
+    ),
+    url(
+        r'api/dossier_sav/',
+        SAV_fileList.as_view(),
+        name="restListSAVFiles"
     ),
 ]

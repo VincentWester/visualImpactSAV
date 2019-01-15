@@ -31,6 +31,7 @@ mkvirtualenv visualImpactSAV
 workon visualImpactSAV
 
 pip install django
+pip install djangorestframework
 pip install psycopg2 psycopg2-binary
 pip install django-widget-tweaks
 pip install pillow
