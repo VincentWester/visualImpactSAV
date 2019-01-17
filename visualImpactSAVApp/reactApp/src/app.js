@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Router, Route, browserHistory, IndexRoute } from 'react-router'
+import { BrowserRouter as Router, Route } from 'react-router-dom'
 
 import SAVFilesList from './components/savfiles-list'
 import Login from './containers/login'
@@ -7,13 +7,12 @@ import Login from './containers/login'
 export default class App extends Component {
     render() { 
         return (
-            <div>
-               <Router history={browserHistory}>                    
-                   <Route path='/app/' component={Login}></Route>
-                   <Route path='/app/dossiers-sav' component={SAVFilesList}></Route>        
-                   <Route path='*' component={Login}></Route>
-               </Router>
-            </div>
+            <Router>  
+                <div>                  
+                    <Route path='/app/' component={Login} exact></Route>
+                    <Route path='/app/dossiers-sav' component={SAVFilesList}></Route>  
+                </div>
+            </Router>
         )
 
     }
