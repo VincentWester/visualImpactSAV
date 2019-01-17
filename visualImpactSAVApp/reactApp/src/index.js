@@ -1,7 +1,23 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import { Provider } from 'react-redux';
+import { createStore, applyMiddleware } from 'redux';
+import thunk from 'redux-thunk'
 
 import App from './app';
+import reducers from './reducers';
 
-ReactDOM.render(<App />, document.getElementById('app'))
-// to put a composant in a class of index.html, write the function `document.querySelector('.app')`
+const createStoreWithMiddleware = applyMiddleware(thunk)(createStore);
+
+
+ReactDOM.render(
+    <Provider store={
+        createStoreWithMiddleware(
+            reducers,
+            window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
+        )
+    }>
+        <App />
+    </Provider>, 
+    document.getElementById('app')
+)

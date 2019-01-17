@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { BrowserRouter as Router, Route } from 'react-router-dom'
 
-import SAVFilesList from './components/savfiles-list'
+import SAVFilesList from './containers/savfiles-list'
 import Login from './containers/login'
 
 export default class App extends Component {
@@ -14,8 +14,5 @@ export default class App extends Component {
                 </div>
             </Router>
         )
-
     }
 }
-/*<DataProvider endpoint="/visualImpactSAV/api/dossiers_sav/" 
-                render={data => <Table data={data} />} />*/
