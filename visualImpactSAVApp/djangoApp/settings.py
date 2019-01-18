@@ -49,6 +49,7 @@ INSTALLED_APPS = [
     'visualImpactSAV',
     'reactApp',
     'rest_framework',
+    'knox',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -58,6 +59,11 @@ INSTALLED_APPS = [
     'visualImpactSAV.templatetags',
     'widget_tweaks',
 ]
+
+# Rest framework settings
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': ('knox.auth.TokenAuthentication',),
+}
 
 PASSWORD_HASHERS = [
     'django.contrib.auth.hashers.PBKDF2PasswordHasher',

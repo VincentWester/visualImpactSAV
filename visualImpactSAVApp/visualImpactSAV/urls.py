@@ -1,4 +1,4 @@
-from django.conf.urls import url
+from django.conf.urls import include, url
 
 from .views.views_sav_files import (
     SAVFileCreateView,
@@ -36,6 +36,11 @@ from .views.views_pdf_generator import (
 )
 from .views.home_page_views import (
     SAV_fileList,
+)
+from .views.user_views import (
+    RegistrationView,
+    LoginView,
+    UserView,
 )
 
 urlpatterns = [
@@ -154,8 +159,11 @@ urlpatterns = [
         Pdf_answer_reparation.as_view(),
         name="generatePdfReparation"
     ),
+    url(r'^api/auth/register/', RegistrationView.as_view()),
+    url(r'^api/auth/login/', LoginView.as_view()),
+    url(r'^api/auth/user/', UserView.as_view()),
     url(
-        r'api/dossiers_sav/',
+        r'^api/dossiers_sav/',
         SAV_fileList.as_view(),
         name="restListSAVFiles"
     ),

@@ -5,8 +5,8 @@ from django.utils.translation import ugettext_lazy as _
 from django.db import models
 from django.urls import reverse
 from django.utils import timezone
-from django.contrib.auth import get_user_model
 from django.db.models import PROTECT
+from django.contrib.auth.models import User
 
 import constants
 
@@ -74,7 +74,7 @@ class SAV_file(models.Model):
     given_accessory = models.TextField(_("Given accessories"), blank=True)
     bill_customer = models.FileField(_("Customer bill"), blank=True)
     furnisher = models.ForeignKey(Furnisher, null=True, on_delete=PROTECT, verbose_name=_("Furnisher"))
-    registred_by = models.ForeignKey(get_user_model(), default=constants.DEFAULT_USERS_ID, verbose_name=_("User"))
+    registred_by = models.ForeignKey(User, default=constants.DEFAULT_USERS_ID, verbose_name=_("User"))
 
     def __unicode__(self):
         return str(self.id)

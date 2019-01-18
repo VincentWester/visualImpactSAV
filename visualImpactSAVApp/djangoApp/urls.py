@@ -38,6 +38,7 @@ urlpatterns = [
     url(r'^signup/$', views.signup, name='signup'),
     url(r'^visualImpactSAV/', include('visualImpactSAV.urls', namespace='visualImpactSAV')),
     url(r'^app/', include('reactApp.urls', namespace='reactApp')),
+    url(r'^api/auth/', include('knox.urls')),
     url(r'^admin/', admin.site.urls),
 ]
 

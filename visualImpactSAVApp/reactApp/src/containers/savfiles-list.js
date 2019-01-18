@@ -10,7 +10,7 @@ class SAVFilesList extends Component {
             return files.map(
                 (file) => {
                     return (
-                        <p>VIF-SAV-{file.id} + {file.name_customer}</p>
+                        <p>VIF-SAV-{file.id} + {file.name_customer} + {file.registred_by}</p>
                     )
                 }
             )
