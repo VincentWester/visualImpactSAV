@@ -1,3 +1,18 @@
 export const ACTIONS_SAVFILES = {
     LIST: 'LIST_SAVFILES',
 }
+
+export const ACTIONS_LOGIN = {
+    SUCCESS: 'LOGIN_SUCCESSFUL',
+    FAILED: 'LOGIN_FAILED',
+}
+
+export const ACTIONS_USER = {
+    LOADING: 'USER_LOADING',
+    LOADED: 'USER_LOADED',
+    ERROR: 'AUTHENTICATION_ERROR',
+} 
+
+export const ACTIONS_LOGOUT = {
+    LOGOUT: 'LOGOUT_SUCCESSFUL',
+}

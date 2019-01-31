@@ -1,18 +1,70 @@
-import React, { Component } from "react";
-import { BrowserRouter as Router, Route } from 'react-router-dom'
+
+
+import React, { Component } from 'react';
+import { Route, Switch, BrowserRouter as Router, Redirect } from 'react-router-dom';
+
+import { connect } from "react-redux";
+import { createStore, applyMiddleware } from "redux";
+import thunk from "redux-thunk";
+
+import { login } from "./actions";
 
 import SAVFilesList from './containers/savfiles-list'
 import Login from './containers/login'
+import NotFound from "./components/not-found";
+
+class RootContainerComponent extends Component {
+
+  componentDidMount() {
+    this.props.loadUser();
+  }
+
+  PrivateRoute = ({component: ChildComponent, ...rest}) => {
+    return <Route {...rest} render={props => {
+      if (this.props.login.isLoading) {
+        return <em>Loading...</em>;
+      } else if (!this.props.login.isAuthenticated) {
+        return <Redirect to="/app/login" />;
+      } else {
+        return <ChildComponent {...props} />
+      }
+    }} />
+  }
+
+  render() {
+    let {PrivateRoute} = this;
+    return (
+      <Router>
+        <Switch>
+          <PrivateRoute exact path="/app/" component={SAVFilesList} />
+          <Route exact path="/app/login" component={Login} />
+          <Route component={NotFound} />
+        </Switch>
+      </Router>
+    );
+  }
+}
+
+const mapStateToProps = state => {
+  return {
+    login: state.login,
+  }
+}
+
+const mapDispatchToProps = dispatch => {
+  return {
+    loadUser: () => {
+      return dispatch(login.loadUser());
+    }
+  }
+}
+
+let RootContainer = connect(mapStateToProps, mapDispatchToProps)(RootContainerComponent);
 
 export default class App extends Component {
-    render() { 
-        return (
-            <Router>  
-                <div>                  
-                    <Route path='/app/' component={Login} exact></Route>
-                    <Route path='/app/dossiers-sav' component={SAVFilesList}></Route>  
-                </div>
-            </Router>
-        )
+    render() {
+      return (
+          <RootContainer />
+      )
     }
-}
+  }

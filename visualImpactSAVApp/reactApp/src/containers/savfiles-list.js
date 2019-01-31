@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { bindActionCreators } from 'redux'
-import { listSAVFiles } from '../actions/index'
+import { savfiles } from '../actions'
 
 class SAVFilesList extends Component {
     renderFiles(){
@@ -10,7 +9,7 @@ class SAVFilesList extends Component {
             return files.map(
                 (file) => {
                     return (
-                        <p>VIF-SAV-{file.id} + {file.name_customer} + {file.registred_by}</p>
+                        <p key={file.id}>VIF-SAV-{file.id} + {file.name_customer} + {file.registred_by}</p>
                     )
                 }
             )
@@ -40,7 +39,11 @@ const mapStateToProps = (state) => {
 }
  
 const mapDispatchToProps = (dispatch) => {
-    return bindActionCreators({listSAVFiles}, dispatch)
+    return {
+        listSAVFiles: () => {
+            return dispatch(savfiles.listSAVFiles())
+        }
+    }
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(SAVFilesList)
