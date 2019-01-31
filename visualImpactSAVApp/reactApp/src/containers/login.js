@@ -1,6 +1,6 @@
 import {Link} from "react-router-dom";
 import React, { Component } from 'react'
-import ReactDOM from 'react-dom';
+import { Redirect } from 'react-router-dom';
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import { Field, reduxForm } from 'redux-form'
@@ -29,7 +29,11 @@ class Login extends Component {
   }
 
   render() {
-    const {handleSubmit} = this.props
+    const {handleSubmit, loginState} = this.props
+
+    if (loginState.isAuthenticated) {
+        return <Redirect to="/app/" />
+    }
     return (
         <form onSubmit={handleSubmit(this.login.bind(this))}>
             <div>
