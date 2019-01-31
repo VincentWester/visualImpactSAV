@@ -8,53 +8,52 @@ import { Field, reduxForm } from 'redux-form'
 import { login } from '../actions'
 
 
-
 const formConfig = {
     form : 'loginForm'
 }
 
 class Login extends Component {
 
-  login(values){
-    this.props.login(values);
-  }
-
-  renderErrors(){
-      const { loginState } = this.props
-      if (loginState.errors){
-        return(
-            <p>{loginState.errors.message}</p>
-        )
-      }
-  }
-
-  render() {
-    const {handleSubmit, loginState} = this.props
-
-    if (loginState.isAuthenticated) {
-        return <Redirect to="/app/" />
+    login(values){
+        this.props.login(values);
     }
-    return (
-        <form onSubmit={handleSubmit(this.login.bind(this))}>
-            <div>
-                <label>Identifiant</label>
-                <Field name="username" component="input" type="text"/>
-            </div>
-            <div>
-                <label>Mot de passe</label>
-                <Field name="password" component="input" type="password"/>
-            </div>
-            <button type="submit">Login</button>
 
-            <p>
-                Don't have an account? <Link to="/register">Register</Link>
-            </p>
-            {
-                this.renderErrors()
-            }
-      </form>
-    )
-  }
+    renderErrors(){
+        const { loginState } = this.props
+        if (loginState.errors){
+            return(
+                <p>{loginState.errors.message}</p>
+            )
+        }
+    }
+
+    render() {
+        const {handleSubmit, loginState} = this.props
+
+        if (loginState.isAuthenticated) {
+            return <Redirect to="/app/" />
+        }
+        return (
+            <form onSubmit={handleSubmit(this.login.bind(this))}>
+                <div>
+                    <label>Identifiant</label>
+                    <Field name="username" component="input" type="text"/>
+                </div>
+                <div>
+                    <label>Mot de passe</label>
+                    <Field name="password" component="input" type="password"/>
+                </div>
+                <button type="submit">Login</button>
+
+                <p>
+                    Don't have an account? <Link to="/register">Register</Link>
+                </p>
+                {
+                    this.renderErrors()
+                }
+        </form>
+        )
+    }
 }
 
 const mapStateToProps = state => {

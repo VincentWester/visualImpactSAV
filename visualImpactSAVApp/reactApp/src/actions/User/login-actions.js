@@ -1,4 +1,5 @@
 import axios from 'axios'
+
 import { ACTIONS_LOGIN, ACTIONS_USER } from '../action-types'
 
 export const loadUser = () => {
@@ -45,32 +46,32 @@ export const loadUser = () => {
 
 export const login = (values) => {
     return (dispatch) => {
-      const headers = {"Content-Type": "application/json"};
+        const headers = {"Content-Type": "application/json"};
 
-      return axios.post(
-        "/visualImpactSAV/api/auth/login/",
-        {
-            username: values.username, 
-            password: values.password,
-        },
-        {
-            headers: headers,
-        }
-      ).then(
-        response => {              
-            dispatch({
-                type: ACTIONS_LOGIN.SUCCESS, 
-                data: response.data 
-            });
-        }
-      ).catch(
-        error => {
-            const response = error.response
-            dispatch({
-                type: ACTIONS_LOGIN.FAILED,
-                status: response.status,
-            });
-        }
-      )
+        return axios.post(
+            "/visualImpactSAV/api/auth/login/",
+            {
+                username: values.username, 
+                password: values.password,
+            },
+            {
+                headers: headers,
+            }
+        ).then(
+            response => {              
+                dispatch({
+                    type: ACTIONS_LOGIN.SUCCESS, 
+                    data: response.data 
+                });
+            }
+        ).catch(
+            error => {
+                const response = error.response
+                dispatch({
+                    type: ACTIONS_LOGIN.FAILED,
+                    status: response.status,
+                });
+            }
+        )
     }
   }
