@@ -19,6 +19,15 @@ class Login extends Component {
     this.props.login(values);
   }
 
+  renderErrors(){
+      const { loginState } = this.props
+      if (loginState.errors){
+        return(
+            <p>{loginState.errors.message}</p>
+        )
+      }
+  }
+
   render() {
     const {handleSubmit} = this.props
     return (
@@ -36,6 +45,9 @@ class Login extends Component {
             <p>
                 Don't have an account? <Link to="/register">Register</Link>
             </p>
+            {
+                this.renderErrors()
+            }
       </form>
     )
   }
@@ -43,7 +55,7 @@ class Login extends Component {
 
 const mapStateToProps = state => {
     return {
-        login: state.login
+        loginState: state.login
     };
 }
 

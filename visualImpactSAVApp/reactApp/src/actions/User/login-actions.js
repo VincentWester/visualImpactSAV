@@ -64,10 +64,11 @@ export const login = (values) => {
             });
         }
       ).catch(
-        response => {
+        error => {
+            const response = error.response
             dispatch({
                 type: ACTIONS_LOGIN.FAILED,
-                status: response.status
+                status: response.status,
             });
         }
       )
