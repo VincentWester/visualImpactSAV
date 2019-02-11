@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 
-import { savfiles } from '../actions'
+import { savfiles, login } from '../actions'
 
 class SAVFilesList extends Component {
     renderFiles(){
@@ -22,8 +22,13 @@ class SAVFilesList extends Component {
     }
 
     render() {
+        console.log(this.props)
+        const { login } = this.props
         return (
             <div>
+                <div style={{textAlign: "right"}}>
+                    { login.user.username } (<a onClick={this.props.logout}>logout</a>)
+                </div>
                 <h1>Liste des fichiers</h1>
                 {
                     this.renderFiles()
@@ -35,7 +40,8 @@ class SAVFilesList extends Component {
 
 const mapStateToProps = (state) => {
     return {
-        files: state.savFiles
+        files: state.savFiles,
+        login: state.login,
     }
 }
  
@@ -43,6 +49,9 @@ const mapDispatchToProps = (dispatch) => {
     return {
         listSAVFiles: () => {
             return dispatch(savfiles.listSAVFiles())
+        },
+        logout: () => {
+            return dispatch(login.logout())
         }
     }
 }

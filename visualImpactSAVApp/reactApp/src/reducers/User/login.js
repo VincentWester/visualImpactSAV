@@ -1,4 +1,9 @@
-import { ACTIONS_LOGIN, ACTIONS_USER, ACTIONS_LOGOUT } from '../../actions/action-types'
+import { 
+    ACTIONS_REGISTER,
+    ACTIONS_LOGIN, 
+    ACTIONS_USER, 
+    ACTIONS_LOGOUT 
+} from '../../actions/action-types'
 
 const initialState = {
     token: localStorage.getItem("token"),
@@ -13,22 +18,29 @@ export default function LoginReducer(state=initialState, action) {
         case ACTIONS_USER.LOADING:
             return {
                 ...state, 
-                isLoading: true
-            };
-        case ACTIONS_USER.ERROR:
-            return {
-                ...state, 
-                isAuthenticated: false, 
-                isLoading: false,
+                isLoading: true,
+                errors: {}
             };
         case ACTIONS_USER.LOADED:
             return {
                 ...state, 
                 isAuthenticated: true, 
                 isLoading: false,
-                user: action.user
+                user: action.user,
+                errors: {}
+            };
+        case ACTIONS_USER.ERROR:
+            return {
+                ...state, 
+                isAuthenticated: false, 
+                isLoading: false,
+                errors: { 
+                    status: action.status, 
+                    message: "Il y a un problème avec votre user courant"
+                }
             };
 
+        case ACTIONS_REGISTER.SUCCESS:
         case ACTIONS_LOGIN.SUCCESS:
             localStorage.setItem("token", action.data.token);
             return {
@@ -50,6 +62,7 @@ export default function LoginReducer(state=initialState, action) {
                     message: "Votre Id ou votre mot de passe est incorect"
                 }
             };
+
         case ACTIONS_LOGOUT.SUCCESS:
             localStorage.removeItem("token");
             return {
@@ -58,8 +71,9 @@ export default function LoginReducer(state=initialState, action) {
                 user: null,
                 isAuthenticated: false, 
                 isLoading: false,
-                errors: action.data
+                errors: {}
             };
+
 
         default:
             return state;

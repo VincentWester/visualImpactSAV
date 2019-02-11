@@ -1,8 +1,7 @@
-import {Link} from "react-router-dom";
+import { Link } from "react-router-dom";
 import React, { Component } from 'react'
 import { Redirect } from 'react-router-dom';
 import { connect } from 'react-redux'
-import { bindActionCreators } from 'redux'
 import { Field, reduxForm } from 'redux-form'
 
 import { login } from '../actions'
@@ -46,7 +45,7 @@ class Login extends Component {
                 <button type="submit">Login</button>
 
                 <p>
-                    Don't have an account? <Link to="/register">Register</Link>
+                    Don't have an account? <Link to="/app/register">Register</Link>
                 </p>
                 {
                     this.renderErrors()

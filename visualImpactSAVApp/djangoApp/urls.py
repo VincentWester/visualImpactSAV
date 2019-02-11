@@ -17,25 +17,10 @@ from django.conf import settings
 from django.conf.urls import include, url
 from django.conf.urls.static import static
 from django.contrib import admin
-from django.contrib.auth import views as auth_views
 
-from visualImpactSAV.views import views
 import constants
 
 urlpatterns = [
-    url(
-        r'^$',
-        auth_views.login,
-        {
-            'template_name': 'djangoApp/home/home.html',
-            'extra_context': {
-                'sav_file_status': constants.SAV_FILE_STATUS_CHOICES
-            }
-        },
-        name='login'
-    ),
-    url(r'^logout/$', auth_views.logout, {'next_page': '/'}, name='logout'),
-    url(r'^signup/$', views.signup, name='signup'),
     url(r'^visualImpactSAV/', include('visualImpactSAV.urls', namespace='visualImpactSAV')),
     url(r'^app/', include('reactApp.urls', namespace='reactApp')),
     url(r'^api/auth/', include('knox.urls')),

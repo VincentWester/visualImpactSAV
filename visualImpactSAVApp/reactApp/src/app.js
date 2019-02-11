@@ -8,6 +8,7 @@ import { login } from "./actions";
 
 import SAVFilesList from './containers/savfiles-list'
 import Login from './containers/login'
+import Register from './containers/register'
 import NotFound from "./components/not-found";
 
 class RootContainerComponent extends Component {
@@ -29,11 +30,12 @@ class RootContainerComponent extends Component {
     }
 
     render() {
-        let {PrivateRoute} = this;
+        let { PrivateRoute } = this;
         return (
             <Router>
                 <Switch>
                     <PrivateRoute exact path="/app/" component={SAVFilesList} />
+                    <Route exact path="/app/register" component={Register} />
                     <Route exact path="/app/login" component={Login} />
                     <Route component={NotFound} />
                 </Switch>
