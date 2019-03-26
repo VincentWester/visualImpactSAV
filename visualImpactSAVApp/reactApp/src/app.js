@@ -5,6 +5,7 @@ import { Route, Switch, BrowserRouter as Router, Redirect } from 'react-router-d
 import { connect } from "react-redux";
 
 import { login } from "./actions";
+import generalTemplate from "./general-template";
 
 import SAVFilesList from './containers/savfiles-list'
 import Login from './containers/login'
@@ -58,7 +59,7 @@ const mapDispatchToProps = dispatch => {
     }
 }
 
-let RootContainer = connect(mapStateToProps, mapDispatchToProps)(RootContainerComponent);
+let RootContainer = connect(mapStateToProps, mapDispatchToProps)(generalTemplate(RootContainerComponent));
 
 export default class App extends Component {
     render() {
