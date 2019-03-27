@@ -767,9 +767,6 @@ msgstr "Créé le"
 msgid "contact"
 msgstr "contact"
 
-msgid "contact"
-msgstr "contact"
-
 msgid "From"
 msgstr "De cette date"
 
