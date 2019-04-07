@@ -22,13 +22,9 @@ class SAVFilesList extends Component {
     }
 
     render() {
-        console.log(this.props)
         const { login } = this.props
         return (
             <div>
-                <div style={{textAlign: "right"}}>
-                    { login.user.username } (<a onClick={this.props.logout}>logout</a>)
-                </div>
                 <h1>Liste des fichiers</h1>
                 {
                     this.renderFiles()

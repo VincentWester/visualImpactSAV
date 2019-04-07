@@ -15,7 +15,7 @@ import NotFound from "./components/not-found";
 class RootContainerComponent extends Component {
 
     componentDidMount() {
-      this.props.loadUser();
+        this.props.loadUser();
     }
 
     PrivateRoute = ({component: ChildComponent, ...rest}) => {

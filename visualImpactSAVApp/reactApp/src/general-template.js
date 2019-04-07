@@ -1,11 +1,12 @@
 import React, { Component, PropTypes } from "react"
+import Header from './containers/header'
 
 const generalTemplate = (ComponentToWrap) => {
   class ThemeComponent extends Component {
     render() {
       return (
         <div>
-            <p>Header</p>
+            <Header/>
             <ComponentToWrap {...this.props} />
             <p>Footer</p>
         </div>
@@ -13,7 +14,6 @@ const generalTemplate = (ComponentToWrap) => {
     }
   }
 
-  // on retourne notre wrapper
   return ThemeComponent
 }
 export default generalTemplate
