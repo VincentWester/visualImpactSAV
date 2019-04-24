@@ -29,7 +29,7 @@ class Register extends Component {
     render() {
         const { handleSubmit, registerState } = this.props
         if (registerState.isAuthenticated) {
-            return <Redirect to="/app/" />
+            return <Redirect to="/" />
         }
         else {
             return (

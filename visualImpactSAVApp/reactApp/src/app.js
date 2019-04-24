@@ -23,7 +23,7 @@ class RootContainerComponent extends Component {
             if (this.props.login.isLoading) {
                 return <em>Loading...</em>;
             } else if (!this.props.login.isAuthenticated) {
-                return <Redirect to="/app/login" />;
+                return <Redirect to="/login" />;
             } else {
                 return <ChildComponent {...props} />
             }
@@ -35,9 +35,9 @@ class RootContainerComponent extends Component {
         return (
             <Router>
                 <Switch>
-                    <PrivateRoute exact path="/app/" component={SAVFilesList} />
-                    <Route exact path="/app/register" component={Register} />
-                    <Route exact path="/app/login" component={Login} />
+                    <PrivateRoute exact path="/" component={SAVFilesList} />
+                    <Route exact path="/register" component={Register} />
+                    <Route exact path="/login" component={Login} />
                     <Route component={NotFound} />
                 </Switch>
             </Router>

@@ -30,7 +30,7 @@ class Login extends Component {
         const {handleSubmit, loginState} = this.props
 
         if (loginState.isAuthenticated) {
-            return <Redirect to="/app/" />
+            return <Redirect to="/" />
         }
         return (
             <form onSubmit={handleSubmit(this.login.bind(this))}>
@@ -45,7 +45,7 @@ class Login extends Component {
                 <button type="submit">Login</button>
 
                 <p>
-                    Don't have an account? <Link to="/app/register">Register</Link>
+                    Don't have an account? <Link to="/register">Register</Link>
                 </p>
                 {
                     this.renderErrors()

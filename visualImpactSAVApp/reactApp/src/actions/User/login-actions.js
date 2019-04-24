@@ -137,8 +137,7 @@ export const register = (values) => {
                 headers: headers,
             }
         ).then(
-            response => {  
-                console.log("/visualImpactSAV/api/auth/register/  Bien")              
+            response => {              
                 dispatch({
                     type: ACTIONS_REGISTER.SUCCESS, 
                     data: response.data 
@@ -147,7 +146,6 @@ export const register = (values) => {
         ).catch(
             error => {
                 const response = error.response
-                console.log("/visualImpactSAV/api/auth/register/  Pas Bien")
                 if (response.status == 401 || response.status == 403){
                     dispatch({
                         type: ACTIONS_REGISTER.FAILED,
