@@ -3,6 +3,12 @@
         "@babel/preset-env", "@babel/preset-react"
     ],
     "plugins": [
-        "transform-class-properties"
+        "transform-class-properties",
+        [
+            "@babel/plugin-proposal-decorators",
+            {
+              "legacy": true
+            }
+        ]
     ]
 }

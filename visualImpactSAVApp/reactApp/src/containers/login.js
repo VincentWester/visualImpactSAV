@@ -27,30 +27,32 @@ class Login extends Component {
     }
 
     render() {
-        const {handleSubmit, loginState} = this.props
+        const { handleSubmit, loginState } = this.props
 
         if (loginState.isAuthenticated) {
             return <Redirect to="/" />
         }
         return (
             <form onSubmit={handleSubmit(this.login.bind(this))}>
-                <div>
-                    <label>Identifiant</label>
-                    <Field name="username" component="input" type="text"/>
-                </div>
-                <div>
-                    <label>Mot de passe</label>
-                    <Field name="password" component="input" type="password"/>
-                </div>
-                <button type="submit">Login</button>
+                <div className="">
+                    <div>
+                        <label>Identifiant</label>
+                        <Field name="username" component="input" type="text"/>
+                    </div>
+                    <div>
+                        <label>Mot de passe</label>
+                        <Field name="password" component="input" type="password"/>
+                    </div>
+                    <button type="submit">Login</button>
 
-                <p>
-                    Don't have an account? <Link to="/register">Register</Link>
-                </p>
-                {
-                    this.renderErrors()
-                }
-        </form>
+                    <p>
+                        Don't have an account? <Link to="/register">Register</Link>
+                    </p>
+                    {
+                        this.renderErrors()
+                    }
+                </div>
+            </form>
         )
     }
 }

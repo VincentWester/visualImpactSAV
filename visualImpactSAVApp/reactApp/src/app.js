@@ -1,5 +1,3 @@
-
-
 import React, { Component } from 'react';
 import { Route, Switch, BrowserRouter as Router, Redirect } from 'react-router-dom';
 import { connect } from "react-redux";

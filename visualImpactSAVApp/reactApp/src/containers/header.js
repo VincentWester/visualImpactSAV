@@ -1,12 +1,35 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
+import withStyles from 'react-jss'
 
-import Grid from '@material-ui/core/Grid'
+import AppBar from '@material-ui/core/AppBar';
+import Toolbar from '@material-ui/core/Toolbar';
+import Typography from '@material-ui/core/Typography';
+import Button from '@material-ui/core/Button';
+import IconButton from '@material-ui/core/IconButton';
+import MenuIcon from '@material-ui/icons/Menu';
 
 import { login } from '../actions'
 
 import Logo from '../../static/images/logoVisual.png'
+import { Grid } from '@material-ui/core';
 
+const styles = {
+    header: {
+        backgroundColor: '#e2eae9',
+    },
+    mainBody: {
+        backgroundColor: '#a9aaff'
+    },
+    logoPart: {
+      alignContent: "flex-start"  
+    },
+    logoutPart: {
+      alignContent: "flex-end"
+    }
+}
+
+@withStyles(styles)
 class Header extends Component {
     displayCurrentUserAndLogoutButton(user){
         if (user != null){
@@ -20,34 +43,22 @@ class Header extends Component {
     }
 
     render() {
-        const { login } = this.props
+        const { login, classes } = this.props
         return (
-            <Grid 
-                container
-                direction="row"
-                justify="space-between"
-                alignItems="center"
-                className=""
-            >
-                <Grid 
-                    item
-                    direction="row"
-                    justify="center"
-                    alignItems="center"
-                    className=""
-                >
-                    <img src={ Logo } />
+          <AppBar position="static" className={classes.header}>
+            <Toolbar>
+                <Grid item xs={11}>
+                    <IconButton aria-label="Logo" className={classes.logoPart}>
+                        <img src={ Logo } />
+                    </IconButton>
+                </Grid> 
+                <Grid item xs={1}>
+                    <Typography variant="h6" color="black" className={classes.logoutPart}>
+                        { this.displayCurrentUserAndLogoutButton(login.user) }
+                    </Typography>
                 </Grid>
-                <Grid 
-                    item
-                    direction="row"
-                    justify="center"
-                    alignItems="center"
-                    className=""
-                >
-                    { this.displayCurrentUserAndLogoutButton(login.user) }
-                </Grid>
-            </Grid>
+            </Toolbar>
+            </AppBar>
         )
     }
 }
