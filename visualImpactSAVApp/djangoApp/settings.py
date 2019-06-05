@@ -101,7 +101,7 @@ TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
         'APP_DIRS': True,
-        'DIRS': (os.path.dirname(BASE_DIR) + '/frontEnd/templates/', ),
+        'DIRS': (os.path.dirname(BASE_DIR) + '/visualImpactSAVApp/reactApp/templates/', ),
         'OPTIONS': {
             'context_processors': [
                 'django.template.context_processors.debug',
@@ -169,7 +169,7 @@ USE_TZ = True
 STATIC_URL = '/static/'
 
 STATICFILES_DIRS = [
-    os.path.dirname(BASE_DIR) + '/frontEnd/static/',
+    os.path.dirname(BASE_DIR) + '/visualImpactSAVApp/reactApp/static/',
     '/var/www/static/',
 ]
 
