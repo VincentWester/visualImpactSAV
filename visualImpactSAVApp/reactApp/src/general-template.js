@@ -3,7 +3,7 @@ import withStyles from 'react-jss'
 
 import Grid from '@material-ui/core/Grid'
 
-import Header from './containers/header'
+import Header from './containers/common/header'
 
 const styles = {
   mainBody: {
