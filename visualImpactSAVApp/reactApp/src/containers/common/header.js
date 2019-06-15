@@ -23,20 +23,20 @@ const styles = {
         backgroundColor: '#40E0D0'
     },
     logoPart: {
-      alignContent: "flex-start"  
+        alignContent: "flex-start"  
     },
     logoutPart: {
-      alignContent: "flex-end"
+        alignContent: "flex-end"
     },
     userWritting: {
-      alignContent: "flex-start"
+        alignContent: "flex-start"
     },
     logoutWritting: {
         alignContent: "flex-start",
         cursor:"pointer",
         '&:hover': {
             color: "#FFDD00"
-         }
+        }
     }
 }
 
@@ -56,19 +56,19 @@ class Header extends Component {
     render() {
         const { login, classes } = this.props
         return (
-          <AppBar position="static" className={classes.header}>
-            <Toolbar>
-                <Grid item xs={11}>
-                    <IconButton aria-label="Logo" className={classes.logoPart}>
-                        <img src={ Logo } />
-                    </IconButton>
-                </Grid> 
-                <Grid item xs={1}>
-                    <Typography variant="h6" color="black" className={classes.logoutPart}>
-                        { this.displayCurrentUserAndLogoutButton(login.user, classes) }
-                    </Typography>
-                </Grid>
-            </Toolbar>
+            <AppBar position="static" className={classes.header}>
+                <Toolbar>
+                    <Grid item xs={11}>
+                        <IconButton aria-label="Logo" className={classes.logoPart}>
+                            <img src={ Logo } />
+                        </IconButton>
+                    </Grid> 
+                    <Grid item xs={1}>
+                        <Typography variant="h6" color="default" className={classes.logoutPart}>
+                            { this.displayCurrentUserAndLogoutButton(login.user, classes) }
+                        </Typography>
+                    </Grid>
+                </Toolbar>
             </AppBar>
         )
     }
